@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Großkaliber Schützengilde Eckartsberga e. V.</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="js/data/events.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/countdown.js" defer></script>
+  <script src="js/calendar.js" defer></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a href="#start" class="brand">
+      <img src="assets/img/logo-rund.png" alt="Logo Großkaliber Schützengilde Eckartsberga" />
+      <span>GSG Eckartsberga</span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="main-nav">
+      <a href="#verein">Verein</a>
+      <a href="#veranstaltungen">Veranstaltungen</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#mitglied">Mitglied werden</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="start" class="hero">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow">Großkaliber Schützengilde Eckartsberga e. V.</p>
+
+        <h1>Tradition seit 1503.</h1>
+
+        <p class="hero-subline">
+          Sport. Gemeinschaft. Präzision.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#veranstaltungen" class="btn btn-primary">Veranstaltungen</a>
+          <a href="#mitglied" class="btn btn-secondary">Mitglied werden</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-info">
+      <a href="#veranstaltungen" class="info-card event-card featured-card">
+        <p class="card-kicker">Nächste Veranstaltung</p>
+
+        <h2>Nächster Termin</h2>
+
+        <p class="event-category">Kategorie</p>
+
+        <p class="event-date">Termin folgt</p>
+
+        <div class="countdown" aria-label="Countdown bis zur nächsten Veranstaltung">
+          <div>
+            <strong id="countdown-days">00</strong>
+            <span>Tage</span>
+          </div>
+          <div>
+            <strong id="countdown-hours">00</strong>
+            <span>Std.</span>
+          </div>
+          <div>
+            <strong id="countdown-minutes">00</strong>
+            <span>Min.</span>
+          </div>
+        </div>
+
+        <span class="card-hover-link">Zum Kalender</span>
+      </a>
+
+      <a href="#verein" class="info-card sport-card">
+        <div class="card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8"></circle>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="12" cy="12" r="1"></circle>
+          </svg>
+        </div>
+
+        <h2>Schießsport erleben</h2>
+
+        <p class="card-subline">Training · Wettkämpfe · Gemeinschaft</p>
+
+        <p>
+          Vom Einsteiger bis zum erfahrenen Sportschützen – bei uns stehen
+          Tradition, Präzision und Gemeinschaft im Mittelpunkt.
+        </p>
+
+        <span class="card-hover-link">Mehr erfahren</span>
+      </a>
+
+      <a href="#mitglied" class="info-card member-card">
+        <div class="card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="10" cy="7" r="3"></circle>
+            <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 4.13a3 3 0 0 1 0 5.74"></path>
+          </svg>
+        </div>
+
+        <h2>Mitglied werden</h2>
+
+        <p class="card-subline">Tradition · Gemeinschaft · Mitmachen</p>
+
+        <p>
+          Ob Einsteiger oder erfahrener Schütze – lernen Sie unseren Verein kennen
+          und werden Sie Teil einer über 500-jährigen Tradition.
+        </p>
+
+        <span class="card-hover-link">Jetzt informieren</span>
+      </a>
+    </section>
+
+    <section id="verein" class="section section-light">
+      <div class="section-inner">
+        <p class="section-kicker">Unser Verein</p>
+
+        <h2>Tradition. Gemeinschaft. Leidenschaft.</h2>
+
+        <p class="section-lead">
+          Seit über 500 Jahren ist die Großkaliber Schützengilde Eckartsberga fester Bestandteil
+          des gesellschaftlichen Lebens der Stadt. Wir verbinden gelebte Tradition mit modernem
+          Schießsport und einer starken Gemeinschaft.
+        </p>
+
+        <div class="club-highlights" aria-label="Bereiche des Vereins">
+
+          <a href="#schiesssport" class="highlight-card">
+            <div class="highlight-icon">🎯</div>
+            <h3>Schießsport</h3>
+            <p>Welche Disziplinen bei uns geschossen werden können.</p>
+            <span class="highlight-link">Disziplinen ansehen →</span>
+          </a>
+
+          <a href="#anlage" class="highlight-card">
+            <div class="highlight-icon">🏡</div>
+            <h3>Schießbahnen & Vereinshaus</h3>
+            <p>KK, GK, Luftgewehr, Vereinshaus und Anfahrt.</p>
+            <span class="highlight-link">Anlage kennenlernen →</span>
+          </a>
+
+          <a href="#kontakt" class="highlight-card">
+            <div class="highlight-icon">👥</div>
+            <h3>Ansprechpartner</h3>
+            <p>Vorstand, Funktionen und direkte Kontaktwege.</p>
+            <span class="highlight-link">Vorstand ansehen →</span>
+          </a>
+
+          <a href="#erfolge" class="highlight-card">
+            <div class="highlight-icon">🏆</div>
+            <h3>Erfolge</h3>
+            <p>Schützenkönige, Wettkampferfolge und besondere Leistungen.</p>
+            <span class="highlight-link">Erfolge ansehen →</span>
+          </a>
+
+        </div>
+
+        <article class="history-teaser-card">
+          <p class="history-kicker">📜 Vereinsgeschichte</p>
+
+          <h3>Über 500 Jahre Schützentradition.</h3>
+
+          <p>
+            Vom Mittelalter bis heute begleitet die Geschichte der Schützengilde das Leben in
+            Eckartsberga. Entdecken Sie historische Hintergründe, alte Bilder und die Entwicklung
+            unseres Vereins über mehr als fünf Jahrhunderte.
+          </p>
+
+          <a href="#" class="history-link">Vereinsgeschichte entdecken →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="veranstaltungen" class="section section-dark">
+      <div class="section-inner">
+        <p class="section-kicker">Veranstaltungschronik</p>
+        <h2>Termine, Ergebnisse & Bilder an einem Ort.</h2>
+        <p>
+          Die Chronik bündelt kommende Veranstaltungen, vergangene Wettkämpfe,
+          Ergebnisse, Bilder und Downloads in einer übersichtlichen Timeline.
+        </p>
+
+        <div class="timeline" id="event-timeline" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="galerie" class="section section-light">
+      <div class="section-inner">
+        <p class="section-kicker">Einblicke</p>
+
+        <h2>Bilder aus Verein, Wettkampf und Tradition.</h2>
+
+        <p class="section-lead">
+          Die Galerie zeigt später automatisch ausgewählte Bilder aus Veranstaltungen,
+          Wettkämpfen und besonderen Momenten der GSG Eckartsberga.
+        </p>
+
+        <div class="gallery-preview" aria-label="Galerievorschau">
+
+          <figure class="gallery-feature is-active">
+            <img src="assets/img/history-eckartsberga.jpg" alt="Historische Aufnahme der GSG Eckartsberga" />
+            <figcaption>Historische Aufnahme · GSG Eckartsberga</figcaption>
+          </figure>
+
+          <figure class="gallery-feature">
+            <img src="assets/img/hero-eckartsburg.png" alt="Eckartsburg bei stimmungsvoller Beleuchtung" />
+            <figcaption>Eckartsburg · Eckartsberga</figcaption>
+          </figure>
+
+          <div class="gallery-preview-copy">
+            <p class="gallery-kicker">Automatische Galerie</p>
+            <h3>Ein Album, das mit dem Vereinsleben wächst.</h3>
+            <p>
+              Bilder werden später direkt mit Veranstaltungen verbunden. Die Startseite zeigt daraus
+              automatisch ausgewählte Eindrücke – ohne doppelte Pflege.
+            </p>
+            <a href="#" class="gallery-link">Alle Bilder ansehen →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="mitglied" class="section section-dark">
+      <div class="section-inner">
+        <p class="section-kicker">Mitmachen</p>
+        <h2>Mitglied werden</h2>
+        <p>
+          Wer Interesse am Schießsport oder am Vereinsleben hat, kann sich hier
+          über den Einstieg informieren.
+        </p>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section section-light">
+      <div class="section-inner">
+        <p class="section-kicker">Kontakt</p>
+        <h2>So erreichen Sie uns</h2>
+        <p>
+          Ansprechpartner, Trainingszeiten, Adresse und Kontaktformular folgen hier.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© Großkaliber Schützengilde Eckartsberga e. V.</p>
+    <p>
+      <a href="#">Impressum</a>
+      <span>|</span>
+      <a href="#">Datenschutz</a>
+    </p>
+  </footer>
+
+</body>
+</html>
