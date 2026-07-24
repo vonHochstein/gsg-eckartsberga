@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="style.css" />
   <script src="js/data/dev-events.js" defer></script>
   <script src="js/data/events.js" defer></script>
+  <script src="js/event-utils.js" defer></script>
   <script src="js/navigation.js" defer></script>
   <script src="js/countdown.js" defer></script>
   <script src="js/calendar.js" defer></script>
@@ -95,7 +96,7 @@
     </section>
 
     <section class="quick-info" aria-label="Schnelleinstieg">
-      <a href="#veranstaltungen" class="info-card event-card featured-card">
+      <a class="info-card event-card featured-card">
         <p class="card-kicker">Nächste Veranstaltung</p>
 
         <h2>Nächster Termin</h2>
@@ -119,7 +120,7 @@
           </div>
         </div>
 
-        <span class="card-hover-link">Termine ansehen</span>
+        <span class="card-hover-link" hidden>Veranstaltung ansehen</span>
       </a>
 
       <a href="#verein" class="info-card sport-card">

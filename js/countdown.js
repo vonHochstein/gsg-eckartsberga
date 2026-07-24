@@ -24,9 +24,11 @@ function formatEventDate(dateString) {
 
 const nextEvent = getNextEvent();
 
+const eventCard = document.querySelector(".event-card");
 const eventCardTitle = document.querySelector(".event-card h2");
 const eventCategory = document.querySelector(".event-category");
 const eventDate = document.querySelector(".event-date");
+const eventCardLinkLabel = document.querySelector(".event-card .card-hover-link");
 const countdownElement = document.querySelector(".countdown");
 const daysElement = document.querySelector("#countdown-days");
 const hoursElement = document.querySelector("#countdown-hours");
@@ -38,15 +40,29 @@ if (eventCardTitle && eventDate) {
     eventDate.textContent = "Neue Veranstaltungen werden hier angekündigt.";
     eventCategory?.setAttribute("hidden", "");
     countdownElement?.setAttribute("hidden", "");
+    eventCard?.removeAttribute("href");
+    eventCardLinkLabel?.setAttribute("hidden", "");
   } else {
+    const eventTitle =
+      window.EventUtils?.getEventTitle(nextEvent) || "Veranstaltung";
+    const detailUrl = window.EventUtils?.createDetailUrl(nextEvent) || null;
+
     if (eventCategory) {
       eventCategory.textContent = nextEvent.category;
       eventCategory.removeAttribute("hidden");
     }
 
-    eventCardTitle.textContent = nextEvent.title;
+    eventCardTitle.textContent = eventTitle;
     eventDate.textContent = formatEventDate(nextEvent.start);
     countdownElement?.removeAttribute("hidden");
+
+    if (detailUrl) {
+      eventCard?.setAttribute("href", detailUrl);
+      eventCardLinkLabel?.removeAttribute("hidden");
+    } else {
+      eventCard?.removeAttribute("href");
+      eventCardLinkLabel?.setAttribute("hidden", "");
+    }
   }
 }
 

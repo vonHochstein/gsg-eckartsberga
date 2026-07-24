@@ -239,28 +239,34 @@ function createMonthMarkup(month) {
 }
 
 function createEventMarkup(event) {
-  const hasDownloads = Array.isArray(event.downloads) && event.downloads.length > 0;
-  const hasResults = Array.isArray(event.results) && event.results.length > 0;
-  const hasGallery = Array.isArray(event.gallery) && event.gallery.length > 0;
+  const eventUtils = window.EventUtils;
+  const downloads = eventUtils?.normalizeDownloads(event.downloads) || [];
+  const results = eventUtils?.normalizeResults(event.results) || [];
+  const gallery = eventUtils?.normalizeGallery(event.gallery) || [];
+  const hasDownloads = downloads.length > 0;
+  const hasResults = results.length > 0;
+  const hasGallery = gallery.length > 0;
   const galleryLabel =
-    event.gallery?.length === 1 ? "1 Bild" : `${event.gallery?.length ?? 0} Bilder`;
-  const title = event.title || event.shortTitle || "Veranstaltung";
+    gallery.length === 1 ? "1 Bild" : `${gallery.length} Bilder`;
+  const title = eventUtils?.getEventTitle(event) || "Veranstaltung";
   const category = event.category || "Veranstaltung";
   const location = event.location || "Ort folgt";
-  const imageMarkup = event.image
+  const image = eventUtils?.normalizeImage(event.image) || null;
+  const detailUrl = eventUtils?.createDetailUrl(event) || null;
+  const imageMarkup = image
     ? `<figure class="timeline-media">
         <img
-          src="${escapeHTML(event.image)}"
-          alt=""
+          src="${escapeHTML(image.src)}"
+          alt="${escapeHTML(image.alt)}"
+          ${image.width ? `width="${image.width}"` : ""}
+          ${image.height ? `height="${image.height}"` : ""}
           loading="lazy"
           decoding="async"
         />
       </figure>`
     : "";
 
-  return `
-    <article class="timeline-card" data-slug="${escapeHTML(event.slug || "")}">
-
+  const cardContent = `
       <time
         class="timeline-date"
         datetime="${escapeHTML(event.start)}"
@@ -289,7 +295,19 @@ function createEventMarkup(event) {
         </div>
 
       </div>
+  `;
 
+  const cardInner = detailUrl
+    ? `<a
+        class="timeline-card-inner timeline-card-link"
+        href="${escapeHTML(detailUrl)}"
+        aria-label="Details zu ${escapeHTML(title)}"
+      >${cardContent}</a>`
+    : `<div class="timeline-card-inner">${cardContent}</div>`;
+
+  return `
+    <article class="timeline-card" data-slug="${escapeHTML(event.slug || "")}">
+      ${cardInner}
     </article>
   `;
 }

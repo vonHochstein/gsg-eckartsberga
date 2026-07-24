@@ -13,27 +13,19 @@ const developmentEvents = [
   {
     id: 92023,
     slug: "demo-archivprobe-2023",
-    title: "[DEMO] Archivprobe 2023",
-    shortTitle: "[DEMO] 2023",
+    title: "[DEMO] Bewusst knapper Termineintrag 2023",
+    shortTitle: "[DEMO] Knapper Eintrag",
     category: "Entwicklungs-Testdaten",
     start: "2023-05-13T10:00:00",
     end: "2023-05-13T15:00:00",
     location: "Testort – keine echten Vereinsdaten",
     organizer: "Nicht produktiv",
-    description: "Kurzer Testeintrag für ein älteres Archivjahr.",
-    image: "",
+    description: "",
+    image: null,
+    gallery: [],
     downloads: [],
     results: [],
-    gallery: [
-      {
-        src: "assets/img/history-eckartsberga.jpg",
-        alt: "Historische Vereinsaufnahme als nicht produktives Testbild",
-        caption: "[DEMO] Einzelbild zur Archivprobe 2023",
-        width: 359,
-        height: 259
-      }
-    ],
-    links: [],
+    externalLinks: [],
     registrationRequired: false,
     archive: true,
     featured: false,
@@ -51,11 +43,16 @@ const developmentEvents = [
     organizer: "Nicht produktiv",
     description:
       "Dieser erfundene Eintrag prüft eine Veranstaltung mit Titelbild, aber ohne Galerie.",
-    image: "assets/img/hero-eckartsburg.jpg",
+    image: {
+      src: "assets/img/hero-eckartsburg.jpg",
+      alt: "Eckartsburg als nicht produktives Titelbild",
+      width: 1673,
+      height: 940
+    },
+    gallery: [],
     downloads: [],
     results: [],
-    gallery: [],
-    links: [],
+    externalLinks: [],
     registrationRequired: false,
     archive: true,
     featured: false,
@@ -73,9 +70,12 @@ const developmentEvents = [
     organizer: "Nicht produktiv",
     description:
       "Nicht produktiver Prüfeintrag mit mehreren vorhandenen lokalen Bildern für den Wechsel der Galerievorschau.",
-    image: "assets/img/history-eckartsberga.jpg",
-    downloads: [],
-    results: [],
+    image: {
+      src: "assets/img/history-eckartsberga.jpg",
+      alt: "Historische Vereinsaufnahme als nicht produktives Titelbild",
+      width: 359,
+      height: 259
+    },
     gallery: [
       {
         src: "assets/img/history-eckartsberga.jpg",
@@ -92,8 +92,44 @@ const developmentEvents = [
         height: 940
       }
     ],
-    links: [],
-    registrationRequired: false,
+    downloads: [
+      {
+        label: "[DEMO] Ausschreibung als lokale Testdatei",
+        url: "assets/dev/demo-ausschreibung.txt",
+        description:
+          "Nicht produktive Entwicklungsressource zur Prüfung eines Downloads.",
+        fileType: "TXT",
+        fileSize: "unter 1 KB"
+      }
+    ],
+    results: [
+      {
+        label: "[DEMO] Ergebnisdatei lokal öffnen",
+        url: "assets/dev/demo-ergebnis.txt",
+        kind: "file",
+        description:
+          "Nicht produktive Entwicklungsressource zur Prüfung eines Dateiergebnisses.",
+        fileType: "TXT",
+        fileSize: "unter 1 KB"
+      },
+      {
+        label: "[DEMO] Ergebnis auf externer Beispielseite öffnen",
+        url: "https://example.org/",
+        kind: "external",
+        description:
+          "Reservierte Beispieladresse zur Prüfung eines externen Ergebnisses."
+      }
+    ],
+    externalLinks: [
+      {
+        label:
+          "[DEMO] Bewusst sehr lange Linkbezeichnung zur Prüfung von Zeilenumbrüchen in schmalen Ansichten",
+        url: "https://example.org/",
+        description:
+          "Reservierte Beispieladresse; keine echte Vereins- oder Veranstaltungsseite."
+      }
+    ],
+    registrationRequired: true,
     archive: true,
     featured: false,
     developmentOnly: true
@@ -111,11 +147,11 @@ const developmentEvents = [
     organizer: "Nicht produktiv",
     description:
       "Dieser vollständig erfundene Beschreibungstext ist absichtlich länger. Er prüft Zeilenumbrüche, Kartenhöhen und die Lesbarkeit im Jahresarchiv, ohne dabei eine reale Veranstaltung oder Aussage des Vereins darzustellen.",
-    image: "",
+    image: null,
+    gallery: [],
     downloads: [],
     results: [],
-    gallery: [],
-    links: [],
+    externalLinks: [],
     registrationRequired: false,
     archive: true,
     featured: false,
@@ -133,9 +169,12 @@ const developmentEvents = [
     organizer: "Nicht produktiv",
     description:
       "Entwicklungswerkzeug für das aktuelle Archivjahr; keine echte Vereinsveranstaltung.",
-    image: "assets/img/hero-eckartsburg.jpg",
-    downloads: [],
-    results: [],
+    image: {
+      src: "assets/img/hero-eckartsburg.jpg",
+      alt: "Eckartsburg als nicht produktives Titelbild",
+      width: 1673,
+      height: 940
+    },
     gallery: [
       {
         src: "assets/img/hero-eckartsburg.jpg",
@@ -145,7 +184,9 @@ const developmentEvents = [
         height: 940
       }
     ],
-    links: [],
+    downloads: [],
+    results: [],
+    externalLinks: [],
     registrationRequired: false,
     archive: true,
     featured: false,

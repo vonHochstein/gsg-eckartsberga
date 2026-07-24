@@ -1,0 +1,4 @@
+ENTWICKLUNGSRESSOURCE – KEIN ECHTES ERGEBNIS
+
+Diese lokale Testdatei dient ausschließlich der Entwicklung.
+Sie enthält keine realen Teilnehmer-, Platzierungs- oder Ergebnisdaten.

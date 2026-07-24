@@ -35,16 +35,20 @@ function appendEventGalleryImages() {
   const galleryPreview = document.querySelector(".gallery-preview");
   const galleryCopy = galleryPreview?.querySelector(".gallery-preview-copy");
   const eventList = typeof events !== "undefined" && Array.isArray(events) ? events : [];
+  const eventUtils = window.EventUtils;
 
-  if (!galleryPreview || !galleryCopy) return;
+  if (!galleryPreview || !galleryCopy || !eventUtils) return;
 
-  const eventGalleryImages = eventList.flatMap((event) =>
-    Array.isArray(event.gallery)
-      ? event.gallery.filter(
-          (image) => image && typeof image === "object" && image.src
-        )
-      : []
-  );
+  const eventGalleryImages = eventList.flatMap((event) => {
+    const detailUrl = eventUtils.createDetailUrl(event);
+    const eventTitle = eventUtils.getEventTitle(event) || "Veranstaltung";
+
+    return eventUtils.normalizeGallery(event.gallery).map((image) => ({
+      detailUrl,
+      eventTitle,
+      image
+    }));
+  });
 
   if (eventGalleryImages.length === 0) return;
 
@@ -52,13 +56,26 @@ function appendEventGalleryImages() {
     .querySelectorAll(".gallery-feature")
     .forEach((feature) => feature.remove());
 
-  eventGalleryImages.forEach((image) => {
+  eventGalleryImages.forEach(({ detailUrl, eventTitle, image }) => {
     const figure = document.createElement("figure");
     figure.className = "gallery-feature";
+    let contentContainer = figure;
+
+    if (detailUrl) {
+      const link = document.createElement("a");
+      link.className = "gallery-feature-link";
+      link.href = detailUrl;
+      link.setAttribute(
+        "aria-label",
+        `Veranstaltungsdetails: ${eventTitle}`
+      );
+      figure.append(link);
+      contentContainer = link;
+    }
 
     const imageElement = document.createElement("img");
     imageElement.src = image.src;
-    imageElement.alt = image.alt || "";
+    imageElement.alt = image.alt;
     imageElement.loading = "lazy";
     imageElement.decoding = "async";
 
@@ -70,12 +87,12 @@ function appendEventGalleryImages() {
       imageElement.height = image.height;
     }
 
-    figure.append(imageElement);
+    contentContainer.append(imageElement);
 
     if (image.caption) {
       const caption = document.createElement("figcaption");
       caption.textContent = image.caption;
-      figure.append(caption);
+      contentContainer.append(caption);
     }
 
     galleryPreview.insertBefore(figure, galleryCopy);

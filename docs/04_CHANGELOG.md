@@ -13,6 +13,11 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Verständliche Leerzustände für die Bereiche der Veranstaltungschronik.
 - Optimierte JPEG-Variante des Hero-Bildes.
 - Getrennte, eindeutig markierte Entwicklungs-Testdaten für Archiv- und Galerieprüfungen mit zentralem Schalter.
+- Verbindliches Veranstaltungsmodell mit optionalen Bereichen für Beschreibung, Bild, Galerie, Downloads, Ergebnisse und externe Links.
+- Zentrale `EventUtils`-Hilfsfunktionen für Detailfähigkeit, Titel, Bild- und Linknormalisierung, Detail-URLs und eindeutige Slug-Auflösung.
+- Universelle Veranstaltungsdetailseite unter `event.html?event=<slug>` mit dynamischen Metadaten und zugänglichen Fehlerzuständen.
+- Automatisierte Node-Tests für die gemeinsam verwendete Veranstaltungslogik.
+- Lokale, eindeutig als Entwicklungsmaterial gekennzeichnete Beispieldateien für Download- und Ergebnisprüfungen.
 
 ### Geändert
 
@@ -22,6 +27,9 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Galerieanimation beruhigt und bei reduzierter Bewegung deaktiviert.
 - Galerievorschau so ergänzt, dass vorhandene Eventbilder genutzt werden und ohne solche Daten die statischen Bilder erhalten bleiben.
 - Hero-Bilddatei für deutlich geringere Übertragungsgröße optimiert.
+- Timeline-Karten, Countdown und ereignisbezogene Galerie-Vorschauen mit den passenden Detailseiten verbunden.
+- Leere oder ungültige optionale Detailbereiche werden vollständig ausgeblendet; ein ungültiges oder vor dem Start liegendes Enddatum wird ignoriert.
+- Veranstaltungsdaten und Entwicklungsdaten auf dasselbe verbindliche Detaildatenmodell vereinheitlicht, ohne produktive Termine künstlich zu befüllen.
 
 ### Behoben
 
@@ -36,12 +44,15 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 ### Sicherheit
 
 - Dynamisch ausgegebene Veranstaltungstexte vor dem Einfügen in HTML maskiert.
+- Dynamische Datei- und Webverweise auf freigegebene Protokolle begrenzt.
+- Mehrdeutige doppelte Slugs führen zu einem eindeutigen Fehlerzustand statt zur zufälligen Auswahl einer Veranstaltung.
 
 ### Dokumentation
 
 - Persönliche Projektnotizen vollständig ausgewertet und in die Projektdokumentation eingeordnet.
 - Verkaufsargumente und offene Prüfpunkte als eigenständige Dokumente ergänzt.
 - Projektphase 0 in der Roadmap als abgeschlossen dokumentiert.
+- Technische Projektdokumentation, Roadmap und Implementierungsnachweis auf den vollständigen Stand von IA-002 aktualisiert.
 
 ---
 

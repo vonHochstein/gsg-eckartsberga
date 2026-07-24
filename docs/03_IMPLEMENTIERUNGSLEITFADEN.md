@@ -184,6 +184,12 @@ Es enthält veröffentlichungsrelevante abgeschlossene Änderungen aus Sicht des
 
 Er nimmt ungeprüfte Vorschläge auf. Ein Eintrag ist weder Zusage noch Priorisierung.
 
+## Abgeschlossene Implementierungsnachweise
+
+Konkrete Nachweise zu größeren Änderungen werden getrennt von diesem dauerhaften Leitfaden geführt:
+
+- [IA-002 – Veranstaltungsdetailseiten](implementierung/2026-07-24_IA-002_VERANSTALTUNGSDETAILSEITEN.md)
+
 ## Review-Checkliste
 
 - Entspricht das Ergebnis der Projektvision?

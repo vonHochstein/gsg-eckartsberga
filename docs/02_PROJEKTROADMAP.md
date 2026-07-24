@@ -40,6 +40,8 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 ### Veranstaltungen
 
 - zentrale Veranstaltungsdatenquelle;
+- verbindliches, erweiterbares Veranstaltungsmodell mit Kernangaben und optionalen Detailbereichen;
+- gemeinsame Hilfsfunktionen in `EventUtils` für Detailfähigkeit, Titel, Bilder, strukturierte Linklisten und Detail-URLs;
 - Anzeige des nächsten Termins;
 - Countdown bis zur nächsten Veranstaltung;
 - dynamische Veranstaltungschronik;
@@ -48,7 +50,12 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - interaktives, semantisch beschriftetes Jahresarchiv;
 - verständliche Leerzustände und stabile Sortierung;
 - unkontrollierte Testveranstaltungen aus dem produktiven Datenbestand entfernt;
-- getrennte, schaltbare Entwicklungs-Testdaten für Archiv und Galerie ergänzt.
+- getrennte, schaltbare Entwicklungs-Testdaten für Archiv, Galerie und sämtliche optionalen Detailbereiche ergänzt;
+- IA-002: universelle Veranstaltungsdetailseite unter `event.html?event=<slug>` umgesetzt;
+- leere Detailbereiche, fehlerhafte Enddaten und nicht verwendbare Verweise werden kontrolliert ausgeblendet;
+- eindeutige Fehlerzustände für fehlende Parameter, unbekannte Slugs, unvollständige Kerndaten und doppelte Slugs;
+- Timeline, Countdown und Galerie-Teaser ausschließlich über `EventUtils.createDetailUrl()` mit den Detailseiten verbunden;
+- automatisierte Tests für Datenmodell, URL-Prüfung, Normalisierung und Slug-Auflösung eingeführt.
 
 ### Dokumentation
 
@@ -58,6 +65,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - Changelog-Grundstruktur und zentraler Ideenspeicher;
 - persönliche Projektnotizen vollständig ausgewertet und thematisch zugeordnet;
 - Verkaufsargumente und offene Prüfpunkte getrennt dokumentiert;
+- IA-002 mit technischem Stand, Architekturentscheidungen, Integrationen und Prüfprotokoll dokumentiert;
 - Projektphase 0 „Projektvorbereitung“ abgeschlossen.
 
 ## In Arbeit
@@ -69,6 +77,8 @@ Offene Entscheidungen vor oder während der nächsten Abschnitte werden in [07_O
 ## Geplant
 
 Die Reihenfolge bildet fachliche Abhängigkeiten ab. Ein Abschnitt wird vor Beginn konkret geplant und mit Abnahmekriterien versehen.
+
+Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „Veranstaltungsdetail und Chronik“ wurden mit IA-002 technisch abgeschlossen und in „Bereits umgesetzt“ überführt. Noch fehlende echte Vereinsinhalte bleiben Teil der redaktionellen Vervollständigung.
 
 ### Abschnitt 1: Inhalte und Navigation vervollständigen
 
@@ -86,22 +96,6 @@ Die Reihenfolge bildet fachliche Abhängigkeiten ab. Ein Abschnitt wird vor Begi
 - externe Dienste und Einwilligungserfordernisse bewerten;
 - rechtssichere Karten- beziehungsweise Anfahrtslösung festlegen;
 - Veröffentlichungsvoraussetzungen dokumentieren.
-
-### Abschnitt 3: Verbindliches Veranstaltungsmodell
-
-- Pflichtfelder und optionale Felder definieren;
-- Datenstrukturen für Downloads, Ergebnisse, Galerien und Links festlegen;
-- Datums- und Zeitzonenregeln dokumentieren;
-- fachliche Datenvalidierung vorsehen.
-
-### Abschnitt 4: Veranstaltungsdetail und Chronik
-
-- aufrufbare Detailansicht je Veranstaltung umsetzen;
-- Ausschreibungen und Downloads tatsächlich verlinken;
-- Ergebnisse verständlich bereitstellen;
-- eventbezogene Galerien anbinden;
-- laufende, kommende und vergangene Veranstaltungen konsistent behandeln;
-- vollständige Detailinhalte und Verknüpfungen für vorhandene Statusanzeigen ergänzen.
 
 ### Abschnitt 5: Galerie und Medien
 
@@ -166,7 +160,7 @@ Erreicht, wenn Inhalte, Navigation, Kontakt, Rechtstexte und mobile Nutzung voll
 
 ### M2 – Vollständige Veranstaltungsplattform
 
-Erreicht, wenn Termine, Details, Downloads, Ergebnisse, Galerien und Archiv aus dem verbindlichen Veranstaltungsmodell funktionieren.
+Die technische Grundlage wurde mit IA-002 abgeschlossen: Termine, Details, strukturierte Verweise, Galerien und Archiv arbeiten aus dem verbindlichen Veranstaltungsmodell. Der Meilenstein bleibt bis zur redaktionellen Befüllung und Freigabe der realen Veranstaltungsinhalte offen.
 
 ### M3 – Qualitätsgesicherter Regelbetrieb
 

@@ -541,12 +541,16 @@ abbr[title] {
   align-items: center;
   text-decoration: none;
   color: var(--color-white);
-  cursor: pointer;
+  cursor: default;
   background: linear-gradient(180deg, #1d1d1d 0%, #151515 100%);
   transition:
     transform 0.22s ease,
     box-shadow 0.22s ease,
     background 0.22s ease;
+}
+
+.event-card[href] {
+  cursor: pointer;
 }
 
 .event-card h2 {
@@ -580,18 +584,18 @@ abbr[title] {
   z-index: 6;
 }
 
-.featured-card:hover {
+.featured-card[href]:hover {
   transform: scale(1.095);
   box-shadow: 0 34px 74px rgba(0, 0, 0, 0.26);
   background: linear-gradient(180deg, #232323 0%, #191919 100%);
 }
 
-.featured-card:hover .event-category {
+.featured-card[href]:hover .event-category {
   border-color: rgba(214, 168, 79, 0.75);
   background: rgba(214, 168, 79, 0.14);
 }
 
-.featured-card:hover .card-hover-link {
+.featured-card[href]:hover .card-hover-link {
   opacity: 1;
   color: var(--color-gold);
 }
@@ -859,10 +863,23 @@ abbr[title] {
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background: linear-gradient(to top,
     rgba(0,0,0,.78) 0%,
     rgba(0,0,0,.15) 45%,
     rgba(0,0,0,0) 100%);
+}
+
+.gallery-feature-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+
+.gallery-feature-link:focus-visible {
+  outline-offset: -5px;
 }
 
 .gallery-feature figcaption {
@@ -959,10 +976,8 @@ abbr[title] {
 }
 
 .timeline-card {
-  display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 24px;
-  padding: 26px;
+  display: block;
+  overflow: hidden;
   border-radius: var(--radius-card);
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -972,6 +987,24 @@ abbr[title] {
     background 0.22s ease,
     border-color 0.22s ease,
     box-shadow 0.22s ease;
+}
+
+.timeline-card-inner {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 24px;
+  min-height: 100%;
+  padding: 26px;
+  border-radius: inherit;
+  color: inherit;
+}
+
+.timeline-card-link {
+  cursor: pointer;
+}
+
+.timeline-card-link:focus-visible {
+  outline-offset: -5px;
 }
 
 .timeline-card:hover {
@@ -1327,7 +1360,7 @@ abbr[title] {
     margin-top: 42px;
   }
 
-  .timeline-card {
+  .timeline-card-inner {
     grid-template-columns: 1fr;
     gap: 18px;
     padding: 22px;
@@ -1581,8 +1614,8 @@ abbr[title] {
     transform: none;
   }
 
-  .featured-card:hover,
-  .featured-card:active {
+  .featured-card[href]:hover,
+  .featured-card[href]:active {
     transform: scale(1.015);
   }
 
@@ -1664,7 +1697,11 @@ abbr[title] {
     padding: 64px 18px;
   }
 
-  .timeline-card {
+  .section-kicker {
+    overflow-wrap: anywhere;
+  }
+
+  .timeline-card-inner {
     padding: 20px 18px;
   }
 

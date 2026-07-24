@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Veranstaltungsdetails der Großkaliber Schützengilde 1503 Eckartsberga e. V."
+  />
+  <meta name="theme-color" content="#111111" />
+
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="GSG Eckartsberga" />
+  <meta property="og:title" content="Veranstaltung · GSG Eckartsberga" />
+  <meta
+    property="og:description"
+    content="Veranstaltungsdetails der Großkaliber Schützengilde 1503 Eckartsberga e. V."
+  />
+
+  <title>Veranstaltung · GSG Eckartsberga</title>
+
+  <link rel="icon" type="image/png" href="assets/img/logo-rund.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="event.css" />
+
+  <script src="js/data/dev-events.js" defer></script>
+  <script src="js/data/events.js" defer></script>
+  <script src="js/event-utils.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/event-detail.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+
+<body class="event-detail-page">
+  <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+
+  <aside
+    class="development-data-banner"
+    id="development-data-banner"
+    role="status"
+    hidden
+  >
+    <strong>Entwicklungsansicht:</strong>
+    Nicht produktive Testdaten für Archiv und Galerie sind aktiv.
+  </aside>
+
+  <header class="site-header">
+    <a
+      href="index.html#start"
+      class="brand"
+      aria-label="GSG Eckartsberga – zur Startseite"
+    >
+      <img
+        src="assets/img/logo-rund.png"
+        alt=""
+        width="360"
+        height="347"
+      />
+      <span>GSG Eckartsberga</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+
+    <nav class="main-nav" id="main-navigation" aria-label="Hauptnavigation">
+      <a href="index.html#verein">Verein</a>
+      <a href="index.html#veranstaltungen">Veranstaltungen</a>
+      <a href="index.html#galerie">Galerie</a>
+      <a href="index.html#mitglied">Mitglied werden</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="event-main">
+    <div
+      class="event-detail"
+      id="event-detail"
+      aria-live="polite"
+      aria-busy="true"
+    ></div>
+
+    <noscript>
+      <section class="event-state" aria-labelledby="noscript-title">
+        <p class="event-state-kicker">Veranstaltungsdetails</p>
+        <h1 id="noscript-title">JavaScript wird benötigt</h1>
+        <p>
+          Die Veranstaltungsdetailansicht wird aus den zentral gepflegten
+          Veranstaltungsdaten erzeugt und benötigt dafür JavaScript.
+        </p>
+        <a class="btn btn-primary" href="index.html#veranstaltungen">
+          Zur Veranstaltungsübersicht
+        </a>
+      </section>
+    </noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div>
+        <p class="footer-brand">GSG Eckartsberga</p>
+        <p class="footer-copy">Tradition · Sport · Gemeinschaft</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navigation im Seitenfuß">
+        <a href="index.html#start">Start</a>
+        <a href="index.html#verein">Verein</a>
+        <a href="index.html#veranstaltungen">Veranstaltungen</a>
+        <a href="index.html#galerie">Galerie</a>
+        <a href="index.html#mitglied">Mitglied werden</a>
+      </nav>
+
+      <p class="footer-legal">
+        © <span id="current-year">2026</span> Großkaliber Schützengilde Eckartsberga e. V.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
