@@ -1,4 +1,13 @@
-// Zentrale Initialisierung
-// Weitere globale Funktionen können später hier ergänzt werden.
+const currentYear = document.getElementById("current-year");
+const developmentDataBanner = document.getElementById("development-data-banner");
 
-console.info("GSG Eckartsberga – Website initialisiert.");
+if (currentYear) {
+  currentYear.textContent = String(new Date().getFullYear());
+}
+
+if (
+  developmentDataBanner &&
+  document.documentElement.dataset.developmentData === "active"
+) {
+  developmentDataBanner.removeAttribute("hidden");
+}

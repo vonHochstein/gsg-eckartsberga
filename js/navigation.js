@@ -1,6 +1,7 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const siteHeader = document.querySelector(".site-header");
+const mobileNavigation = window.matchMedia("(max-width: 820px)");
 
 if (menuToggle && mainNav) {
   function closeMenu() {
@@ -38,6 +39,13 @@ if (menuToggle && mainNav) {
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && mainNav.classList.contains("is-open")) {
+      closeMenu();
+      menuToggle.focus();
+    }
+  });
+
+  mobileNavigation.addEventListener?.("change", (event) => {
+    if (!event.matches) {
       closeMenu();
     }
   });

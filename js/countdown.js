@@ -1,10 +1,14 @@
 
 function getNextEvent() {
   const now = new Date();
+  const eventList = typeof events !== "undefined" && Array.isArray(events) ? events : [];
 
-  return events
+  return eventList
     .filter((event) => new Date(event.start) > now)
-    .sort((a, b) => new Date(a.start) - new Date(b.start))[0] ?? null;
+    .sort((a, b) => {
+      const timeDifference = new Date(a.start) - new Date(b.start);
+      return timeDifference || String(a.id).localeCompare(String(b.id), "de", { numeric: true });
+    })[0] ?? null;
 }
 
 function formatEventDate(dateString) {
@@ -23,6 +27,7 @@ const nextEvent = getNextEvent();
 const eventCardTitle = document.querySelector(".event-card h2");
 const eventCategory = document.querySelector(".event-category");
 const eventDate = document.querySelector(".event-date");
+const countdownElement = document.querySelector(".countdown");
 const daysElement = document.querySelector("#countdown-days");
 const hoursElement = document.querySelector("#countdown-hours");
 const minutesElement = document.querySelector("#countdown-minutes");
@@ -30,14 +35,18 @@ const minutesElement = document.querySelector("#countdown-minutes");
 if (eventCardTitle && eventDate) {
   if (!nextEvent) {
     eventCardTitle.textContent = "Aktuell keine Termine";
-    eventDate.textContent = "Neue Veranstaltungen folgen.";
+    eventDate.textContent = "Neue Veranstaltungen werden hier angekündigt.";
+    eventCategory?.setAttribute("hidden", "");
+    countdownElement?.setAttribute("hidden", "");
   } else {
     if (eventCategory) {
       eventCategory.textContent = nextEvent.category;
+      eventCategory.removeAttribute("hidden");
     }
 
     eventCardTitle.textContent = nextEvent.title;
     eventDate.textContent = formatEventDate(nextEvent.start);
+    countdownElement?.removeAttribute("hidden");
   }
 }
 
@@ -66,4 +75,7 @@ function updateCountdown() {
 }
 
 updateCountdown();
-setInterval(updateCountdown, 60 * 1000);
+
+if (nextEvent) {
+  setInterval(updateCountdown, 60 * 1000);
+}

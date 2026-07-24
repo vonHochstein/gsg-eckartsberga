@@ -8,23 +8,34 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Hinzugefügt
 
-<!-- Beispiel: Neue Veranstaltungsdetailansicht mit Downloads und Galerie. -->
+- SEO-Grundmetadaten und Favicon auf Basis des vorhandenen Vereinslogos.
+- Sprunglink zum Hauptinhalt, systematische Fokusdarstellung und Unterstützung für reduzierte Bewegung.
+- Verständliche Leerzustände für die Bereiche der Veranstaltungschronik.
+- Optimierte JPEG-Variante des Hero-Bildes.
+- Getrennte, eindeutig markierte Entwicklungs-Testdaten für Archiv- und Galerieprüfungen mit zentralem Schalter.
 
 ### Geändert
 
-<!-- Beispiel: Navigation auf kleinen Bildschirmen übersichtlicher gestaltet. -->
+- Startseite im Rahmen von IA-001 in Inhalt, Abständen, Karten, Hero, Galerie, Timeline und Footer vereinheitlicht.
+- Tote oder nur vorbereitete Links entfernt und vorhandene Startseiteninhalte abschließend formuliert.
+- Timeline semantisch gegliedert, stabil sortiert und das Jahresarchiv zugänglicher beschriftet.
+- Galerieanimation beruhigt und bei reduzierter Bewegung deaktiviert.
+- Galerievorschau so ergänzt, dass vorhandene Eventbilder genutzt werden und ohne solche Daten die statischen Bilder erhalten bleiben.
+- Hero-Bilddatei für deutlich geringere Übertragungsgröße optimiert.
 
 ### Behoben
 
-<!-- Beispiel: Falsche Einordnung mehrtägiger Veranstaltungen im Archiv korrigiert. -->
+- Doppelte Ankerabstände, mögliche mobile Überläufe und instabile Navigation beim Wechsel der Bildschirmgröße behoben.
+- Unnötige Konsolenausgabe entfernt und Footer-Jahr automatisch aktualisiert.
 
 ### Entfernt
 
-<!-- Beispiel: Nicht mehr verwendeten Platzhalterbereich entfernt. -->
+- Nicht belegte Kontakt-, Rechts-, Geschichts- und Galerieziele von der öffentlich sichtbaren Startseite entfernt.
+- Unkontrollierte Testveranstaltungen aus dem produktiven Datenbestand entfernt und durch getrennte, deaktivierbare Entwicklungsdaten ersetzt.
 
 ### Sicherheit
 
-<!-- Beispiel: Ausgabe redaktioneller Veranstaltungsdaten abgesichert. -->
+- Dynamisch ausgegebene Veranstaltungstexte vor dem Einfügen in HTML maskiert.
 
 ### Dokumentation
 

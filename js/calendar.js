@@ -11,46 +11,92 @@ if (timelineContainer && typeof events !== "undefined") {
 function renderTimeline(eventList) {
   timelineContainer.innerHTML = "";
 
+  const validEvents = Array.isArray(eventList) ? eventList : [];
   const now = new Date();
   const recentThreshold = new Date(now);
   recentThreshold.setDate(recentThreshold.getDate() - 30);
 
-  const upcomingEvents = [...eventList]
+  const upcomingEvents = validEvents
     .filter((event) => new Date(event.end || event.start) >= now)
-    .sort((a, b) => new Date(a.start) - new Date(b.start));
+    .sort(compareEventsAscending);
 
-  const recentPastEvents = [...eventList]
+  const recentPastEvents = validEvents
     .filter((event) => {
       const eventEnd = new Date(event.end || event.start);
       return eventEnd < now && eventEnd >= recentThreshold;
     })
-    .sort((a, b) => new Date(b.start) - new Date(a.start));
+    .sort(compareEventsDescending);
 
-  const archiveEvents = [...eventList]
+  const archiveEvents = validEvents
     .filter((event) => new Date(event.end || event.start) < recentThreshold)
-    .sort((a, b) => new Date(b.start) - new Date(a.start));
+    .sort(compareEventsDescending);
 
-  if (upcomingEvents.length > 0) {
-    timelineContainer.insertAdjacentHTML("beforeend", createSectionHeadline("Kommende Termine"));
-    renderEventGroup(upcomingEvents);
-  }
+  renderEventSection(
+    "upcoming",
+    "Kommende Termine",
+    upcomingEvents,
+    "Aktuell sind keine kommenden Veranstaltungen eingetragen."
+  );
 
-  if (recentPastEvents.length > 0) {
-    timelineContainer.insertAdjacentHTML("beforeend", createSectionHeadline("Aktuelles"));
-    renderEventGroup(recentPastEvents);
-  }
+  renderEventSection(
+    "recent",
+    "Aktuelles der letzten 30 Tage",
+    recentPastEvents,
+    "In den letzten 30 Tagen gab es keine neuen Einträge."
+  );
 
-  if (archiveEvents.length > 0) {
-    timelineContainer.insertAdjacentHTML("beforeend", createSectionHeadline("Archiv"));
-    timelineContainer.insertAdjacentHTML(
-      "beforeend",
-      `<div class="timeline-archive-list" id="timeline-archive-list"></div>`
-    );
-    renderArchive(archiveEvents);
-  }
+  renderArchiveSection(archiveEvents);
 }
 
-function renderEventGroup(eventGroup) {
+function renderEventSection(id, title, eventGroup, emptyMessage) {
+  const section = createTimelineSection(id, title);
+  const content = section.querySelector(".timeline-group-content");
+
+  if (eventGroup.length === 0) {
+    content.insertAdjacentHTML(
+      "beforeend",
+      `<p class="timeline-empty">${escapeHTML(emptyMessage)}</p>`
+    );
+    return;
+  }
+
+  renderEventGroup(eventGroup, content);
+}
+
+function renderArchiveSection(archiveEvents) {
+  const section = createTimelineSection("archive", "Archiv");
+  const content = section.querySelector(".timeline-group-content");
+
+  if (archiveEvents.length === 0) {
+    content.insertAdjacentHTML(
+      "beforeend",
+      '<p class="timeline-empty">Das Veranstaltungsarchiv enthält noch keine Einträge.</p>'
+    );
+    return;
+  }
+
+  content.insertAdjacentHTML(
+    "beforeend",
+    '<div class="timeline-archive-list" id="timeline-archive-list"></div>'
+  );
+  renderArchive(archiveEvents);
+}
+
+function createTimelineSection(id, title) {
+  const headingId = `timeline-${id}-title`;
+
+  timelineContainer.insertAdjacentHTML(
+    "beforeend",
+    `<section class="timeline-group" aria-labelledby="${headingId}">
+      <h3 class="timeline-section-title" id="${headingId}">${escapeHTML(title)}</h3>
+      <div class="timeline-group-content"></div>
+    </section>`
+  );
+
+  return timelineContainer.lastElementChild;
+}
+
+function renderEventGroup(eventGroup, container) {
   let currentMonth = "";
 
   eventGroup.forEach((event) => {
@@ -58,10 +104,10 @@ function renderEventGroup(eventGroup) {
 
     if (eventMonth !== currentMonth) {
       currentMonth = eventMonth;
-      timelineContainer.insertAdjacentHTML("beforeend", createMonthMarkup(eventMonth));
+      container.insertAdjacentHTML("beforeend", createMonthMarkup(eventMonth));
     }
 
-    timelineContainer.insertAdjacentHTML("beforeend", createEventMarkup(event));
+    container.insertAdjacentHTML("beforeend", createEventMarkup(event));
   });
 }
 
@@ -85,24 +131,29 @@ function renderArchive(pastEvents) {
 
   let focusIndex = 0;
   let activeIndex = null;
+  const mobileViewport = window.matchMedia("(max-width: 820px)");
 
   archiveList.innerHTML = `
-    <div class="timeline-year-carousel">
+    <div class="timeline-year-carousel" aria-label="Archivjahr auswählen">
       <button class="timeline-year-arrow prev" type="button" aria-label="Vorheriges Jahr">‹</button>
       <div class="timeline-year-track"></div>
       <button class="timeline-year-arrow next" type="button" aria-label="Nächstes Jahr">›</button>
     </div>
-    <div class="timeline-archive-panel"></div>
+    <div
+      class="timeline-archive-panel"
+      id="timeline-archive-panel"
+      aria-live="polite"
+      aria-label="Veranstaltungen des ausgewählten Archivjahres"
+    ></div>
   `;
 
   const track = archiveList.querySelector(".timeline-year-track");
   const panel = archiveList.querySelector(".timeline-archive-panel");
-
   const prevButton = archiveList.querySelector(".timeline-year-arrow.prev");
   const nextButton = archiveList.querySelector(".timeline-year-arrow.next");
 
   function visibleCount() {
-    return window.matchMedia("(max-width: 820px)").matches ? 3 : 5;
+    return mobileViewport.matches ? 3 : 5;
   }
 
   function renderYearSelector() {
@@ -120,12 +171,22 @@ function renderArchive(pastEvents) {
       const index = start + position;
       const year = years[index];
       const offset = position - center;
+      const isActive = activeIndex === index;
+      const entryCount = eventsByYear[year].length;
 
       track.insertAdjacentHTML(
         "beforeend",
-        `<button class="timeline-year${activeIndex === index ? " is-active" : ""}" type="button" data-index="${index}" data-offset="${offset}">
+        `<button
+          class="timeline-year${isActive ? " is-active" : ""}"
+          type="button"
+          data-index="${index}"
+          data-offset="${offset}"
+          aria-pressed="${isActive}"
+          aria-controls="timeline-archive-panel"
+          aria-label="${year}, ${entryCount} ${entryCount === 1 ? "Eintrag" : "Einträge"}"
+        >
           <span>${year}</span>
-          <small>${eventsByYear[year].length} ${eventsByYear[year].length === 1 ? "Eintrag" : "Einträge"}</small>
+          <small>${entryCount} ${entryCount === 1 ? "Eintrag" : "Einträge"}</small>
         </button>`
       );
     }
@@ -136,29 +197,16 @@ function renderArchive(pastEvents) {
 
   function renderYearEvents() {
     panel.innerHTML = "";
-    if (activeIndex === null) {
-      return;
-    }
+    if (activeIndex === null) return;
 
-    let currentMonth = "";
-
-    eventsByYear[years[activeIndex]].forEach((event) => {
-      const eventMonth = formatMonth(event.start);
-
-      if (eventMonth !== currentMonth) {
-        currentMonth = eventMonth;
-        panel.insertAdjacentHTML("beforeend", createMonthMarkup(eventMonth));
-      }
-
-      panel.insertAdjacentHTML("beforeend", createEventMarkup(event));
-    });
+    renderEventGroup(eventsByYear[years[activeIndex]], panel);
   }
 
   archiveList.addEventListener("click", (event) => {
-    const button = event.target.closest(".timeline-year");
+    const yearButton = event.target.closest(".timeline-year");
 
-    if (button) {
-      const index = Number(button.dataset.index);
+    if (yearButton) {
+      const index = Number(yearButton.dataset.index);
       focusIndex = index;
       activeIndex = activeIndex === index ? null : index;
       renderYearSelector();
@@ -182,60 +230,78 @@ function renderArchive(pastEvents) {
     }
   });
 
+  mobileViewport.addEventListener?.("change", renderYearSelector);
   renderYearSelector();
 }
 
-function createSectionHeadline(title) {
-  return `
-    <div class="timeline-section-title">
-      ${title}
-    </div>
-  `;
-}
-
 function createMonthMarkup(month) {
-  return `
-    <div class="timeline-month">
-      ${month}
-    </div>
-  `;
+  return `<p class="timeline-month">${escapeHTML(month)}</p>`;
 }
 
 function createEventMarkup(event) {
   const hasDownloads = Array.isArray(event.downloads) && event.downloads.length > 0;
   const hasResults = Array.isArray(event.results) && event.results.length > 0;
   const hasGallery = Array.isArray(event.gallery) && event.gallery.length > 0;
+  const galleryLabel =
+    event.gallery?.length === 1 ? "1 Bild" : `${event.gallery?.length ?? 0} Bilder`;
+  const title = event.title || event.shortTitle || "Veranstaltung";
+  const category = event.category || "Veranstaltung";
+  const location = event.location || "Ort folgt";
+  const imageMarkup = event.image
+    ? `<figure class="timeline-media">
+        <img
+          src="${escapeHTML(event.image)}"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>`
+    : "";
 
   return `
-    <article class="timeline-card" data-slug="${event.slug}">
+    <article class="timeline-card" data-slug="${escapeHTML(event.slug || "")}">
 
-      <div class="timeline-date">
+      <time
+        class="timeline-date"
+        datetime="${escapeHTML(event.start)}"
+        aria-label="${escapeHTML(formatFullDate(event.start))}"
+      >
         <span class="timeline-day">${formatDay(event.start)}</span>
         <span class="timeline-month-short">${formatShortMonth(event.start)}</span>
-      </div>
+      </time>
 
       <div class="timeline-content">
 
-        <span class="timeline-badge">${event.category}</span>
+        <span class="timeline-badge">${escapeHTML(category)}</span>
 
-        <h3>${event.title}</h3>
+        <h4>${escapeHTML(title)}</h4>
 
-        <p class="timeline-location">📍 ${event.location || "Ort folgt"}</p>
+        <p class="timeline-location"><span aria-hidden="true">📍</span> ${escapeHTML(location)}</p>
 
-        ${event.description ? `<p class="timeline-description">${event.description}</p>` : ""}
+        ${event.description ? `<p class="timeline-description">${escapeHTML(event.description)}</p>` : ""}
 
-        <div class="timeline-chips">
-          <span class="timeline-chip ${hasDownloads ? "available" : "disabled"}">📄 ${hasDownloads ? "Ausschreibung verfügbar" : "Ausschreibung folgt"}</span>
-          <span class="timeline-chip ${hasResults ? "available" : "disabled"}">🏆 ${hasResults ? "Ergebnisse verfügbar" : "Ergebnisse folgen"}</span>
-          <span class="timeline-chip ${hasGallery ? "available" : "disabled"}">📷 ${hasGallery ? `${event.gallery.length} Bilder` : "Galerie folgt"}</span>
+        ${imageMarkup}
+
+        <div class="timeline-chips" aria-label="Verfügbare Inhalte">
+          <span class="timeline-chip ${hasDownloads ? "available" : "disabled"}"><span aria-hidden="true">📄</span>&nbsp;${hasDownloads ? "Ausschreibung verfügbar" : "Ausschreibung folgt"}</span>
+          <span class="timeline-chip ${hasResults ? "available" : "disabled"}"><span aria-hidden="true">🏆</span>&nbsp;${hasResults ? "Ergebnisse verfügbar" : "Ergebnisse folgen"}</span>
+          <span class="timeline-chip ${hasGallery ? "available" : "disabled"}"><span aria-hidden="true">📷</span>&nbsp;${hasGallery ? galleryLabel : "Galerie folgt"}</span>
         </div>
-
-        <span class="timeline-link">Zur Veranstaltungsseite →</span>
 
       </div>
 
     </article>
   `;
+}
+
+function compareEventsAscending(a, b) {
+  const timeDifference = new Date(a.start) - new Date(b.start);
+  return timeDifference || String(a.id).localeCompare(String(b.id), "de", { numeric: true });
+}
+
+function compareEventsDescending(a, b) {
+  const timeDifference = new Date(b.start) - new Date(a.start);
+  return timeDifference || String(a.id).localeCompare(String(b.id), "de", { numeric: true });
 }
 
 function formatMonth(dateString) {
@@ -255,4 +321,26 @@ function formatShortMonth(dateString) {
   return new Date(dateString).toLocaleDateString("de-DE", {
     month: "short"
   }).replace(".", "");
+}
+
+function formatFullDate(dateString) {
+  return new Date(dateString).toLocaleDateString("de-DE", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+}
+
+function escapeHTML(value) {
+  return String(value).replace(
+    /[&<>"']/g,
+    (character) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    })[character]
+  );
 }

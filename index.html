@@ -3,50 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Die Großkaliber Schützengilde 1503 Eckartsberga e. V. verbindet über 500 Jahre Tradition mit modernem Schießsport und gelebter Gemeinschaft."
+  />
+  <meta name="theme-color" content="#111111" />
 
-  <title>Großkaliber Schützengilde Eckartsberga e. V.</title>
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GSG Eckartsberga" />
+  <meta property="og:title" content="GSG Eckartsberga · Tradition seit 1503" />
+  <meta
+    property="og:description"
+    content="Über 500 Jahre Tradition, moderner Schießsport und eine starke Gemeinschaft in Eckartsberga."
+  />
 
+  <title>GSG Eckartsberga · Tradition seit 1503</title>
+
+  <link rel="icon" type="image/png" href="assets/img/logo-rund.png" />
   <link rel="stylesheet" href="style.css" />
+  <script src="js/data/dev-events.js" defer></script>
   <script src="js/data/events.js" defer></script>
   <script src="js/navigation.js" defer></script>
   <script src="js/countdown.js" defer></script>
   <script src="js/calendar.js" defer></script>
-  <script src="js/gallery.js"></script>
+  <script src="js/gallery.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+
+  <aside
+    class="development-data-banner"
+    id="development-data-banner"
+    role="status"
+    hidden
+  >
+    <strong>Entwicklungsansicht:</strong>
+    Nicht produktive Testdaten für Archiv und Galerie sind aktiv.
+  </aside>
 
   <header class="site-header">
-    <a href="#start" class="brand">
-      <img src="assets/img/logo-rund.png" alt="Logo Großkaliber Schützengilde Eckartsberga" />
+    <a href="#start" class="brand" aria-label="GSG Eckartsberga – zum Seitenanfang">
+      <img
+        src="assets/img/logo-rund.png"
+        alt=""
+        width="360"
+        height="347"
+      />
       <span>GSG Eckartsberga</span>
     </a>
 
-    <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </button>
 
-    <nav class="main-nav">
+    <nav class="main-nav" id="main-navigation" aria-label="Hauptnavigation">
       <a href="#verein">Verein</a>
       <a href="#veranstaltungen">Veranstaltungen</a>
       <a href="#galerie">Galerie</a>
       <a href="#mitglied">Mitglied werden</a>
-      <a href="#kontakt">Kontakt</a>
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
 
-    <section id="start" class="hero">
-      <div class="hero-overlay"></div>
-
+    <section id="start" class="hero" aria-labelledby="hero-title">
       <div class="hero-content">
         <p class="eyebrow">Großkaliber Schützengilde Eckartsberga e. V.</p>
 
-        <h1>Tradition seit 1503.</h1>
+        <h1 id="hero-title">Tradition seit 1503.</h1>
 
         <p class="hero-subline">
           Sport. Gemeinschaft. Präzision.
@@ -59,24 +94,24 @@
       </div>
     </section>
 
-    <section class="quick-info">
+    <section class="quick-info" aria-label="Schnelleinstieg">
       <a href="#veranstaltungen" class="info-card event-card featured-card">
         <p class="card-kicker">Nächste Veranstaltung</p>
 
         <h2>Nächster Termin</h2>
 
-        <p class="event-category">Kategorie</p>
+        <p class="event-category" hidden></p>
 
-        <p class="event-date">Termin folgt</p>
+        <p class="event-date">Termine ansehen</p>
 
-        <div class="countdown" aria-label="Countdown bis zur nächsten Veranstaltung">
+        <div class="countdown" aria-label="Zeit bis zur nächsten Veranstaltung" hidden>
           <div>
             <strong id="countdown-days">00</strong>
             <span>Tage</span>
           </div>
           <div>
             <strong id="countdown-hours">00</strong>
-            <span>Std.</span>
+            <span><abbr title="Stunden">Std.</abbr></span>
           </div>
           <div>
             <strong id="countdown-minutes">00</strong>
@@ -84,7 +119,7 @@
           </div>
         </div>
 
-        <span class="card-hover-link">Zum Kalender</span>
+        <span class="card-hover-link">Termine ansehen</span>
       </a>
 
       <a href="#verein" class="info-card sport-card">
@@ -145,33 +180,29 @@
 
         <div class="club-highlights" aria-label="Bereiche des Vereins">
 
-          <a href="#schiesssport" class="highlight-card">
-            <div class="highlight-icon">🎯</div>
+          <article class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🎯</div>
             <h3>Schießsport</h3>
-            <p>Welche Disziplinen bei uns geschossen werden können.</p>
-            <span class="highlight-link">Disziplinen ansehen →</span>
-          </a>
+            <p>Training und Wettkämpfe verbinden sportlichen Anspruch mit verantwortungsvoller Präzision.</p>
+          </article>
 
-          <a href="#anlage" class="highlight-card">
-            <div class="highlight-icon">🏡</div>
+          <article class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🏡</div>
             <h3>Schießbahnen & Vereinshaus</h3>
-            <p>KK, GK, Luftgewehr, Vereinshaus und Anfahrt.</p>
-            <span class="highlight-link">Anlage kennenlernen →</span>
-          </a>
+            <p>Vereinsleben und sportliche Begegnungen finden bei uns einen gemeinsamen Ort.</p>
+          </article>
 
-          <a href="#kontakt" class="highlight-card">
-            <div class="highlight-icon">👥</div>
+          <article class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">👥</div>
             <h3>Ansprechpartner</h3>
-            <p>Vorstand, Funktionen und direkte Kontaktwege.</p>
-            <span class="highlight-link">Vorstand ansehen →</span>
-          </a>
+            <p>Der persönliche Austausch und verlässliche Verantwortlichkeiten tragen unsere Gemeinschaft.</p>
+          </article>
 
-          <a href="#erfolge" class="highlight-card">
-            <div class="highlight-icon">🏆</div>
+          <article class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">🏆</div>
             <h3>Erfolge</h3>
-            <p>Schützenkönige, Wettkampferfolge und besondere Leistungen.</p>
-            <span class="highlight-link">Erfolge ansehen →</span>
-          </a>
+            <p>Schützenkönige, Wettkampferfolge und besondere Leistungen gehören zu unserer Geschichte.</p>
+          </article>
 
         </div>
 
@@ -182,11 +213,9 @@
 
           <p>
             Vom Mittelalter bis heute begleitet die Geschichte der Schützengilde das Leben in
-            Eckartsberga. Entdecken Sie historische Hintergründe, alte Bilder und die Entwicklung
-            unseres Vereins über mehr als fünf Jahrhunderte.
+            Eckartsberga. Historische Bilder und überlieferte Erinnerungen machen die Entwicklung
+            unseres Vereins über mehr als fünf Jahrhunderte sichtbar.
           </p>
-
-          <a href="#" class="history-link">Vereinsgeschichte entdecken →</a>
         </article>
       </div>
     </section>
@@ -200,7 +229,12 @@
           Ergebnisse, Bilder und Downloads in einer übersichtlichen Timeline.
         </p>
 
-        <div class="timeline" id="event-timeline" aria-live="polite"></div>
+        <div class="timeline" id="event-timeline"></div>
+        <noscript>
+          <p class="timeline-empty">
+            Für die automatisch sortierte Veranstaltungschronik muss JavaScript aktiviert sein.
+          </p>
+        </noscript>
       </div>
     </section>
 
@@ -211,30 +245,43 @@
         <h2>Bilder aus Verein, Wettkampf und Tradition.</h2>
 
         <p class="section-lead">
-          Die Galerie zeigt später automatisch ausgewählte Bilder aus Veranstaltungen,
-          Wettkämpfen und besonderen Momenten der GSG Eckartsberga.
+          Ausgewählte Aufnahmen verbinden die lange Geschichte des Vereins mit
+          der Gegenwart in Eckartsberga.
         </p>
 
         <div class="gallery-preview" aria-label="Galerievorschau">
 
           <figure class="gallery-feature is-active">
-            <img src="assets/img/history-eckartsberga.jpg" alt="Historische Aufnahme der GSG Eckartsberga" />
+            <img
+              src="assets/img/history-eckartsberga.jpg"
+              alt="Historische Aufnahme der GSG Eckartsberga"
+              width="359"
+              height="259"
+              loading="lazy"
+              decoding="async"
+            />
             <figcaption>Historische Aufnahme · GSG Eckartsberga</figcaption>
           </figure>
 
           <figure class="gallery-feature">
-            <img src="assets/img/hero-eckartsburg.png" alt="Eckartsburg bei stimmungsvoller Beleuchtung" />
+            <img
+              src="assets/img/hero-eckartsburg.jpg"
+              alt="Eckartsburg bei stimmungsvoller Beleuchtung"
+              width="1673"
+              height="940"
+              loading="lazy"
+              decoding="async"
+            />
             <figcaption>Eckartsburg · Eckartsberga</figcaption>
           </figure>
 
           <div class="gallery-preview-copy">
-            <p class="gallery-kicker">Automatische Galerie</p>
-            <h3>Ein Album, das mit dem Vereinsleben wächst.</h3>
+            <p class="gallery-kicker">Vereinsleben im Bild</p>
+            <h3>Geschichte und Gegenwart im Wechsel.</h3>
             <p>
-              Bilder werden später direkt mit Veranstaltungen verbunden. Die Startseite zeigt daraus
-              automatisch ausgewählte Eindrücke – ohne doppelte Pflege.
+              Historische Motive und aktuelle Eindrücke erzählen gemeinsam von
+              Tradition, Heimatverbundenheit und einem lebendigen Verein.
             </p>
-            <a href="#" class="gallery-link">Alle Bilder ansehen →</a>
           </div>
 
         </div>
@@ -244,33 +291,39 @@
     <section id="mitglied" class="section section-dark">
       <div class="section-inner">
         <p class="section-kicker">Mitmachen</p>
-        <h2>Mitglied werden</h2>
-        <p>
-          Wer Interesse am Schießsport oder am Vereinsleben hat, kann sich hier
-          über den Einstieg informieren.
+        <h2>Gemeinschaft beginnt mit Kennenlernen.</h2>
+        <p class="section-lead section-lead-on-dark">
+          Ob mit Erfahrung oder ganz am Anfang: Wer sich für den Schießsport
+          und unser Vereinsleben interessiert, ist eingeladen, die GSG
+          Eckartsberga bei einer kommenden Veranstaltung kennenzulernen.
         </p>
-      </div>
-    </section>
-
-    <section id="kontakt" class="section section-light">
-      <div class="section-inner">
-        <p class="section-kicker">Kontakt</p>
-        <h2>So erreichen Sie uns</h2>
-        <p>
-          Ansprechpartner, Trainingszeiten, Adresse und Kontaktformular folgen hier.
-        </p>
+        <a class="btn btn-primary section-action" href="#veranstaltungen">
+          Kommende Termine ansehen
+        </a>
       </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
-    <p>© Großkaliber Schützengilde Eckartsberga e. V.</p>
-    <p>
-      <a href="#">Impressum</a>
-      <span>|</span>
-      <a href="#">Datenschutz</a>
-    </p>
+    <div class="site-footer-inner">
+      <div>
+        <p class="footer-brand">GSG Eckartsberga</p>
+        <p class="footer-copy">Tradition · Sport · Gemeinschaft</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navigation im Seitenfuß">
+        <a href="#start">Start</a>
+        <a href="#verein">Verein</a>
+        <a href="#veranstaltungen">Veranstaltungen</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#mitglied">Mitglied werden</a>
+      </nav>
+
+      <p class="footer-legal">
+        © <span id="current-year">2026</span> Großkaliber Schützengilde Eckartsberga e. V.
+      </p>
+    </div>
   </footer>
 
 </body>

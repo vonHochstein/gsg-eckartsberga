@@ -22,8 +22,9 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - Hero-Bereich mit klaren Handlungsoptionen;
 - Informationskarten für Veranstaltung, Sport und Mitgliedschaft;
 - Vereinsübersicht und Geschichtsteaser;
-- Bereiche für Veranstaltungen, Galerie, Mitgliedschaft und Kontakt;
-- Footer-Grundstruktur.
+- abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
+- konsistenter Footer mit ausschließlich vorhandenen Sprungzielen;
+- IA-001: Startseite technisch, gestalterisch und inhaltlich stabilisiert.
 
 ### Navigation und Interaktion
 
@@ -31,7 +32,10 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - mobile Navigation;
 - Schließen des Menüs per Linkauswahl, Außenklick und Escape;
 - kompakter Header beim Scrollen;
-- automatisch wechselnde Galerievorschau.
+- automatisch wechselnde Galerievorschau;
+- sichtbare Fokuszustände und Sprunglink zum Hauptinhalt;
+- Unterstützung reduzierter Bewegung;
+- responsive Qualitätsprüfung vom kleinen Smartphone bis zum großen Bildschirm.
 
 ### Veranstaltungen
 
@@ -41,7 +45,10 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - dynamische Veranstaltungschronik;
 - zeitliche Trennung in kommende, aktuelle und archivierte Einträge;
 - Gruppierung nach Monaten;
-- interaktives Jahresarchiv.
+- interaktives, semantisch beschriftetes Jahresarchiv;
+- verständliche Leerzustände und stabile Sortierung;
+- unkontrollierte Testveranstaltungen aus dem produktiven Datenbestand entfernt;
+- getrennte, schaltbare Entwicklungs-Testdaten für Archiv und Galerie ergänzt.
 
 ### Dokumentation
 
@@ -71,8 +78,7 @@ Die Reihenfolge bildet fachliche Abhängigkeiten ab. Ein Abschnitt wird vor Begi
 - endgültige Seiten- und Bereichsstruktur festlegen;
 - Vereins-, Sport-, Anlagen-, Erfolgs-, Mitgliedschafts- und Kontaktinhalte einpflegen;
 - Vereinsgeschichte zugänglich machen;
-- alle Platzhalter- und Sprunglinks durch echte Ziele ersetzen;
-- verständliche Navigation für mobile und große Ansichten sicherstellen.
+- freigegebene direkte Kontaktwege ergänzen.
 
 ### Abschnitt 2: Rechtliche Veröffentlichungsgrundlage
 
@@ -86,8 +92,7 @@ Die Reihenfolge bildet fachliche Abhängigkeiten ab. Ein Abschnitt wird vor Begi
 - Pflichtfelder und optionale Felder definieren;
 - Datenstrukturen für Downloads, Ergebnisse, Galerien und Links festlegen;
 - Datums- und Zeitzonenregeln dokumentieren;
-- Validierung und sinnvolle Leerzustände vorsehen;
-- Testdaten aus dem späteren Produktivbestand entfernen oder getrennt verwalten.
+- fachliche Datenvalidierung vorsehen.
 
 ### Abschnitt 4: Veranstaltungsdetail und Chronik
 
@@ -96,24 +101,21 @@ Die Reihenfolge bildet fachliche Abhängigkeiten ab. Ein Abschnitt wird vor Begi
 - Ergebnisse verständlich bereitstellen;
 - eventbezogene Galerien anbinden;
 - laufende, kommende und vergangene Veranstaltungen konsistent behandeln;
-- Fallbacks für fehlende Daten und deaktiviertes JavaScript prüfen.
+- vollständige Detailinhalte und Verknüpfungen für vorhandene Statusanzeigen ergänzen.
 
 ### Abschnitt 5: Galerie und Medien
 
 - zentrale Medien- und Metadatenstruktur festlegen;
 - Galerie aus gepflegten Daten erzeugen;
 - Lightbox mit Tastaturbedienung umsetzen;
-- Bildformate und Dateigrößen optimieren;
+- weitere Bildformate und Dateigrößen optimieren;
 - responsive Bildvarianten und sinnvolle Alternativtexte etablieren.
 
 ### Abschnitt 6: Zugänglichkeit und Oberflächenqualität
 
-- sichtbare Fokuszustände vervollständigen;
-- Kontraste prüfen;
-- reduzierte Bewegung unterstützen;
-- Komponenten mit Tastatur und unterstützenden Technologien prüfen;
-- mobile Darstellungen systematisch testen;
-- tote, irreführende oder nicht bedienbare Interaktionen beseitigen.
+- Zugänglichkeit mit spezialisierten Prüfwerkzeugen vertiefend kontrollieren;
+- Kontraste und Textskalierung formal prüfen;
+- neu hinzukommende Komponenten mit Tastatur und unterstützenden Technologien prüfen.
 
 ### Abschnitt 7: Technische Stabilisierung
 

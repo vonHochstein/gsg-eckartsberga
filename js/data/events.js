@@ -14,7 +14,13 @@
 // - results und gallery werden später für Ergebnislisten und Bildergalerien genutzt.
 //
 
-const events = [
+// ENTWICKLUNGSSCHALTER:
+// true  = produktive Termine plus klar markierte Entwicklungs-Testdaten
+// false = ausschließlich produktive Termine
+// Vor jeder Veröffentlichung muss dieser Wert auf false gesetzt werden.
+const USE_DEMO_DATA = true;
+
+const productionEvents = [
   {
     id: 1,
     slug: "km-wurfscheibe-2026",
@@ -214,145 +220,20 @@ const events = [
     registrationRequired: false,
     archive: true,
     featured: false
-  },
-  {
-    id: 101,
-    slug: "test-2025",
-    title: "Testveranstaltung 2025",
-    shortTitle: "Test 2025",
-    category: "Vereinsveranstaltung",
-    start: "2025-06-15T10:00:00",
-    end: "2025-06-15T17:00:00",
-    location: "Eckartsberga",
-    organizer: "GSG Eckartsberga",
-    description: "",
-    image: "",
-    downloads: [],
-    results: [],
-    gallery: [],
-    links: [],
-    registrationRequired: false,
-    archive: true,
-    featured: false
-  },
-  {
-    id: 102,
-    slug: "test-2024",
-    title: "Testveranstaltung 2024",
-    shortTitle: "Test 2024",
-    category: "Vereinsveranstaltung",
-    start: "2024-06-15T10:00:00",
-    end: "2024-06-15T17:00:00",
-    location: "Eckartsberga",
-    organizer: "GSG Eckartsberga",
-    description: "",
-    image: "",
-    downloads: [],
-    results: [],
-    gallery: [],
-    links: [],
-    registrationRequired: false,
-    archive: true,
-    featured: false
-  },
-  {
-    id: 103,
-    slug: "test-2023",
-    title: "Testveranstaltung 2023",
-    shortTitle: "Test 2023",
-    category: "Vereinsveranstaltung",
-    start: "2023-06-15T10:00:00",
-    end: "2023-06-15T17:00:00",
-    location: "Eckartsberga",
-    organizer: "GSG Eckartsberga",
-    description: "",
-    image: "",
-    downloads: [],
-    results: [],
-    gallery: [],
-    links: [],
-    registrationRequired: false,
-    archive: true,
-    featured: false
-  },
-  {
-    id: 104,
-    slug: "test-2022",
-    title: "Testveranstaltung 2022",
-    shortTitle: "Test 2022",
-    category: "Vereinsveranstaltung",
-    start: "2022-06-15T10:00:00",
-    end: "2022-06-15T17:00:00",
-    location: "Eckartsberga",
-    organizer: "GSG Eckartsberga",
-    description: "",
-    image: "",
-    downloads: [],
-    results: [],
-    gallery: [],
-    links: [],
-    registrationRequired: false,
-    archive: true,
-    featured: false
-  },
-  {
-    id: 105,
-    slug: "test-2021",
-    title: "Testveranstaltung 2021",
-    shortTitle: "Test 2021",
-    category: "Vereinsveranstaltung",
-    start: "2021-06-15T10:00:00",
-    end: "2021-06-15T17:00:00",
-    location: "Eckartsberga",
-    organizer: "GSG Eckartsberga",
-    description: "",
-    image: "",
-    downloads: [],
-    results: [],
-    gallery: [],
-    links: [],
-    registrationRequired: false,
-    archive: true,
-    featured: false
-  },
-  {
-    id: 106,
-    slug: "test-2020",
-    title: "Testveranstaltung 2020",
-    shortTitle: "Test 2020",
-    category: "Vereinsveranstaltung",
-    start: "2020-06-15T10:00:00",
-    end: "2020-06-15T17:00:00",
-    location: "Eckartsberga",
-    organizer: "GSG Eckartsberga",
-    description: "",
-    image: "",
-    downloads: [],
-    results: [],
-    gallery: [],
-    links: [],
-    registrationRequired: false,
-    archive: true,
-    featured: false
-  },
-  {
-    id: 107,
-    slug: "test-2019",
-    title: "Testveranstaltung 2019",
-    shortTitle: "Test 2019",
-    category: "Vereinsveranstaltung",
-    start: "2019-06-15T10:00:00",
-    end: "2019-06-15T17:00:00",
-    location: "Eckartsberga",
-    organizer: "GSG Eckartsberga",
-    description: "",
-    image: "",
-    downloads: [],
-    results: [],
-    gallery: [],
-    links: [],
-    registrationRequired: false,
-    archive: true,
-    featured: false
   }
 ];
+
+const events =
+  USE_DEMO_DATA &&
+  typeof developmentEvents !== "undefined" &&
+  Array.isArray(developmentEvents)
+    ? [...productionEvents, ...developmentEvents]
+    : [...productionEvents];
+
+if (
+  USE_DEMO_DATA &&
+  events.length > productionEvents.length &&
+  typeof document !== "undefined"
+) {
+  document.documentElement.dataset.developmentData = "active";
+}
