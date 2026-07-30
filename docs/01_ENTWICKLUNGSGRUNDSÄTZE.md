@@ -22,6 +22,12 @@ Wiederkehrende oder strukturierte Inhalte sollen als Daten modelliert und aus ei
 
 Darstellungscode darf fachliche Inhalte nicht unnötig vervielfältigen. Neue Datenstrukturen benötigen vor ihrer Nutzung ein verständliches Schema mit Pflichtfeldern, optionalen Feldern und einer beschriebenen Bedeutung.
 
+### Robuste Übergangszustände
+
+Das Datenmodell bildet nicht nur ideale Redaktionsabläufe ab, sondern muss auch unvollständig gepflegte oder zeitlich verzögert aktualisierte Datensätze robust verarbeiten können. Solche Konstellationen sind tolerierte Übergangszustände und keine fachlich gewünschten Endzustände.
+
+Tolerierte Übergangszustände müssen eindeutig erkennbar und technisch sicher verarbeitbar bleiben. Sie dürfen den vorgesehenen redaktionellen Normalablauf nicht ersetzen und sollen bei der nächsten inhaltlichen Pflege aufgelöst werden.
+
 ## 3. Informationen nur einmal pflegen
 
 Für jede fachliche Information soll es genau eine maßgebliche Quelle geben. Weitere Ansichten leiten ihre Ausgabe daraus ab.

@@ -6,6 +6,12 @@
   "use strict";
 
   const DETAIL_PAGE = "event.html";
+  const EVENT_PHASES = Object.freeze({
+    UPCOMING: "upcoming",
+    ONGOING: "ongoing",
+    PAST: "past"
+  });
+  const EVENT_EDITORIAL_STATUSES = new Set(["cancelled", "postponed"]);
   const RESULT_KINDS = new Set(["file", "external"]);
 
   function isRecord(value) {
@@ -204,6 +210,57 @@
     return normalizedString(event.title) || normalizedString(event.shortTitle);
   }
 
+  function getEventPhase(event, referenceTime = new Date()) {
+    if (!isRecord(event)) return null;
+
+    const startValue = normalizedString(event.start);
+    const startTime = startValue
+      ? new Date(startValue).getTime()
+      : Number.NaN;
+    const referenceTimestamp = new Date(referenceTime).getTime();
+
+    if (
+      !Number.isFinite(startTime) ||
+      !Number.isFinite(referenceTimestamp)
+    ) {
+      return null;
+    }
+
+    const endValue = normalizedString(event.end);
+    const parsedEndTime = endValue
+      ? new Date(endValue).getTime()
+      : Number.NaN;
+    const effectiveEndTime =
+      Number.isFinite(parsedEndTime) && parsedEndTime >= startTime
+        ? parsedEndTime
+        : startTime;
+
+    if (referenceTimestamp < startTime) {
+      return EVENT_PHASES.UPCOMING;
+    }
+
+    if (referenceTimestamp <= effectiveEndTime) {
+      return EVENT_PHASES.ONGOING;
+    }
+
+    return EVENT_PHASES.PAST;
+  }
+
+  function getEventEditorialStatus(event) {
+    if (!isRecord(event)) return null;
+
+    const editorialStatus = normalizedString(event.editorialStatus);
+
+    if (
+      !editorialStatus ||
+      !EVENT_EDITORIAL_STATUSES.has(editorialStatus)
+    ) {
+      return null;
+    }
+
+    return editorialStatus;
+  }
+
   function isDetailCapable(event) {
     if (!isRecord(event)) return false;
 
@@ -253,6 +310,8 @@
     normalizeResults,
     normalizeExternalLinks,
     getEventTitle,
+    getEventPhase,
+    getEventEditorialStatus,
     isDetailCapable,
     createDetailUrl,
     resolveEventBySlug

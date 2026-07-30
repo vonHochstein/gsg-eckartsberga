@@ -16,6 +16,8 @@ const {
   normalizeResults,
   normalizeExternalLinks,
   getEventTitle,
+  getEventPhase,
+  getEventEditorialStatus,
   isDetailCapable,
   createDetailUrl,
   resolveEventBySlug
@@ -65,6 +67,142 @@ function loadEventData(useDemoData) {
 
   return context.eventDataSnapshot;
 }
+
+test("berechnet die zeitlichen Veranstaltungsphasen an allen Grenzen", () => {
+  const event = createCoreEvent({
+    start: "2026-08-15T10:00:00",
+    end: "2026-08-15T12:00:00"
+  });
+
+  assert.equal(
+    getEventPhase(event, new Date("2026-08-15T09:59:59")),
+    "upcoming"
+  );
+  assert.equal(
+    getEventPhase(event, new Date("2026-08-15T10:00:00")),
+    "ongoing"
+  );
+  assert.equal(
+    getEventPhase(event, new Date("2026-08-15T11:00:00")),
+    "ongoing"
+  );
+  assert.equal(
+    getEventPhase(event, new Date("2026-08-15T12:00:00")),
+    "ongoing"
+  );
+  assert.equal(
+    getEventPhase(event, new Date("2026-08-15T12:00:01")),
+    "past"
+  );
+});
+
+test("verwendet bei fehlendem oder ungeeignetem Ende den Start", () => {
+  const referenceAtStart = new Date("2026-08-15T10:00:00");
+  const referenceAfterStart = new Date("2026-08-15T10:00:01");
+  const cases = [
+    createCoreEvent(),
+    createCoreEvent({ end: "kein-datum" }),
+    createCoreEvent({ end: "2026-08-15T09:00:00" })
+  ];
+
+  cases.forEach((event) => {
+    assert.equal(getEventPhase(event, referenceAtStart), "ongoing");
+    assert.equal(getEventPhase(event, referenceAfterStart), "past");
+  });
+});
+
+test("liefert ohne gültigen Start oder Referenzzeitpunkt keine Phase", () => {
+  assert.equal(
+    getEventPhase(
+      createCoreEvent({ start: "kein-datum" }),
+      new Date("2026-08-15T10:00:00")
+    ),
+    null
+  );
+  assert.equal(
+    getEventPhase(createCoreEvent(), new Date("kein-datum")),
+    null
+  );
+  assert.equal(getEventPhase(null, new Date()), null);
+});
+
+test("akzeptiert ausschließlich die vereinbarten redaktionellen Sonderzustände", () => {
+  assert.equal(getEventEditorialStatus(createCoreEvent()), null);
+  assert.equal(
+    getEventEditorialStatus(
+      createCoreEvent({ editorialStatus: " cancelled " })
+    ),
+    "cancelled"
+  );
+  assert.equal(
+    getEventEditorialStatus(
+      createCoreEvent({ editorialStatus: "postponed" })
+    ),
+    "postponed"
+  );
+  assert.equal(
+    getEventEditorialStatus(
+      createCoreEvent({ editorialStatus: "POSTPONED" })
+    ),
+    null
+  );
+  assert.equal(
+    getEventEditorialStatus(
+      createCoreEvent({ editorialStatus: "completed" })
+    ),
+    null
+  );
+  assert.equal(getEventEditorialStatus(null), null);
+});
+
+test("hält zeitliche Phase und redaktionellen Sonderzustand unabhängig", () => {
+  const cancelledUpcomingEvent = createCoreEvent({
+    start: "2026-08-15T10:00:00",
+    editorialStatus: "cancelled"
+  });
+  const overduePostponedEvent = createCoreEvent({
+    start: "2026-08-15T10:00:00",
+    end: "2026-08-15T12:00:00",
+    editorialStatus: "postponed"
+  });
+
+  assert.equal(
+    getEventPhase(
+      cancelledUpcomingEvent,
+      new Date("2026-08-14T10:00:00")
+    ),
+    "upcoming"
+  );
+  assert.equal(
+    getEventEditorialStatus(cancelledUpcomingEvent),
+    "cancelled"
+  );
+  assert.equal(
+    getEventPhase(
+      overduePostponedEvent,
+      new Date("2026-08-16T10:00:00")
+    ),
+    "past"
+  );
+  assert.equal(
+    getEventEditorialStatus(overduePostponedEvent),
+    "postponed"
+  );
+});
+
+test("bleibt für bestehende Datensätze abwärtskompatibel und unverändernd", () => {
+  const event = createCoreEvent({
+    end: "2026-08-15T12:00:00"
+  });
+  const originalEvent = structuredClone(event);
+
+  assert.equal(
+    getEventPhase(event, new Date("2026-08-15T11:00:00")),
+    "ongoing"
+  );
+  assert.equal(getEventEditorialStatus(event), null);
+  assert.deepEqual(event, originalEvent);
+});
 
 test("erkennt detailfähige und nicht detailfähige Veranstaltungen", () => {
   assert.equal(isDetailCapable(createCoreEvent()), true);

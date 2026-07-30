@@ -379,6 +379,7 @@ Nach erfolgreichem Rendering werden gesetzt:
   category: "Kreismeisterschaft",
   start: "2026-03-07T09:00:00",
   end: "2026-03-07T17:00:00",
+  editorialStatus: null,
   location: "Lossa",
   organizer: "Kreisschützenverband",
   description: "",
@@ -402,6 +403,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `category` | String | optionale Kategorie |
 | `start` | String | erforderlicher, lokal interpretierter Startzeitpunkt |
 | `end` | String | optionaler Endzeitpunkt |
+| `editorialStatus` | String oder `null` | optionaler redaktioneller Sonderzustand `cancelled` oder `postponed` |
 | `location` | String | optionaler Ort |
 | `organizer` | String | optionaler Veranstalter |
 | `description` | String | optionale Beschreibung |
@@ -509,7 +511,37 @@ Andere Ergebnisarten werden nicht gerendert.
 - eintägige und mehrtägige Veranstaltungen werden automatisch unterschieden;
 - Datum und Uhrzeit werden mit semantischen `<time>`-Elementen ausgegeben.
 
-### 4.8 Entwicklungsdaten
+### 4.8 Lebenszyklus
+
+Die zeitliche Phase einer Veranstaltung wird nicht im Datensatz gespeichert. `EventUtils.getEventPhase(event, referenceTime)` berechnet sie aus `start`, einem verwendbaren `end` und dem übergebenen Referenzzeitpunkt:
+
+| Phase | Regel |
+|---|---|
+| `upcoming` | Referenzzeitpunkt liegt vor `start` |
+| `ongoing` | Referenzzeitpunkt liegt zwischen `start` und dem effektiven Ende, jeweils einschließlich |
+| `past` | Referenzzeitpunkt liegt nach dem effektiven Ende |
+| `null` | `start` oder Referenzzeitpunkt ist ungültig |
+
+Ein fehlendes, ungültiges oder vor `start` liegendes `end` wird für die Phasenberechnung ignoriert. In diesem Fall gilt `start` als effektives Ende.
+
+Der optionale redaktionelle Sonderzustand bleibt von der zeitlichen Phase getrennt. `EventUtils.getEventEditorialStatus(event)` akzeptiert ausschließlich:
+
+- `cancelled` für eine abgesagte Veranstaltung;
+- `postponed` für eine vorübergehend verschobene Veranstaltung.
+
+Ein fehlender, leerer oder unbekannter Wert ergibt `null`. Bestehende Datensätze ohne `editorialStatus` bleiben dadurch vollständig kompatibel.
+
+Für Verschiebungen gilt als fachlicher Normalablauf:
+
+1. Solange kein Ersatztermin feststeht, bleiben `start` und `end` unverändert und `editorialStatus` steht auf `postponed`.
+2. Sobald ein Ersatztermin verbindlich ist, werden `start` und `end` aktualisiert und `editorialStatus` wird entfernt.
+3. Die Veranstaltung durchläuft mit dem neuen Termin wieder den normalen zeitlichen Lebenszyklus.
+
+Die Kombination `phase = "past"` und `editorialStatus = "postponed"` ist kein fachlich gewünschter Endzustand. Sie wird als vorübergehender Prüfzustand toleriert, wenn der ursprüngliche Termin bereits verstrichen ist, der Datensatz aber noch nicht abschließend aktualisiert wurde. Die Phasenberechnung bleibt dabei objektiv und der redaktionelle Sonderzustand erhalten.
+
+AP 1 definiert ausschließlich Datenvertrag und Hilfsfunktionen. Timeline, Countdown und Detailseite verwenden die neuen Lebenszykluswerte noch nicht.
+
+### 4.9 Entwicklungsdaten
 
 Der Schalter steht in `js/data/events.js`:
 
@@ -538,6 +570,9 @@ Abgedeckt sind:
 - Titelrückfall;
 - URL-Erzeugung und URL-Kodierung;
 - kein, ein und mehrere Slug-Treffer;
+- zeitliche Veranstaltungsphasen einschließlich Grenzzeitpunkten;
+- fehlende, ungültige und vor dem Start liegende Endzeitpunkte;
+- redaktionelle Sonderzustände und tolerierte Übergangszustände;
 - Bild- und Galerienormalisierung;
 - Downloads, Ergebnisse und externe Links;
 - sichere und unsichere URL-Protokolle;
