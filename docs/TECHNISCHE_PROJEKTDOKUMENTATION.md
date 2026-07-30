@@ -3,7 +3,7 @@
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
 **Stand:** 30. Juli 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1, AP 2 und AP 3
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1, AP 2, AP 3 und AP 4
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -27,6 +27,7 @@ Umgesetzt und geprüft sind:
 - interaktives Jahresarchiv;
 - datengetriebener Galerie-Teaser mit statischem Rückfall;
 - verbindliches Veranstaltungs- und Detaildatenmodell;
+- kanonisches Dokumentenmodell mit typisierten Dokumenten und Legacy-Normalisierung;
 - getrennte produktive und nicht produktive Entwicklungsdaten;
 - gemeinsame Hilfsfunktionen unter `window.EventUtils`;
 - universelle Detailseite über `event.html?event=<slug>`;
@@ -200,7 +201,7 @@ Enthält:
 
 #### `js/data/dev-events.js`
 
-Enthält ausschließlich klar markierte, erfundene Entwicklungsdaten. Sie decken knappe und vollständige Veranstaltungen, Bild- und Galeriefälle, Downloads, Datei- und externe Ergebnisse, externe Links, lange Texte sowie Anmeldepflicht ab.
+Enthält ausschließlich klar markierte, erfundene Entwicklungsdaten. Sie decken knappe und vollständige Veranstaltungen, Bild- und Galeriefälle, Dokumente, Legacy-Downloads, Datei- und externe Ergebnisse, externe Links, lange Texte sowie Anmeldepflicht ab.
 
 #### `js/event-utils.js`
 
@@ -211,8 +212,10 @@ Stellt genau einen globalen Namensraum `window.EventUtils` bereit. Die Funktione
 | `isSafeUrl(value)` | erlaubt lokale relative Pfade sowie HTTP/HTTPS und sperrt unsichere Protokolle |
 | `normalizeImage(image)` | normalisiert ein Titelbild oder liefert `null` |
 | `normalizeGallery(gallery)` | normalisiert Galeriebilder und verwirft ungültige Einträge |
-| `normalizeDownloads(downloads)` | normalisiert Downloadobjekte |
+| `normalizeDownloads(downloads)` | normalisiert bestehende Downloadobjekte für Legacy-Verbraucher |
+| `normalizeDocuments(documents)` | normalisiert typisierte Dokumente mit dokumentenspezifischer URL-Prüfung |
 | `normalizeResults(results)` | normalisiert Datei- und externe Ergebnisse |
+| `normalizeEventDocuments(event)` | führt neue Dokumente, Ergebnisdateien und Downloads stabil und ohne URL-Duplikate zusammen |
 | `normalizeExternalLinks(externalLinks)` | normalisiert ausschließlich sichere externe HTTP-/HTTPS-Links |
 | `getEventTitle(event)` | liefert `title` mit Rückfall auf `shortTitle` |
 | `isDetailCapable(event)` | prüft Slug, Titel und gültigen Startzeitpunkt |
@@ -244,6 +247,8 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtil
 - Dokumente aus dem bestehenden Feld `downloads`;
 - externe Links;
 - Galerie als abschließenden Inhaltsbereich.
+
+AP 4 führt `documents` ausschließlich in der Modell- und Normalisierungsschicht ein. Die Detailseite verwendet übergangsweise weiterhin `downloads`; eine sichtbare Integration des neuen Feldes ist nicht Bestandteil von AP 4.
 
 Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert.
 
@@ -392,6 +397,7 @@ Nach erfolgreichem Rendering werden gesetzt:
   description: "",
   image: null,
   gallery: [],
+  documents: [],
   downloads: [],
   results: [],
   externalLinks: [],
@@ -416,7 +422,8 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `description` | String | optionale Beschreibung |
 | `image` | Objekt oder `null` | optionales Titelbild |
 | `gallery` | Array | optionale Galeriebilder |
-| `downloads` | Array | optionale Downloads |
+| `documents` | Array | kanonische, typisierte Veranstaltungsdokumente |
+| `downloads` | Array | vorübergehend unterstützte Legacy-Downloads |
 | `results` | Array | optionale Datei- oder externe Ergebnisse |
 | `externalLinks` | Array | optionale externe Verweise |
 | `registrationRequired` | Boolean | zeigt nur bei `true` die Anmeldepflicht |
@@ -462,7 +469,42 @@ Alle weiteren Detailfelder sind optional.
 
 `src` und `alt` sind erforderlich. `caption`, `width` und `height` sind optional.
 
-### 4.4 Downloads
+### 4.4 Dokumente
+
+```js
+{
+  label: "Ausschreibung",
+  url: "assets/documents/ausschreibung.pdf",
+  type: "announcement",
+  description: "Optionale Beschreibung",
+  fileType: "PDF",
+  fileSize: "240 KB"
+}
+```
+
+`label`, `url` und `type` sind redaktionell erforderlich. Die Normalisierung unterstützt folgende case-sensitive Typwerte:
+
+- `announcement`;
+- `invitation`;
+- `start-list`;
+- `result-list`;
+- `form`;
+- `certificate`;
+- `other`.
+
+Ein fehlender, unbekannter oder abweichend geschriebener Typ wird robust als `other` normalisiert. `description`, `fileType` und `fileSize` sind optionale Textangaben.
+
+Dokumentziele dürfen relative URLs oder absolute HTTPS-URLs mit gültigem Host sein. HTTP, protokollrelative URLs und andere Protokolle wie `javascript:`, `data:`, `vbscript:`, `file:` oder `ftp:` werden verworfen. Diese strengere Regel gilt ausschließlich für das Dokumentenmodell; andere bestehende Linkmodelle behalten ihre bisherigen Regeln.
+
+`normalizeEventDocuments(event)` führt die Daten in folgender stabiler Reihenfolge zusammen:
+
+1. `documents`;
+2. `results` mit `kind: "file"` als `result-list`;
+3. `downloads` als `other`.
+
+Externe Ergebnisse bleiben außerhalb des Dokumentenmodells. Bei identischer, getrimmter URL bleibt ausschließlich der erste normalisierte Eintrag erhalten. Innerhalb jeder Quelle bleibt die gepflegte Reihenfolge bestehen. Die Funktion verändert keine Eingabedaten.
+
+### 4.5 Downloads (Legacy)
 
 ```js
 {
@@ -474,9 +516,9 @@ Alle weiteren Detailfelder sind optional.
 }
 ```
 
-`label` und `url` sind erforderlich. Unsichere URLs werden verworfen.
+Das bisherige Feld bleibt für bestehende Veranstaltungen und noch nicht umgestellte Verbraucher verfügbar. Bei der kanonischen Zusammenführung werden gültige Einträge als Dokumenttyp `other` übernommen. Neue redaktionelle Daten sollen unter `documents` gepflegt werden.
 
-### 4.5 Ergebnisse
+### 4.6 Ergebnisse
 
 ```js
 {
@@ -496,7 +538,9 @@ Alle weiteren Detailfelder sind optional.
 
 Andere Ergebnisarten werden nicht gerendert.
 
-### 4.6 Externe Links
+Ergebnisdateien mit `kind: "file"` werden zusätzlich durch `normalizeEventDocuments()` als Dokumenttyp `result-list` bereitgestellt. Externe Ergebnisse bleiben davon getrennt. Da AP 4 noch keine sichtbaren Verbraucher umstellt, entsteht im aktuellen Rendering keine zusätzliche Ausgabe.
+
+### 4.7 Externe Links
 
 ```js
 {
@@ -632,6 +676,17 @@ AP 3 ergänzt diese Browserprüfung um:
 - vollständige Navigation bei ein- und ausgeklappter Galerie;
 - synchronen Wechsel von Bild, Alternativtext, Bildunterschrift, Abmessungen und Positionsangabe;
 - mobile und große Dialoglayouts, Hintergrundscrollen, Assets und Browserkonsole.
+
+AP 4 ergänzt die automatisierte Prüfung um:
+
+- alle sieben Dokumenttypen und den case-sensitiven Typvertrag;
+- den robusten Rückfall fehlender oder unbekannter Typen auf `other`;
+- erlaubte relative und absolute HTTPS-Dokumentziele;
+- die Ablehnung von HTTP, protokollrelativen URLs und allen nicht freigegebenen Protokollen;
+- Übernahme von Legacy-Downloads und Ergebnisdateien;
+- stabile Quellreihenfolge und URL-basierte Deduplizierung;
+- unveränderte Eingabedaten sowie vollständige lokale Entwicklungsressourcen;
+- Produktiv- und Entwicklungsdaten bei Demo-Schalter `true` und `false`.
 
 ### 5.3 Barrierearme Grundlagen
 

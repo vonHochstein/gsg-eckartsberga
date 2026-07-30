@@ -13,7 +13,9 @@ const {
   normalizeImage,
   normalizeGallery,
   normalizeDownloads,
+  normalizeDocuments,
   normalizeResults,
+  normalizeEventDocuments,
   normalizeExternalLinks,
   getEventTitle,
   getEventPhase,
@@ -350,6 +352,219 @@ test("normalisiert Downloads mit optionalen Dateimetadaten", () => {
   ]);
 });
 
+test("normalisiert alle vereinbarten Dokumenttypen und optionale Metadaten", () => {
+  const types = [
+    "announcement",
+    "invitation",
+    "start-list",
+    "result-list",
+    "form",
+    "certificate",
+    "other"
+  ];
+  const documents = types.map((type, index) => ({
+    label: ` Dokument ${index + 1} `,
+    url: ` assets/documents/dokument-${index + 1}.pdf `,
+    type
+  }));
+
+  documents[0].description = " Ausschreibung zur Veranstaltung ";
+  documents[0].fileType = " PDF ";
+  documents[0].fileSize = " 240 KB ";
+
+  assert.deepEqual(normalizeDocuments(documents), [
+    {
+      label: "Dokument 1",
+      url: "assets/documents/dokument-1.pdf",
+      type: "announcement",
+      description: "Ausschreibung zur Veranstaltung",
+      fileType: "PDF",
+      fileSize: "240 KB"
+    },
+    ...types.slice(1).map((type, index) => ({
+      label: `Dokument ${index + 2}`,
+      url: `assets/documents/dokument-${index + 2}.pdf`,
+      type
+    }))
+  ]);
+});
+
+test("verwendet bei fehlenden oder unbekannten Dokumenttypen other", () => {
+  const documents = [
+    {
+      label: "Typ fehlt",
+      url: "assets/documents/ohne-typ.pdf"
+    },
+    {
+      label: "Typ unbekannt",
+      url: "assets/documents/unbekannt.pdf",
+      type: "ranking"
+    },
+    {
+      label: "Falsche Großschreibung",
+      url: "assets/documents/grossschreibung.pdf",
+      type: "ANNOUNCEMENT"
+    },
+    {
+      label: "Gültiger Typ mit Leerraum",
+      url: "assets/documents/gueltig.pdf",
+      type: " announcement "
+    }
+  ];
+
+  assert.deepEqual(
+    normalizeDocuments(documents).map((document) => document.type),
+    ["other", "other", "other", "announcement"]
+  );
+});
+
+test("akzeptiert für Dokumente relative und HTTPS-URLs", () => {
+  const urls = [
+    "assets/documents/a.pdf",
+    "./assets/documents/b.pdf",
+    "../documents/c.pdf",
+    "/documents/d.pdf",
+    "https://example.org/documents/e.pdf",
+    "HTTPS://example.org/documents/f.pdf"
+  ];
+
+  assert.deepEqual(
+    normalizeDocuments(
+      urls.map((url, index) => ({
+        label: `Dokument ${index + 1}`,
+        url,
+        type: "other"
+      }))
+    ).map((document) => document.url),
+    urls
+  );
+});
+
+test("verwirft für Dokumente HTTP und andere nicht freigegebene Protokolle", () => {
+  const unsafeUrls = [
+    "http://example.org/dokument.pdf",
+    "javascript:alert(1)",
+    "data:application/pdf;base64,abc",
+    "vbscript:msgbox(1)",
+    "file:///tmp/dokument.pdf",
+    "ftp://example.org/dokument.pdf",
+    "//example.org/dokument.pdf",
+    "\\\\server\\dokument.pdf",
+    "https:example.org/dokument.pdf"
+  ];
+
+  assert.deepEqual(
+    normalizeDocuments(
+      unsafeUrls.map((url, index) => ({
+        label: `Unsicher ${index + 1}`,
+        url,
+        type: "other"
+      }))
+    ),
+    []
+  );
+});
+
+test("verwirft unvollständige Dokumente und ungeeignete Eingaben", () => {
+  assert.deepEqual(
+    normalizeDocuments([
+      null,
+      "assets/documents/dokument.pdf",
+      { label: "", url: "assets/documents/ohne-label.pdf" },
+      { label: "Ohne URL", url: "" }
+    ]),
+    []
+  );
+  assert.deepEqual(normalizeDocuments(null), []);
+});
+
+test("führt neue Dokumente und Legacy-Daten stabil und ohne Duplikate zusammen", () => {
+  const event = {
+    documents: [
+      {
+        label: "Kanonische Ausschreibung",
+        url: " assets/documents/gemeinsam.pdf ",
+        type: "announcement"
+      },
+      {
+        label: "Kanonische Einladung",
+        url: "https://example.org/einladung.pdf",
+        type: "invitation"
+      }
+    ],
+    results: [
+      {
+        label: "Doppelte Ergebnisdatei",
+        url: "assets/documents/gemeinsam.pdf",
+        kind: "file"
+      },
+      {
+        label: "Eigenständige Ergebnisdatei",
+        url: "assets/results/ergebnis.pdf",
+        kind: "file",
+        description: "Vollständige Ergebnisliste",
+        fileType: "PDF"
+      },
+      {
+        label: "Externes Ergebnis",
+        url: "https://example.org/ergebnisse",
+        kind: "external"
+      },
+      {
+        label: "Unsichere Ergebnisdatei",
+        url: "http://example.org/ergebnis.pdf",
+        kind: "file"
+      }
+    ],
+    downloads: [
+      {
+        label: "Doppelter Legacy-Download",
+        url: "assets/results/ergebnis.pdf"
+      },
+      {
+        label: "Eigenständiger Legacy-Download",
+        url: "assets/documents/legacy.pdf",
+        description: "Altdaten bleiben verwendbar",
+        fileSize: "10 KB"
+      },
+      {
+        label: "Unsicherer Legacy-Download",
+        url: "http://example.org/download.pdf"
+      }
+    ]
+  };
+  const snapshot = structuredClone(event);
+
+  assert.deepEqual(normalizeEventDocuments(event), [
+    {
+      label: "Kanonische Ausschreibung",
+      url: "assets/documents/gemeinsam.pdf",
+      type: "announcement"
+    },
+    {
+      label: "Kanonische Einladung",
+      url: "https://example.org/einladung.pdf",
+      type: "invitation"
+    },
+    {
+      label: "Eigenständige Ergebnisdatei",
+      url: "assets/results/ergebnis.pdf",
+      type: "result-list",
+      description: "Vollständige Ergebnisliste",
+      fileType: "PDF"
+    },
+    {
+      label: "Eigenständiger Legacy-Download",
+      url: "assets/documents/legacy.pdf",
+      type: "other",
+      description: "Altdaten bleiben verwendbar",
+      fileSize: "10 KB"
+    }
+  ]);
+  assert.deepEqual(event, snapshot);
+  assert.deepEqual(normalizeEventDocuments(null), []);
+});
+
 test("normalisiert Datei- und externe Ergebnisse", () => {
   const results = [
     {
@@ -523,11 +738,13 @@ test("Produktivtermine verwenden das neue Detailmodell ohne erfundene Inhalte", 
   productionEvents.forEach((event) => {
     assert.equal(event.image, null);
     assert.equal(Array.isArray(event.gallery), true);
+    assert.equal(Array.isArray(event.documents), true);
     assert.equal(Array.isArray(event.downloads), true);
     assert.equal(Array.isArray(event.results), true);
     assert.equal(Array.isArray(event.externalLinks), true);
     assert.equal("links" in event, false);
     assert.equal(event.gallery.length, 0);
+    assert.equal(event.documents.length, 0);
     assert.equal(event.downloads.length, 0);
     assert.equal(event.results.length, 0);
     assert.equal(event.externalLinks.length, 0);
@@ -545,6 +762,7 @@ test("Entwicklungsdaten decken alle vereinbarten Detailvarianten ab", () => {
         !event.description &&
         event.image === null &&
         event.gallery.length === 0 &&
+        event.documents.length === 0 &&
         event.downloads.length === 0 &&
         event.results.length === 0 &&
         event.externalLinks.length === 0
@@ -555,6 +773,7 @@ test("Entwicklungsdaten decken alle vereinbarten Detailvarianten ab", () => {
   assert.ok(demoEvents.some((event) => event.gallery.length === 1));
   assert.ok(demoEvents.some((event) => event.gallery.length > 1));
   assert.ok(demoEvents.some((event) => event.gallery.length === 0));
+  assert.ok(demoEvents.some((event) => event.documents.length > 0));
   assert.ok(demoEvents.some((event) => event.downloads.length > 0));
   assert.ok(
     demoEvents.some((event) =>
@@ -582,9 +801,32 @@ test("Entwicklungsdaten decken alle vereinbarten Detailvarianten ab", () => {
   );
   assert.ok(
     demoEvents.some((event) =>
-      [...event.downloads, ...event.results].some(
+      [...event.documents, ...event.downloads, ...event.results].some(
         (item) => item.description && item.fileType && item.fileSize
       )
+    )
+  );
+  const documentDemoEvent = demoEvents.find(
+    (event) => event.slug === "demo-mehrbild-galerie-2025"
+  );
+  const normalizedDemoDocuments =
+    normalizeEventDocuments(documentDemoEvent);
+
+  assert.equal(
+    normalizedDemoDocuments.filter(
+      (document) =>
+        document.url === "assets/dev/demo-ausschreibung.txt"
+    ).length,
+    1
+  );
+  assert.ok(
+    normalizedDemoDocuments.some(
+      (document) => document.type === "announcement"
+    )
+  );
+  assert.ok(
+    normalizedDemoDocuments.some(
+      (document) => document.type === "result-list"
     )
   );
 
@@ -595,6 +837,12 @@ test("Entwicklungsdaten decken alle vereinbarten Detailvarianten ab", () => {
 
     event.gallery.forEach((image) => {
       if (!/^https?:/i.test(image.src)) localAssetUrls.add(image.src);
+    });
+
+    event.documents.forEach((document) => {
+      if (!/^https?:/i.test(document.url)) {
+        localAssetUrls.add(document.url);
+      }
     });
 
     event.downloads.forEach((download) => {

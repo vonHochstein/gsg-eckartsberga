@@ -3,7 +3,7 @@
 // ============================================================
 //
 // Diese Einträge sind erfunden und dienen ausschließlich dazu,
-// Archiv und Galerie während der Entwicklung zu prüfen.
+// Datenmodell, Archiv und Galerie während der Entwicklung zu prüfen.
 //
 // Aktivierung:
 // Den Schalter USE_DEMO_DATA am Anfang von events.js setzen.
@@ -23,6 +23,7 @@ const developmentEvents = [
     description: "",
     image: null,
     gallery: [],
+    documents: [],
     downloads: [],
     results: [],
     externalLinks: [],
@@ -50,6 +51,7 @@ const developmentEvents = [
       height: 940
     },
     gallery: [],
+    documents: [],
     downloads: [],
     results: [],
     externalLinks: [],
@@ -90,6 +92,17 @@ const developmentEvents = [
         caption: "[DEMO] Mehrbild-Galerie 2025 · Aufnahme 2",
         width: 1673,
         height: 940
+      }
+    ],
+    documents: [
+      {
+        label: "[DEMO] Ausschreibung als lokale Testdatei",
+        url: "assets/dev/demo-ausschreibung.txt",
+        type: "announcement",
+        description:
+          "Nicht produktive Entwicklungsressource zur Prüfung des Dokumentenmodells.",
+        fileType: "TXT",
+        fileSize: "unter 1 KB"
       }
     ],
     downloads: [
@@ -149,6 +162,7 @@ const developmentEvents = [
       "Dieser vollständig erfundene Beschreibungstext ist absichtlich länger. Er prüft Zeilenumbrüche, Kartenhöhen und die Lesbarkeit im Jahresarchiv, ohne dabei eine reale Veranstaltung oder Aussage des Vereins darzustellen.",
     image: null,
     gallery: [],
+    documents: [],
     downloads: [],
     results: [],
     externalLinks: [],
@@ -184,6 +198,7 @@ const developmentEvents = [
         height: 940
       }
     ],
+    documents: [],
     downloads: [],
     results: [],
     externalLinks: [],

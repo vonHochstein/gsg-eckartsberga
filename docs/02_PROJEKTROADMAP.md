@@ -42,6 +42,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 
 - zentrale Veranstaltungsdatenquelle;
 - verbindliches, erweiterbares Veranstaltungsmodell mit Kernangaben und optionalen Detailbereichen;
+- kanonisches, typisiertes Dokumentenmodell mit sicherer URL-Prüfung und rückwärtskompatibler Übernahme von Downloads und Ergebnisdateien;
 - gemeinsame Hilfsfunktionen in `EventUtils` für Detailfähigkeit, Titel, Bilder, strukturierte Linklisten und Detail-URLs;
 - Anzeige des nächsten Termins;
 - Countdown bis zur nächsten Veranstaltung;

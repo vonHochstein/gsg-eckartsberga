@@ -19,6 +19,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Automatisierte Node-Tests für die gemeinsam verwendete Veranstaltungslogik.
 - Lokale, eindeutig als Entwicklungsmaterial gekennzeichnete Beispieldateien für Download- und Ergebnisprüfungen.
 - Native Galerie-Lightbox mit Bildunterschriften, Tastaturnavigation, mehreren Schließwegen und zuverlässiger Fokus-Rückgabe.
+- Kanonisches Veranstaltungsfeld `documents` mit sieben Dokumenttypen und gemeinsamen Normalisierungsfunktionen.
 
 ### Geändert
 
@@ -33,6 +34,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Veranstaltungsdaten und Entwicklungsdaten auf dasselbe verbindliche Detaildatenmodell vereinheitlicht, ohne produktive Termine künstlich zu befüllen.
 - Inhaltsbereiche der Veranstaltungsdetailseite besucherorientiert geordnet und die sichtbaren Überschriften „Veranstaltungsinformationen“ und „Dokumente“ vereinheitlicht.
 - Detailgalerien mit mehr als sechs gültigen Bildern auf eine zugängliche, ein- und ausklappbare Vorschau begrenzt.
+- Legacy-Downloads und Ergebnisdateien werden stabil, unverändernd und ohne doppelte URLs in das Dokumentenmodell übernommen.
 
 ### Behoben
 
@@ -48,6 +50,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 - Dynamisch ausgegebene Veranstaltungstexte vor dem Einfügen in HTML maskiert.
 - Dynamische Datei- und Webverweise auf freigegebene Protokolle begrenzt.
+- Dokumentziele auf relative URLs und absolute HTTPS-URLs begrenzt.
 - Mehrdeutige doppelte Slugs führen zu einem eindeutigen Fehlerzustand statt zur zufälligen Auswahl einer Veranstaltung.
 
 ### Dokumentation
@@ -58,6 +61,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Technische Projektdokumentation, Roadmap und Implementierungsnachweis auf den vollständigen Stand von IA-002 aktualisiert.
 - Technische Projektdokumentation um Reihenfolge, Galerieverhalten und Prüfmatrix von AP 2 ergänzt.
 - Technische Projektdokumentation, Roadmap und Prüfpunkte auf den Abschluss der Galerie-Lightbox in AP 3 aktualisiert.
+- Technische Projektdokumentation und Roadmap um Datenvertrag und Kompatibilitätsregeln von AP 4 ergänzt.
 
 ---
 

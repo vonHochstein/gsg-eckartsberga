@@ -13,6 +13,15 @@
   });
   const EVENT_EDITORIAL_STATUSES = new Set(["cancelled", "postponed"]);
   const RESULT_KINDS = new Set(["file", "external"]);
+  const DOCUMENT_TYPES = new Set([
+    "announcement",
+    "invitation",
+    "start-list",
+    "result-list",
+    "form",
+    "certificate",
+    "other"
+  ]);
 
   function isRecord(value) {
     return value !== null && typeof value === "object" && !Array.isArray(value);
@@ -86,6 +95,25 @@
     }
   }
 
+  function isSafeDocumentUrl(value) {
+    const normalizedUrl = normalizedString(value);
+
+    if (!normalizedUrl || !isSafeUrl(normalizedUrl)) {
+      return false;
+    }
+
+    const protocolMatch = normalizedUrl.match(/^([a-z][a-z\d+.-]*):/i);
+
+    if (!protocolMatch) {
+      return true;
+    }
+
+    return (
+      protocolMatch[1].toLowerCase() === "https" &&
+      /^https:\/\//i.test(normalizedUrl)
+    );
+  }
+
   function normalizeMediaEntry(value, includeCaption) {
     if (!isRecord(value)) return null;
 
@@ -151,6 +179,32 @@
     }, []);
   }
 
+  function normalizeDocuments(documents) {
+    if (!Array.isArray(documents)) return [];
+
+    return documents.reduce((normalizedDocuments, document) => {
+      if (!isRecord(document)) return normalizedDocuments;
+
+      const label = normalizedString(document.label);
+      const url = normalizedString(document.url);
+      const type = normalizedString(document.type);
+
+      if (!label || !url || !isSafeDocumentUrl(url)) {
+        return normalizedDocuments;
+      }
+
+      const normalizedDocument = {
+        label,
+        url,
+        type: type && DOCUMENT_TYPES.has(type) ? type : "other"
+      };
+      appendOptionalFileMetadata(normalizedDocument, document);
+      normalizedDocuments.push(normalizedDocument);
+
+      return normalizedDocuments;
+    }, []);
+  }
+
   function normalizeResults(results) {
     if (!Array.isArray(results)) return [];
 
@@ -179,6 +233,38 @@
 
       return normalizedResults;
     }, []);
+  }
+
+  function normalizeEventDocuments(event) {
+    if (!isRecord(event)) return [];
+
+    const documents = normalizeDocuments(event.documents);
+    const legacyResultDocuments = normalizeDocuments(
+      normalizeResults(event.results)
+        .filter((result) => result.kind === "file")
+        .map((result) => ({
+          ...result,
+          type: "result-list"
+        }))
+    );
+    const legacyDownloadDocuments = normalizeDocuments(
+      normalizeDownloads(event.downloads).map((download) => ({
+        ...download,
+        type: "other"
+      }))
+    );
+    const seenUrls = new Set();
+
+    return [
+      ...documents,
+      ...legacyResultDocuments,
+      ...legacyDownloadDocuments
+    ].filter((document) => {
+      if (seenUrls.has(document.url)) return false;
+
+      seenUrls.add(document.url);
+      return true;
+    });
   }
 
   function normalizeExternalLinks(externalLinks) {
@@ -307,7 +393,9 @@
     normalizeImage,
     normalizeGallery,
     normalizeDownloads,
+    normalizeDocuments,
     normalizeResults,
+    normalizeEventDocuments,
     normalizeExternalLinks,
     getEventTitle,
     getEventPhase,
