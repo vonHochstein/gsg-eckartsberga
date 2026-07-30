@@ -159,6 +159,7 @@
     `;
 
     initializeGalleryToggle();
+    initializeGalleryLightbox(gallery);
     detailRoot.setAttribute("aria-busy", "false");
     updateEventMetadata({
       slug: event.slug.trim(),
@@ -393,13 +394,21 @@
             class="event-gallery-item"
             ${index >= galleryPreviewLimit ? "hidden" : ""}
           >
-            <img
-              src="${escapeHTML(image.src)}"
-              alt="${escapeHTML(image.alt)}"
-              ${createDimensionAttributes(image)}
-              loading="lazy"
-              decoding="async"
-            />
+            <button
+              class="event-gallery-open"
+              type="button"
+              data-gallery-index="${index}"
+              aria-haspopup="dialog"
+            >
+              <img
+                src="${escapeHTML(image.src)}"
+                alt="${escapeHTML(image.alt)}"
+                ${createDimensionAttributes(image)}
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="event-gallery-open-label">vergrößern</span>
+            </button>
             ${
               image.caption
                 ? `<figcaption>${escapeHTML(image.caption)}</figcaption>`
@@ -477,6 +486,175 @@
         });
       }
     });
+  }
+
+  function initializeGalleryLightbox(gallery) {
+    if (gallery.length === 0) return;
+
+    const galleryRoot = detailRoot.querySelector(".event-gallery");
+    const dialog = document.getElementById("event-lightbox");
+    const closeButton = document.getElementById("event-lightbox-close");
+    const previousButton = document.getElementById(
+      "event-lightbox-previous"
+    );
+    const nextButton = document.getElementById("event-lightbox-next");
+    const lightboxImage = document.getElementById("event-lightbox-image");
+    const lightboxCaption = document.getElementById(
+      "event-lightbox-caption"
+    );
+    const lightboxPosition = document.getElementById(
+      "event-lightbox-position"
+    );
+
+    if (
+      !galleryRoot ||
+      !dialog ||
+      typeof dialog.showModal !== "function" ||
+      !closeButton ||
+      !previousButton ||
+      !nextButton ||
+      !lightboxImage ||
+      !lightboxCaption ||
+      !lightboxPosition
+    ) {
+      return;
+    }
+
+    let currentIndex = 0;
+    let invokingButton = null;
+    let pointerStartedOnBackdrop = false;
+
+    galleryRoot.addEventListener("click", (event) => {
+      const target =
+        event.target instanceof Element
+          ? event.target.closest(".event-gallery-open")
+          : null;
+
+      if (!target || !galleryRoot.contains(target)) return;
+
+      const requestedIndex = Number(target.dataset.galleryIndex);
+
+      if (
+        !Number.isInteger(requestedIndex) ||
+        requestedIndex < 0 ||
+        requestedIndex >= gallery.length
+      ) {
+        return;
+      }
+
+      invokingButton = target;
+      showGalleryImage(requestedIndex);
+      dialog.showModal();
+      closeButton.focus({ preventScroll: true });
+    });
+
+    closeButton.addEventListener("click", closeLightbox);
+    previousButton.addEventListener("click", () => {
+      navigateGallery(-1);
+    });
+    nextButton.addEventListener("click", () => {
+      navigateGallery(1);
+    });
+
+    dialog.addEventListener("keydown", (event) => {
+      if (
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey
+      ) {
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        navigateGallery(-1);
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        navigateGallery(1);
+      }
+    });
+
+    dialog.addEventListener("pointerdown", (event) => {
+      pointerStartedOnBackdrop = event.target === dialog;
+    });
+
+    dialog.addEventListener("pointercancel", () => {
+      pointerStartedOnBackdrop = false;
+    });
+
+    dialog.addEventListener("click", (event) => {
+      const shouldClose =
+        pointerStartedOnBackdrop && event.target === dialog;
+
+      pointerStartedOnBackdrop = false;
+
+      if (shouldClose) {
+        closeLightbox();
+      }
+    });
+
+    dialog.addEventListener("close", () => {
+      const focusTarget = invokingButton;
+      invokingButton = null;
+      pointerStartedOnBackdrop = false;
+
+      if (focusTarget?.isConnected) {
+        focusTarget.focus({ preventScroll: true });
+      }
+    });
+
+    function showGalleryImage(index) {
+      if (index < 0 || index >= gallery.length) return;
+
+      const image = gallery[index];
+      const hasMultipleImages = gallery.length > 1;
+
+      currentIndex = index;
+      lightboxImage.setAttribute("src", image.src);
+      lightboxImage.setAttribute("alt", image.alt);
+      lightboxImage.removeAttribute("width");
+      lightboxImage.removeAttribute("height");
+
+      if (image.width) {
+        lightboxImage.setAttribute("width", String(image.width));
+      }
+
+      if (image.height) {
+        lightboxImage.setAttribute("height", String(image.height));
+      }
+
+      lightboxCaption.textContent = image.caption || "";
+      lightboxCaption.hidden = !image.caption;
+      lightboxPosition.textContent = `Bild ${index + 1} von ${gallery.length}`;
+
+      previousButton.hidden = !hasMultipleImages;
+      nextButton.hidden = !hasMultipleImages;
+      previousButton.setAttribute(
+        "aria-disabled",
+        String(index === 0)
+      );
+      nextButton.setAttribute(
+        "aria-disabled",
+        String(index === gallery.length - 1)
+      );
+    }
+
+    function navigateGallery(direction) {
+      const targetIndex = currentIndex + direction;
+
+      if (targetIndex < 0 || targetIndex >= gallery.length) return;
+
+      showGalleryImage(targetIndex);
+    }
+
+    function closeLightbox() {
+      if (dialog.open) {
+        dialog.close();
+      }
+    }
   }
 
   function createDimensionAttributes(media) {

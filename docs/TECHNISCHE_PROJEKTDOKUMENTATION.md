@@ -3,7 +3,7 @@
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
 **Stand:** 30. Juli 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 und AP 2
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1, AP 2 und AP 3
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -31,6 +31,7 @@ Umgesetzt und geprüft sind:
 - gemeinsame Hilfsfunktionen unter `window.EventUtils`;
 - universelle Detailseite über `event.html?event=<slug>`;
 - Darstellung von Beschreibung, Veranstaltungsinformationen, Ergebnissen, Dokumenten, externen Links und Galerie;
+- native, barrierearme Lightbox für Galeriebilder mit Tastaturnavigation und Fokus-Rückgabe;
 - definierte Fehlerzustände für fehlende, unbekannte, unvollständige oder nicht eindeutige Veranstaltungen;
 - dynamische Dokument- und Open-Graph-Metadaten;
 - Verlinkung von Timeline, Countdown und eventbezogenem Galerie-Teaser auf Detailseiten;
@@ -43,7 +44,6 @@ Noch nicht umgesetzt sind insbesondere:
 - vollständige Vereins-, Anlagen-, Erfolgs-, Kontakt- und Geschichtsinhalte;
 - Impressum und Datenschutz;
 - vollständige produktive Galerie;
-- Lightbox;
 - Backend, CMS, Formulare, Suche und Mitgliederbereich;
 - Build-, Deployment- und Hosting-Konfiguration.
 
@@ -138,7 +138,7 @@ Die Script-Reihenfolge ist:
 
 #### `event.html`
 
-Die universelle Detailseite enthält dieselben gemeinsamen Seitenbausteine, ein leeres Renderziel `#event-detail` und einen verständlichen `<noscript>`-Hinweis.
+Die universelle Detailseite enthält dieselben gemeinsamen Seitenbausteine, ein leeres Renderziel `#event-detail`, genau ein wiederverwendbares natives `<dialog>` für die Galerie-Lightbox und einen verständlichen `<noscript>`-Hinweis.
 
 Sie lädt bewusst keine Startseitenmodule für Countdown, Timeline oder Galerieanimation. Ihre Script-Reihenfolge ist:
 
@@ -181,6 +181,7 @@ Enthält ausschließlich die Gestaltung der Detailseite:
 - Ressourcenlisten;
 - Ergebniskennzeichnung;
 - Galerieraster;
+- responsive Lightbox mit Backdrop und mindestens 44 Pixel großen Bedienelementen;
 - Fehlerzustände;
 - Breakpoints für 1-, 2- und 3-spaltige Darstellung.
 
@@ -247,6 +248,10 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtil
 Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert.
 
 Bis zu sechs gültige Galeriebilder werden vollständig dargestellt. Bei mehr als sechs Bildern zeigt die Seite zunächst die ersten sechs in Datenreihenfolge. Ein nativer, tastaturbedienbarer Schalter blendet die verbleibenden Bilder ein und wieder aus; Beschriftung und `aria-expanded` folgen dem tatsächlichen Zustand. Beim Einklappen wird die Position des Schalters im sichtbaren Bereich stabilisiert. Ungültige Galerieeinträge werden bereits durch `EventUtils.normalizeGallery()` verworfen und zählen nicht gegen diese Grenze.
+
+Jede Galeriekachel öffnet dasselbe native `<dialog>` mit dem vollständigen Bild, vorhandenem Alternativtext und optionaler Bildunterschrift. Die Lightbox navigiert über Schalter und linke beziehungsweise rechte Pfeiltaste durch alle gültigen Bilder in Datenreihenfolge, auch wenn die Kachelansicht noch eingeklappt ist. An den Grenzen findet kein Umlauf statt; bei nur einem Bild werden die Navigationsschalter ausgeblendet.
+
+Der initiale Fokus liegt auf dem sichtbaren Schließen-Schalter. Schließen ist per Schalter, Escape und eindeutigem Klick auf die Dialogfläche außerhalb des Panels möglich. Pointerdown innerhalb des Panels verhindert ein versehentliches Schließen beim Loslassen außerhalb. Das native Modalverhalten hält Hintergrund und außerhalb liegende Bedienelemente inert; jedes Schließen gibt den Fokus an die auslösende Kachel zurück. Es wurden keine Übergangs- oder Bildwechselanimationen ergänzt.
 
 Fehlerzustände:
 
@@ -617,6 +622,17 @@ AP 2 ergänzt diese Browserprüfung um:
 - Bildreihenfolge, Alternativtexte, Bildunterschriften und doppelte Ausgaben;
 - mobile und große Ansichten.
 
+AP 3 ergänzt diese Browserprüfung um:
+
+- Öffnen der Galeriekacheln per Maus und Tastatur;
+- initialen Fokus, Fokusbegrenzung und Fokus-Rückgabe;
+- Schließen per Schalter, Escape und Dialoghintergrund;
+- Vor-/Zurück-Schalter und Pfeiltastennavigation ohne Umlauf;
+- erstes, mittleres und letztes Bild sowie den Ein-Bild-Fall;
+- vollständige Navigation bei ein- und ausgeklappter Galerie;
+- synchronen Wechsel von Bild, Alternativtext, Bildunterschrift, Abmessungen und Positionsangabe;
+- mobile und große Dialoglayouts, Hintergrundscrollen, Assets und Browserkonsole.
+
 ### 5.3 Barrierearme Grundlagen
 
 - Skip-Link;
@@ -626,6 +642,7 @@ AP 2 ergänzt diese Browserprüfung um:
 - sichtbare Fokusdarstellung;
 - mindestens 44 Pixel große primäre Bedienelemente;
 - vollständige Tastaturbedienung;
+- native Modalität mit Fokusbegrenzung und Rückgabe an den Auslöser;
 - keine erzwungenen neuen Fenster;
 - Reduced-Motion-Unterstützung für bestehende Animationen.
 

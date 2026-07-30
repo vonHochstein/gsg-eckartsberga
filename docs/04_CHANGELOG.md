@@ -18,6 +18,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Universelle Veranstaltungsdetailseite unter `event.html?event=<slug>` mit dynamischen Metadaten und zugänglichen Fehlerzuständen.
 - Automatisierte Node-Tests für die gemeinsam verwendete Veranstaltungslogik.
 - Lokale, eindeutig als Entwicklungsmaterial gekennzeichnete Beispieldateien für Download- und Ergebnisprüfungen.
+- Native Galerie-Lightbox mit Bildunterschriften, Tastaturnavigation, mehreren Schließwegen und zuverlässiger Fokus-Rückgabe.
 
 ### Geändert
 
@@ -56,6 +57,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Projektphase 0 in der Roadmap als abgeschlossen dokumentiert.
 - Technische Projektdokumentation, Roadmap und Implementierungsnachweis auf den vollständigen Stand von IA-002 aktualisiert.
 - Technische Projektdokumentation um Reihenfolge, Galerieverhalten und Prüfmatrix von AP 2 ergänzt.
+- Technische Projektdokumentation, Roadmap und Prüfpunkte auf den Abschluss der Galerie-Lightbox in AP 3 aktualisiert.
 
 ---
 

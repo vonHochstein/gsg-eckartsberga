@@ -120,7 +120,6 @@ Die folgenden Notizen sind vollständig im [Ideenspeicher](05_IDEENSPEICHER.md) 
 - Favicon;
 - Suchfunktion;
 - Downloadbereich für Ausschreibungen;
-- Bildergalerie mit Lightbox;
 - Gästebuch;
 - Kontaktformular;
 - Besucherstatistik;
@@ -149,7 +148,7 @@ Die folgende Tabelle ordnet jede inhaltliche Notiz genau einer Hauptkategorie zu
 | 10 | Favicon | Roadmap | Abschnitt 8 in `02_PROJEKTROADMAP.md` |
 | 11 | Suchfunktion | Ideenspeicher | `05_IDEENSPEICHER.md` |
 | 12 | Downloadbereich, beispielsweise für Ausschreibungen | Roadmap | Abschnitte 3 und 4 in `02_PROJEKTROADMAP.md` |
-| 13 | Bildergalerie mit Lightbox | Roadmap | Abschnitt 5 in `02_PROJEKTROADMAP.md` |
+| 13 | Bildergalerie mit Lightbox | Roadmap | als umgesetzt dokumentiert in `02_PROJEKTROADMAP.md` |
 | 14 | Ausreichendes Impressum und ausreichender Datenschutz | Offene Prüfpunkte | P-06 in diesem Dokument |
 | 15 | Gästebuch möglicherweise über Formspree | Offene Prüfpunkte | P-08 in diesem Dokument |
 | 16 | Besucherzähler möglicherweise über counter.dev | Offene Prüfpunkte | P-09 in diesem Dokument |

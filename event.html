@@ -88,6 +88,70 @@
       aria-busy="true"
     ></div>
 
+    <dialog
+      class="event-lightbox"
+      id="event-lightbox"
+      aria-labelledby="event-lightbox-title"
+    >
+      <div class="event-lightbox-panel">
+        <header class="event-lightbox-header">
+          <h2 id="event-lightbox-title">Galerieansicht</h2>
+          <button
+            class="event-lightbox-control event-lightbox-close"
+            id="event-lightbox-close"
+            type="button"
+            autofocus
+          >
+            <span aria-hidden="true">×</span>
+            Schließen
+          </button>
+        </header>
+
+        <figure class="event-lightbox-media">
+          <img
+            id="event-lightbox-image"
+            alt=""
+            decoding="async"
+          />
+          <figcaption id="event-lightbox-caption" hidden></figcaption>
+        </figure>
+
+        <nav
+          class="event-lightbox-navigation"
+          aria-label="Navigation durch die Galerie"
+        >
+          <button
+            class="event-lightbox-control event-lightbox-previous"
+            id="event-lightbox-previous"
+            type="button"
+            aria-label="Vorheriges Bild"
+            aria-disabled="true"
+          >
+            <span aria-hidden="true">←</span>
+            Vorheriges
+          </button>
+          <p
+            class="event-lightbox-position"
+            id="event-lightbox-position"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            Bild 1 von 1
+          </p>
+          <button
+            class="event-lightbox-control event-lightbox-next"
+            id="event-lightbox-next"
+            type="button"
+            aria-label="Nächstes Bild"
+            aria-disabled="true"
+          >
+            Nächstes
+            <span aria-hidden="true">→</span>
+          </button>
+        </nav>
+      </div>
+    </dialog>
+
     <noscript>
       <section class="event-state" aria-labelledby="noscript-title">
         <p class="event-state-kicker">Veranstaltungsdetails</p>

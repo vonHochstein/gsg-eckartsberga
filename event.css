@@ -310,6 +310,30 @@
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.11);
 }
 
+.event-gallery-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  font: inherit;
+}
+
+.event-gallery-open:focus-visible {
+  outline-offset: -5px;
+}
+
+.event-gallery-open-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .event-gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -329,6 +353,135 @@
   border: 0;
   cursor: pointer;
   font: inherit;
+}
+
+.event-lightbox {
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: clamp(12px, 3vw, 32px);
+  border: 0;
+  background: transparent;
+  color: var(--color-white);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.event-lightbox[open] {
+  display: grid;
+  place-items: center;
+}
+
+.event-lightbox::backdrop {
+  background: rgba(7, 7, 7, 0.9);
+}
+
+.event-lightbox-panel {
+  display: grid;
+  width: min(100%, 1180px);
+  max-height: calc(100svh - clamp(24px, 6vw, 64px));
+  gap: 18px;
+  padding: clamp(18px, 3vw, 30px);
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  background: #151515;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.56);
+}
+
+.event-lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.event-lightbox-header h2 {
+  color: #f2dfb2;
+  font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+  line-height: 1.1;
+}
+
+.event-lightbox-control {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.event-lightbox-control:hover {
+  border-color: rgba(214, 168, 79, 0.72);
+  background: rgba(214, 168, 79, 0.14);
+}
+
+.event-lightbox-control[aria-disabled="true"] {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.42);
+  cursor: default;
+}
+
+.event-lightbox-close span[aria-hidden="true"] {
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.event-lightbox-media {
+  display: grid;
+  min-height: 0;
+  place-items: center;
+  gap: 12px;
+}
+
+.event-lightbox-media img {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100svh - 240px);
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.event-lightbox-media figcaption {
+  max-width: 860px;
+  overflow-wrap: anywhere;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.event-lightbox-navigation {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+.event-lightbox-previous {
+  justify-self: start;
+}
+
+.event-lightbox-next {
+  justify-self: end;
+}
+
+.event-lightbox-position {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: center;
 }
 
 .event-state {
@@ -458,6 +611,48 @@
   .event-resource-kind {
     width: fit-content;
   }
+
+  .event-lightbox {
+    padding: 10px;
+  }
+
+  .event-lightbox-panel {
+    max-height: calc(100svh - 20px);
+    gap: 14px;
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .event-lightbox-header {
+    align-items: flex-start;
+  }
+
+  .event-lightbox-close {
+    flex: 0 0 auto;
+    padding-inline: 13px;
+  }
+
+  .event-lightbox-media img {
+    max-height: calc(100svh - 270px);
+  }
+
+  .event-lightbox-navigation {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .event-lightbox-position {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .event-lightbox-previous,
+  .event-lightbox-next {
+    width: 100%;
+    gap: 6px;
+    padding-inline: 10px;
+    font-size: 0.92rem;
+  }
 }
 
 @media (max-width: 360px) {
@@ -481,6 +676,14 @@
     width: fit-content;
     max-width: 100%;
     overflow-wrap: anywhere;
+  }
+
+  .event-lightbox-header {
+    display: grid;
+  }
+
+  .event-lightbox-close {
+    width: 100%;
   }
 }
 

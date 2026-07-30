@@ -33,6 +33,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - Schließen des Menüs per Linkauswahl, Außenklick und Escape;
 - kompakter Header beim Scrollen;
 - automatisch wechselnde Galerievorschau;
+- native Galerie-Lightbox mit Tastatursteuerung, Fokusführung und responsiver Darstellung;
 - sichtbare Fokuszustände und Sprunglink zum Hauptinhalt;
 - Unterstützung reduzierter Bewegung;
 - responsive Qualitätsprüfung vom kleinen Smartphone bis zum großen Bildschirm.
@@ -101,7 +102,6 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 
 - zentrale Medien- und Metadatenstruktur festlegen;
 - Galerie aus gepflegten Daten erzeugen;
-- Lightbox mit Tastaturbedienung umsetzen;
 - weitere Bildformate und Dateigrößen optimieren;
 - responsive Bildvarianten und sinnvolle Alternativtexte etablieren.
 
