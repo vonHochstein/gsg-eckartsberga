@@ -30,6 +30,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Timeline-Karten, Countdown und ereignisbezogene Galerie-Vorschauen mit den passenden Detailseiten verbunden.
 - Leere oder ungültige optionale Detailbereiche werden vollständig ausgeblendet; ein ungültiges oder vor dem Start liegendes Enddatum wird ignoriert.
 - Veranstaltungsdaten und Entwicklungsdaten auf dasselbe verbindliche Detaildatenmodell vereinheitlicht, ohne produktive Termine künstlich zu befüllen.
+- Inhaltsbereiche der Veranstaltungsdetailseite besucherorientiert geordnet und die sichtbaren Überschriften „Veranstaltungsinformationen“ und „Dokumente“ vereinheitlicht.
+- Detailgalerien mit mehr als sechs gültigen Bildern auf eine zugängliche, ein- und ausklappbare Vorschau begrenzt.
 
 ### Behoben
 
@@ -53,6 +55,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Verkaufsargumente und offene Prüfpunkte als eigenständige Dokumente ergänzt.
 - Projektphase 0 in der Roadmap als abgeschlossen dokumentiert.
 - Technische Projektdokumentation, Roadmap und Implementierungsnachweis auf den vollständigen Stand von IA-002 aktualisiert.
+- Technische Projektdokumentation um Reihenfolge, Galerieverhalten und Prüfmatrix von AP 2 ergänzt.
 
 ---
 

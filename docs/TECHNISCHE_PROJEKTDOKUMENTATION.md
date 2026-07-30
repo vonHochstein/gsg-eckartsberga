@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 24. Juli 2026
-**Fortgeschrieben nach:** IA-001 und IA-002
+**Stand:** 30. Juli 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 und AP 2
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -30,7 +30,7 @@ Umgesetzt und geprüft sind:
 - getrennte produktive und nicht produktive Entwicklungsdaten;
 - gemeinsame Hilfsfunktionen unter `window.EventUtils`;
 - universelle Detailseite über `event.html?event=<slug>`;
-- Darstellung von Eckdaten, Beschreibung, Downloads, Ergebnissen, Galerie und externen Links;
+- Darstellung von Beschreibung, Veranstaltungsinformationen, Ergebnissen, Dokumenten, externen Links und Galerie;
 - definierte Fehlerzustände für fehlende, unbekannte, unvollständige oder nicht eindeutige Veranstaltungen;
 - dynamische Dokument- und Open-Graph-Metadaten;
 - Verlinkung von Timeline, Countdown und eventbezogenem Galerie-Teaser auf Detailseiten;
@@ -237,14 +237,16 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtil
 - Veranstaltungskopf;
 - Datum und Uhrzeit;
 - Titelbild;
-- Eckdaten;
 - Beschreibung;
-- Downloads;
+- Veranstaltungsinformationen;
 - Ergebnisse;
-- Galerie;
-- externe Links.
+- Dokumente aus dem bestehenden Feld `downloads`;
+- externe Links;
+- Galerie als abschließenden Inhaltsbereich.
 
 Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert.
+
+Bis zu sechs gültige Galeriebilder werden vollständig dargestellt. Bei mehr als sechs Bildern zeigt die Seite zunächst die ersten sechs in Datenreihenfolge. Ein nativer, tastaturbedienbarer Schalter blendet die verbleibenden Bilder ein und wieder aus; Beschriftung und `aria-expanded` folgen dem tatsächlichen Zustand. Beim Einklappen wird die Position des Schalters im sichtbaren Bereich stabilisiert. Ungültige Galerieeinträge werden bereits durch `EventUtils.normalizeGallery()` verworfen und zählen nicht gegen diese Grenze.
 
 Fehlerzustände:
 
@@ -604,6 +606,16 @@ IA-002 wurde geprüft mit:
 - fehlenden lokalen Assets;
 - Browserkonsole;
 - Demo-Schalter `true` und `false`.
+
+AP 2 ergänzt diese Browserprüfung um:
+
+- Reihenfolge aller vorhandenen Inhaltsbereiche;
+- unverändertes Ausblenden leerer Bereiche;
+- Galerien mit null, bis zu sechs und mehr als sechs gültigen Bildern;
+- Restanzahl, Auf- und Einklappen sowie `aria-expanded`;
+- Tastaturbedienung und stabilen sichtbaren Ausschnitt beim Einklappen;
+- Bildreihenfolge, Alternativtexte, Bildunterschriften und doppelte Ausgaben;
+- mobile und große Ansichten.
 
 ### 5.3 Barrierearme Grundlagen
 

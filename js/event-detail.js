@@ -9,6 +9,7 @@
   const eventUtils = window.EventUtils;
   const overviewUrl = "index.html#veranstaltungen";
   const siteName = "GSG Eckartsberga";
+  const galleryPreviewLimit = 6;
   const defaultDescription =
     "Veranstaltungsdetails der Großkaliber Schützengilde 1503 Eckartsberga e. V.";
 
@@ -130,13 +131,6 @@
         </header>
 
         <div class="event-content">
-          <section class="event-section" aria-labelledby="event-facts-title">
-            <h2 id="event-facts-title">Eckdaten</h2>
-            <ul class="event-facts">
-              ${factItems}
-            </ul>
-          </section>
-
           ${
             description
               ? `<section
@@ -149,14 +143,22 @@
               : ""
           }
 
-          ${createDownloadsSection(downloads)}
+          <section class="event-section" aria-labelledby="event-facts-title">
+            <h2 id="event-facts-title">Veranstaltungsinformationen</h2>
+            <ul class="event-facts">
+              ${factItems}
+            </ul>
+          </section>
+
           ${createResultsSection(results)}
-          ${createGallerySection(gallery)}
+          ${createDownloadsSection(downloads)}
           ${createExternalLinksSection(externalLinks)}
+          ${createGallerySection(gallery)}
         </div>
       </article>
     `;
 
+    initializeGalleryToggle();
     detailRoot.setAttribute("aria-busy", "false");
     updateEventMetadata({
       slug: event.slug.trim(),
@@ -296,11 +298,7 @@
       )
       .join("");
 
-    return createResourceSection(
-      "event-downloads-title",
-      "Downloads",
-      items
-    );
+    return createResourceSection("event-downloads-title", "Dokumente", items);
   }
 
   function createResultsSection(results) {
@@ -390,8 +388,11 @@
 
     const figures = gallery
       .map(
-        (image) => `
-          <figure>
+        (image, index) => `
+          <figure
+            class="event-gallery-item"
+            ${index >= galleryPreviewLimit ? "hidden" : ""}
+          >
             <img
               src="${escapeHTML(image.src)}"
               alt="${escapeHTML(image.alt)}"
@@ -408,15 +409,74 @@
         `
       )
       .join("");
+    const hiddenImageCount = Math.max(
+      gallery.length - galleryPreviewLimit,
+      0
+    );
+    const toggleMarkup =
+      hiddenImageCount > 0
+        ? `
+          <button
+            class="btn btn-primary event-gallery-toggle"
+            type="button"
+            aria-controls="event-gallery-items"
+            aria-expanded="false"
+            data-hidden-image-count="${hiddenImageCount}"
+          >
+            Weitere ${hiddenImageCount} Bilder anzeigen
+          </button>
+        `
+        : "";
 
     return `
       <section class="event-section" aria-labelledby="event-gallery-title">
         <h2 id="event-gallery-title">Galerie</h2>
-        <div class="event-gallery">
+        <div class="event-gallery" id="event-gallery-items">
           ${figures}
         </div>
+        ${toggleMarkup}
       </section>
     `;
+  }
+
+  function initializeGalleryToggle() {
+    const toggle = detailRoot.querySelector(".event-gallery-toggle");
+
+    if (!toggle) return;
+
+    const galleryItems = Array.from(
+      detailRoot.querySelectorAll(".event-gallery-item")
+    );
+    const hiddenImageCount = Number(toggle.dataset.hiddenImageCount);
+
+    toggle.addEventListener("click", () => {
+      const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+      const buttonTopBeforeCollapse = isExpanded
+        ? toggle.getBoundingClientRect().top
+        : null;
+
+      galleryItems.forEach((item, index) => {
+        item.hidden = isExpanded && index >= galleryPreviewLimit;
+      });
+
+      toggle.setAttribute("aria-expanded", String(!isExpanded));
+      toggle.textContent = isExpanded
+        ? `Weitere ${hiddenImageCount} Bilder anzeigen`
+        : "Weniger Bilder anzeigen";
+
+      if (buttonTopBeforeCollapse === null) return;
+
+      const scrollCorrection =
+        toggle.getBoundingClientRect().top - buttonTopBeforeCollapse;
+
+      if (scrollCorrection !== 0) {
+        window.scrollBy({
+          top: scrollCorrection,
+          left: 0,
+          behavior: "instant"
+        });
+      }
+    });
   }
 
   function createDimensionAttributes(media) {
