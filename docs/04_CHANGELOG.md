@@ -35,6 +35,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Inhaltsbereiche der Veranstaltungsdetailseite besucherorientiert geordnet und die sichtbaren Überschriften „Veranstaltungsinformationen“ und „Dokumente“ vereinheitlicht.
 - Detailgalerien mit mehr als sechs gültigen Bildern auf eine zugängliche, ein- und ausklappbare Vorschau begrenzt.
 - Legacy-Downloads und Ergebnisdateien werden stabil, unverändernd und ohne doppelte URLs in das Dokumentenmodell übernommen.
+- Ressourcenbereiche der Veranstaltungsdetailseite in die Reihenfolge Dokumente, Ergebnisse, externe Links und Galerie gebracht.
 
 ### Behoben
 

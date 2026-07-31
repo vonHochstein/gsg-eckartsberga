@@ -150,8 +150,8 @@
             </ul>
           </section>
 
-          ${createResultsSection(results)}
           ${createDownloadsSection(downloads)}
+          ${createResultsSection(results)}
           ${createExternalLinksSection(externalLinks)}
           ${createGallerySection(gallery)}
         </div>

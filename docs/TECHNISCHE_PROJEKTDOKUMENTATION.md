@@ -243,8 +243,8 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtil
 - Titelbild;
 - Beschreibung;
 - Veranstaltungsinformationen;
-- Ergebnisse;
 - Dokumente aus dem bestehenden Feld `downloads`;
+- Ergebnisse;
 - externe Links;
 - Galerie als abschließenden Inhaltsbereich.
 
