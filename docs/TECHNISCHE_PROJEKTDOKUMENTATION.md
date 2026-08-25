@@ -597,15 +597,15 @@ AP 1 definiert ausschließlich Datenvertrag und Hilfsfunktionen. Timeline, Count
 Der Schalter steht in `js/data/events.js`:
 
 ```js
-const USE_DEMO_DATA = true;
+const USE_DEMO_DATA = false;
 ```
 
 - `true`: produktive und klar markierte Entwicklungsdaten;
 - `false`: ausschließlich produktive Daten.
 
-**Vor jeder Veröffentlichung muss der Schalter auf `false` gesetzt werden.**
+`false` ist der verbindliche Standard für die normale Website. Für gezielte lokale Entwicklungsprüfungen kann der Schalter vorübergehend auf `true` gesetzt werden; vor einer Veröffentlichung muss er wieder auf `false` stehen.
 
-Die Entwicklungsdaten liegen in `js/data/dev-events.js`. Lokale Entwicklungsressourcen liegen in `assets/dev/` und sind inhaltlich eindeutig als nicht produktiv gekennzeichnet.
+Die Entwicklungsdaten liegen weiterhin in `js/data/dev-events.js` und werden bei deaktiviertem Schalter nicht in das sichtbare Array `events` übernommen. Lokale Entwicklungsressourcen liegen in `assets/dev/` und sind inhaltlich eindeutig als nicht produktiv gekennzeichnet.
 
 ---
 

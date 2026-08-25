@@ -38,6 +38,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Legacy-Downloads und Ergebnisdateien werden stabil, unverändernd und ohne doppelte URLs in das Dokumentenmodell übernommen.
 - Ressourcenbereiche der Veranstaltungsdetailseite in die Reihenfolge Dokumente, Ergebnisse, externe Links und Galerie gebracht.
 - Timeline- und Archivstatus auf kanonische Dokumente und ausschließlich externe Ergebnisquellen umgestellt.
+- Normalbetrieb auf ausschließlich produktive Veranstaltungsdaten umgestellt; schaltbare Demo-Daten bleiben für Entwicklung und Tests erhalten.
 
 ### Behoben
 

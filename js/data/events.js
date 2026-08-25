@@ -18,7 +18,7 @@
 // true  = produktive Termine plus klar markierte Entwicklungs-Testdaten
 // false = ausschließlich produktive Termine
 // Vor jeder Veröffentlichung muss dieser Wert auf false gesetzt werden.
-const USE_DEMO_DATA = true;
+const USE_DEMO_DATA = false;
 
 const productionEvents = [
   {

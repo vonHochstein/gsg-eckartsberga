@@ -45,19 +45,27 @@ function loadEventData(useDemoData) {
     "../js/data/events.js"
   );
   const originalProductionSource = fs.readFileSync(productionDataPath, "utf8");
+  const demoSwitchPattern = /const USE_DEMO_DATA = (?:true|false);/;
+
+  assert.equal(
+    originalProductionSource.match(
+      /const USE_DEMO_DATA = (?:true|false);/g
+    )?.length,
+    1
+  );
+
   const configuredProductionSource = originalProductionSource.replace(
-    "const USE_DEMO_DATA = true;",
+    demoSwitchPattern,
     `const USE_DEMO_DATA = ${useDemoData};`
   );
   const context = vm.createContext({});
 
   assert.match(
-    originalProductionSource,
-    /const USE_DEMO_DATA = true;/
+    configuredProductionSource,
+    useDemoData
+      ? /const USE_DEMO_DATA = true;/
+      : /const USE_DEMO_DATA = false;/
   );
-  if (!useDemoData) {
-    assert.notEqual(configuredProductionSource, originalProductionSource);
-  }
   vm.runInContext(devDataSource, context, { filename: "dev-events.js" });
   vm.runInContext(configuredProductionSource, context, {
     filename: "events.js"
@@ -710,6 +718,15 @@ test("Normalisierung verändert die übergebenen Daten nicht", () => {
   assert.notEqual(normalizedDownloads[0], downloads[0]);
   assert.notEqual(normalizedResults[0], results[0]);
   assert.notEqual(normalizedLinks[0], links[0]);
+});
+
+test("Produktionsbetrieb ist der eingecheckte Standard", () => {
+  const productionSource = fs.readFileSync(
+    path.resolve(__dirname, "../js/data/events.js"),
+    "utf8"
+  );
+
+  assert.match(productionSource, /const USE_DEMO_DATA = false;/);
 });
 
 test("Demo-Schalter true ergänzt klar markierte Entwicklungsdaten", () => {
