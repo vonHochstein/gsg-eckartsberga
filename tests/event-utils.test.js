@@ -749,7 +749,7 @@ test("Demo-Schalter false liefert ausschließlich produktive Termine", () => {
   );
 });
 
-test("Produktivtermine verwenden das neue Detailmodell ohne erfundene Inhalte", () => {
+test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () => {
   const { productionEvents } = loadEventData(false);
 
   productionEvents.forEach((event) => {
@@ -760,12 +760,60 @@ test("Produktivtermine verwenden das neue Detailmodell ohne erfundene Inhalte", 
     assert.equal(Array.isArray(event.results), true);
     assert.equal(Array.isArray(event.externalLinks), true);
     assert.equal("links" in event, false);
+    assert.equal(event.developmentOnly, undefined);
     assert.equal(event.gallery.length, 0);
-    assert.equal(event.documents.length, 0);
     assert.equal(event.downloads.length, 0);
     assert.equal(event.results.length, 0);
     assert.equal(event.externalLinks.length, 0);
   });
+});
+
+test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const event = productionEvents.find(
+    (entry) => entry.slug === "eckartsburg-pokal-2026"
+  );
+
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 11);
+  assert.equal(event.title, "Eckartsburg-Pokal 2026");
+  assert.equal(event.shortTitle, "Eckartsburg-Pokal");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2026-09-05T09:00:00");
+  assert.equal("end" in event, false);
+  assert.equal(event.location, "Schützenhaus Buttstädt");
+  assert.equal(
+    event.organizer,
+    "Großkaliber Schützengilde 1503 Eckartsberga e.V."
+  );
+  assert.match(event.description, /100 m Ordonanzgewehr/);
+  assert.match(event.description, /13 Schuss, 3 Streicher, 30 Minuten/);
+  assert.match(event.description, /20 Schuss plus Probe in 30 Minuten/);
+  assert.match(event.description, /10 €/);
+  assert.match(event.description, /7 €/);
+  assert.match(event.description, /keine Mannschaftswertung/);
+  assert.match(event.description, /Sachpreise/);
+  assert.match(event.description, /14:00 Uhr/);
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Eckartsburg-Pokal 2026",
+      url: "assets/documents/events/2026/eckartsburg-pokal-2026.pdf",
+      type: "invitation"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, false);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
 });
 
 test("Entwicklungsdaten decken alle vereinbarten Detailvarianten ab", () => {

@@ -190,6 +190,33 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 11,
+    slug: "eckartsburg-pokal-2026",
+    title: "Eckartsburg-Pokal 2026",
+    shortTitle: "Eckartsburg-Pokal",
+    category: "Pokalwettkampf",
+    start: "2026-09-05T09:00:00",
+    location: "Schützenhaus Buttstädt",
+    organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V.",
+    description:
+      "Wettbewerbe: 25 m Vorderlader Revolver oder Pistole; 50 m Vorderlader Perkussion oder Steinschlossgewehr; 100 m Ordonanzgewehr; 50 m KK-Gewehr liegend oder sitzend aufgelegt mit offener Visierung oder Diopter. Für die Vorderlader- und Ordonanzdisziplinen gelten internationale Regeln: 13 Schuss, 3 Streicher, 30 Minuten; Steinschlossschützen erhalten zwei Ringe Bonus. Für 50 m KK-Gewehr gelten 20 Schuss plus Probe in 30 Minuten. Das Startgeld beträgt 10 € für die erste Disziplin und 7 € für jede weitere Disziplin. Es gibt keine Mannschaftswertung; vergeben werden Sachpreise. Meldeschluss ist am Wettkampftag um 14:00 Uhr.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Eckartsburg-Pokal 2026",
+        url: "assets/documents/events/2026/eckartsburg-pokal-2026.pdf",
+        type: "invitation"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 9,
     slug: "km-halbautomat-kk-gk-2026",
     title: "KM Halbautomat KK / GK",
