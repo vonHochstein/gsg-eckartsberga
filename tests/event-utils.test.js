@@ -770,10 +770,12 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
 
 test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
-  const event = productionEvents.find(
+  const matchingEvents = productionEvents.filter(
     (entry) => entry.slug === "eckartsburg-pokal-2026"
   );
+  const [event] = matchingEvents;
 
+  assert.equal(matchingEvents.length, 1);
   assert.ok(event);
   assert.equal(isDetailCapable(event), true);
   assert.equal(event.id, 11);
@@ -787,18 +789,14 @@ test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () 
     event.organizer,
     "Großkaliber Schützengilde 1503 Eckartsberga e.V."
   );
-  assert.match(event.description, /100 m Ordonanzgewehr/);
-  assert.match(event.description, /13 Schuss, 3 Streicher, 30 Minuten/);
-  assert.match(event.description, /20 Schuss plus Probe in 30 Minuten/);
-  assert.match(event.description, /10 €/);
-  assert.match(event.description, /7 €/);
-  assert.match(event.description, /keine Mannschaftswertung/);
-  assert.match(event.description, /Sachpreise/);
-  assert.match(event.description, /14:00 Uhr/);
+  assert.equal(
+    event.description,
+    "Beim Eckartsburg-Pokal treten die Schützen in vier verschiedenen Disziplinen zum traditionellen Pokalwettkampf an."
+  );
   assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
     {
-      label: "Eckartsburg-Pokal 2026",
-      url: "assets/documents/events/2026/eckartsburg-pokal-2026.pdf",
+      label: "Ausschreibung Eckartsburg-Pokal 2026",
+      url: "assets/documents/events/2026/2026_08_14 Ausschreibung Eckartsburg-Pokal 2026.pdf",
       type: "invitation"
     }
   ]);
