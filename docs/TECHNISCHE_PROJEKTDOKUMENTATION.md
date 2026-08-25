@@ -228,7 +228,7 @@ Ermittelt die nächste zukünftige Veranstaltung, aktualisiert Titel, Kategorie,
 
 #### `js/calendar.js`
 
-Erzeugt Timeline und Archiv. Für Titel, Bild, Downloads, Ergebnisse, Galerie und Detailfähigkeit werden die passenden `EventUtils`-Funktionen verwendet. Detailfähige Karten erhalten einen semantischen, tastaturbedienbaren Vollflächen-Link. Nicht detailfähige Karten bleiben normale Artikel.
+Erzeugt Timeline und Archiv. Für Titel, Bild, kanonische Dokumente, externe Ergebnisse, Galerie und Detailfähigkeit werden die passenden `EventUtils`-Funktionen verwendet. Der Dokumentstatus berücksichtigt `documents`, Ergebnisdateien und Legacy-Downloads; der Ergebnisstatus ausschließlich externe Ergebnisquellen. Detailfähige Karten erhalten einen semantischen, tastaturbedienbaren Vollflächen-Link. Nicht detailfähige Karten bleiben normale Artikel.
 
 #### `js/gallery.js`
 
@@ -243,12 +243,12 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtil
 - Titelbild;
 - Beschreibung;
 - Veranstaltungsinformationen;
-- Dokumente aus dem bestehenden Feld `downloads`;
-- Ergebnisse;
+- kanonisch zusammengeführte Dokumente aus `documents`, Ergebnisdateien und Legacy-Downloads;
+- externe Ergebnisse;
 - externe Links;
 - Galerie als abschließenden Inhaltsbereich.
 
-AP 4 führt `documents` ausschließlich in der Modell- und Normalisierungsschicht ein. Die Detailseite verwendet übergangsweise weiterhin `downloads`; eine sichtbare Integration des neuen Feldes ist nicht Bestandteil von AP 4.
+Dokumente werden über `normalizeEventDocuments()` zusammengeführt und mit ihrer deutschen Typbezeichnung dargestellt. Ergebnisdateien erscheinen ausschließlich unter „Dokumente“, externe Ergebnisquellen ausschließlich unter „Ergebnisse“.
 
 Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert.
 
@@ -516,7 +516,7 @@ Externe Ergebnisse bleiben außerhalb des Dokumentenmodells. Bei identischer, ge
 }
 ```
 
-Das bisherige Feld bleibt für bestehende Veranstaltungen und noch nicht umgestellte Verbraucher verfügbar. Bei der kanonischen Zusammenführung werden gültige Einträge als Dokumenttyp `other` übernommen. Neue redaktionelle Daten sollen unter `documents` gepflegt werden.
+Das bisherige Feld bleibt für bestehende Veranstaltungen rückwärtskompatibel verfügbar. Sichtbare Verbraucher verwenden die kanonische Zusammenführung; dabei werden gültige Legacy-Einträge als Dokumenttyp `other` übernommen. Neue redaktionelle Daten sollen unter `documents` gepflegt werden.
 
 ### 4.6 Ergebnisse
 
@@ -538,7 +538,7 @@ Das bisherige Feld bleibt für bestehende Veranstaltungen und noch nicht umgeste
 
 Andere Ergebnisarten werden nicht gerendert.
 
-Ergebnisdateien mit `kind: "file"` werden zusätzlich durch `normalizeEventDocuments()` als Dokumenttyp `result-list` bereitgestellt. Externe Ergebnisse bleiben davon getrennt. Da AP 4 noch keine sichtbaren Verbraucher umstellt, entsteht im aktuellen Rendering keine zusätzliche Ausgabe.
+Ergebnisdateien mit `kind: "file"` werden durch `normalizeEventDocuments()` als Dokumenttyp `result-list` bereitgestellt und ausschließlich im Dokumentbereich ausgegeben. Externe Ergebnisse bleiben davon getrennt und erscheinen ausschließlich unter „Ergebnisse“.
 
 ### 4.7 Externe Links
 
@@ -687,6 +687,14 @@ AP 4 ergänzt die automatisierte Prüfung um:
 - stabile Quellreihenfolge und URL-basierte Deduplizierung;
 - unveränderte Eingabedaten sowie vollständige lokale Entwicklungsressourcen;
 - Produktiv- und Entwicklungsdaten bei Demo-Schalter `true` und `false`.
+
+AP 5B ergänzt die Browserprüfung um:
+
+- kanonische Dokumente, Ergebnisdateien und Legacy-Downloads im gemeinsamen Dokumentbereich;
+- deutsche Bezeichnungen aller sieben Dokumenttypen;
+- URL-basierte Deduplizierung bei parallelen Neu- und Legacy-Daten;
+- ausschließliche Ausgabe externer Ergebnisquellen unter „Ergebnisse“;
+- kanonischen Dokument- und externen Ergebnisstatus in Timeline und Archiv.
 
 ### 5.3 Barrierearme Grundlagen
 

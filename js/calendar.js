@@ -240,10 +240,12 @@ function createMonthMarkup(month) {
 
 function createEventMarkup(event) {
   const eventUtils = window.EventUtils;
-  const downloads = eventUtils?.normalizeDownloads(event.downloads) || [];
-  const results = eventUtils?.normalizeResults(event.results) || [];
+  const documents = eventUtils?.normalizeEventDocuments(event) || [];
+  const results = (eventUtils?.normalizeResults(event.results) || []).filter(
+    (result) => result.kind === "external"
+  );
   const gallery = eventUtils?.normalizeGallery(event.gallery) || [];
-  const hasDownloads = downloads.length > 0;
+  const hasDocuments = documents.length > 0;
   const hasResults = results.length > 0;
   const hasGallery = gallery.length > 0;
   const galleryLabel =
@@ -289,7 +291,7 @@ function createEventMarkup(event) {
         ${imageMarkup}
 
         <div class="timeline-chips" aria-label="Verfügbare Inhalte">
-          <span class="timeline-chip ${hasDownloads ? "available" : "disabled"}"><span aria-hidden="true">📄</span>&nbsp;${hasDownloads ? "Ausschreibung verfügbar" : "Ausschreibung folgt"}</span>
+          <span class="timeline-chip ${hasDocuments ? "available" : "disabled"}"><span aria-hidden="true">📄</span>&nbsp;${hasDocuments ? "Dokumente verfügbar" : "Dokumente folgen"}</span>
           <span class="timeline-chip ${hasResults ? "available" : "disabled"}"><span aria-hidden="true">🏆</span>&nbsp;${hasResults ? "Ergebnisse verfügbar" : "Ergebnisse folgen"}</span>
           <span class="timeline-chip ${hasGallery ? "available" : "disabled"}"><span aria-hidden="true">📷</span>&nbsp;${hasGallery ? galleryLabel : "Galerie folgt"}</span>
         </div>

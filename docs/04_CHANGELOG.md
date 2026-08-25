@@ -20,6 +20,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Lokale, eindeutig als Entwicklungsmaterial gekennzeichnete Beispieldateien für Download- und Ergebnisprüfungen.
 - Native Galerie-Lightbox mit Bildunterschriften, Tastaturnavigation, mehreren Schließwegen und zuverlässiger Fokus-Rückgabe.
 - Kanonisches Veranstaltungsfeld `documents` mit sieben Dokumenttypen und gemeinsamen Normalisierungsfunktionen.
+- Kanonische Veranstaltungsdokumente einschließlich Ergebnisdateien und Legacy-Downloads auf Detailseiten sichtbar integriert.
 
 ### Geändert
 
@@ -36,6 +37,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Detailgalerien mit mehr als sechs gültigen Bildern auf eine zugängliche, ein- und ausklappbare Vorschau begrenzt.
 - Legacy-Downloads und Ergebnisdateien werden stabil, unverändernd und ohne doppelte URLs in das Dokumentenmodell übernommen.
 - Ressourcenbereiche der Veranstaltungsdetailseite in die Reihenfolge Dokumente, Ergebnisse, externe Links und Galerie gebracht.
+- Timeline- und Archivstatus auf kanonische Dokumente und ausschließlich externe Ergebnisquellen umgestellt.
 
 ### Behoben
 

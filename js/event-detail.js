@@ -10,6 +10,15 @@
   const overviewUrl = "index.html#veranstaltungen";
   const siteName = "GSG Eckartsberga";
   const galleryPreviewLimit = 6;
+  const documentTypeLabels = {
+    announcement: "Ausschreibung",
+    invitation: "Einladung",
+    "start-list": "Startliste",
+    "result-list": "Ergebnisliste",
+    form: "Formular",
+    certificate: "Urkunde",
+    other: "Sonstiges"
+  };
   const defaultDescription =
     "Veranstaltungsdetails der Großkaliber Schützengilde 1503 Eckartsberga e. V.";
 
@@ -75,8 +84,10 @@
     const end = getValidEndDate(event.end, start);
     const image = eventUtils.normalizeImage(event.image);
     const gallery = eventUtils.normalizeGallery(event.gallery);
-    const downloads = eventUtils.normalizeDownloads(event.downloads);
-    const results = eventUtils.normalizeResults(event.results);
+    const documents = eventUtils.normalizeEventDocuments(event);
+    const results = eventUtils
+      .normalizeResults(event.results)
+      .filter((result) => result.kind === "external");
     const externalLinks = eventUtils.normalizeExternalLinks(event.externalLinks);
     const category = getOptionalText(event.category);
     const location = getOptionalText(event.location);
@@ -150,7 +161,7 @@
             </ul>
           </section>
 
-          ${createDownloadsSection(downloads)}
+          ${createDocumentsSection(documents)}
           ${createResultsSection(results)}
           ${createExternalLinksSection(externalLinks)}
           ${createGallerySection(gallery)}
@@ -287,19 +298,20 @@
     `;
   }
 
-  function createDownloadsSection(downloads) {
-    if (downloads.length === 0) return "";
+  function createDocumentsSection(documents) {
+    if (documents.length === 0) return "";
 
-    const items = downloads
-      .map((download) =>
-        createResourceMarkup(download, {
-          kindLabel: "Download",
-          isExternal: isAbsoluteHttpUrl(download.url)
+    const items = documents
+      .map((document) =>
+        createResourceMarkup(document, {
+          kindLabel:
+            documentTypeLabels[document.type] || documentTypeLabels.other,
+          isExternal: isAbsoluteHttpUrl(document.url)
         })
       )
       .join("");
 
-    return createResourceSection("event-downloads-title", "Dokumente", items);
+    return createResourceSection("event-documents-title", "Dokumente", items);
   }
 
   function createResultsSection(results) {
@@ -308,9 +320,8 @@
     const items = results
       .map((result) =>
         createResourceMarkup(result, {
-          kindLabel:
-            result.kind === "external" ? "Externes Ergebnis" : "Ergebnisdatei",
-          isExternal: result.kind === "external"
+          kindLabel: "Externes Ergebnis",
+          isExternal: true
         })
       )
       .join("");
