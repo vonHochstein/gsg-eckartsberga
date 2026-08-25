@@ -814,6 +814,71 @@ test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () 
   assert.equal(event.featured, false);
 });
 
+test("KM Zentralfeuer Halbautomat 2026 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "km-halbautomat-kk-gk-2026"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 9).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 9);
+  assert.equal(event.slug, "km-halbautomat-kk-gk-2026");
+  assert.equal(
+    event.title,
+    "Kreismeisterschaft Zentralfeuer Halbautomat 2026"
+  );
+  assert.equal(event.shortTitle, "KM Zentralfeuer Halbautomat");
+  assert.doesNotMatch(event.title, /\bKK\b/);
+  assert.doesNotMatch(event.shortTitle, /\bKK\b/);
+  assert.equal(event.category, "Kreismeisterschaft");
+  assert.equal(event.start, "2026-09-12T09:30:00");
+  assert.equal(event.end, "2026-09-12T13:00:00");
+  assert.equal(event.location, "Jägerschießstand Markröhlitz");
+  assert.equal(event.organizer, 'Schützenkreis "SUED"');
+  assert.equal(
+    event.description,
+    "Kreismeisterschaft im Zentralfeuer-Selbstladegewehr auf 100 Meter, liegend aufgelegt mit Zielfernrohr."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung – KM Zentralfeuer Halbautomat 2026",
+      url: "assets/documents/events/2026/2026_08_18 Ausschreibung KM Zentralfeuer Halbautomat 2026.pdf",
+      type: "announcement"
+    },
+    {
+      label: "Anmeldung – KM Zentralfeuer Halbautomat 2026",
+      url: "assets/documents/events/2026/2026_08_18 Anmeldung KM Zentralfeuer Halbautomat 2026.ods",
+      type: "form"
+    }
+  ]);
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  event.documents.forEach((document) => {
+    assert.equal(
+      fs.existsSync(path.resolve(__dirname, `../${document.url}`)),
+      true
+    );
+  });
+  assert.equal(new Set(event.documents.map((document) => document.url)).size, 2);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Entwicklungsdaten decken alle vereinbarten Detailvarianten ab", () => {
   const { events } = loadEventData(true);
   const demoEvents = events.filter((event) => event.developmentOnly === true);

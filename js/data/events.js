@@ -219,21 +219,33 @@ const productionEvents = [
   {
     id: 9,
     slug: "km-halbautomat-kk-gk-2026",
-    title: "KM Halbautomat KK / GK",
-    shortTitle: "Halbautomat KK / GK",
+    title: "Kreismeisterschaft Zentralfeuer Halbautomat 2026",
+    shortTitle: "KM Zentralfeuer Halbautomat",
     category: "Kreismeisterschaft",
-    start: "2026-09-12T09:00:00",
-    end: "2026-09-12T17:00:00",
-    location: "Markröhlitz",
-    organizer: "Kreisschützenverband",
-    description: "",
+    start: "2026-09-12T09:30:00",
+    end: "2026-09-12T13:00:00",
+    location: "Jägerschießstand Markröhlitz",
+    organizer: "Schützenkreis \"SUED\"",
+    description:
+      "Kreismeisterschaft im Zentralfeuer-Selbstladegewehr auf 100 Meter, liegend aufgelegt mit Zielfernrohr.",
     image: null,
     gallery: [],
-    documents: [],
+    documents: [
+      {
+        label: "Ausschreibung – KM Zentralfeuer Halbautomat 2026",
+        url: "assets/documents/events/2026/2026_08_18 Ausschreibung KM Zentralfeuer Halbautomat 2026.pdf",
+        type: "announcement"
+      },
+      {
+        label: "Anmeldung – KM Zentralfeuer Halbautomat 2026",
+        url: "assets/documents/events/2026/2026_08_18 Anmeldung KM Zentralfeuer Halbautomat 2026.ods",
+        type: "form"
+      }
+    ],
     downloads: [],
     results: [],
     externalLinks: [],
-    registrationRequired: false,
+    registrationRequired: true,
     archive: true,
     featured: false
   },
