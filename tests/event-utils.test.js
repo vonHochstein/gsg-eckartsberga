@@ -843,6 +843,71 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
   });
 });
 
+test("Hans-Peter-Nolding-Pokal 2026 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "hans-peter-nolding-pokal-2026"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 12).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 12);
+  assert.equal(event.title, "Hans-Peter-Nolding-Pokal 2026");
+  assert.equal(event.shortTitle, "Hans-Peter-Nolding-Pokal");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2026-06-06T09:00:00");
+  assert.equal(event.end, "2026-06-06T13:00:00");
+  assert.equal(
+    event.location,
+    "Schießstand Schützenverein 1990 Hohenmölsen, Am Werk 4, 06679 Hohenmölsen OT Rössuln"
+  );
+  assert.equal(
+    event.organizer,
+    "Schützenverein 1990 Hohenmölsen e.V. gegr. 1748"
+  );
+  assert.equal(
+    event.description,
+    "Der Schützenverein 1990 Hohenmölsen richtet den Hans-Peter-Nolding-Pokal als Wettbewerb über 4 × 5 Schuss mit 25-m-KK-Pistole oder KK-Revolver in der offenen Klasse aus. Startberechtigt sind versicherte Schützen des Kreisschützenverbandes Burgenlandkreis – Weißenfels / Schützenkreis SUED Sachsen-Anhalt e.V. sowie des Traditions- und Sportschützenverbandes Burgenlandkreis e.V. Die Tagesanmeldung ist bis 12:00 Uhr möglich; Vorschießen ist nicht vorgesehen. Die Startgebühr beträgt 5,00 €, die Protestgebühr 20,00 €; der Sieger erhält den HPN-Pokal und einen Tankgutschein im Wert von 50,00 €."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung Hans-Peter-Nolding-Pokal 2026",
+      url: "assets/documents/events/2026/2026_05_20 Ausschreibung Hans-Peter-Nolding-Pokal 2026.pdf",
+      type: "announcement"
+    },
+    {
+      label: "Veranstaltungsflyer Hans-Peter-Nolding-Pokal 2026",
+      url: "assets/documents/events/2026/2026_05_20 Veranstaltungsflyer Hans-Peter-Nolding-Pokal 2026.pdf",
+      type: "other"
+    }
+  ]);
+  event.documents.forEach((document) => {
+    assert.equal(
+      fs.existsSync(path.resolve(__dirname, `../${document.url}`)),
+      true
+    );
+  });
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

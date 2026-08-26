@@ -169,6 +169,40 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 12,
+    slug: "hans-peter-nolding-pokal-2026",
+    title: "Hans-Peter-Nolding-Pokal 2026",
+    shortTitle: "Hans-Peter-Nolding-Pokal",
+    category: "Pokalwettkampf",
+    start: "2026-06-06T09:00:00",
+    end: "2026-06-06T13:00:00",
+    location:
+      "Schießstand Schützenverein 1990 Hohenmölsen, Am Werk 4, 06679 Hohenmölsen OT Rössuln",
+    organizer: "Schützenverein 1990 Hohenmölsen e.V. gegr. 1748",
+    description:
+      "Der Schützenverein 1990 Hohenmölsen richtet den Hans-Peter-Nolding-Pokal als Wettbewerb über 4 × 5 Schuss mit 25-m-KK-Pistole oder KK-Revolver in der offenen Klasse aus. Startberechtigt sind versicherte Schützen des Kreisschützenverbandes Burgenlandkreis – Weißenfels / Schützenkreis SUED Sachsen-Anhalt e.V. sowie des Traditions- und Sportschützenverbandes Burgenlandkreis e.V. Die Tagesanmeldung ist bis 12:00 Uhr möglich; Vorschießen ist nicht vorgesehen. Die Startgebühr beträgt 5,00 €, die Protestgebühr 20,00 €; der Sieger erhält den HPN-Pokal und einen Tankgutschein im Wert von 50,00 €.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Hans-Peter-Nolding-Pokal 2026",
+        url: "assets/documents/events/2026/2026_05_20 Ausschreibung Hans-Peter-Nolding-Pokal 2026.pdf",
+        type: "announcement"
+      },
+      {
+        label: "Veranstaltungsflyer Hans-Peter-Nolding-Pokal 2026",
+        url: "assets/documents/events/2026/2026_05_20 Veranstaltungsflyer Hans-Peter-Nolding-Pokal 2026.pdf",
+        type: "other"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 8,
     slug: "km-ordonnanz-100m-gk-gewehr-2026",
     title: "KM Ordonnanz- / 100 m GK Gewehr",

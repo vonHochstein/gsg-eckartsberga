@@ -22,6 +22,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Kanonisches Veranstaltungsfeld `documents` mit sieben Dokumenttypen und gemeinsamen Normalisierungsfunktionen.
 - Kanonische Veranstaltungsdokumente einschließlich Ergebnisdateien und Legacy-Downloads auf Detailseiten sichtbar integriert.
 - Eindeutig aus dem vorhandenen Veranstalterwert abgeleitete Herkunftslogos auf Veranstaltungsdetailseiten; unbekannte oder generische Veranstalter bleiben ohne Logo.
+- Produktiver Veranstaltungseintrag für den Hans-Peter-Nolding-Pokal 2026 mit Ausschreibung und ergänzendem Veranstaltungsflyer.
 
 ### Geändert
 
