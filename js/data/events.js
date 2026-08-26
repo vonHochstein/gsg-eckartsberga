@@ -180,7 +180,7 @@ const productionEvents = [
       "Schießstand Schützenverein 1990 Hohenmölsen, Am Werk 4, 06679 Hohenmölsen OT Rössuln",
     organizer: "Schützenverein 1990 Hohenmölsen e.V. gegr. 1748",
     description:
-      "Der Schützenverein 1990 Hohenmölsen lädt am 6. Juni 2026 zum Hans-Peter-Nolding-Pokal ein. Geschossen wird mit KK-Pistole oder KK-Revolver in offener Klasse. Alle weiteren Informationen zu Ablauf und Teilnahme finden sich in der Ausschreibung.",
+      "Der Schützenverein 1990 Hohenmölsen lädt am 6. Juni 2026 zum Hans-Peter-Nolding-Pokal ein. Geschossen wird mit KK-Pistole oder KK-Revolver in offener Klasse.",
     image: null,
     gallery: [],
     documents: [

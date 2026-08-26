@@ -873,7 +873,7 @@ test("Hans-Peter-Nolding-Pokal 2026 ist quellengetreu hinterlegt", () => {
   );
   assert.equal(
     event.description,
-    "Der Schützenverein 1990 Hohenmölsen lädt am 6. Juni 2026 zum Hans-Peter-Nolding-Pokal ein. Geschossen wird mit KK-Pistole oder KK-Revolver in offener Klasse. Alle weiteren Informationen zu Ablauf und Teilnahme finden sich in der Ausschreibung."
+    "Der Schützenverein 1990 Hohenmölsen lädt am 6. Juni 2026 zum Hans-Peter-Nolding-Pokal ein. Geschossen wird mit KK-Pistole oder KK-Revolver in offener Klasse."
   );
   assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
     {
