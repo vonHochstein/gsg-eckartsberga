@@ -22,6 +22,12 @@
     "certificate",
     "other"
   ]);
+  const SCHUETZENKREIS_SUED_LOGO = Object.freeze({
+    src: "assets/img/logo-schuetzenkreis-sued.png",
+    alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
+    width: 191,
+    height: 191
+  });
   const EVENT_ORGANIZER_LOGOS = Object.freeze({
     "Großkaliber Schützengilde 1503 Eckartsberga e.V.": Object.freeze({
       src: "assets/img/logo-gsg-eckartsberga.png",
@@ -29,12 +35,9 @@
       width: 360,
       height: 347
     }),
-    'Schützenkreis "SUED"': Object.freeze({
-      src: "assets/img/logo-schuetzenkreis-sued.png",
-      alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
-      width: 191,
-      height: 191
-    })
+    'Schützenkreis "SUED"': SCHUETZENKREIS_SUED_LOGO,
+    "Kreisschützenverband Burgenlandkreis-Weißenfels „Schützenkreis SUED“ Sachsen-Anhalt e.V.":
+      SCHUETZENKREIS_SUED_LOGO
   });
 
   function isRecord(value) {

@@ -253,7 +253,7 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtil
 
 Dokumente werden über `normalizeEventDocuments()` zusammengeführt und mit ihrer deutschen Typbezeichnung dargestellt. Ergebnisdateien erscheinen ausschließlich unter „Dokumente“, externe Ergebnisquellen ausschließlich unter „Ergebnisse“.
 
-Die Herkunftslogo-Zuordnung verwendet eine exakte Allowlist in `EventUtils`. Titel, Kategorie und Beschreibung werden dafür nicht ausgewertet. Unbekannte, fremde oder generische Veranstalter wie `Kreisschützenverband` bleiben ohne Logo.
+Die Herkunftslogo-Zuordnung verwendet eine exakte Allowlist in `EventUtils`. Titel, Kategorie und Beschreibung werden dafür nicht ausgewertet. Für den Schützenkreis sind der bestehende Kurzschlüssel `Schützenkreis "SUED"` und die quellengetreue offizielle Langform als getrennte exakte Schlüssel registriert. Unbekannte, fremde oder generische Veranstalter wie `Kreisschützenverband` bleiben ohne Logo.
 
 Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert.
 

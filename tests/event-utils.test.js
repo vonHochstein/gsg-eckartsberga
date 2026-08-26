@@ -329,6 +329,16 @@ test("ordnet Herkunftslogos ausschließlich exakten Veranstaltern zu", () => {
         width: 191,
         height: 191
       }
+    },
+    {
+      organizer:
+        "Kreisschützenverband Burgenlandkreis-Weißenfels „Schützenkreis SUED“ Sachsen-Anhalt e.V.",
+      expected: {
+        src: "assets/img/logo-schuetzenkreis-sued.png",
+        alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
+        width: 191,
+        height: 191
+      }
     }
   ];
 
@@ -966,6 +976,70 @@ test("Hans-Peter-Nolding-Pokal 2026 ist quellengetreu hinterlegt", () => {
   assert.deepEqual(Array.from(event.downloads), []);
   assert.deepEqual(Array.from(event.externalLinks), []);
   assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
+test("Kreisschützentag 2026 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) =>
+      entry.slug === "kreisschuetzentag-2026-schuetzenkreis-sued"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 14).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 14);
+  assert.equal(event.title, "Kreisschützentag 2026 „Schützenkreis SUED“");
+  assert.equal(event.shortTitle, "Kreisschützentag 2026");
+  assert.equal(event.category, "Kreisschützentag");
+  assert.equal(event.start, "2026-05-09T10:00:00");
+  assert.equal(event.end, "2026-05-09T13:00:00");
+  assert.equal(
+    event.location,
+    "Gasthof Jaucha, Pirkauer Str. 2, 06679 Hohenmölsen (Jaucha)"
+  );
+  assert.equal(
+    event.organizer,
+    "Kreisschützenverband Burgenlandkreis-Weißenfels „Schützenkreis SUED“ Sachsen-Anhalt e.V."
+  );
+  assert.equal(
+    event.description,
+    "Der Schützenkreis SUED lädt am 9. Mai 2026 zum Kreisschützentag nach Hohenmölsen-Jaucha ein. Auf der Tagesordnung stehen unter anderem die Berichte des Präsidiums, eine Satzungsänderung, Beschlussfassungen und Auszeichnungen."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Einladung Kreisschützentag 2026 Schützenkreis SUED",
+      url: "assets/documents/events/2026/2026_04_30 Einladung Kreisschützentag 2026 Schützenkreis SUED.pdf",
+      type: "invitation"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.deepEqual(getEventOrganizerLogo(event), {
+    src: "assets/img/logo-schuetzenkreis-sued.png",
+    alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
+    width: 191,
+    height: 191
+  });
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, false);
   assert.equal(event.archive, true);
   assert.equal(event.featured, false);
 });

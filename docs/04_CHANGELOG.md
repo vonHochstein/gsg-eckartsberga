@@ -24,6 +24,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Eindeutig aus dem vorhandenen Veranstalterwert abgeleitete Herkunftslogos auf Veranstaltungsdetailseiten; unbekannte oder generische Veranstalter bleiben ohne Logo.
 - Produktiver Veranstaltungseintrag für den Hans-Peter-Nolding-Pokal 2026 mit Ausschreibung und ergänzendem Veranstaltungsflyer.
 - Produktiver Veranstaltungseintrag für den 35. offenen Pokal des Bürgermeisters der Stadt Apolda mit Ausschreibung.
+- Produktiver Veranstaltungseintrag für den Kreisschützentag 2026 des Schützenkreises SUED mit Einladung.
 
 ### Geändert
 

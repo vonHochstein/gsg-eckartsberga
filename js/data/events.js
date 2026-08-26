@@ -106,6 +106,35 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 14,
+    slug: "kreisschuetzentag-2026-schuetzenkreis-sued",
+    title: "Kreisschützentag 2026 „Schützenkreis SUED“",
+    shortTitle: "Kreisschützentag 2026",
+    category: "Kreisschützentag",
+    start: "2026-05-09T10:00:00",
+    end: "2026-05-09T13:00:00",
+    location: "Gasthof Jaucha, Pirkauer Str. 2, 06679 Hohenmölsen (Jaucha)",
+    organizer:
+      "Kreisschützenverband Burgenlandkreis-Weißenfels „Schützenkreis SUED“ Sachsen-Anhalt e.V.",
+    description:
+      "Der Schützenkreis SUED lädt am 9. Mai 2026 zum Kreisschützentag nach Hohenmölsen-Jaucha ein. Auf der Tagesordnung stehen unter anderem die Berichte des Präsidiums, eine Satzungsänderung, Beschlussfassungen und Auszeichnungen.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Einladung Kreisschützentag 2026 Schützenkreis SUED",
+        url: "assets/documents/events/2026/2026_04_30 Einladung Kreisschützentag 2026 Schützenkreis SUED.pdf",
+        type: "invitation"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 5,
     slug: "km-kk-zielfernrohr-2026",
     title: "KM KK Zielfernrohr",
