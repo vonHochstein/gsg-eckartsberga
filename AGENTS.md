@@ -15,3 +15,10 @@ vollständig gelesen und befolgt werden.
 
 Die Entwicklungsgrundsätze sind die einzige inhaltlich maßgebliche Quelle für
 diese Regel. Sie wird in dieser Datei bewusst nicht dupliziert.
+
+## Arbeiten an Veranstaltungsdaten und -darstellung
+
+Vor Änderungen an Veranstaltungsdaten oder ihrer Darstellung muss der Abschnitt
+[Organisatorische Herkunft von Veranstaltungen](docs/01_ENTWICKLUNGSGRUNDSÄTZE.md#organisatorische-herkunft-von-veranstaltungen)
+vollständig gelesen und befolgt werden. Die kanonische Regel wird auch hier nicht
+dupliziert.

@@ -79,7 +79,8 @@ Die Anwendung verwendet:
 │       ├── hero-eckartsburg.jpg
 │       ├── hero-eckartsburg.png
 │       ├── history-eckartsberga.jpg
-│       └── logo-rund.png
+│       ├── logo-gsg-eckartsberga.png
+│       └── logo-schuetzenkreis-sued.png
 ├── js/
 │   ├── data/
 │   │   ├── dev-events.js

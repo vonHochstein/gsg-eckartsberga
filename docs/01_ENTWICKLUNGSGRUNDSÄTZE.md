@@ -28,6 +28,19 @@ Das Datenmodell bildet nicht nur ideale Redaktionsabläufe ab, sondern muss auch
 
 Tolerierte Übergangszustände müssen eindeutig erkennbar und technisch sicher verarbeitbar bleiben. Sie dürfen den vorgesehenen redaktionellen Normalablauf nicht ersetzen und sollen bei der nächsten inhaltlichen Pflege aufgelöst werden.
 
+### Organisatorische Herkunft von Veranstaltungen
+
+Ein oberhalb einer Veranstaltung oder Ausschreibung dargestelltes Logo ist keine bloße Dekoration. Es kennzeichnet die organisatorische Herkunft des Inhalts und muss dieser eindeutig entsprechen.
+
+Verbindlich gilt:
+
+- Eigene Veranstaltungen und Ausschreibungen der GSG Eckartsberga verwenden das Logo der GSG Eckartsberga.
+- Allgemeine oder übergeordnete Veranstaltungen des Schützenkreises SUED Sachsen-Anhalt verwenden das Logo des Schützenkreises SUED Sachsen-Anhalt.
+- Veranstaltungen anderer Vereine oder Veranstalter verwenden ausschließlich dann das jeweilige Veranstalterlogo, wenn im Projekt ein geeignetes Logo vorhanden und seine Zuordnung eindeutig belegt ist.
+- Ist für eine Fremdveranstaltung kein eindeutig zugeordnetes Veranstalterlogo vorhanden, wird sie ohne Veranstalterlogo dargestellt.
+
+Das GSG-Logo und das Logo des Schützenkreises dürfen niemals ersatzweise für eine Fremdveranstaltung verwendet werden, wenn ihre organisatorische Zuordnung nicht zutrifft. Eine Logoentscheidung darf nicht allein aus Titel, Kategorie oder Vermutung abgeleitet werden; bei unklarer Herkunft bleibt die Darstellung ohne Veranstalterlogo.
+
 ## 3. Informationen nur einmal pflegen
 
 Für jede fachliche Information soll es genau eine maßgebliche Quelle geben. Weitere Ansichten leiten ihre Ausgabe daraus ab.
