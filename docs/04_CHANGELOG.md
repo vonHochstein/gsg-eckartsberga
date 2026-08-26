@@ -21,6 +21,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Native Galerie-Lightbox mit Bildunterschriften, Tastaturnavigation, mehreren Schließwegen und zuverlässiger Fokus-Rückgabe.
 - Kanonisches Veranstaltungsfeld `documents` mit sieben Dokumenttypen und gemeinsamen Normalisierungsfunktionen.
 - Kanonische Veranstaltungsdokumente einschließlich Ergebnisdateien und Legacy-Downloads auf Detailseiten sichtbar integriert.
+- Eindeutig aus dem vorhandenen Veranstalterwert abgeleitete Herkunftslogos auf Veranstaltungsdetailseiten; unbekannte oder generische Veranstalter bleiben ohne Logo.
 
 ### Geändert
 

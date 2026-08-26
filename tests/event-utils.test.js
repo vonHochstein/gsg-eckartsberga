@@ -18,6 +18,7 @@ const {
   normalizeEventDocuments,
   normalizeExternalLinks,
   getEventTitle,
+  getEventOrganizerLogo,
   getEventPhase,
   getEventEditorialStatus,
   isDetailCapable,
@@ -306,6 +307,80 @@ test("normalisiert gültige Bilder und verwirft ungültige Bilder", () => {
   assert.equal(
     normalizeImage({ src: "data:image/png;base64,abc", alt: "Testbild" }),
     null
+  );
+});
+
+test("ordnet Herkunftslogos ausschließlich exakten Veranstaltern zu", () => {
+  const cases = [
+    {
+      organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V.",
+      expected: {
+        src: "assets/img/logo-gsg-eckartsberga.png",
+        alt: "Logo der GSG Eckartsberga",
+        width: 360,
+        height: 347
+      }
+    },
+    {
+      organizer: 'Schützenkreis "SUED"',
+      expected: {
+        src: "assets/img/logo-schuetzenkreis-sued.png",
+        alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
+        width: 191,
+        height: 191
+      }
+    }
+  ];
+
+  cases.forEach(({ organizer, expected }) => {
+    const logo = getEventOrganizerLogo(createCoreEvent({ organizer }));
+
+    assert.deepEqual(logo, expected);
+    assert.equal(
+      fs.existsSync(path.resolve(__dirname, `../${logo.src}`)),
+      true
+    );
+  });
+});
+
+test("rät Herkunftslogos nicht aus freien Texten oder unscharfen Veranstaltern", () => {
+  const eventsWithoutLogo = [
+    createCoreEvent({ organizer: "Kreisschützenverband" }),
+    createCoreEvent({ organizer: "Nicht produktiv" }),
+    createCoreEvent({ organizer: "Fremdverein" }),
+    createCoreEvent({ organizer: 'schützenkreis "SUED"' }),
+    createCoreEvent({
+      organizer: "Schützenkreis SUED Sachsen-Anhalt e. V."
+    }),
+    createCoreEvent({ organizer: "" }),
+    createCoreEvent({ organizer: null }),
+    createCoreEvent({
+      organizer: "Fremdverein",
+      title: "GSG Eckartsberga Vereinsveranstaltung",
+      category: "Schützenkreis SUED",
+      description: "Eine Veranstaltung der GSG Eckartsberga"
+    })
+  ];
+
+  eventsWithoutLogo.forEach((event) => {
+    assert.equal(getEventOrganizerLogo(event), null);
+  });
+  assert.equal(getEventOrganizerLogo(null), null);
+});
+
+test("verändert bei der Herkunftslogo-Zuordnung weder Daten noch Registry", () => {
+  const event = createCoreEvent({
+    organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V."
+  });
+  const eventSnapshot = structuredClone(event);
+  const firstLogo = getEventOrganizerLogo(event);
+
+  firstLogo.src = "assets/img/veraendert.png";
+
+  assert.deepEqual(event, eventSnapshot);
+  assert.equal(
+    getEventOrganizerLogo(event).src,
+    "assets/img/logo-gsg-eckartsberga.png"
   );
 });
 

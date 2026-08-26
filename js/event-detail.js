@@ -92,7 +92,9 @@
     const category = getOptionalText(event.category);
     const location = getOptionalText(event.location);
     const organizer = getOptionalText(event.organizer);
+    const organizerLogo = eventUtils.getEventOrganizerLogo(event);
     const description = getOptionalText(event.description);
+    const organizerLogoMarkup = createOrganizerLogoMarkup(organizerLogo);
     const labelsMarkup = createLabelsMarkup(
       category,
       event.developmentOnly === true
@@ -128,6 +130,7 @@
         <header class="event-hero">
           <div class="event-hero-layout${image ? " has-image" : ""}">
             <div class="event-hero-copy">
+              ${organizerLogoMarkup}
               ${labelsMarkup}
               <h1 id="event-title">${escapeHTML(title)}</h1>
               ${createDateSummaryMarkup(event.start.trim(), start, event.end, end)}
@@ -214,6 +217,23 @@
     return labels.length
       ? `<div class="event-labels">${labels.join("")}</div>`
       : "";
+  }
+
+  function createOrganizerLogoMarkup(logo) {
+    if (!logo) return "";
+
+    return `
+      <div class="event-organizer-mark">
+        <img
+          class="event-organizer-logo"
+          src="${escapeHTML(logo.src)}"
+          alt="${escapeHTML(logo.alt)}"
+          ${createDimensionAttributes(logo)}
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    `;
   }
 
   function createHeroImageMarkup(image) {

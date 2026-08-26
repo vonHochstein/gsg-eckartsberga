@@ -85,6 +85,21 @@
   max-width: 920px;
 }
 
+.event-organizer-mark {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.event-organizer-logo {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: clamp(64px, 7vw, 84px);
+  object-fit: contain;
+  object-position: left center;
+}
+
 .event-labels {
   display: flex;
   flex-wrap: wrap;

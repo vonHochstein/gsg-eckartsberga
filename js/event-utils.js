@@ -22,6 +22,20 @@
     "certificate",
     "other"
   ]);
+  const EVENT_ORGANIZER_LOGOS = Object.freeze({
+    "Großkaliber Schützengilde 1503 Eckartsberga e.V.": Object.freeze({
+      src: "assets/img/logo-gsg-eckartsberga.png",
+      alt: "Logo der GSG Eckartsberga",
+      width: 360,
+      height: 347
+    }),
+    'Schützenkreis "SUED"': Object.freeze({
+      src: "assets/img/logo-schuetzenkreis-sued.png",
+      alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
+      width: 191,
+      height: 191
+    })
+  });
 
   function isRecord(value) {
     return value !== null && typeof value === "object" && !Array.isArray(value);
@@ -296,6 +310,21 @@
     return normalizedString(event.title) || normalizedString(event.shortTitle);
   }
 
+  function getEventOrganizerLogo(event) {
+    if (!isRecord(event)) return null;
+
+    const organizer = normalizedString(event.organizer);
+
+    if (
+      !organizer ||
+      !Object.prototype.hasOwnProperty.call(EVENT_ORGANIZER_LOGOS, organizer)
+    ) {
+      return null;
+    }
+
+    return { ...EVENT_ORGANIZER_LOGOS[organizer] };
+  }
+
   function getEventPhase(event, referenceTime = new Date()) {
     if (!isRecord(event)) return null;
 
@@ -398,6 +427,7 @@
     normalizeEventDocuments,
     normalizeExternalLinks,
     getEventTitle,
+    getEventOrganizerLogo,
     getEventPhase,
     getEventEditorialStatus,
     isDetailCapable,

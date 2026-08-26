@@ -219,6 +219,7 @@ Stellt genau einen globalen Namensraum `window.EventUtils` bereit. Die Funktione
 | `normalizeEventDocuments(event)` | führt neue Dokumente, Ergebnisdateien und Downloads stabil und ohne URL-Duplikate zusammen |
 | `normalizeExternalLinks(externalLinks)` | normalisiert ausschließlich sichere externe HTTP-/HTTPS-Links |
 | `getEventTitle(event)` | liefert `title` mit Rückfall auf `shortTitle` |
+| `getEventOrganizerLogo(event)` | liefert nur für exakt freigegebene `organizer`-Werte ein lokales Herkunftslogo, sonst `null` |
 | `isDetailCapable(event)` | prüft Slug, Titel und gültigen Startzeitpunkt |
 | `createDetailUrl(event)` | erzeugt ausschließlich für detailfähige Einträge `event.html?event=<kodierter Slug>` |
 | `resolveEventBySlug(list, slug)` | unterscheidet keinen, einen und mehrere Slug-Treffer |
@@ -240,6 +241,7 @@ Normalisiert eventbezogene Galeriebilder über `EventUtils`. Jedes Bild behält 
 Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtils` auf und rendert:
 
 - Veranstaltungskopf;
+- optionales, eindeutig über `organizer` zugeordnetes Herkunftslogo;
 - Datum und Uhrzeit;
 - Titelbild;
 - Beschreibung;
@@ -250,6 +252,8 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtil
 - Galerie als abschließenden Inhaltsbereich.
 
 Dokumente werden über `normalizeEventDocuments()` zusammengeführt und mit ihrer deutschen Typbezeichnung dargestellt. Ergebnisdateien erscheinen ausschließlich unter „Dokumente“, externe Ergebnisquellen ausschließlich unter „Ergebnisse“.
+
+Die Herkunftslogo-Zuordnung verwendet eine exakte Allowlist in `EventUtils`. Titel, Kategorie und Beschreibung werden dafür nicht ausgewertet. Unbekannte, fremde oder generische Veranstalter wie `Kreisschützenverband` bleiben ohne Logo.
 
 Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert.
 
@@ -419,7 +423,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `end` | String | optionaler Endzeitpunkt |
 | `editorialStatus` | String oder `null` | optionaler redaktioneller Sonderzustand `cancelled` oder `postponed` |
 | `location` | String | optionaler Ort |
-| `organizer` | String | optionaler Veranstalter |
+| `organizer` | String | optionaler Veranstalter; dient bei exaktem Allowlist-Treffer zusätzlich der Herkunftslogo-Zuordnung |
 | `description` | String | optionale Beschreibung |
 | `image` | Objekt oder `null` | optionales Titelbild |
 | `gallery` | Array | optionale Galeriebilder |
