@@ -127,6 +127,35 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 13,
+    slug: "pokal-des-buergermeisters-apolda-2026",
+    title: "35. offener Pokal des Bürgermeisters der Stadt Apolda",
+    shortTitle: "Pokal des Bürgermeisters Apolda",
+    category: "Pokalwettkampf",
+    start: "2026-05-16T09:00:00",
+    location:
+      "Schießsportanlage der BSG 1775 Apolda e.V., Apolda Heusdorf – In der Borngebreite",
+    organizer: "Büchsenschützengesellschaft 1775 Apolda e.V.",
+    description:
+      "Die Büchsenschützengesellschaft 1775 Apolda lädt zum 35. offenen Pokal des Bürgermeisters der Stadt Apolda ein. Ausgetragen werden verschiedene Wettbewerbe mit KK-Sportgewehr, KK-Sportpistole und Luftgewehr. Alle Einzelheiten enthält die Ausschreibung.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label:
+          "Ausschreibung 35. offener Pokal des Bürgermeisters der Stadt Apolda 2026",
+        url: "assets/documents/events/2026/2026_05_04 Ausschreibung 35. offener Pokal des Bürgermeisters der Stadt Apolda 2026.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 6,
     slug: "km-kk-gewehr-2026",
     title: "KM KK Gewehr",

@@ -843,6 +843,68 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
   });
 });
 
+test("Bürgermeisterpokal Apolda 2026 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "pokal-des-buergermeisters-apolda-2026"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 13).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 13);
+  assert.equal(
+    event.title,
+    "35. offener Pokal des Bürgermeisters der Stadt Apolda"
+  );
+  assert.equal(event.shortTitle, "Pokal des Bürgermeisters Apolda");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2026-05-16T09:00:00");
+  assert.equal("end" in event, false);
+  assert.equal(
+    event.location,
+    "Schießsportanlage der BSG 1775 Apolda e.V., Apolda Heusdorf – In der Borngebreite"
+  );
+  assert.equal(
+    event.organizer,
+    "Büchsenschützengesellschaft 1775 Apolda e.V."
+  );
+  assert.equal(
+    event.description,
+    "Die Büchsenschützengesellschaft 1775 Apolda lädt zum 35. offenen Pokal des Bürgermeisters der Stadt Apolda ein. Ausgetragen werden verschiedene Wettbewerbe mit KK-Sportgewehr, KK-Sportpistole und Luftgewehr. Alle Einzelheiten enthält die Ausschreibung."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label:
+        "Ausschreibung 35. offener Pokal des Bürgermeisters der Stadt Apolda 2026",
+      url: "assets/documents/events/2026/2026_05_04 Ausschreibung 35. offener Pokal des Bürgermeisters der Stadt Apolda 2026.pdf",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Hans-Peter-Nolding-Pokal 2026 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(
