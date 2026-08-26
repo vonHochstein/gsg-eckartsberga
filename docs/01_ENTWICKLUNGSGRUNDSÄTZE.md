@@ -40,6 +40,56 @@ Beispiele:
 
 Wenn doppelte Pflege unvermeidbar erscheint, ist vor der Umsetzung zu prüfen, ob das Datenmodell oder die Komponentenstruktur verbessert werden kann.
 
+### Dokumentenablage und Dateibenennung
+
+Bei Arbeitsaufträgen, denen eine Quelldatei wie eine PDF-, Bild-, Tabellen- oder sonstige Dokumentdatei zugeordnet ist, wird diese Datei grundsätzlich in die Projektstruktur übernommen.
+
+#### Dateibenennung
+
+Die Quelldatei wird anhand ihres tatsächlichen Inhalts selbstständig fachlich und eindeutig benannt.
+
+Das Dateinamensschema lautet:
+
+```text
+YYYY_MM_DD [Dokumentbezeichnung].[Dateiendung]
+```
+
+Beispiel:
+
+```text
+2026_05_20 Ausschreibung Hans-Peter-Nolding-Pokal 2026.pdf
+```
+
+Das für den jeweiligen Arbeitsauftrag vorgegebene Präfixdatum ist verbindlich. Es darf nicht selbstständig aus einem im Dokument genannten Veranstaltungs-, Erstellungs-, Wettkampf- oder sonstigen Datum abgeleitet, ersetzt oder verändert werden.
+
+Die Dokumentbezeichnung wird aus dem tatsächlichen Inhalt der Datei abgeleitet. Sie soll kurz, eindeutig und fachlich aussagekräftig sein. Vorhandene Benennungskonventionen des Projekts sind vorrangig einzuhalten. Das ursprüngliche Dateiformat und die Dateiendung bleiben grundsätzlich erhalten.
+
+#### Ablage
+
+Die Datei wird im fachlich passenden Ordner innerhalb der bestehenden Projektstruktur abgelegt. Vorhandene Ablagestrukturen sind zu verwenden; für denselben Zweck dürfen keine konkurrierenden Ordnerstrukturen geschaffen werden.
+
+#### Einbindung
+
+Die abgelegte Datei wird mit dem zugehörigen Datensatz oder Projektinhalt nach den bestehenden technischen Konventionen verknüpft beziehungsweise eingebunden.
+
+Dabei ist sicherzustellen, dass:
+
+- auf die tatsächlich abgelegte Datei verwiesen wird;
+- keine unnötige Dateikopie oder Dublette erzeugt wird;
+- bestehende Verknüpfungen nicht unbeabsichtigt beschädigt werden;
+- das ursprüngliche Dateiformat und die Dateiendung grundsätzlich erhalten bleiben;
+- bestehende Projektkonventionen für Dokumente und deren Einbindung eingehalten werden.
+
+#### Prüfung und Unklarheiten
+
+Inhalt, Präfixdatum, Dateibenennung, Ablage und Einbindung werden vor Abschluss des Arbeitsauftrags gegeneinander geprüft. Bei einer reinen Umbenennung oder Verschiebung muss der Dateiinhalt unverändert bleiben; bei Binärdateien kann dies durch einen Hashvergleich abgesichert werden.
+
+Bei Unklarheiten, die sich nicht zuverlässig aus Quelldatei oder Projektstruktur auflösen lassen, darf keine Zuordnung oder Information erfunden werden.
+
+#### Geltungsgrenze
+
+Diese Regel gilt für neu bereitgestellte oder ausdrücklich zu bearbeitende Quelldateien. Sie löst keine automatische Sammelumbenennung bereits vorhandener Dokumente aus. Bestehende Dateien werden nur innerhalb eines eigens freigegebenen Arbeitspakets angepasst.
+
 ## 4. Redundanz bewusst vermeiden
 
 Quellcode, Inhalte und Gestaltungsregeln dürfen nicht ohne fachlichen Grund dupliziert werden. Ähnliche Lösungen werden zusammengeführt, wenn sie tatsächlich dasselbe Verhalten abbilden.
