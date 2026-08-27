@@ -22,6 +22,34 @@ const USE_DEMO_DATA = false;
 
 const productionEvents = [
   {
+    id: 17,
+    slug: "schuetzenfest-langendorf-2025",
+    title: "Schützenfest Langendorf 2025",
+    shortTitle: "Schützenfest Langendorf",
+    category: "Schützenfest",
+    start: "2025-06-14T12:00:00",
+    location:
+      "Schießstand des Schützenvereins 1874 Langendorf e.V., Langendorf",
+    organizer: "Schützenverein 1874 Langendorf e.V.",
+    description:
+      "Der Schützenverein 1874 Langendorf lädt am 14. Juni 2025 zum Schützenfest ein. Ab 12 Uhr wird Mittagessen angeboten; der offizielle Teil mit verschiedenen Schießstationen beginnt um 13 Uhr.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Einladung Schützenfest Langendorf 2025",
+        url: "assets/documents/events/2025/2025_05_26 Einladung Schützenfest Langendorf 2025.pdf",
+        type: "invitation"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 16,
     slug: "buttstaedter-pokal-2025",
     title: "2. Buttstädter Pokal 2025",
