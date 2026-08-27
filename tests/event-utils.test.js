@@ -1044,6 +1044,61 @@ test("Kreisschützentag 2026 ist quellengetreu hinterlegt", () => {
   assert.equal(event.featured, false);
 });
 
+test("2. Buttstädter Pokal 2025 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "buttstaedter-pokal-2025"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 16).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 16);
+  assert.equal(event.title, "2. Buttstädter Pokal 2025");
+  assert.equal(event.shortTitle, "2. Buttstädter Pokal");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2025-11-01T09:00:00");
+  assert.equal("end" in event, false);
+  assert.equal(event.location, "Vor dem Lohe, 99628 Buttstädt");
+  assert.equal(
+    event.organizer,
+    "Schützengesellschaft Buttstädt 1849 e.V."
+  );
+  assert.equal(
+    event.description,
+    "Die Schützengesellschaft Buttstädt lädt am 1. November 2025 zum 2. Buttstädter Pokal ein. Gewertet wird eine Kombination aus Lang- und Kurzwaffe auf 100 beziehungsweise 25 Meter."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung 2. Buttstädter Pokal 2025",
+      url: "assets/documents/events/2025/2025_10_30 Ausschreibung 2. Buttstädter Pokal 2025.pdf",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Abend der Vereine 2026 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

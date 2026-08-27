@@ -22,6 +22,33 @@ const USE_DEMO_DATA = false;
 
 const productionEvents = [
   {
+    id: 16,
+    slug: "buttstaedter-pokal-2025",
+    title: "2. Buttstädter Pokal 2025",
+    shortTitle: "2. Buttstädter Pokal",
+    category: "Pokalwettkampf",
+    start: "2025-11-01T09:00:00",
+    location: "Vor dem Lohe, 99628 Buttstädt",
+    organizer: "Schützengesellschaft Buttstädt 1849 e.V.",
+    description:
+      "Die Schützengesellschaft Buttstädt lädt am 1. November 2025 zum 2. Buttstädter Pokal ein. Gewertet wird eine Kombination aus Lang- und Kurzwaffe auf 100 beziehungsweise 25 Meter.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung 2. Buttstädter Pokal 2025",
+        url: "assets/documents/events/2025/2025_10_30 Ausschreibung 2. Buttstädter Pokal 2025.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 1,
     slug: "km-wurfscheibe-2026",
     title: "KM Wurfscheibe",

@@ -26,6 +26,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Produktiver Veranstaltungseintrag für den 35. offenen Pokal des Bürgermeisters der Stadt Apolda mit Ausschreibung.
 - Produktiver Veranstaltungseintrag für den Kreisschützentag 2026 des Schützenkreises SUED mit Einladung.
 - Produktiver Veranstaltungseintrag für den Abend der Vereine 2026 mit Einladung.
+- Produktiver Veranstaltungseintrag für den 2. Buttstädter Pokal 2025 mit Ausschreibung.
 
 ### Geändert
 
