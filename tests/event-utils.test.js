@@ -1114,7 +1114,7 @@ test("Bürgermeisterpokal Apolda 2026 ist quellengetreu hinterlegt", () => {
   );
   assert.equal(
     event.description,
-    "Die Büchsenschützengesellschaft 1775 Apolda lädt zum 35. offenen Pokal des Bürgermeisters der Stadt Apolda ein. Ausgetragen werden verschiedene Wettbewerbe mit KK-Sportgewehr, KK-Sportpistole und Luftgewehr. Alle Einzelheiten enthält die Ausschreibung."
+    "Die Büchsenschützengesellschaft 1775 Apolda lädt zum 35. offenen Pokal des Bürgermeisters der Stadt Apolda ein. Ausgetragen werden verschiedene Wettbewerbe mit KK-Sportgewehr, KK-Sportpistole und Luftgewehr."
   );
   assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
     {
