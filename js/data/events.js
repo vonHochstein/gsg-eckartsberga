@@ -190,7 +190,7 @@ const productionEvents = [
     category: "Vergleichswettkampf",
     start: "2026-03-13T17:00:00",
     location:
-      "Schützenhaus, Tromsdorfer Straße 13, 06647 An der Poststraße",
+      "Schützenhaus, Burgstraße 5, 06648 Eckartsberga",
     organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V.",
     description:
       "Die GSG Eckartsberga lädt Vereine am 13. März 2026 zu einem sportlichen und geselligen Vergleichswettkampf ins Schützenhaus ein. Geschossen wird mit Luftgewehr und Kleinkalibergewehr in Mannschafts- und Einzelwertungen.",

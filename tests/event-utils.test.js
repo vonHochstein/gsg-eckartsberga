@@ -1349,7 +1349,7 @@ test("Abend der Vereine 2026 ist quellengetreu hinterlegt", () => {
   assert.equal("end" in event, false);
   assert.equal(
     event.location,
-    "Schützenhaus, Tromsdorfer Straße 13, 06647 An der Poststraße"
+    "Schützenhaus, Burgstraße 5, 06648 Eckartsberga"
   );
   assert.equal(
     event.organizer,
