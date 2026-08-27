@@ -966,6 +966,61 @@ test("Schützenfest Langendorf 2025 ist quellengetreu hinterlegt", () => {
   assert.equal(event.featured, false);
 });
 
+test("6. Naumburger UTA-Pokal 2025 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "naumburger-uta-pokal-2025"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 19).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 19);
+  assert.equal(event.title, "6. Naumburger UTA-Pokal 2025");
+  assert.equal(event.shortTitle, "6. Naumburger UTA-Pokal");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2025-09-06T09:00:00");
+  assert.equal(event.end, "2025-09-06T13:00:00");
+  assert.equal(event.location, "Wurfscheibenstand Naumburg „Henne“");
+  assert.equal(
+    event.organizer,
+    "Privilegiertes Bürgerschützencorps Naumburg e.V."
+  );
+  assert.equal(
+    event.description,
+    "Das Privilegierte Bürgerschützencorps Naumburg lädt am 6. September 2025 zum 6. Naumburger UTA-Pokal ein. Beim Trap werden zwei Serien zu je 25 Scheiben mit einer Schrotladung bis 24 Gramm geschossen."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung 6. Naumburger UTA-Pokal 2025",
+      url: "assets/documents/events/2025/2025_05_12 Ausschreibung 6. Naumburger UTA-Pokal 2025.pdf",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Bürgermeisterpokal Apolda 2026 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

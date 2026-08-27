@@ -29,6 +29,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Produktiver Veranstaltungseintrag für den 2. Buttstädter Pokal 2025 mit Ausschreibung.
 - Produktiver Veranstaltungseintrag für das Schützenfest Langendorf 2025 mit Einladung.
 - Produktiver Veranstaltungseintrag für den Hans-Peter-Nolding-Pokal 2025 mit Ausschreibung.
+- Produktiver Veranstaltungseintrag für den 6. Naumburger UTA-Pokal 2025 mit Ausschreibung.
 
 ### Geändert
 

@@ -79,6 +79,34 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 19,
+    slug: "naumburger-uta-pokal-2025",
+    title: "6. Naumburger UTA-Pokal 2025",
+    shortTitle: "6. Naumburger UTA-Pokal",
+    category: "Pokalwettkampf",
+    start: "2025-09-06T09:00:00",
+    end: "2025-09-06T13:00:00",
+    location: "Wurfscheibenstand Naumburg „Henne“",
+    organizer: "Privilegiertes Bürgerschützencorps Naumburg e.V.",
+    description:
+      "Das Privilegierte Bürgerschützencorps Naumburg lädt am 6. September 2025 zum 6. Naumburger UTA-Pokal ein. Beim Trap werden zwei Serien zu je 25 Scheiben mit einer Schrotladung bis 24 Gramm geschossen.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung 6. Naumburger UTA-Pokal 2025",
+        url: "assets/documents/events/2025/2025_05_12 Ausschreibung 6. Naumburger UTA-Pokal 2025.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 16,
     slug: "buttstaedter-pokal-2025",
     title: "2. Buttstädter Pokal 2025",
