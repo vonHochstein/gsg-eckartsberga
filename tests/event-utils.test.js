@@ -853,6 +853,64 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
   });
 });
 
+test("Elchschießen 2025 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "elchschiessen-2025"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 21).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 21);
+  assert.equal(event.title, "Elchschießen 2025");
+  assert.equal(event.shortTitle, "Elchschießen");
+  assert.equal(event.category, "Schießwettkampf");
+  assert.equal(event.start, "2025-02-01T09:00:00");
+  assert.equal("end" in event, false);
+  assert.equal(
+    event.location,
+    "Großkaliberschießstandanlage am Pfaffenrainweg, Bottendorf"
+  );
+  assert.equal(
+    event.organizer,
+    "Großkaliberschützenverein Bottendorf 1991 e.V."
+  );
+  assert.equal(
+    event.description,
+    "Der Großkaliberschützenverein Bottendorf lädt am 1. Februar 2025 zum Elchschießen ein. Auf Elch-Silhouetten werden verschiedene Lang- und Kurzwaffendisziplinen auf 25, 50 und 100 Metern ausgetragen."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung Elchschießen 2025",
+      url: "assets/documents/events/2025/2025_01_09 Ausschreibung Elchschießen 2025.pdf",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("KM KK-Gewehr mit Zielfernrohr 2025 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

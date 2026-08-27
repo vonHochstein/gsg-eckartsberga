@@ -22,6 +22,34 @@ const USE_DEMO_DATA = false;
 
 const productionEvents = [
   {
+    id: 21,
+    slug: "elchschiessen-2025",
+    title: "Elchschießen 2025",
+    shortTitle: "Elchschießen",
+    category: "Schießwettkampf",
+    start: "2025-02-01T09:00:00",
+    location:
+      "Großkaliberschießstandanlage am Pfaffenrainweg, Bottendorf",
+    organizer: "Großkaliberschützenverein Bottendorf 1991 e.V.",
+    description:
+      "Der Großkaliberschützenverein Bottendorf lädt am 1. Februar 2025 zum Elchschießen ein. Auf Elch-Silhouetten werden verschiedene Lang- und Kurzwaffendisziplinen auf 25, 50 und 100 Metern ausgetragen.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Elchschießen 2025",
+        url: "assets/documents/events/2025/2025_01_09 Ausschreibung Elchschießen 2025.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 20,
     slug: "km-kk-gewehr-zielfernrohr-2025",
     title: "Kreismeisterschaft KK-Gewehr mit Zielfernrohr 2025",
