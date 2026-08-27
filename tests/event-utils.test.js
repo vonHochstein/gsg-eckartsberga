@@ -1395,6 +1395,64 @@ test("Hans-Peter-Nolding-Pokal 2026 ist quellengetreu hinterlegt", () => {
   assert.equal(event.featured, false);
 });
 
+test("14. Apoldaer Knicker-Grand-Prix 2026 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "apoldaer-knicker-grand-prix-2026"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 24).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 24);
+  assert.equal(event.title, "14. Apoldaer Knicker-Grand-Prix 2026");
+  assert.equal(event.shortTitle, "14. Apoldaer Knicker-Grand-Prix");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2026-06-20T09:00:00");
+  assert.equal("end" in event, false);
+  assert.equal(
+    event.location,
+    "Schießsportanlage der BSG 1775 Apolda e.V., Apolda-Heusdorf (400 m vom Bahnhof in Richtung Kleingartenanlage)"
+  );
+  assert.equal(
+    event.organizer,
+    "Büchsenschützengesellschaft 1775 Apolda e.V."
+  );
+  assert.equal(
+    event.description,
+    "Die Büchsenschützengesellschaft 1775 Apolda lädt am 20. Juni 2026 zum 14. Apoldaer Knicker-Grand-Prix ein. Geschossen werden fünf Luftgewehrdisziplinen mit Knick- und Mehrladern von Haenel."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung 14. Apoldaer Knicker-Grand-Prix 2026",
+      url: "assets/documents/events/2026/2026_06_10 Ausschreibung 14. Apoldaer Knicker-Grand-Prix 2026.jpg",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Kreisschützentag 2026 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

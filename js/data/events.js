@@ -365,6 +365,34 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 24,
+    slug: "apoldaer-knicker-grand-prix-2026",
+    title: "14. Apoldaer Knicker-Grand-Prix 2026",
+    shortTitle: "14. Apoldaer Knicker-Grand-Prix",
+    category: "Pokalwettkampf",
+    start: "2026-06-20T09:00:00",
+    location:
+      "Schießsportanlage der BSG 1775 Apolda e.V., Apolda-Heusdorf (400 m vom Bahnhof in Richtung Kleingartenanlage)",
+    organizer: "Büchsenschützengesellschaft 1775 Apolda e.V.",
+    description:
+      "Die Büchsenschützengesellschaft 1775 Apolda lädt am 20. Juni 2026 zum 14. Apoldaer Knicker-Grand-Prix ein. Geschossen werden fünf Luftgewehrdisziplinen mit Knick- und Mehrladern von Haenel.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung 14. Apoldaer Knicker-Grand-Prix 2026",
+        url: "assets/documents/events/2026/2026_06_10 Ausschreibung 14. Apoldaer Knicker-Grand-Prix 2026.jpg",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 11,
     slug: "eckartsburg-pokal-2026",
     title: "Eckartsburg-Pokal 2026",
