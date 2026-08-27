@@ -853,6 +853,66 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
   });
 });
 
+test("KM KK-Gewehr mit Zielfernrohr 2025 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "km-kk-gewehr-zielfernrohr-2025"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 20).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 20);
+  assert.equal(
+    event.title,
+    "Kreismeisterschaft KK-Gewehr mit Zielfernrohr 2025"
+  );
+  assert.equal(event.shortTitle, "KM KK-Gewehr mit Zielfernrohr");
+  assert.equal(event.category, "Kreismeisterschaft");
+  assert.equal(event.start, "2025-05-10T09:00:00");
+  assert.equal(event.end, "2025-05-10T16:00:00");
+  assert.equal(event.location, "Schießstand Lützen");
+  assert.equal(event.organizer, 'Schützenkreis "SUED"');
+  assert.equal(
+    event.description,
+    "Der Schützenkreis SUED lädt am 10. Mai 2025 zur Kreismeisterschaft im KK-Gewehr mit Zielfernrohr auf den Schießstand Lützen ein. Ausgerichtet wird der Wettkampf von der Privilegierten Schützengilde 1608 Lützen."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung KM KK-Gewehr mit Zielfernrohr 2025",
+      url: "assets/documents/events/2025/2025_03_30 Ausschreibung KM KK-Gewehr mit Zielfernrohr 2025.pdf",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.deepEqual(getEventOrganizerLogo(event), {
+    src: "assets/img/logo-schuetzenkreis-sued.png",
+    alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
+    width: 191,
+    height: 191
+  });
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Hans-Peter-Nolding-Pokal 2025 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

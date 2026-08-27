@@ -22,6 +22,34 @@ const USE_DEMO_DATA = false;
 
 const productionEvents = [
   {
+    id: 20,
+    slug: "km-kk-gewehr-zielfernrohr-2025",
+    title: "Kreismeisterschaft KK-Gewehr mit Zielfernrohr 2025",
+    shortTitle: "KM KK-Gewehr mit Zielfernrohr",
+    category: "Kreismeisterschaft",
+    start: "2025-05-10T09:00:00",
+    end: "2025-05-10T16:00:00",
+    location: "Schießstand Lützen",
+    organizer: 'Schützenkreis "SUED"',
+    description:
+      "Der Schützenkreis SUED lädt am 10. Mai 2025 zur Kreismeisterschaft im KK-Gewehr mit Zielfernrohr auf den Schießstand Lützen ein. Ausgerichtet wird der Wettkampf von der Privilegierten Schützengilde 1608 Lützen.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung KM KK-Gewehr mit Zielfernrohr 2025",
+        url: "assets/documents/events/2025/2025_03_30 Ausschreibung KM KK-Gewehr mit Zielfernrohr 2025.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 18,
     slug: "hans-peter-nolding-pokal-2025",
     title: "Hans-Peter-Nolding-Pokal 2025",
