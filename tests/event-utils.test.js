@@ -853,6 +853,28 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
   });
 });
 
+test("Produktivtermine enthalten keine vollständig unbelegten Rahmentermine", () => {
+  const { productionEvents } = loadEventData(false);
+
+  productionEvents.forEach((event) => {
+    const hasEditorialContent = Boolean(
+      event.description?.trim() ||
+        event.image ||
+        event.gallery.length ||
+        event.documents.length ||
+        event.downloads.length ||
+        event.results.length ||
+        event.externalLinks.length
+    );
+
+    assert.equal(
+      hasEditorialContent,
+      true,
+      `${event.slug} enthält ausschließlich unbelegte Kernangaben`
+    );
+  });
+});
+
 test("Pokal Halbautomat 2024 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

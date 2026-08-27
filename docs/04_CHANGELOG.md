@@ -61,6 +61,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 - Nicht belegte Kontakt-, Rechts-, Geschichts- und Galerieziele von der öffentlich sichtbaren Startseite entfernt.
 - Unkontrollierte Testveranstaltungen aus dem produktiven Datenbestand entfernt und durch getrennte, deaktivierbare Entwicklungsdaten ersetzt.
+- Neun nur mit unbelegten Kernangaben vorhandene Kreismeisterschaftstermine aus dem produktiven Kalender entfernt.
 
 ### Sicherheit
 
