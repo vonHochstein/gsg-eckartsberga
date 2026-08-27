@@ -22,6 +22,33 @@ const USE_DEMO_DATA = false;
 
 const productionEvents = [
   {
+    id: 23,
+    slug: "schuetzenfest-naumburg-2024",
+    title: "Schützenfest Naumburg 2024",
+    shortTitle: "Schützenfest Naumburg",
+    category: "Schützenfest",
+    start: "2024-08-24T09:00:00",
+    location: "Schießplatz Henne, Naumburg",
+    organizer: "Privilegiertes Bürgerschützencorps Naumburg e.V.",
+    description:
+      "Das Privilegierte Bürgerschützencorps Naumburg lädt am 24. August 2024 zum Schützenfest auf den Schießplatz Henne ein. Zum Programm gehören das vereinsinterne Königsschießen, weitere Schießwettbewerbe, Musik und gemeinsames Beisammensein.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Einladung Schützenfest Naumburg 2024",
+        url: "assets/documents/events/2024/2024_07_24 Einladung Schützenfest Naumburg 2024.pdf",
+        type: "invitation"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 22,
     slug: "pokal-halbautomat-2024",
     title: "Pokal Halbautomat 2024",

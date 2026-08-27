@@ -875,6 +875,61 @@ test("Produktivtermine enthalten keine vollständig unbelegten Rahmentermine", (
   });
 });
 
+test("Schützenfest Naumburg 2024 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "schuetzenfest-naumburg-2024"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 23).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 23);
+  assert.equal(event.title, "Schützenfest Naumburg 2024");
+  assert.equal(event.shortTitle, "Schützenfest Naumburg");
+  assert.equal(event.category, "Schützenfest");
+  assert.equal(event.start, "2024-08-24T09:00:00");
+  assert.equal("end" in event, false);
+  assert.equal(event.location, "Schießplatz Henne, Naumburg");
+  assert.equal(
+    event.organizer,
+    "Privilegiertes Bürgerschützencorps Naumburg e.V."
+  );
+  assert.equal(
+    event.description,
+    "Das Privilegierte Bürgerschützencorps Naumburg lädt am 24. August 2024 zum Schützenfest auf den Schießplatz Henne ein. Zum Programm gehören das vereinsinterne Königsschießen, weitere Schießwettbewerbe, Musik und gemeinsames Beisammensein."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Einladung Schützenfest Naumburg 2024",
+      url: "assets/documents/events/2024/2024_07_24 Einladung Schützenfest Naumburg 2024.pdf",
+      type: "invitation"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, false);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Pokal Halbautomat 2024 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

@@ -33,6 +33,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Produktiver Veranstaltungseintrag für die Kreismeisterschaft KK-Gewehr mit Zielfernrohr 2025 mit Ausschreibung.
 - Produktiver Veranstaltungseintrag für das Elchschießen 2025 mit Ausschreibung.
 - Produktiver Veranstaltungseintrag für den Pokal Halbautomat 2024 mit Ausschreibung.
+- Produktiver Veranstaltungseintrag für das Schützenfest Naumburg 2024 mit Einladung.
 
 ### Geändert
 
