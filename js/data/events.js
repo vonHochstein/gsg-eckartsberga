@@ -22,6 +22,34 @@ const USE_DEMO_DATA = false;
 
 const productionEvents = [
   {
+    id: 22,
+    slug: "pokal-halbautomat-2024",
+    title: "Pokal Halbautomat 2024",
+    shortTitle: "Pokal Halbautomat",
+    category: "Pokalwettkampf",
+    start: "2024-09-07T09:00:00",
+    end: "2024-09-07T16:00:00",
+    location: "Schießstand der Jägerschaft Markröhlitz",
+    organizer: "Jagdverein Weißenfels e.V.",
+    description:
+      "Der Jagdverein Weißenfels lädt am 7. September 2024 zum Pokal Halbautomat auf den Schießstand der Jägerschaft Markröhlitz ein. Geschossen werden Wettbewerbe mit KK- und GK-Selbstladegewehren.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Pokal Halbautomat 2024",
+        url: "assets/documents/events/2024/2024_08_02 Ausschreibung Pokal Halbautomat 2024.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 21,
     slug: "elchschiessen-2025",
     title: "Elchschießen 2025",

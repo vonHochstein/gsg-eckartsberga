@@ -853,6 +853,58 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
   });
 });
 
+test("Pokal Halbautomat 2024 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "pokal-halbautomat-2024"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 22).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 22);
+  assert.equal(event.title, "Pokal Halbautomat 2024");
+  assert.equal(event.shortTitle, "Pokal Halbautomat");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2024-09-07T09:00:00");
+  assert.equal(event.end, "2024-09-07T16:00:00");
+  assert.equal(event.location, "Schießstand der Jägerschaft Markröhlitz");
+  assert.equal(event.organizer, "Jagdverein Weißenfels e.V.");
+  assert.equal(
+    event.description,
+    "Der Jagdverein Weißenfels lädt am 7. September 2024 zum Pokal Halbautomat auf den Schießstand der Jägerschaft Markröhlitz ein. Geschossen werden Wettbewerbe mit KK- und GK-Selbstladegewehren."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung Pokal Halbautomat 2024",
+      url: "assets/documents/events/2024/2024_08_02 Ausschreibung Pokal Halbautomat 2024.pdf",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Elchschießen 2025 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(
