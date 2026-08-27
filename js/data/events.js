@@ -22,6 +22,35 @@ const USE_DEMO_DATA = false;
 
 const productionEvents = [
   {
+    id: 18,
+    slug: "hans-peter-nolding-pokal-2025",
+    title: "Hans-Peter-Nolding-Pokal 2025",
+    shortTitle: "Hans-Peter-Nolding-Pokal",
+    category: "Pokalwettkampf",
+    start: "2025-06-14T09:00:00",
+    end: "2025-06-14T13:00:00",
+    location:
+      "Schießstand SV Hohenmölsen, Am Werk 4, 06679 Hohenmölsen OT Rössuln",
+    organizer: "Schützenverein 1990 Hohenmölsen e.V. gegr. 1748",
+    description:
+      "Der Schützenverein 1990 Hohenmölsen lädt am 14. Juni 2025 zum Hans-Peter-Nolding-Pokal ein. Geschossen werden 20 Schuss mit der KK-Pistole in offener Klasse.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Hans-Peter-Nolding-Pokal 2025",
+        url: "assets/documents/events/2025/2025_05_14 Ausschreibung Hans-Peter-Nolding-Pokal 2025.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 17,
     slug: "schuetzenfest-langendorf-2025",
     title: "Schützenfest Langendorf 2025",

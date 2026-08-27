@@ -853,6 +853,64 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
   });
 });
 
+test("Hans-Peter-Nolding-Pokal 2025 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "hans-peter-nolding-pokal-2025"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 18).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 18);
+  assert.equal(event.title, "Hans-Peter-Nolding-Pokal 2025");
+  assert.equal(event.shortTitle, "Hans-Peter-Nolding-Pokal");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2025-06-14T09:00:00");
+  assert.equal(event.end, "2025-06-14T13:00:00");
+  assert.equal(
+    event.location,
+    "Schießstand SV Hohenmölsen, Am Werk 4, 06679 Hohenmölsen OT Rössuln"
+  );
+  assert.equal(
+    event.organizer,
+    "Schützenverein 1990 Hohenmölsen e.V. gegr. 1748"
+  );
+  assert.equal(
+    event.description,
+    "Der Schützenverein 1990 Hohenmölsen lädt am 14. Juni 2025 zum Hans-Peter-Nolding-Pokal ein. Geschossen werden 20 Schuss mit der KK-Pistole in offener Klasse."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung Hans-Peter-Nolding-Pokal 2025",
+      url: "assets/documents/events/2025/2025_05_14 Ausschreibung Hans-Peter-Nolding-Pokal 2025.pdf",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Schützenfest Langendorf 2025 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(
