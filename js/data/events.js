@@ -43,6 +43,34 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 15,
+    slug: "abend-der-vereine-2026",
+    title: "Abend der Vereine 2026",
+    shortTitle: "Abend der Vereine",
+    category: "Vergleichswettkampf",
+    start: "2026-03-13T17:00:00",
+    location:
+      "Schützenhaus, Tromsdorfer Straße 13, 06647 An der Poststraße",
+    organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V.",
+    description:
+      "Die GSG Eckartsberga lädt Vereine am 13. März 2026 zu einem sportlichen und geselligen Vergleichswettkampf ins Schützenhaus ein. Geschossen wird mit Luftgewehr und Kleinkalibergewehr in Mannschafts- und Einzelwertungen.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Einladung Abend der Vereine 2026",
+        url: "assets/documents/events/2026/2026_02_25 Einladung Abend der Vereine 2026.pdf",
+        type: "invitation"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 2,
     slug: "km-gk-kurzwaffe-2026",
     title: "KM GK Kurzwaffe",

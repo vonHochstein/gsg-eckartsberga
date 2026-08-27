@@ -1044,6 +1044,69 @@ test("Kreisschützentag 2026 ist quellengetreu hinterlegt", () => {
   assert.equal(event.featured, false);
 });
 
+test("Abend der Vereine 2026 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "abend-der-vereine-2026"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 15).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 15);
+  assert.equal(event.title, "Abend der Vereine 2026");
+  assert.equal(event.shortTitle, "Abend der Vereine");
+  assert.equal(event.category, "Vergleichswettkampf");
+  assert.equal(event.start, "2026-03-13T17:00:00");
+  assert.equal("end" in event, false);
+  assert.equal(
+    event.location,
+    "Schützenhaus, Tromsdorfer Straße 13, 06647 An der Poststraße"
+  );
+  assert.equal(
+    event.organizer,
+    "Großkaliber Schützengilde 1503 Eckartsberga e.V."
+  );
+  assert.equal(
+    event.description,
+    "Die GSG Eckartsberga lädt Vereine am 13. März 2026 zu einem sportlichen und geselligen Vergleichswettkampf ins Schützenhaus ein. Geschossen wird mit Luftgewehr und Kleinkalibergewehr in Mannschafts- und Einzelwertungen."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Einladung Abend der Vereine 2026",
+      url: "assets/documents/events/2026/2026_02_25 Einladung Abend der Vereine 2026.pdf",
+      type: "invitation"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.deepEqual(getEventOrganizerLogo(event), {
+    src: "assets/img/logo-gsg-eckartsberga.png",
+    alt: "Logo der GSG Eckartsberga",
+    width: 360,
+    height: 347
+  });
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(
