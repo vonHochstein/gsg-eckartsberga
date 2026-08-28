@@ -1453,6 +1453,64 @@ test("14. Apoldaer Knicker-Grand-Prix 2026 ist quellengetreu hinterlegt", () => 
   assert.equal(event.featured, false);
 });
 
+test("Sommerpokal Wurfscheibenschießen 2026 ist quellengetreu hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "sommerpokal-wurfscheibenschiessen-lossa-2026"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(
+    productionEvents.filter((entry) => entry.id === 25).length,
+    1
+  );
+  assert.ok(event);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.id, 25);
+  assert.equal(event.title, "Sommerpokal Wurfscheibenschießen 2026");
+  assert.equal(event.shortTitle, "Sommerpokal Wurfscheibenschießen");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2026-07-11T13:00:00");
+  assert.equal(event.end, "2026-07-12T13:00:00");
+  assert.equal(
+    event.location,
+    "Schießplatz Lossa (Ortsausgang Lossa Richtung Wiehe, links in den Wald; der Beschilderung folgen)"
+  );
+  assert.equal(
+    event.organizer,
+    "Großkaliberschützenverein Lossa 1995 e.V."
+  );
+  assert.equal(
+    event.description,
+    "Der Großkaliberschützenverein Lossa lädt am 11. und 12. Juli 2026 zum Sommerpokal im Wurfscheibenschießen ein. Gewertet werden die beiden besten Serien zu je 25 Tauben in einer Einzelwertung."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung Sommerpokal Wurfscheibenschießen 2026",
+      url: "assets/documents/events/2026/2026_07_09 Ausschreibung Sommerpokal Wurfscheibenschießen 2026.jpg",
+      type: "announcement"
+    }
+  ]);
+  assert.equal(
+    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
+    true
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(getEventOrganizerLogo(event), null);
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, false);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Kreisschützentag 2026 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

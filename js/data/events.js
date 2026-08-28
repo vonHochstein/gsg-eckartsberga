@@ -393,6 +393,35 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 25,
+    slug: "sommerpokal-wurfscheibenschiessen-lossa-2026",
+    title: "Sommerpokal Wurfscheibenschießen 2026",
+    shortTitle: "Sommerpokal Wurfscheibenschießen",
+    category: "Pokalwettkampf",
+    start: "2026-07-11T13:00:00",
+    end: "2026-07-12T13:00:00",
+    location:
+      "Schießplatz Lossa (Ortsausgang Lossa Richtung Wiehe, links in den Wald; der Beschilderung folgen)",
+    organizer: "Großkaliberschützenverein Lossa 1995 e.V.",
+    description:
+      "Der Großkaliberschützenverein Lossa lädt am 11. und 12. Juli 2026 zum Sommerpokal im Wurfscheibenschießen ein. Gewertet werden die beiden besten Serien zu je 25 Tauben in einer Einzelwertung.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Sommerpokal Wurfscheibenschießen 2026",
+        url: "assets/documents/events/2026/2026_07_09 Ausschreibung Sommerpokal Wurfscheibenschießen 2026.jpg",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 11,
     slug: "eckartsburg-pokal-2026",
     title: "Eckartsburg-Pokal 2026",

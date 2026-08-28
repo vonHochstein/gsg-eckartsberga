@@ -35,6 +35,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Produktiver Veranstaltungseintrag für den Pokal Halbautomat 2024 mit Ausschreibung.
 - Produktiver Veranstaltungseintrag für das Schützenfest Naumburg 2024 mit Einladung.
 - Produktiver Veranstaltungseintrag für den 14. Apoldaer Knicker-Grand-Prix 2026 mit bildbasierter Ausschreibung.
+- Produktiver Veranstaltungseintrag für den Sommerpokal im Wurfscheibenschießen 2026 in Lossa mit bildbasierter Ausschreibung.
 
 ### Geändert
 
