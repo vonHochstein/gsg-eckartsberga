@@ -819,7 +819,7 @@ abbr[title] {
   background: transparent;
   isolation: isolate;
   color: var(--color-white);
-  box-shadow: 0 28px 68px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-card);
   transition:
     transform 0.22s ease,
     box-shadow 0.22s ease;
