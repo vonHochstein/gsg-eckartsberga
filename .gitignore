@@ -3,3 +3,6 @@
 
 # persönliche Notizen
 notes.rtf
+
+# lokale, nicht öffentlich ausgelieferte Migrationsarchive
+.local-archive/

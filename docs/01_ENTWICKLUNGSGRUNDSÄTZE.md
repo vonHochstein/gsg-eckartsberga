@@ -77,6 +77,13 @@ Das für den jeweiligen Arbeitsauftrag vorgegebene Präfixdatum ist verbindlich.
 
 Die Dokumentbezeichnung wird aus dem tatsächlichen Inhalt der Datei abgeleitet. Sie soll kurz, eindeutig und fachlich aussagekräftig sein. Vorhandene Benennungskonventionen des Projekts sind vorrangig einzuhalten. Das ursprüngliche Dateiformat und die Dateiendung bleiben grundsätzlich erhalten.
 
+Für historische Medien wird die tatsächlich belegte Datumspräzision im Präfix
+erhalten. Ist ein vollständiges Datum belegt, gilt weiterhin `YYYY_MM_DD`. Ist
+nur das Jahr belastbar bekannt, wird ausschließlich `YYYY` verwendet. Ohne
+belastbares Datum lautet das Präfix `undatiert`. Ein genaueres Datum darf nicht
+aus dem Motiv, seiner Position in einer Chronik oder einer ungesicherten
+Vermutung abgeleitet werden.
+
 #### Ablage
 
 Die Datei wird im fachlich passenden Ordner innerhalb der bestehenden Projektstruktur abgelegt. Vorhandene Ablagestrukturen sind zu verwenden; für denselben Zweck dürfen keine konkurrierenden Ordnerstrukturen geschaffen werden.
