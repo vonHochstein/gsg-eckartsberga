@@ -2,7 +2,7 @@
 
 ## Zweck und Pflege
 
-Diese Roadmap beschreibt den fachlichen Entwicklungsweg auf Grundlage des Projektstands vom 24. Juli 2026. Sie ist ein lebendes Planungsdokument und wird nach jedem abgeschlossenen Implementierungsabschnitt aktualisiert.
+Diese Roadmap beschreibt den fachlichen Entwicklungsweg auf Grundlage des Projektstands vom 31. August 2026. Sie ist ein lebendes Planungsdokument und wird nach jedem abgeschlossenen Implementierungsabschnitt aktualisiert.
 
 Die Statusangaben bedeuten:
 
@@ -21,7 +21,8 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - eigenständige visuelle Identität mit dunklen Flächen, Gold- und Rottönen;
 - Hero-Bereich mit klaren Handlungsoptionen;
 - Informationskarten für Veranstaltung, Sport und Mitgliedschaft;
-- Vereinsübersicht und Geschichtsteaser;
+- Vereinsübersicht, Geschichtsteaser und eigenständige chronologische Geschichtsseite;
+- sprachliche Trennung zwischen belegten historischen Zusammenhängen, historischen Vereinsquellen und Vereinsüberlieferung;
 - abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
 - konsistenter Footer mit ausschließlich vorhandenen Sprungzielen;
 - IA-001: Startseite technisch, gestalterisch und inhaltlich stabilisiert.
@@ -89,7 +90,6 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - reale Inhalte, Testdaten und Platzhalter eindeutig voneinander abgrenzen;
 - endgültige Seiten- und Bereichsstruktur festlegen;
 - Vereins-, Sport-, Anlagen-, Erfolgs-, Mitgliedschafts- und Kontaktinhalte einpflegen;
-- Vereinsgeschichte zugänglich machen;
 - freigegebene direkte Kontaktwege ergänzen.
 
 ### Abschnitt 2: Rechtliche Veröffentlichungsgrundlage

@@ -811,6 +811,7 @@ abbr[title] {
 
 .history-teaser-card {
   position: relative;
+  display: block;
   overflow: hidden;
   margin-top: 42px;
   padding: 42px;
@@ -826,9 +827,9 @@ abbr[title] {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background: url("assets/img/history-eckartsberga.jpg") right center / cover no-repeat;
-  filter: grayscale(35%) sepia(18%) contrast(1.08) brightness(0.82);
-  transform: scale(1.03);
+  background:
+    radial-gradient(circle at 82% 22%, rgba(214, 168, 79, 0.24), transparent 28%),
+    linear-gradient(135deg, #28231d 0%, #151515 58%, #0b0b0b 100%);
 }
 
 .history-teaser-card::after {
@@ -870,6 +871,25 @@ abbr[title] {
   color: rgba(255, 255, 255, 0.82);
   font-size: 1.08rem;
   line-height: 1.7;
+}
+
+.history-teaser-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 24px;
+  color: var(--color-gold);
+  font-weight: 800;
+}
+
+.history-teaser-link::after {
+  content: "→";
+  margin-left: 10px;
+}
+
+.history-teaser-card:hover .history-teaser-link,
+.history-teaser-card:focus-visible .history-teaser-link {
+  color: #e9c67e;
 }
 
 /* ==========================================

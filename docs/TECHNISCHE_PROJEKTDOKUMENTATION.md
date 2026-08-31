@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 30. Juli 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1, AP 2, AP 3 und AP 4
+**Stand:** 31. August 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001 und GES-002
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -21,6 +21,7 @@ Die Website präsentiert die Großkaliber Schützengilde 1503 Eckartsberga e. V.
 Umgesetzt und geprüft sind:
 
 - responsive Startseite mit Hero, Vereinsinformationen und Mitgliedschaftsteaser;
+- statische, responsive Geschichtsseite mit semantischer Chronologie und sichtbarer Quelleneinordnung;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
 - dynamische Anzeige der nächsten Veranstaltung mit Countdown;
 - Timeline für kommende, aktuelle und archivierte Veranstaltungen;
@@ -42,7 +43,7 @@ Umgesetzt und geprüft sind:
 Noch nicht umgesetzt sind insbesondere:
 
 - freigegebene Detailinhalte für produktive Veranstaltungen;
-- vollständige Vereins-, Anlagen-, Erfolgs-, Kontakt- und Geschichtsinhalte;
+- vollständige Vereins-, Anlagen-, Erfolgs- und Kontaktinhalte;
 - Impressum und Datenschutz;
 - vollständige produktive Galerie;
 - Backend, CMS, Formulare, Suche und Mitgliederbereich;
@@ -68,8 +69,10 @@ Die Anwendung verwendet:
 /
 ├── index.html
 ├── event.html
+├── geschichte.html
 ├── style.css
 ├── event.css
+├── geschichte.css
 ├── notes.rtf
 ├── assets/
 │   ├── dev/
@@ -93,7 +96,8 @@ Die Anwendung verwendet:
 │   ├── main.js
 │   └── navigation.js
 ├── tests/
-│   └── event-utils.test.js
+│   ├── event-utils.test.js
+│   └── history-page.test.js
 └── docs/
     ├── TECHNISCHE_PROJEKTDOKUMENTATION.md
     ├── 00_PROJEKTVISION.md
@@ -104,6 +108,8 @@ Die Anwendung verwendet:
     ├── 05_IDEENSPEICHER.md
     ├── 06_VERKAUFSARGUMENTE.md
     ├── 07_OFFENE_PRUEFPUNKTE.md
+    ├── migration/
+    │   └── HISTORISCHE_MEDIENQUELLEN.md
     └── implementierung/
         └── 2026-07-24_IA-002_VERANSTALTUNGSDETAILSEITEN.md
 ```
@@ -151,6 +157,20 @@ Sie lädt bewusst keine Startseitenmodule für Countdown, Timeline oder Galeriea
 5. `js/event-detail.js`
 6. `js/main.js`
 
+#### `geschichte.html`
+
+Die eigenständige Geschichtsseite enthält:
+
+- denselben Header und Footer wie die übrigen Seiten, ohne zusätzlichen globalen Navigationspunkt;
+- einen kompakten Seiteneinstieg mit Rücklink zum Vereinsbereich;
+- eine chronologisch geordnete, vollständig statische Vereinschronik;
+- eine sichtbare Sektion „Quellen und Einordnung“;
+- bewusst keine ungeklärten historischen Medien und keine JavaScript-abhängige Inhaltsausgabe.
+
+Sie lädt ausschließlich `js/navigation.js` für das mobile Menü und `js/main.js`
+für die Jahreszahl im Footer. Der vorhandene Geschichtsteaser auf der Startseite
+ist der kanonische Einstieg.
+
 ### 2.2 CSS
 
 #### `style.css`
@@ -188,6 +208,19 @@ Enthält ausschließlich die Gestaltung der Detailseite:
 - Breakpoints für 1-, 2- und 3-spaltige Darstellung.
 
 Gemeinsame Variablen, Header, Navigation, Buttons und Footer werden nicht dupliziert, sondern aus `style.css` übernommen.
+
+#### `geschichte.css`
+
+Enthält ausschließlich die seitenspezifische Darstellung der Vereinschronik:
+
+- dunkler, kompakter Seitenkopf;
+- zweispaltige Chronologie mit eigener Zeitraumspalte auf großen Ansichten;
+- einspaltige, unverändert chronologische Darstellung auf kleinen Ansichten;
+- Karten, Quellenbereich und responsive Abstände;
+- keine Animationen und keine JavaScript-abhängigen Zustände.
+
+Design-Tokens, Header, Navigation, Fokusdarstellung und Footer stammen weiterhin
+aus `style.css`.
 
 ### 2.3 JavaScript
 
@@ -618,7 +651,9 @@ Die Entwicklungsdaten liegen weiterhin in `js/data/dev-events.js` und werden bei
 
 ### 5.1 Automatisierte Tests
 
-`tests/event-utils.test.js` verwendet ausschließlich den eingebauten Node-Test-Runner.
+Die Tests verwenden ausschließlich den eingebauten Node-Test-Runner.
+
+`tests/event-utils.test.js` deckt ab:
 
 Abgedeckt sind:
 
@@ -641,8 +676,19 @@ Abgedeckt sind:
 Ausführung:
 
 ```text
-node --test tests/event-utils.test.js
+node --test tests/*.test.js
 ```
+
+`tests/history-page.test.js` prüft:
+
+- Existenz der statischen Seite und ihres Stylesheets;
+- genau eine H1 und die verbindliche Reihenfolge der Chronikstationen;
+- vollständige Datumswerte in semantischen `time`-Elementen;
+- Geschichtsteaser als einzigen neuen Einstieg ohne Erweiterung von Header oder Footer;
+- sichtbare Quellenkategorien und das Fehlen direkter Jimdo-Medienverweise;
+- Abmessungen und Alternativtexte aller auf der Seite verwendeten Bilder;
+- Entfernung problematischer Kontinuitätsbehauptungen auf der Startseite;
+- Ausschluss des lokalen Migrationsarchivs über `.gitignore`.
 
 ### 5.2 Browserprüfungen
 
@@ -701,6 +747,16 @@ AP 5B ergänzt die Browserprüfung um:
 - ausschließliche Ausgabe externer Ergebnisquellen unter „Ergebnisse“;
 - kanonischen Dokument- und externen Ergebnisstatus in Timeline und Archiv.
 
+GES-002 ergänzt die Browserprüfung um:
+
+- Geschichtsteaser per Maus und Tastatur;
+- chronologische DOM-, Überschriften- und Landmarkenstruktur;
+- mobile Navigation und Rücklink zum Vereinsbereich;
+- Darstellung bei 320, 360, 480, 820, 1024 und 1440 Pixeln;
+- Textzoom bis 200 Prozent und horizontalen Überlauf;
+- fehlende Assets und Browserkonsole;
+- Startseite und Veranstaltungsdetailseite als Regression.
+
 ### 5.3 Barrierearme Grundlagen
 
 - Skip-Link;
@@ -713,6 +769,7 @@ AP 5B ergänzt die Browserprüfung um:
 - native Modalität mit Fokusbegrenzung und Rückgabe an den Auslöser;
 - keine erzwungenen neuen Fenster;
 - Reduced-Motion-Unterstützung für bestehende Animationen.
+- statische, chronologisch geordnete Geschichtsinhalte ohne bewegte oder JavaScript-abhängige Darstellung.
 
 ---
 
