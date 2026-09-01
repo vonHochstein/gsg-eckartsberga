@@ -41,8 +41,9 @@
   font-size: clamp(2.6rem, 7vw, 5.8rem);
   line-height: 0.98;
   letter-spacing: -0.045em;
+  word-break: normal;
   overflow-wrap: anywhere;
-  hyphens: auto;
+  hyphens: none;
 }
 
 .history-intro {

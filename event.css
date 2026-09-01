@@ -82,7 +82,7 @@
 }
 
 .event-hero-layout:not(.has-image) .event-hero-copy {
-  max-width: 920px;
+  max-width: 1072px;
 }
 
 .event-organizer-mark {
@@ -130,7 +130,9 @@
 
 .event-hero h1 {
   max-width: 920px;
+  word-break: normal;
   overflow-wrap: anywhere;
+  hyphens: none;
   font-size: clamp(2.45rem, 6vw, 5.3rem);
   line-height: 0.98;
   letter-spacing: -0.045em;
