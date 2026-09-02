@@ -58,6 +58,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Normalbetrieb auf ausschließlich produktive Veranstaltungsdaten umgestellt; schaltbare Demo-Daten bleiben für Entwicklung und Tests erhalten.
 - Historische Kontinuitätsbehauptungen auf der Startseite präzisiert und das Gründungsjahr des heutigen Vereins von älteren Überlieferungen abgegrenzt.
 - Geschichtsseite als selbstbewusste, gut lesbare Vereinschronik redaktionell neu gefasst, um die Station zum Dreißigjährigen Krieg ergänzt und den öffentlichen Quellenbereich verständlich überarbeitet.
+- Vereinschronik um die Station zum Jubiläum 1902 ergänzt und die Fahnenweihe mit dem 4. Schützenfest 1996 inhaltlich präzisiert.
 
 ### Behoben
 

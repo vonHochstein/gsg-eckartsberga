@@ -18,6 +18,10 @@ function countMatches(value, pattern) {
   return [...value.matchAll(pattern)].length;
 }
 
+function normalizeHtmlText(value) {
+  return value.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+}
+
 function getNavigationMarkup(html, className) {
   const pattern = new RegExp(
     `<nav[^>]*class="[^"]*${className}[^"]*"[^>]*>[\\s\\S]*?<\\/nav>`,
@@ -47,6 +51,7 @@ test("bewahrt die verbindliche chronologische Reihenfolge", () => {
     "datetime=\"1618\"",
     "datetime=\"1648\"",
     "datetime=\"1827\"",
+    "datetime=\"1902\"",
     "datetime=\"1912\"",
     "datetime=\"1927-07-09\"",
     "datetime=\"1933\"",
@@ -73,6 +78,24 @@ test("bewahrt die verbindliche chronologische Reihenfolge", () => {
   assert.match(historyHtml, /datetime="1992-10-07"/);
   assert.match(historyHtml, /datetime="1992-10-23"/);
   assert.match(historyHtml, /<h3>Der Dreißigjährige Krieg<\/h3>/);
+});
+
+test("enthält die festgelegten Chronikstationen für 1902 und 1996", () => {
+  const historyHtml = readProjectFile(historyPath);
+  const historyText = normalizeHtmlText(historyHtml);
+
+  assert.equal(countMatches(historyHtml, /datetime="1902"/g), 1);
+  assert.equal(countMatches(historyHtml, /datetime="1996"/g), 1);
+  assert.match(historyHtml, /<h3>75 Jahre Eckartsbergaer Schützengilde<\/h3>/);
+  assert.match(historyHtml, /<h3>Fahnenweihe und 4\. Schützenfest<\/h3>/);
+  assert.match(
+    historyText,
+    /75 Jahre nach ihrer Erneuerung von 1827 beging die Eckartsbergaer Schützengilde im Jahr 1902 ihr Jubiläum\. Eine historische Gruppenaufnahme zeigt die Schützengesellschaft aus diesem Anlass und gehört zu den ältesten erhaltenen Bildzeugnissen des Eckartsbergaer Schützenwesens\./
+  );
+  assert.match(
+    historyText,
+    /Im Jahr 1996 feierte die GSG Eckartsberga im Rahmen ihres 4\. Schützenfestes die Weihe ihrer neuen Vereinsfahne\. Gemeinsam mit der Fahne des Umpferstedter Schützenvereins wurde sie durch den Wetzlarer Kreisschützenmeister Walter Knorz geweiht\. Vereinsvorsitzender Roland Matthes war zugleich Schützenkönig; Bürgermeister Dr\. Weber übernahm die Schirmherrschaft des Festes\./
+  );
 });
 
 test("verlinkt ausschließlich die bestehende Geschichtskarte als Einstieg", () => {

@@ -682,7 +682,7 @@ node --test tests/*.test.js
 `tests/history-page.test.js` prüft:
 
 - Existenz der statischen Seite und ihres Stylesheets;
-- genau eine H1 und die verbindliche Reihenfolge der Chronikstationen einschließlich 1618–1648;
+- genau eine H1 und die verbindliche Reihenfolge der Chronikstationen einschließlich 1618–1648 und 1902;
 - vollständige Datumswerte in semantischen `time`-Elementen;
 - Geschichtsteaser als einzigen neuen Einstieg ohne Erweiterung von Header oder Footer;
 - öffentlich verständliche historische Quellen ohne Arbeits-, Archiv- oder direkte Jimdo-Medienverweise;
