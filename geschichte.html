@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="event.css" />
   <link rel="stylesheet" href="geschichte.css" />
   <script src="js/navigation.js" defer></script>
+  <script src="js/gallery-lightbox.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 
@@ -90,7 +91,7 @@
         <p class="section-kicker">Chronik</p>
         <h2 id="chronicle-title">Stationen einer langen Schützentradition</h2>
 
-        <ol class="chronicle-list">
+        <ol class="chronicle-list" data-gallery-lightbox>
           <li class="chronicle-entry">
             <p class="chronicle-period">15. Jahrhundert</p>
             <article class="chronicle-card">
@@ -151,7 +152,7 @@
             </article>
           </li>
 
-          <li class="chronicle-entry">
+          <li class="chronicle-entry" id="chronik-1902">
             <p class="chronicle-period"><time datetime="1902">1902</time></p>
             <article class="chronicle-card">
               <h3>75 Jahre Eckartsbergaer Schützengilde</h3>
@@ -162,10 +163,33 @@
                 und gehört zu den ältesten erhaltenen Bildzeugnissen des
                 Eckartsbergaer Schützenwesens.
               </p>
+              <div class="chronicle-media chronicle-media-single">
+                <figure>
+                  <button
+                    class="event-gallery-open"
+                    type="button"
+                    data-gallery-index="0"
+                    aria-haspopup="dialog"
+                  >
+                    <img
+                      src="assets/img/history/1902 Eckartsbergaer Schützengesellschaft zum 75-jährigen Jubiläum.jpg"
+                      alt="Historische Gruppenaufnahme der Eckartsbergaer Schützengesellschaft vor dem Schützenhaus mit der Jahreszahl 1827–1902"
+                      width="1279"
+                      height="905"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="event-gallery-open-label">vergrößern</span>
+                  </button>
+                  <figcaption>
+                    Eckartsbergaer Schützengesellschaft zum 75-jährigen Jubiläum, 1902.
+                  </figcaption>
+                </figure>
+              </div>
             </article>
           </li>
 
-          <li class="chronicle-entry">
+          <li class="chronicle-entry" id="chronik-1912-1922">
             <p class="chronicle-period">
               <time datetime="1912">1912</time> · <time datetime="1922">1922</time>
             </p>
@@ -179,6 +203,49 @@
                 zugleich an die überörtliche Bedeutung der damaligen
                 Schützenveranstaltungen.
               </p>
+              <div class="chronicle-media chronicle-media-pair">
+                <figure>
+                  <button
+                    class="event-gallery-open"
+                    type="button"
+                    data-gallery-index="1"
+                    aria-haspopup="dialog"
+                  >
+                    <img
+                      src="assets/img/history/1912 Schützenfest Eckartsberga.jpg"
+                      alt="Historische Gruppenaufnahme beim Schützenfest in Eckartsberga 1912"
+                      width="1206"
+                      height="891"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="event-gallery-open-label">vergrößern</span>
+                  </button>
+                  <figcaption>Schützenfest in Eckartsberga, 1912.</figcaption>
+                </figure>
+
+                <figure>
+                  <button
+                    class="event-gallery-open"
+                    type="button"
+                    data-gallery-index="2"
+                    aria-haspopup="dialog"
+                  >
+                    <img
+                      src="assets/img/history/1922 Schützenfest und 5. Thüringer Verbandsschießen Eckartsberga.jpg"
+                      alt="Historische Gruppenaufnahme beim 5. Thüringer Verbandsschießen in Eckartsberga 1922"
+                      width="1279"
+                      height="905"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="event-gallery-open-label">vergrößern</span>
+                  </button>
+                  <figcaption>
+                    5. Thüringer Verbandsschießen in Eckartsberga, Schützenfest 1922.
+                  </figcaption>
+                </figure>
+              </div>
             </article>
           </li>
 
@@ -195,6 +262,29 @@
                 Ereignis und ist bis heute als historisches Zeugnis der damaligen
                 Schützentradition erhalten.
               </p>
+              <div class="chronicle-media chronicle-media-document">
+                <figure>
+                  <button
+                    class="event-gallery-open"
+                    type="button"
+                    data-gallery-index="3"
+                    aria-haspopup="dialog"
+                  >
+                    <img
+                      src="assets/img/history/1927 Heimatblatt Hundertjahrfeier Schützengilde Eckartsberga.jpg"
+                      alt="Titelseite des Heimatblatts zur Hundertjahrfeier der Eckartsbergaer Schützengilde 1927"
+                      width="852"
+                      height="1376"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="event-gallery-open-label">vergrößern</span>
+                  </button>
+                  <figcaption>
+                    Heimatblatt zur Hundertjahrfeier der Eckartsbergaer Schützengilde, Juni 1927.
+                  </figcaption>
+                </figure>
+              </div>
             </article>
           </li>
 
@@ -276,6 +366,29 @@
                 Vereinsvorsitzender Roland Matthes war zugleich Schützenkönig;
                 Bürgermeister Dr. Weber übernahm die Schirmherrschaft des Festes.
               </p>
+              <div class="chronicle-media chronicle-media-document-wide">
+                <figure>
+                  <button
+                    class="event-gallery-open"
+                    type="button"
+                    data-gallery-index="4"
+                    aria-haspopup="dialog"
+                  >
+                    <img
+                      src="assets/img/history/1996 Fahnenweihe und 4. Schützenfest GSG Eckartsberga Zeitungsausschnitt.jpg"
+                      alt="Zeitungsausschnitt mit Fotografien von der Fahnenweihe und dem 4. Schützenfest der GSG Eckartsberga 1996"
+                      width="1279"
+                      height="670"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="event-gallery-open-label">vergrößern</span>
+                  </button>
+                  <figcaption>
+                    Zeitungsausschnitt zur Fahnenweihe und zum 4. Schützenfest der GSG Eckartsberga, 1996.
+                  </figcaption>
+                </figure>
+              </div>
             </article>
           </li>
 
@@ -354,6 +467,66 @@
       </div>
     </section>
   </main>
+
+  <dialog
+    class="event-lightbox"
+    id="event-lightbox"
+    aria-labelledby="event-lightbox-title"
+  >
+    <div class="event-lightbox-panel">
+      <header class="event-lightbox-header">
+        <h2 id="event-lightbox-title">Historische Medienansicht</h2>
+        <button
+          class="event-lightbox-control event-lightbox-close"
+          id="event-lightbox-close"
+          type="button"
+          autofocus
+        >
+          <span aria-hidden="true">×</span>
+          Schließen
+        </button>
+      </header>
+
+      <figure class="event-lightbox-media">
+        <img id="event-lightbox-image" alt="" decoding="async" />
+        <figcaption id="event-lightbox-caption" hidden></figcaption>
+      </figure>
+
+      <nav
+        class="event-lightbox-navigation"
+        aria-label="Navigation durch die historischen Medien"
+      >
+        <button
+          class="event-lightbox-control event-lightbox-previous"
+          id="event-lightbox-previous"
+          type="button"
+          aria-label="Vorheriges Bild"
+          aria-disabled="true"
+        >
+          <span aria-hidden="true">←</span>
+          Vorheriges
+        </button>
+        <p
+          class="event-lightbox-position"
+          id="event-lightbox-position"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Bild 1 von 1
+        </p>
+        <button
+          class="event-lightbox-control event-lightbox-next"
+          id="event-lightbox-next"
+          type="button"
+          aria-label="Nächstes Bild"
+          aria-disabled="true"
+        >
+          Nächstes
+          <span aria-hidden="true">→</span>
+        </button>
+      </nav>
+    </div>
+  </dialog>
 
   <footer class="site-footer">
     <div class="site-footer-inner">

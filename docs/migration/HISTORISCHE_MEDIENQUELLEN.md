@@ -3,10 +3,11 @@
 ## Zweck und Schutzgrenze
 
 Dieses Inventar dokumentiert die für die Migration lokal gesicherten
-Originalmedien der bisherigen Vereinswebsite. Die Sicherung dient ausschließlich
-der internen Quellenbewahrung und bedeutet keine Freigabe zur Veröffentlichung.
+Medienfassungen der bisherigen Vereinswebsite. Die Sicherung dient zunächst der
+internen Quellenbewahrung und bedeutet für sich allein keine Freigabe zur
+Veröffentlichung.
 
-Die unveränderten Originaldateien liegen unter `.local-archive/history/`. Dieser
+Die unveränderten gesicherten Dateien liegen unter `.local-archive/history/`. Dieser
 Ordner wird von Git ausgeschlossen und gehört nicht zu den öffentlich
 ausgelieferten Website-Assets. Wegen dieses bewussten Ausschlusses ist zusätzlich
 eine lokale Sicherung außerhalb des Repositorys erforderlich.
@@ -20,15 +21,15 @@ die öffentliche Asset-Struktur übernommen werden. Dafür gelten die Statuswert
 
 ## Medieninventar
 
-Abrufdatum aller nachfolgenden Originaldateien: **31.08.2026**
+Abrufdatum aller nachfolgenden GES-001-Fassungen: **31.08.2026**
 
 Quellseite: [Geschichte der bisherigen Vereinswebsite](https://www.schuetzenverein-eckartsberga.de/geschichte/)
 
 ### Heimatblatt vom 09.07.1927
 
 - Lokaler Dateiname: `1927_07_09 Heimatblatt Hundertjahrfeier Schützengilde Eckartsberga.jpg`
-- Status: `intern gesichert – Rechte ungeklärt`
-- Quelle: [Jimdo-Originaldatei](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/i527d278d9767e979/version/1708066411/image.jpg)
+- Status: `für öffentliche Website freigegeben`
+- Quelle: [Jimdo-Quelladresse der gesicherten Fassung](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/i527d278d9767e979/version/1708066411/image.jpg)
 - MIME-Typ: `image/jpeg`
 - Pixelmaße: 1084 × 1498
 - Dateigröße: 547958 Bytes
@@ -39,20 +40,21 @@ Quellseite: [Geschichte der bisherigen Vereinswebsite](https://www.schuetzenvere
 ### Historische Gruppenaufnahme am Schützenhaus
 
 - Lokaler Dateiname: `undatiert Historische Gruppenaufnahme am Schützenhaus Burgberg.jpg`
-- Status: `intern gesichert – Rechte ungeklärt`
-- Quelle: [Jimdo-Originaldatei](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/i6ab26e3d1f944e5b/version/1708065682/image.jpg)
+- Status: `für öffentliche Website freigegeben`
+- Quelle: [Jimdo-Quelladresse der gesicherten Fassung](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/i6ab26e3d1f944e5b/version/1708065682/image.jpg)
 - MIME-Typ: `image/jpeg`
 - Pixelmaße: 1279 × 905
 - Dateigröße: 247594 Bytes
 - SHA-256: `d859f99bc7c4a95bf6b1d8bbaf7f20219bc84ce9221f20a94a90c036e1e94baa`
 - Sichere Zuordnung: historische Gruppenaufnahme vor einem Gebäude mit der sichtbaren Inschrift „1827–1902“
-- Offen: Aufnahmejahr, Anlass, Personen und genaue Bedeutung der Jahreszahlen sind nicht sicher bestimmt.
+- Redaktionelle Einordnung: Die sichtbaren Jahreszahlen „1827–1902“ stützen die Zuordnung zum 75-jährigen Jubiläum im Jahr 1902.
+- Offen: Personen, Fotograf und weitere Provenienz sind nicht bekannt.
 
 ### Schützenfest 1912
 
 - Lokaler Dateiname: `1912 Schützenfest Eckartsberga.jpg`
-- Status: `intern gesichert – Rechte ungeklärt`
-- Quelle: [Jimdo-Originaldatei](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/ic9e5f8de95311e5d/version/1708065692/image.jpg)
+- Status: `für öffentliche Website freigegeben`
+- Quelle: [Jimdo-Quelladresse der gesicherten Fassung](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/ic9e5f8de95311e5d/version/1708065692/image.jpg)
 - MIME-Typ: `image/jpeg`
 - Pixelmaße: 1279 × 905
 - Dateigröße: 291657 Bytes
@@ -63,8 +65,8 @@ Quellseite: [Geschichte der bisherigen Vereinswebsite](https://www.schuetzenvere
 ### Schützenfest 1922
 
 - Lokaler Dateiname: `1922 Schützenfest Eckartsberga.jpg`
-- Status: `intern gesichert – Rechte ungeklärt`
-- Quelle: [Jimdo-Originaldatei](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/i3c11f8f8eab5b54a/version/1708065701/image.jpg)
+- Status: `für öffentliche Website freigegeben`
+- Quelle: [Jimdo-Quelladresse der gesicherten Fassung](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/i3c11f8f8eab5b54a/version/1708065701/image.jpg)
 - MIME-Typ: `image/jpeg`
 - Pixelmaße: 1279 × 905
 - Dateigröße: 295680 Bytes
@@ -75,14 +77,40 @@ Quellseite: [Geschichte der bisherigen Vereinswebsite](https://www.schuetzenvere
 ### Zeitungsausschnitt zur Fahnenweihe
 
 - Lokaler Dateiname: `1996 Fahnenweihe GSG Eckartsberga Zeitungsausschnitt.jpg`
-- Status: `intern gesichert – Rechte ungeklärt`
-- Quelle: [Jimdo-Originaldatei](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/ib46670084129bfc2/version/1708065713/image.jpg)
+- Status: `für öffentliche Website freigegeben`
+- Quelle: [Jimdo-Quelladresse der gesicherten Fassung](https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/ib46670084129bfc2/version/1708065713/image.jpg)
 - MIME-Typ: `image/jpeg`
 - Pixelmaße: 1279 × 670
 - Dateigröße: 425726 Bytes
 - SHA-256: `9270ba0dd54cef09a6a0fda3d3e3d35e2fde52313d0e5bd587ebfc7386d6cfda`
 - Sichere Zuordnung: Zeitungsausschnitt über Fahnenweihe und Schützenfest der GSG; die bisherige Vereinschronik ordnet das Ereignis dem Jahr 1996 zu
 - Offen: Zeitung, Erscheinungsdatum, Autor, Fotograf und vollständiger Seitenkontext sind nicht sichtbar.
+
+## Bestmögliche Jimdo-Quellfassungen und öffentliche Arbeitskopien
+
+Am **02.09.2026** wurden die fünf freigegebenen Medien erneut über die
+Jimdo-`transf/none`-Quellen gesichert. Diese Dateien gelten als bestmögliche
+verfügbare Jimdo-Quellfassungen. Ohne Zugriff auf die ursprünglichen Uploads
+werden sie ausdrücklich nicht als byte-identische Originaldateien bezeichnet.
+Die technische Jimdo-Versionsnummer ist keine historische Datierung.
+
+Abweichende Fassungen liegen getrennt unter
+`.local-archive/history/jimdo-transf-none/`; die bisherigen GES-001-Dateien
+bleiben unverändert. Die Fassung von 1922 ist bereits mit der vorhandenen
+Archivdatei byte-identisch und wurde deshalb nicht dupliziert.
+
+| Medium | Lokale bestmögliche Quellfassung | Maße | Größe | SHA-256 | Öffentliche Arbeitskopie |
+|---|---|---:|---:|---|---|
+| Jubiläumsaufnahme 1902 | `jimdo-transf-none/1902 Eckartsbergaer Schützengesellschaft zum 75-jährigen Jubiläum.jpg` | 1279 × 905 | 308813 Bytes | `2b909d0dd6061e6c3c01669178f16d2c0e62bee4bb2e16d1e426376a6eea6e3c` | `assets/img/history/1902 Eckartsbergaer Schützengesellschaft zum 75-jährigen Jubiläum.jpg` |
+| Schützenfest 1912 | `jimdo-transf-none/1912 Schützenfest Eckartsberga.jpg` | 1206 × 891 | 276759 Bytes | `d011c15664910e762b722d974f2ae45aeec064ca78ff00e29f3f910ebb3da36f` | `assets/img/history/1912 Schützenfest Eckartsberga.jpg` |
+| Schützenfest 1922 | `1922 Schützenfest Eckartsberga.jpg` | 1279 × 905 | 295680 Bytes | `5a0bce6c54aab624bd6cbe54838bef90f3c2aa322838d52d88b6589b00bfa8bf` | `assets/img/history/1922 Schützenfest und 5. Thüringer Verbandsschießen Eckartsberga.jpg` |
+| Heimatblatt 1927 | `jimdo-transf-none/1927 Heimatblatt Hundertjahrfeier Schützengilde Eckartsberga.jpg` | 852 × 1376 | 455257 Bytes | `99b878cfd06d6065b79cbfdf2e340c5a67ab0d9dc734d7be90c0cb26eecf0f59` | `assets/img/history/1927 Heimatblatt Hundertjahrfeier Schützengilde Eckartsberga.jpg` |
+| Fahnenweihe 1996 | `jimdo-transf-none/1996 Fahnenweihe und 4. Schützenfest GSG Eckartsberga Zeitungsausschnitt.jpg` | 1279 × 670 | 396792 Bytes | `997a1ff4e35c57f85ecde4555630cd6acd5ceec3adbc43e635d920faeda7822a` | `assets/img/history/1996 Fahnenweihe und 4. Schützenfest GSG Eckartsberga Zeitungsausschnitt.jpg` |
+
+Die öffentlichen JPEG-Arbeitskopien sind byte- und pixelidentisch zu den hier
+aufgeführten Quellfassungen. Es erfolgten keine Ausschnitte, Retuschen,
+Schärfungen, Kolorierungen oder erneuten verlustbehafteten Kompressionen. Der
+Zeitungsausschnitt von 1996 besitzt tatsächlich das Querformat 1279 × 670.
 
 ## Nicht als Chronikmedien übernommene Dateien
 

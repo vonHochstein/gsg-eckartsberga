@@ -38,6 +38,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Produktiver Veranstaltungseintrag für den Sommerpokal im Wurfscheibenschießen 2026 in Lossa mit bildbasierter Ausschreibung.
 - Eigenständige, responsive Geschichtsseite als semantisch geordnete Vereinschronik mit sichtbarer Quellen- und Einordnungssektion.
 - Startseitenteaser als zugänglicher Einstieg in die Vereinschronik.
+- Fünf freigegebene historische Medien in den zugehörigen Chronikstationen sowie drei historische Fotografien in der Startseitengalerie.
+- Gemeinsame native Galerie-Lightbox für Veranstaltungs- und Geschichtsmedien.
 
 ### Geändert
 
@@ -87,7 +89,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Technische Projektdokumentation um Reihenfolge, Galerieverhalten und Prüfmatrix von AP 2 ergänzt.
 - Technische Projektdokumentation, Roadmap und Prüfpunkte auf den Abschluss der Galerie-Lightbox in AP 3 aktualisiert.
 - Technische Projektdokumentation und Roadmap um Datenvertrag und Kompatibilitätsregeln von AP 4 ergänzt.
-- Historische Originalmedien intern mit Herkunft und Prüfsummen inventarisiert und von öffentlich ausgelieferten Assets getrennt.
+- Historische Medienfassungen intern mit Herkunft und Prüfsummen inventarisiert und von öffentlich ausgelieferten Assets getrennt.
+- Bestmögliche Jimdo-Quellfassungen, öffentliche Freigabe und unveränderte Web-Arbeitskopien der fünf Chronikmedien dokumentiert.
 - Technische Projektdokumentation und Roadmap auf den Stand der neuen Vereinschronik fortgeschrieben.
 
 ---

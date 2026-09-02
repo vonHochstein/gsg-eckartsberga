@@ -82,6 +82,8 @@ Die Anwendung verwendet:
 │       ├── hero-eckartsburg.jpg
 │       ├── hero-eckartsburg.png
 │       ├── history-eckartsberga.jpg
+│       ├── history/
+│       │   └── fünf freigegebene historische JPEG-Medien
 │       ├── logo-gsg-eckartsberga.png
 │       └── logo-schuetzenkreis-sued.png
 ├── js/
@@ -93,6 +95,7 @@ Die Anwendung verwendet:
 │   ├── event-detail.js
 │   ├── event-utils.js
 │   ├── gallery.js
+│   ├── gallery-lightbox.js
 │   ├── main.js
 │   └── navigation.js
 ├── tests/
@@ -155,7 +158,8 @@ Sie lädt bewusst keine Startseitenmodule für Countdown, Timeline oder Galeriea
 3. `js/event-utils.js`
 4. `js/navigation.js`
 5. `js/event-detail.js`
-6. `js/main.js`
+6. `js/gallery-lightbox.js`
+7. `js/main.js`
 
 #### `geschichte.html`
 
@@ -164,12 +168,17 @@ Die eigenständige Geschichtsseite enthält:
 - denselben Header und Footer wie die übrigen Seiten, ohne zusätzlichen globalen Navigationspunkt;
 - einen kompakten Seiteneinstieg mit Rücklink zum Vereinsbereich;
 - eine chronologisch geordnete, vollständig statische Vereinschronik;
+- fünf freigegebene historische Medien in ihren zugehörigen Chronikstationen;
+- genau ein natives `<dialog>` für die gemeinsame Galerie-Lightbox;
 - eine sichtbare Sektion „Historische Quellen und weiterführende Informationen“;
-- bewusst keine ungeklärten historischen Medien und keine JavaScript-abhängige Inhaltsausgabe.
+- keine JavaScript-Abhängigkeit für die eigentliche Inhaltsausgabe.
 
-Sie lädt ausschließlich `js/navigation.js` für das mobile Menü und `js/main.js`
-für die Jahreszahl im Footer. Der vorhandene Geschichtsteaser auf der Startseite
-ist der kanonische Einstieg.
+Sie lädt `js/navigation.js` für das mobile Menü, `js/gallery-lightbox.js` für die
+optionale Medienvergrößerung und `js/main.js` für die Jahreszahl im Footer. Die
+Chronik bleibt ohne JavaScript vollständig lesbar. Der vorhandene
+Geschichtsteaser auf der Startseite ist der kanonische Einstieg; die drei
+historischen Fotografien der Startseitengalerie verweisen zusätzlich direkt auf
+die zugehörigen Chronikstationen.
 
 ### 2.2 CSS
 
@@ -269,6 +278,21 @@ Erzeugt Timeline und Archiv. Für Titel, Bild, kanonische Dokumente, externe Erg
 
 Normalisiert eventbezogene Galeriebilder über `EventUtils`. Jedes Bild behält seine Veranstaltung als Kontext und wird nur bei vorhandener Detail-URL verlinkt. Gibt es keine eventbezogenen Bilder, bleiben die statischen Rückfallbilder unverändert.
 
+Die statische Rückfallgalerie enthält drei freigegebene historische Fotografien
+von 1902, 1912 und 1922 sowie das vorhandene Eckartsburgmotiv. Historische
+Fotografien werden vollständig und ohne Ken-Burns-Zoom dargestellt und führen
+zu ihrer jeweiligen Chronikstation. Heimatblatt und Zeitungsausschnitt bleiben
+der ausführlichen Geschichtsseite vorbehalten.
+
+#### `js/gallery-lightbox.js`
+
+Initialisiert die gemeinsame native Lightbox für jedes mit
+`data-gallery-lightbox` gekennzeichnete Galerieraster. Bildquelle,
+Alternativtext, Abmessungen und Bildunterschrift werden aus dem semantischen
+Galeriemarkup gelesen. Veranstaltungsdetailseite und Geschichtsseite verwenden
+damit denselben Controller für Fokusführung, Backdrop-Klick, Escape sowie
+Vor-/Zurück- und Pfeiltastennavigation.
+
 #### `js/event-detail.js`
 
 Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtils` auf und rendert:
@@ -292,7 +316,7 @@ Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein un
 
 Bis zu sechs gültige Galeriebilder werden vollständig dargestellt. Bei mehr als sechs Bildern zeigt die Seite zunächst die ersten sechs in Datenreihenfolge. Ein nativer, tastaturbedienbarer Schalter blendet die verbleibenden Bilder ein und wieder aus; Beschriftung und `aria-expanded` folgen dem tatsächlichen Zustand. Beim Einklappen wird die Position des Schalters im sichtbaren Bereich stabilisiert. Ungültige Galerieeinträge werden bereits durch `EventUtils.normalizeGallery()` verworfen und zählen nicht gegen diese Grenze.
 
-Jede Galeriekachel öffnet dasselbe native `<dialog>` mit dem vollständigen Bild, vorhandenem Alternativtext und optionaler Bildunterschrift. Die Lightbox navigiert über Schalter und linke beziehungsweise rechte Pfeiltaste durch alle gültigen Bilder in Datenreihenfolge, auch wenn die Kachelansicht noch eingeklappt ist. An den Grenzen findet kein Umlauf statt; bei nur einem Bild werden die Navigationsschalter ausgeblendet.
+Jede Galeriekachel öffnet über `gallery-lightbox.js` dasselbe native `<dialog>` mit dem vollständigen Bild, vorhandenem Alternativtext und optionaler Bildunterschrift. Die Lightbox navigiert über Schalter und linke beziehungsweise rechte Pfeiltaste durch alle gültigen Bilder in Datenreihenfolge, auch wenn die Kachelansicht noch eingeklappt ist. An den Grenzen findet kein Umlauf statt; bei nur einem Bild werden die Navigationsschalter ausgeblendet.
 
 Der initiale Fokus liegt auf dem sichtbaren Schließen-Schalter. Schließen ist per Schalter, Escape und eindeutigem Klick auf die Dialogfläche außerhalb des Panels möglich. Pointerdown innerhalb des Panels verhindert ein versehentliches Schließen beim Loslassen außerhalb. Das native Modalverhalten hält Hintergrund und außerhalb liegende Bedienelemente inert; jedes Schließen gibt den Fokus an die auslösende Kachel zurück. Es wurden keine Übergangs- oder Bildwechselanimationen ergänzt.
 
@@ -404,13 +428,15 @@ Nach erfolgreichem Rendering werden gesetzt:
 | Datei | Direkte Laufzeitabhängigkeiten |
 |---|---|
 | `index.html` | `style.css`, Daten, `EventUtils`, Startseitenmodule |
-| `event.html` | `style.css`, `event.css`, Daten, `EventUtils`, Navigation, Detailrenderer |
+| `event.html` | `style.css`, `event.css`, Daten, `EventUtils`, Navigation, Detailrenderer, gemeinsame Lightbox |
+| `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `events.js` | optional `developmentEvents` |
 | `event-utils.js` | standardisierte Browser-/JavaScript-APIs, kein DOM |
 | `countdown.js` | `events`, `EventUtils`, Startseiten-DOM |
 | `calendar.js` | `events`, `EventUtils`, Timeline-DOM und Timeline-CSS |
 | `gallery.js` | `events`, `EventUtils`, Galerie-DOM und Galerie-CSS |
 | `event-detail.js` | `events`, `EventUtils`, Detail-DOM und `event.css` |
+| `gallery-lightbox.js` | deklaratives Galeriemarkup, natives `<dialog>` und Lightbox-CSS aus `event.css` |
 | `navigation.js` | gemeinsame Header- und Navigationsstruktur |
 | `main.js` | Footer-Jahr und Demo-Datenattribut |
 
@@ -687,6 +713,9 @@ node --test tests/*.test.js
 - Geschichtsteaser als einzigen neuen Einstieg ohne Erweiterung von Header oder Footer;
 - öffentlich verständliche historische Quellen ohne Arbeits-, Archiv- oder direkte Jimdo-Medienverweise;
 - Abmessungen und Alternativtexte aller auf der Seite verwendeten Bilder;
+- Zuordnung, Bildunterschriften und Prüfsummen der fünf historischen Medien;
+- genau drei historische Fotografien und ihre Stationslinks in der Startseitengalerie;
+- gemeinsame Lightbox-Einbindung auf Geschichts- und Veranstaltungsdetailseite;
 - Entfernung problematischer Kontinuitätsbehauptungen auf der Startseite;
 - Ausschluss des lokalen Migrationsarchivs über `.gitignore`.
 

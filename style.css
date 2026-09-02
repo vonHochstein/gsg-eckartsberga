@@ -941,6 +941,17 @@ abbr[title] {
   animation: galleryImageZoom 6.5s ease-in-out forwards;
 }
 
+.gallery-feature-history {
+  background: #d8d1c6;
+}
+
+.gallery-feature-history img,
+.gallery-feature-history.is-active img {
+  object-fit: contain;
+  transform: none;
+  animation: none;
+}
+
 @keyframes galleryImageZoom {
   0% {
     transform: scale(1.03);
