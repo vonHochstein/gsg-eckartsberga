@@ -102,5 +102,7 @@ Diese Punkte sind erwünscht, blockieren die erste Geschichtsseite jedoch nicht:
 - weiterführende Unterlagen zur Fahnenweihe 1996;
 - Rechte- und Provenienzklärung für jedes einzelne gesicherte Medium.
 
-Bis zur Klärung werden ungesicherte Einzelheiten auf der Website vorsichtig als
-Angaben der bisherigen Vereinschronik oder als Vereinsüberlieferung formuliert.
+Offene Herkunfts-, Rechte- und Recherchefragen bleiben in diesem internen
+Inventar dokumentiert. Die öffentliche Geschichtsseite verwendet ausschließlich
+die jeweils redaktionell freigegebene Fassung und stellt die frühere Website
+nicht als eigenständige historische Quelle dar.

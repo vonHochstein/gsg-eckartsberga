@@ -22,7 +22,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - Hero-Bereich mit klaren Handlungsoptionen;
 - Informationskarten für Veranstaltung, Sport und Mitgliedschaft;
 - Vereinsübersicht, Geschichtsteaser und eigenständige chronologische Geschichtsseite;
-- sprachliche Trennung zwischen belegten historischen Zusammenhängen, historischen Vereinsquellen und Vereinsüberlieferung;
+- redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
 - abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
 - konsistenter Footer mit ausschließlich vorhandenen Sprungzielen;
 - IA-001: Startseite technisch, gestalterisch und inhaltlich stabilisiert.

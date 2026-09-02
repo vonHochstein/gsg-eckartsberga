@@ -164,7 +164,7 @@ Die eigenständige Geschichtsseite enthält:
 - denselben Header und Footer wie die übrigen Seiten, ohne zusätzlichen globalen Navigationspunkt;
 - einen kompakten Seiteneinstieg mit Rücklink zum Vereinsbereich;
 - eine chronologisch geordnete, vollständig statische Vereinschronik;
-- eine sichtbare Sektion „Quellen und Einordnung“;
+- eine sichtbare Sektion „Historische Quellen und weiterführende Informationen“;
 - bewusst keine ungeklärten historischen Medien und keine JavaScript-abhängige Inhaltsausgabe.
 
 Sie lädt ausschließlich `js/navigation.js` für das mobile Menü und `js/main.js`
@@ -682,10 +682,10 @@ node --test tests/*.test.js
 `tests/history-page.test.js` prüft:
 
 - Existenz der statischen Seite und ihres Stylesheets;
-- genau eine H1 und die verbindliche Reihenfolge der Chronikstationen;
+- genau eine H1 und die verbindliche Reihenfolge der Chronikstationen einschließlich 1618–1648;
 - vollständige Datumswerte in semantischen `time`-Elementen;
 - Geschichtsteaser als einzigen neuen Einstieg ohne Erweiterung von Header oder Footer;
-- sichtbare Quellenkategorien und das Fehlen direkter Jimdo-Medienverweise;
+- öffentlich verständliche historische Quellen ohne Arbeits-, Archiv- oder direkte Jimdo-Medienverweise;
 - Abmessungen und Alternativtexte aller auf der Seite verwendeten Bilder;
 - Entfernung problematischer Kontinuitätsbehauptungen auf der Startseite;
 - Ausschluss des lokalen Migrationsarchivs über `.gitignore`.

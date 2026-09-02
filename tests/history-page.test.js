@@ -44,6 +44,8 @@ test("bewahrt die verbindliche chronologische Reihenfolge", () => {
   const stations = [
     "15. Jahrhundert",
     "datetime=\"1503\"",
+    "datetime=\"1618\"",
+    "datetime=\"1648\"",
     "datetime=\"1827\"",
     "datetime=\"1912\"",
     "datetime=\"1927-07-09\"",
@@ -70,6 +72,7 @@ test("bewahrt die verbindliche chronologische Reihenfolge", () => {
 
   assert.match(historyHtml, /datetime="1992-10-07"/);
   assert.match(historyHtml, /datetime="1992-10-23"/);
+  assert.match(historyHtml, /<h3>Der Dreißigjährige Krieg<\/h3>/);
 });
 
 test("verlinkt ausschließlich die bestehende Geschichtskarte als Einstieg", () => {
@@ -91,15 +94,36 @@ test("verlinkt ausschließlich die bestehende Geschichtskarte als Einstieg", () 
   });
 });
 
-test("enthält transparente Quellen ohne ungeklärte Medien zu veröffentlichen", () => {
+test("führt die historischen Quellen öffentlich verständlich auf", () => {
   const historyHtml = readProjectFile(historyPath);
 
-  assert.match(historyHtml, /Quellen und Einordnung/);
-  assert.match(historyHtml, /Externe historische Quelle/);
-  assert.match(historyHtml, /Historische Vereinsquellen/);
-  assert.match(historyHtml, /Vereinsüberlieferung/);
+  assert.match(historyHtml, /Historische Quellen und weiterführende Informationen/);
+  assert.match(historyHtml, /Sächsische Biografie – Wilhelm III\. von Sachsen/);
+  assert.match(historyHtml, /Heimatblatt vom 9\. Juli 1927/);
+  assert.match(historyHtml, /Historische Bildaufnahmen von 1912 und 1922/);
+  assert.match(historyHtml, /Zeitungsausschnitt zur Fahnenweihe/);
+  assert.match(
+    historyHtml,
+    /Deutscher Schützenbund und Landschaftsverband Westfalen-Lippe/
+  );
+  assert.match(historyHtml, /Gesetzblatt der DDR/);
+  assert.doesNotMatch(historyHtml, /schuetzenverein-eckartsberga\.de\/geschichte/i);
+  assert.doesNotMatch(historyHtml, /Vereinsüberlieferung/);
+  assert.doesNotMatch(historyHtml, /Prüfsummen/);
+  assert.doesNotMatch(historyHtml, /Nutzungslage/);
+  assert.doesNotMatch(historyHtml, /\.local-archive/i);
   assert.doesNotMatch(historyHtml, /image\.jimcdn\.com/i);
   assert.doesNotMatch(historyHtml, /assets\/(?:img|documents)\/history\//i);
+});
+
+test("erzählt die Chronik ohne öffentliche Arbeits- und Belegstandskommentare", () => {
+  const historyHtml = readProjectFile(historyPath);
+
+  assert.doesNotMatch(historyHtml, /Diese Chronik trennt belegte Zusammenhänge/);
+  assert.doesNotMatch(historyHtml, /bisherige Vereinschronik/);
+  assert.doesNotMatch(historyHtml, /belastbarer Beleg/);
+  assert.doesNotMatch(historyHtml, /bislang nicht/);
+  assert.doesNotMatch(historyHtml, /offene lokale Fragen/);
 });
 
 test("versieht alle öffentlichen Bilder der Geschichtsseite mit Abmessungen und Alt-Text", () => {
