@@ -48,6 +48,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Timeline semantisch gegliedert, stabil sortiert und das Jahresarchiv zugänglicher beschriftet.
 - Galerieanimation beruhigt und bei reduzierter Bewegung deaktiviert.
 - Galerievorschau so ergänzt, dass vorhandene Eventbilder genutzt werden und ohne solche Daten die statischen Bilder erhalten bleiben.
+- Historische Fotografien der Startseitengalerie an die kachelfüllende Darstellung und den bestehenden Zoom der übrigen Galeriebilder angeglichen.
 - Hero-Bilddatei für deutlich geringere Übertragungsgröße optimiert.
 - Timeline-Karten, Countdown und ereignisbezogene Galerie-Vorschauen mit den passenden Detailseiten verbunden.
 - Leere oder ungültige optionale Detailbereiche werden vollständig ausgeblendet; ein ungültiges oder vor dem Start liegendes Enddatum wird ignoriert.

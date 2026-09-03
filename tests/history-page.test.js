@@ -9,6 +9,7 @@ const path = require("node:path");
 const projectRoot = path.resolve(__dirname, "..");
 const historyPath = path.join(projectRoot, "geschichte.html");
 const historyCssPath = path.join(projectRoot, "geschichte.css");
+const stylePath = path.join(projectRoot, "style.css");
 const indexPath = path.join(projectRoot, "index.html");
 const eventPath = path.join(projectRoot, "event.html");
 const lightboxScriptPath = path.join(projectRoot, "js", "gallery-lightbox.js");
@@ -275,6 +276,24 @@ test("ergänzt genau drei historische Fotografien in der Startseitengalerie", ()
   );
   assert.doesNotMatch(galleryMarkup, /1927 Heimatblatt/);
   assert.doesNotMatch(galleryMarkup, /1996 Fahnenweihe/);
+});
+
+test("verwendet für historische Startseitenbilder das bestehende Galerieverhalten", () => {
+  const styleCss = readProjectFile(stylePath);
+
+  assert.match(
+    styleCss,
+    /\.gallery-feature img\s*\{[^}]*object-fit:\s*cover;[^}]*transform:\s*scale\(1\.03\);[^}]*\}/
+  );
+  assert.match(
+    styleCss,
+    /\.gallery-feature\.is-active img\s*\{[^}]*animation:\s*galleryImageZoom 6\.5s ease-in-out forwards;[^}]*\}/
+  );
+  assert.doesNotMatch(styleCss, /\.gallery-feature-history/);
+  assert.match(
+    styleCss,
+    /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.gallery-feature\.is-active img\s*\{[^}]*animation:\s*none;[^}]*transform:\s*scale\(1\.03\);[^}]*\}/
+  );
 });
 
 test("verwendet auf Event- und Geschichtsseite dieselbe Lightbox-Steuerung", () => {

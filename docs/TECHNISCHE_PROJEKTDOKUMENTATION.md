@@ -280,9 +280,10 @@ Normalisiert eventbezogene Galeriebilder über `EventUtils`. Jedes Bild behält 
 
 Die statische Rückfallgalerie enthält drei freigegebene historische Fotografien
 von 1902, 1912 und 1922 sowie das vorhandene Eckartsburgmotiv. Historische
-Fotografien werden vollständig und ohne Ken-Burns-Zoom dargestellt und führen
-zu ihrer jeweiligen Chronikstation. Heimatblatt und Zeitungsausschnitt bleiben
-der ausführlichen Geschichtsseite vorbehalten.
+Fotografien verwenden wie das Eckartsburgmotiv die kachelfüllende Darstellung
+und den vorhandenen Ken-Burns-Zoom und führen zu ihrer jeweiligen
+Chronikstation. Heimatblatt und Zeitungsausschnitt bleiben der ausführlichen
+Geschichtsseite vorbehalten.
 
 #### `js/gallery-lightbox.js`
 
