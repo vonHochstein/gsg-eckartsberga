@@ -22,6 +22,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - Hero-Bereich mit klaren Handlungsoptionen;
 - Informationskarten für Veranstaltung, Sport und Mitgliedschaft;
 - Vereinsübersicht, Geschichtsteaser und eigenständige chronologische Geschichtsseite;
+- eigenständige Vorstands- und Ansprechpartnerseite mit bestätigten Funktionen und Namen;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
 - abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
 - konsistenter Footer mit ausschließlich vorhandenen Sprungzielen;
@@ -89,7 +90,7 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - benötigte Inhalte und redaktionelle Verantwortlichkeiten klären;
 - reale Inhalte, Testdaten und Platzhalter eindeutig voneinander abgrenzen;
 - endgültige Seiten- und Bereichsstruktur festlegen;
-- Vereins-, Sport-, Anlagen-, Erfolgs-, Mitgliedschafts- und Kontaktinhalte einpflegen;
+- weitere Vereins-, Sport-, Anlagen-, Erfolgs-, Mitgliedschafts- und Kontaktinhalte einpflegen;
 - freigegebene direkte Kontaktwege ergänzen.
 
 ### Abschnitt 2: Rechtliche Veröffentlichungsgrundlage

@@ -20,7 +20,6 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
 - ausführliche Vereinsgeschichte;
 - Darstellung der Schießdisziplinen;
 - Vorstellung von Schießbahnen und Vereinshaus;
-- Vorstand und Ansprechpartner;
 - Erfolge, Schützenkönige und besondere Leistungen;
 - Sponsorenübersicht;
 - Übersicht befreundeter Vereine;

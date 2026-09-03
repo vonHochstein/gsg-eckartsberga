@@ -40,6 +40,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Startseitenteaser als zugänglicher Einstieg in die Vereinschronik.
 - Fünf freigegebene historische Medien in den zugehörigen Chronikstationen sowie drei historische Fotografien in der Startseitengalerie.
 - Gemeinsame native Galerie-Lightbox für Veranstaltungs- und Geschichtsmedien.
+- Eigenständige Vorstands- und Ansprechpartnerseite mit bestätigten Funktionen und Namen.
 
 ### Geändert
 

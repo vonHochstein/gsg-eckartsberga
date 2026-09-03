@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 31. August 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001 und GES-002
+**Stand:** 3. September 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002 und MIG-VOR-001
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -22,6 +22,7 @@ Umgesetzt und geprüft sind:
 
 - responsive Startseite mit Hero, Vereinsinformationen und Mitgliedschaftsteaser;
 - statische, responsive Geschichtsseite mit semantischer Chronologie und sichtbarer Quelleneinordnung;
+- statische Vorstands- und Ansprechpartnerseite auf Basis der vorhandenen Detailseitenkomponenten;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
 - dynamische Anzeige der nächsten Veranstaltung mit Countdown;
 - Timeline für kommende, aktuelle und archivierte Veranstaltungen;
@@ -43,7 +44,7 @@ Umgesetzt und geprüft sind:
 Noch nicht umgesetzt sind insbesondere:
 
 - freigegebene Detailinhalte für produktive Veranstaltungen;
-- vollständige Vereins-, Anlagen-, Erfolgs- und Kontaktinhalte;
+- weitere Vereins-, Anlagen-, Erfolgs- und Kontaktinhalte;
 - Impressum und Datenschutz;
 - vollständige produktive Galerie;
 - Backend, CMS, Formulare, Suche und Mitgliederbereich;
@@ -70,6 +71,7 @@ Die Anwendung verwendet:
 ├── index.html
 ├── event.html
 ├── geschichte.html
+├── vorstand.html
 ├── style.css
 ├── event.css
 ├── geschichte.css
@@ -100,7 +102,8 @@ Die Anwendung verwendet:
 │   └── navigation.js
 ├── tests/
 │   ├── event-utils.test.js
-│   └── history-page.test.js
+│   ├── history-page.test.js
+│   └── board-page.test.js
 └── docs/
     ├── TECHNISCHE_PROJEKTDOKUMENTATION.md
     ├── 00_PROJEKTVISION.md
@@ -179,6 +182,19 @@ Chronik bleibt ohne JavaScript vollständig lesbar. Der vorhandene
 Geschichtsteaser auf der Startseite ist der kanonische Einstieg; die drei
 historischen Fotografien der Startseitengalerie verweisen zusätzlich direkt auf
 die zugehörigen Chronikstationen.
+
+#### `vorstand.html`
+
+Die statische Unterseite stellt Vorstand und weitere Ansprechpartner fachlich
+getrennt dar. Sie verwendet ohne eigenes Stylesheet den Seitenrahmen, den
+Rücklink, den Hero, die Abschnittscontainer und das Faktenkartenraster aus
+`event.css`. Die vorhandene Startseitenkarte „Ansprechpartner“ ist der einzige
+neue Einstieg; Header und Footer wurden nicht um einen weiteren Link ergänzt.
+
+Die erste Fassung enthält ausschließlich bestätigte Funktionen und Namen. Sie
+veröffentlicht weder Porträtbilder noch direkte Kontaktdaten, Karte oder Anfahrt
+und bleibt ohne JavaScript vollständig lesbar. `js/navigation.js` steuert nur
+das mobile Menü, `js/main.js` aktualisiert die Jahreszahl im Footer.
 
 ### 2.2 CSS
 
@@ -431,6 +447,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `index.html` | `style.css`, Daten, `EventUtils`, Startseitenmodule |
 | `event.html` | `style.css`, `event.css`, Daten, `EventUtils`, Navigation, Detailrenderer, gemeinsame Lightbox |
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
+| `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
 | `events.js` | optional `developmentEvents` |
 | `event-utils.js` | standardisierte Browser-/JavaScript-APIs, kein DOM |
 | `countdown.js` | `events`, `EventUtils`, Startseiten-DOM |
@@ -719,6 +736,14 @@ node --test tests/*.test.js
 - gemeinsame Lightbox-Einbindung auf Geschichts- und Veranstaltungsdetailseite;
 - Entfernung problematischer Kontinuitätsbehauptungen auf der Startseite;
 - Ausschluss des lokalen Migrationsarchivs über `.gitignore`.
+
+`tests/board-page.test.js` prüft:
+
+- statische H1-, Detailseiten- und Abschnittsstruktur;
+- bestätigte Personen und ihre eindeutige fachliche Zuordnung;
+- Ausschluss ungeprüfter Kontaktdaten, Karten-, Anfahrts- und Porträtinhalte;
+- unveränderten sichtbaren Inhalt der verlinkten Ansprechpartnerkarte;
+- unveränderte Header- und Footer-Navigation sowie die gemeinsamen Skripte.
 
 ### 5.2 Browserprüfungen
 
