@@ -44,7 +44,7 @@ Umgesetzt und geprüft sind:
 Noch nicht umgesetzt sind insbesondere:
 
 - freigegebene Detailinhalte für produktive Veranstaltungen;
-- weitere Vereins-, Anlagen-, Erfolgs- und Kontaktinhalte;
+- weitere Vereins-, Anlagen-, besondere Erfolgs- und Kontaktinhalte;
 - Impressum und Datenschutz;
 - vollständige produktive Galerie;
 - Backend, CMS, Formulare, Suche und Mitgliederbereich;
@@ -70,10 +70,12 @@ Die Anwendung verwendet:
 /
 ├── index.html
 ├── event.html
+├── erfolge.html
 ├── geschichte.html
 ├── vorstand.html
 ├── style.css
 ├── event.css
+├── erfolge.css
 ├── geschichte.css
 ├── notes.rtf
 ├── assets/
@@ -86,6 +88,8 @@ Die Anwendung verwendet:
 │       ├── history-eckartsberga.jpg
 │       ├── history/
 │       │   └── fünf freigegebene historische JPEG-Medien
+│       ├── achievements/
+│       │   └── zehn freigegebene Aufnahmen der Schützenkönige
 │       ├── logo-gsg-eckartsberga.png
 │       └── logo-schuetzenkreis-sued.png
 ├── js/
@@ -101,6 +105,7 @@ Die Anwendung verwendet:
 │   ├── main.js
 │   └── navigation.js
 ├── tests/
+│   ├── achievements-page.test.js
 │   ├── event-utils.test.js
 │   ├── history-page.test.js
 │   └── board-page.test.js
@@ -195,6 +200,20 @@ Die erste Fassung enthält ausschließlich bestätigte Funktionen und Namen. Sie
 veröffentlicht weder Porträtbilder noch direkte Kontaktdaten, Karte oder Anfahrt
 und bleibt ohne JavaScript vollständig lesbar. `js/navigation.js` steuert nur
 das mobile Menü, `js/main.js` aktualisiert die Jahreszahl im Footer.
+
+#### `erfolge.html`
+
+Die statische Erfolgsseite verwendet denselben Detailseitenrahmen wie die
+Vorstands- und Veranstaltungsseiten. Ihre erste Fassung stellt ausschließlich
+die zehn auf der bisherigen Vereinswebsite dokumentierten Schützenkönige und
+die Schützenkönigin aus den Jahren 2016 bis 2026 dar; für 2018 existiert kein
+überlieferter Eintrag und kein Platzhalter.
+
+Die Aufnahmen erscheinen in einem responsiven Raster vollständig und
+unbeschnitten. Jede Kachel öffnet über `js/gallery-lightbox.js` dieselbe native
+Lightbox wie Veranstaltungs- und Geschichtsmedien. Die vorhandene Startseitenkarte
+„Erfolge“ ist der einzige neue Einstieg; Header und Footer erhalten keinen
+zusätzlichen Navigationspunkt.
 
 ### 2.2 CSS
 
@@ -295,10 +314,11 @@ Erzeugt Timeline und Archiv. Für Titel, Bild, kanonische Dokumente, externe Erg
 Normalisiert eventbezogene Galeriebilder über `EventUtils`. Jedes Bild behält seine Veranstaltung als Kontext und wird nur bei vorhandener Detail-URL verlinkt. Gibt es keine eventbezogenen Bilder, bleiben die statischen Rückfallbilder unverändert.
 
 Die statische Rückfallgalerie enthält drei freigegebene historische Fotografien
-von 1902, 1912 und 1922 sowie das vorhandene Eckartsburgmotiv. Historische
-Fotografien verwenden wie das Eckartsburgmotiv die kachelfüllende Darstellung
-und den vorhandenen Ken-Burns-Zoom und führen zu ihrer jeweiligen
-Chronikstation. Heimatblatt und Zeitungsausschnitt bleiben der ausführlichen
+von 1902, 1912 und 1922, das vorhandene Eckartsburgmotiv und zehn freigegebene
+Aufnahmen der Schützenkönige. Alle Motive verwenden die kachelfüllende
+Darstellung und den vorhandenen Ken-Burns-Zoom. Historische Fotografien führen
+zu ihrer Chronikstation, die Schützenkönig-Motive zum jeweiligen Eintrag auf
+`erfolge.html`. Heimatblatt und Zeitungsausschnitt bleiben der ausführlichen
 Geschichtsseite vorbehalten.
 
 #### `js/gallery-lightbox.js`
@@ -306,9 +326,9 @@ Geschichtsseite vorbehalten.
 Initialisiert die gemeinsame native Lightbox für jedes mit
 `data-gallery-lightbox` gekennzeichnete Galerieraster. Bildquelle,
 Alternativtext, Abmessungen und Bildunterschrift werden aus dem semantischen
-Galeriemarkup gelesen. Veranstaltungsdetailseite und Geschichtsseite verwenden
-damit denselben Controller für Fokusführung, Backdrop-Klick, Escape sowie
-Vor-/Zurück- und Pfeiltastennavigation.
+Galeriemarkup gelesen. Veranstaltungsdetailseite, Geschichtsseite und Erfolgsseite
+verwenden damit denselben Controller für Fokusführung, Backdrop-Klick, Escape
+sowie Vor-/Zurück- und Pfeiltastennavigation.
 
 #### `js/event-detail.js`
 
@@ -744,6 +764,18 @@ node --test tests/*.test.js
 - Ausschluss ungeprüfter Kontaktdaten, Karten-, Anfahrts- und Porträtinhalte;
 - unveränderten sichtbaren Inhalt der verlinkten Ansprechpartnerkarte;
 - unveränderte Header- und Footer-Navigation sowie die gemeinsamen Skripte.
+
+`tests/achievements-page.test.js` prüft:
+
+- statische H1-, Detailseiten- und Abschnittsstruktur;
+- zehn quellengetreu benannte Schützenkönig-Einträge in absteigender Reihenfolge;
+- bewusste Lücke 2018 und die quellengetreue Schreibweise für 2019;
+- Existenz, feste Abmessungen und Prüfsummen aller öffentlichen Medien;
+- vollständige, responsive Bilddarstellung im Kartenraster;
+- gemeinsame Lightbox ohne parallele Steuerung;
+- unveränderten sichtbaren Inhalt der verlinkten Erfolgskarte;
+- zehn zusätzliche Motive und deren Sprungziele in der statischen Startseitengalerie;
+- unveränderte Header- und Footer-Navigation.
 
 ### 5.2 Browserprüfungen
 

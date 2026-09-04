@@ -20,7 +20,7 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
 - ausführliche Vereinsgeschichte;
 - Darstellung der Schießdisziplinen;
 - Vorstellung von Schießbahnen und Vereinshaus;
-- Erfolge, Schützenkönige und besondere Leistungen;
+- ausgewählte besondere Wettkampferfolge und Leistungen ergänzen;
 - Sponsorenübersicht;
 - Übersicht befreundeter Vereine;
 - öffentliche Bereitstellung der Vereinssatzung;
@@ -37,6 +37,7 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
 - Anmeldung zu ausgewählten Veranstaltungen;
 - Filter nach Jahr, Kategorie, Disziplin oder Austragungsort;
 - automatische Hervorhebung wichtiger Veranstaltungen.
+- spätere automatisierte Verknüpfung geeigneter Veranstaltungsergebnisse mit dem Erfolgsbereich;
 
 ## Galerie und Medien
 
@@ -46,6 +47,8 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
 - historische und aktuelle Galerie-Kategorien;
 - Videoeinbindungen nach Datenschutzprüfung;
 - optimierte Vorschaubilder und responsive Bildvarianten.
+- manuelle Pfeilnavigation für die Startseitengalerie;
+- zufällige Anzeigereihenfolge der Startseitengalerie nach gesonderter UX-Prüfung;
 
 ## Kommunikation
 

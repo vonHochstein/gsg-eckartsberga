@@ -41,6 +41,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Fünf freigegebene historische Medien in den zugehörigen Chronikstationen sowie drei historische Fotografien in der Startseitengalerie.
 - Gemeinsame native Galerie-Lightbox für Veranstaltungs- und Geschichtsmedien.
 - Eigenständige Vorstands- und Ansprechpartnerseite mit bestätigten Funktionen und Namen.
+- Eigenständige Erfolgsseite mit zehn quellengetreu übernommenen Schützenkönig-Einträgen und gemeinsamer Galerie-Lightbox.
+- Zehn freigegebene Schützenkönig-Aufnahmen als verlinkte Motive in der statischen Startseitengalerie.
 
 ### Geändert
 

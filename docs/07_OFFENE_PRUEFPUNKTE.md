@@ -96,6 +96,13 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 - **Zu prüfen:** Nutzergruppen, Authentifizierung, Rechteverwaltung, Datenschutz, Wiederherstellung, Administration, Hosting und laufender Pflegeaufwand.
 - **Abschlusskriterium:** Fachliches Berechtigungs- und Betriebskonzept; eine versteckte URL genügt nicht.
 
+### P-14 – Überlieferung der Schützenkönige vervollständigen
+
+- **Status:** Offen
+- **Frage:** Warum fehlt auf der bisherigen Vereinswebsite der Jahrgang 2018, und ist die dort ausschließlich einmal vorkommende Schreibweise „Dominice Wiegand“ für 2019 korrekt?
+- **Zu prüfen:** Vereinsunterlagen oder verantwortliche Personen zu Titelvergabe und Namensschreibweise befragen; außerdem klären, ob vor 2016 weitere Einträge veröffentlicht werden sollen.
+- **Abschlusskriterium:** Dokumentierte redaktionelle Bestätigung oder begründete Entscheidung, die derzeitige quellengetreue Darstellung unverändert beizubehalten.
+
 ## Qualität und Gestaltung
 
 ### P-12 – Nachweis vollständiger Responsivität

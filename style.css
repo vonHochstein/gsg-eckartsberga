@@ -936,6 +936,10 @@ abbr[title] {
   transform: scale(1.03);
 }
 
+.gallery-feature-achievement img {
+  object-position: var(--gallery-object-position, 50% 50%);
+}
+
 
 .gallery-feature.is-active img {
   animation: galleryImageZoom 6.5s ease-in-out forwards;
