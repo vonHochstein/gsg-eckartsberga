@@ -97,8 +97,30 @@ function loadVenueData() {
   return context.eventVenueSnapshot;
 }
 
-test("liefert eine leere zentrale Ortsdatenbank ohne vorgezogene Echtdaten", () => {
-  assert.deepEqual(Array.from(loadVenueData()), []);
+test("liefert den Jägerschießstand Markröhlitz als gültigen Kartenort", () => {
+  const venues = Array.from(loadVenueData());
+
+  assert.equal(venues.length, 1);
+  assert.deepEqual(normalizeVenues(venues), [
+    {
+      id: "jaegerschiessstand-markroehlitz",
+      name: "Jägerschießstand Markröhlitz",
+      latitude: 51.222440,
+      longitude: 11.872128
+    }
+  ]);
+  assert.deepEqual(
+    resolveEventLocation(
+      { venueId: "jaegerschiessstand-markroehlitz" },
+      venues
+    ),
+    {
+      id: "jaegerschiessstand-markroehlitz",
+      name: "Jägerschießstand Markröhlitz",
+      latitude: 51.222440,
+      longitude: 11.872128
+    }
+  );
 });
 
 test("lädt zentrale Ortsdaten vor allen Ortsverbrauchern", () => {

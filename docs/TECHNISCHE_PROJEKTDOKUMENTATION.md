@@ -296,7 +296,7 @@ Enthält ausschließlich klar markierte, erfundene Entwicklungsdaten. Sie decken
 
 #### `js/data/venues.js`
 
-Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsorte. Die Infrastrukturdatei ist zunächst leer; reale Orte und Koordinaten werden erst in einzeln freigegebenen Migrationsschritten ergänzt.
+Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsorte. Als erster realer Stammdatensatz ist der Jägerschießstand Markröhlitz mit der stabilen ID `jaegerschiessstand-markroehlitz` und den ausdrücklich vorgegebenen Koordinaten 51.222440, 11.872128 hinterlegt. Noch kein Event referenziert diesen Venue; bestehende `location`-Angaben bleiben bis zu ihrer jeweils freigegebenen Einzelmigration unverändert.
 
 #### `js/event-utils.js`
 
@@ -506,7 +506,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
 | `events.js` | optional `developmentEvents` |
-| `venues.js` | keine Laufzeitabhängigkeit; zunächst leere zentrale Ortsliste |
+| `venues.js` | keine Laufzeitabhängigkeit; zentrale Ortsstammdaten mit stabilen IDs und optionalen Koordinaten |
 | `event-utils.js` | standardisierte Browser-/JavaScript-APIs, kein DOM |
 | `countdown.js` | `events`, `EventUtils`, Startseiten-DOM |
 | `calendar.js` | `events`, `EventUtils`, Timeline-DOM und Timeline-CSS |
@@ -982,4 +982,4 @@ Erst nach den nächsten fachlichen Ausbauschritten sind sinnvoll:
 
 Mit IA-002 ist aus der reinen Startseitenchronik eine integrierte, datengetriebene Veranstaltungsarchitektur entstanden. Ein verbindliches Modell versorgt Countdown, Timeline, Archiv, Galerie und universelle Detailseite. Gemeinsame Hilfsfunktionen verhindern doppelte URL- und Validierungslogik, während klar getrennte Entwicklungsdaten alle optionalen Zustände prüfbar machen.
 
-Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Reale Orte und Koordinaten sind noch nicht eingetragen. Die nächsten fachlichen Schritte bleiben deren einzeln freigegebene Migration sowie die Vervollständigung der rechtlichen und redaktionellen Veröffentlichungsgrundlage.
+Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Der erste reale Venue ist zentral hinterlegt, wird aber noch von keinem Event referenziert. Die nächsten fachlichen Schritte bleiben die jeweils einzeln freigegebene Eventmigration sowie die Vervollständigung der rechtlichen und redaktionellen Veröffentlichungsgrundlage.

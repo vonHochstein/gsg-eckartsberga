@@ -6,4 +6,11 @@
 // Reale Orte und Koordinaten werden ausschließlich in einzeln freigegebenen
 // Migrationsschritten ergänzt.
 
-const eventVenues = [];
+const eventVenues = [
+  {
+    id: "jaegerschiessstand-markroehlitz",
+    name: "Jägerschießstand Markröhlitz",
+    latitude: 51.222440,
+    longitude: 11.872128
+  }
+];

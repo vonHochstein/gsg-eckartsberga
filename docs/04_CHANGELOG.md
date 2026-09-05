@@ -45,6 +45,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Zehn freigegebene Schützenkönig-Aufnahmen als verlinkte Motive in der statischen Startseitengalerie.
 - Zentrale, zunächst leere Veranstaltungsortsdatenquelle mit validierter Auflösung über optionale `venueId`-Referenzen.
 - Lokal versioniertes Leaflet 1.9.4 und nativer Standortdialog für erst nach bewusstem Klick geladene OpenStreetMap-Karten.
+- Jägerschießstand Markröhlitz als erster verifizierter zentraler Venue-Stammdatensatz, noch ohne Eventreferenz.
 
 ### Geändert
 
