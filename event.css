@@ -243,6 +243,43 @@
   font-weight: 700;
 }
 
+.venue-location {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+}
+
+.venue-location-description {
+  color: #645b50;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.venue-map-trigger {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-red);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.venue-map-trigger:hover {
+  color: #6f1010;
+  text-decoration-thickness: 2px;
+}
+
 .event-resource-list {
   display: grid;
   gap: 14px;
@@ -501,6 +538,78 @@
   text-align: center;
 }
 
+.venue-map-panel {
+  width: min(100%, 920px);
+}
+
+.venue-map-summary {
+  display: grid;
+  gap: 7px;
+}
+
+.venue-map-name {
+  color: var(--color-white);
+  font-size: clamp(1.08rem, 2vw, 1.3rem);
+  font-weight: 800;
+}
+
+.venue-map-summary > p:not(.venue-map-name) {
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.55;
+}
+
+.venue-map-provider-notice {
+  font-size: 0.88rem;
+}
+
+.venue-map-canvas {
+  width: 100%;
+  height: clamp(280px, 55svh, 520px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: #ded8ce;
+  color: var(--color-dark);
+}
+
+.venue-map-canvas:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.venue-map-canvas .leaflet-control-zoom a {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+}
+
+.venue-map-canvas .leaflet-control a:focus-visible {
+  outline: 3px solid var(--color-red);
+  outline-offset: 2px;
+}
+
+.venue-map-canvas .leaflet-control-attribution {
+  padding: 3px 6px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #39342e;
+}
+
+.venue-map-status {
+  padding: 12px 14px;
+  border: 1px solid rgba(214, 168, 79, 0.35);
+  border-radius: 12px;
+  background: rgba(214, 168, 79, 0.1);
+  color: #f2dfb2;
+  font-weight: 700;
+}
+
+.venue-map-external {
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+}
+
 .event-state {
   width: min(100%, 820px);
   margin: 8vh auto;
@@ -656,6 +765,14 @@
   .event-lightbox-navigation {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+  }
+
+  .venue-map-canvas {
+    height: clamp(260px, 40svh, 360px);
+  }
+
+  .venue-map-external {
+    width: 100%;
   }
 
   .event-lightbox-position {

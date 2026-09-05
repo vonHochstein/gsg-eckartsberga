@@ -44,6 +44,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Eigenständige Erfolgsseite mit zehn quellengetreu übernommenen Schützenkönig-Einträgen und gemeinsamer Galerie-Lightbox.
 - Zehn freigegebene Schützenkönig-Aufnahmen als verlinkte Motive in der statischen Startseitengalerie.
 - Zentrale, zunächst leere Veranstaltungsortsdatenquelle mit validierter Auflösung über optionale `venueId`-Referenzen.
+- Lokal versioniertes Leaflet 1.9.4 und nativer Standortdialog für erst nach bewusstem Klick geladene OpenStreetMap-Karten.
 
 ### Geändert
 
@@ -67,6 +68,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Geschichtsseite als selbstbewusste, gut lesbare Vereinschronik redaktionell neu gefasst, um die Station zum Dreißigjährigen Krieg ergänzt und den öffentlichen Quellenbereich verständlich überarbeitet.
 - Vereinschronik um die Station zum Jubiläum 1902 ergänzt und die Fahnenweihe mit dem 4. Schützenfest 1996 inhaltlich präzisiert.
 - Ortsdarstellung in Timeline, Archiv und Veranstaltungsdetailseite auf die gemeinsame, vollständig rückwärtskompatible Ortsauflösung umgestellt.
+- Kartenaufruf auf gültige zentrale Koordinaten begrenzt und für Maus, Tastatur und Touch mit Fokus-Rückgabe umgesetzt.
 
 ### Behoben
 
@@ -84,6 +86,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Dynamisch ausgegebene Veranstaltungstexte vor dem Einfügen in HTML maskiert.
 - Dynamische Datei- und Webverweise auf freigegebene Protokolle begrenzt.
 - Dokumentziele auf relative URLs und absolute HTTPS-URLs begrenzt.
+- Externe OSM-Tile-Anfragen beim normalen Seitenaufruf vollständig unterbunden und erst an die erkennbare Kartenaktion gebunden.
 - Mehrdeutige doppelte Slugs führen zu einem eindeutigen Fehlerzustand statt zur zufälligen Auswahl einer Veranstaltung.
 
 ### Dokumentation

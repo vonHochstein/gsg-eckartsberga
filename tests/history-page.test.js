@@ -301,8 +301,9 @@ test("verwendet auf Event- und Geschichtsseite dieselbe Lightbox-Steuerung", () 
   const eventHtml = readProjectFile(eventPath);
   const lightboxScript = readProjectFile(lightboxScriptPath);
 
+  assert.equal(countMatches(historyHtml, /<dialog\b/gi), 1);
+  assert.equal(countMatches(eventHtml, /id="event-lightbox"/gi), 1);
   [historyHtml, eventHtml].forEach((html) => {
-    assert.equal(countMatches(html, /<dialog\b/gi), 1);
     assert.match(html, /js\/gallery-lightbox\.js/);
   });
 

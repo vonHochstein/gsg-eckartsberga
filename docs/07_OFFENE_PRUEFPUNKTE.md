@@ -59,12 +59,12 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 - **Zu prüfen:** Vereinsangaben, Vertretungsberechtigte, Registerdaten, Kontaktwege, Hosting, Protokolldaten, externe Dienste, Formulare und Betroffenenrechte.
 - **Abschlusskriterium:** Freigegebene Rechtstexte vor Veröffentlichung.
 
-### P-07 – Kartendarstellung unter „Vorstand“ beziehungsweise Kontakt
+### P-07 – OSM-Veranstaltungskarten und spätere Anfahrtsdarstellung
 
 - **Status:** Offen
-- **Frage:** Welche Anfahrtsdarstellung ist urheberrechtlich und datenschutzrechtlich geeignet?
-- **Zu prüfen:** Rechte an Kartenausschnitten und Screenshots, Nutzungsbedingungen des Kartenanbieters, externe Datenübertragung, Einwilligung und barrierearme Alternative.
-- **Abschlusskriterium:** Dokumentierte, zulässige Lösung mit Quellen- oder Lizenznachweis.
+- **Frage:** Ist die erst nach bewusstem Klick geladene OSM-Kartenlösung für produktive Veranstaltungsorte rechtlich, datenschutzrechtlich und betrieblich freigegeben, und kann sie später für eine Anfahrtsdarstellung wiederverwendet werden?
+- **Zu prüfen:** aktuelle OSM-Tile-Richtlinie und Attribution, übertragene Netzwerkdaten, Datenschutzerklärung, Cookie-/Speicherprüfung, rechtliche Bewertung des Bannerverzichts, Ausfallsicherheit und barrierearme Textalternative. Reale Koordinaten werden erst nach dieser Prüfung und eigener inhaltlicher Freigabe produktiv zugeordnet.
+- **Abschlusskriterium:** Dokumentierte Freigabe der klickbasierten Lösung einschließlich Datenschutztext, Lizenznachweis, Netzwerkprüfung und Entscheidung zum Einwilligungsbedarf.
 
 ### P-08 – Formspree für Kontaktformular und Gästebuch
 

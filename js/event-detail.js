@@ -115,7 +115,12 @@
             createDateTimeMarkup(event.end.trim(), end)
           )
         : "",
-      location ? createFactMarkup("Ort", escapeHTML(location)) : "",
+      location
+        ? createFactMarkup(
+            "Ort",
+            createLocationMarkup(locationData)
+          )
+        : "",
       organizer
         ? createFactMarkup("Veranstalter", escapeHTML(organizer))
         : "",
@@ -318,6 +323,47 @@
         <span class="event-fact-label">${escapeHTML(label)}</span>
         <span class="event-fact-value">${valueMarkup}</span>
       </li>
+    `;
+  }
+
+  function createLocationMarkup(locationData) {
+    const name = locationData?.name || "";
+    const hasCoordinates =
+      typeof locationData?.latitude === "number" &&
+      Number.isFinite(locationData.latitude) &&
+      typeof locationData?.longitude === "number" &&
+      Number.isFinite(locationData.longitude);
+
+    if (!hasCoordinates) return escapeHTML(name);
+
+    const description = getOptionalText(locationData.description);
+
+    return `
+      <span class="venue-location">
+        <span class="venue-location-name">${escapeHTML(name)}</span>
+        ${
+          description
+            ? `<span class="venue-location-description">${escapeHTML(description)}</span>`
+            : ""
+        }
+        <button
+          class="venue-map-trigger"
+          type="button"
+          aria-haspopup="dialog"
+          aria-controls="venue-map-dialog"
+          data-venue-map-trigger
+          data-venue-name="${escapeHTML(name)}"
+          ${
+            description
+              ? `data-venue-description="${escapeHTML(description)}"`
+              : ""
+          }
+          data-venue-latitude="${locationData.latitude}"
+          data-venue-longitude="${locationData.longitude}"
+        >
+          Karte anzeigen – lädt OpenStreetMap
+        </button>
+      </span>
     `;
   }
 

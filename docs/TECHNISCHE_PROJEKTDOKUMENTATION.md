@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 3. September 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002 und MIG-VOR-001
+**Stand:** 5. September 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001 und EVT-LOC-001
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -38,6 +38,8 @@ Umgesetzt und geprüft sind:
 - definierte Fehlerzustände für fehlende, unbekannte, unvollständige oder nicht eindeutige Veranstaltungen;
 - dynamische Dokument- und Open-Graph-Metadaten;
 - Verlinkung von Timeline, Countdown und eventbezogenem Galerie-Teaser auf Detailseiten;
+- zentrale Veranstaltungsorte mit optionalen Koordinaten und rückwärtskompatibler Auflösung;
+- erst nach bewusstem Ortsklick geladene OpenStreetMap-Karte im nativen Dialog;
 - automatisierte Tests für `EventUtils`, Datenmodell und Demo-Schalter;
 - responsive Browserprüfung von 320 bis 1440 Pixeln.
 
@@ -58,9 +60,10 @@ Die Anwendung verwendet:
 - ein globales und ein detailseitenspezifisches Stylesheet;
 - klassische JavaScript-Dateien mit `defer`;
 - Browser-APIs wie DOM, `Date`, `Intl.DateTimeFormat`, `URL`, `URLSearchParams`, `matchMedia` und Timer;
-- keine externen Bibliotheken;
+- lokal ausgeliefertes Leaflet 1.9.4 als einzige Fremdbibliothek;
 - keinen Paketmanager, Compiler oder Bundler;
-- keine API, Datenbank oder serverseitige Logik.
+- keine API, Datenbank oder serverseitige Logik;
+- externe OSM-Tile-Anfragen ausschließlich nach bewusstem Öffnen einer Karte.
 
 ---
 
@@ -82,6 +85,9 @@ Die Anwendung verwendet:
 │   ├── dev/
 │   │   ├── demo-ausschreibung.txt
 │   │   └── demo-ergebnis.txt
+│   ├── vendor/
+│   │   └── leaflet/
+│   │       └── lokal versionierte Leaflet-1.9.4-Laufzeitdateien und Lizenz
 │   └── img/
 │       ├── hero-eckartsburg.jpg
 │       ├── hero-eckartsburg.png
@@ -104,12 +110,14 @@ Die Anwendung verwendet:
 │   ├── gallery.js
 │   ├── gallery-lightbox.js
 │   ├── main.js
-│   └── navigation.js
+│   ├── navigation.js
+│   └── venue-map.js
 ├── tests/
 │   ├── achievements-page.test.js
 │   ├── event-utils.test.js
 │   ├── history-page.test.js
-│   └── board-page.test.js
+│   ├── board-page.test.js
+│   └── venue-map.test.js
 └── docs/
     ├── TECHNISCHE_PROJEKTDOKUMENTATION.md
     ├── 00_PROJEKTVISION.md
@@ -159,7 +167,7 @@ Die Script-Reihenfolge ist:
 
 #### `event.html`
 
-Die universelle Detailseite enthält dieselben gemeinsamen Seitenbausteine, ein leeres Renderziel `#event-detail`, genau ein wiederverwendbares natives `<dialog>` für die Galerie-Lightbox und einen verständlichen `<noscript>`-Hinweis.
+Die universelle Detailseite enthält dieselben gemeinsamen Seitenbausteine, ein leeres Renderziel `#event-detail`, je ein natives `<dialog>` für Galerie-Lightbox und Standortkarte sowie einen verständlichen `<noscript>`-Hinweis.
 
 Sie lädt bewusst keine Startseitenmodule für Countdown, Timeline oder Galerieanimation. Ihre Script-Reihenfolge ist:
 
@@ -168,9 +176,11 @@ Sie lädt bewusst keine Startseitenmodule für Countdown, Timeline oder Galeriea
 3. `js/data/events.js`
 4. `js/event-utils.js`
 5. `js/navigation.js`
-6. `js/event-detail.js`
-7. `js/gallery-lightbox.js`
-8. `js/main.js`
+6. `assets/vendor/leaflet/leaflet.js`
+7. `js/venue-map.js`
+8. `js/event-detail.js`
+9. `js/gallery-lightbox.js`
+10. `js/main.js`
 
 #### `geschichte.html`
 
@@ -359,6 +369,8 @@ Dokumente werden über `normalizeEventDocuments()` zusammengeführt und mit ihre
 
 Die Herkunftslogo-Zuordnung verwendet eine exakte Allowlist in `EventUtils`. Titel, Kategorie und Beschreibung werden dafür nicht ausgewertet. Für den Schützenkreis sind der bestehende Kurzschlüssel `Schützenkreis "SUED"` und die quellengetreue offizielle Langform als getrennte exakte Schlüssel registriert. Unbekannte, fremde oder generische Veranstalter wie `Kreisschützenverband` bleiben ohne Logo.
 
+Eine eindeutige zentrale Ortsreferenz liefert den sichtbaren Namen für Hero, Metadaten und Veranstaltungsinformationen. Ohne verwendbare Koordinaten bleibt der Ort dort reiner Text. Nur bei einem vollständigen gültigen Koordinatenpaar erscheint im Fakteneintrag die Schaltfläche „Karte anzeigen – lädt OpenStreetMap“. Timeline und Archiv bleiben frei von verschachtelten Karteninteraktionen.
+
 Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert.
 
 Bis zu sechs gültige Galeriebilder werden vollständig dargestellt. Bei mehr als sechs Bildern zeigt die Seite zunächst die ersten sechs in Datenreihenfolge. Ein nativer, tastaturbedienbarer Schalter blendet die verbleibenden Bilder ein und wieder aus; Beschriftung und `aria-expanded` folgen dem tatsächlichen Zustand. Beim Einklappen wird die Position des Schalters im sichtbaren Bereich stabilisiert. Ungültige Galerieeinträge werden bereits durch `EventUtils.normalizeGallery()` verworfen und zählen nicht gegen diese Grenze.
@@ -366,6 +378,14 @@ Bis zu sechs gültige Galeriebilder werden vollständig dargestellt. Bei mehr al
 Jede Galeriekachel öffnet über `gallery-lightbox.js` dasselbe native `<dialog>` mit dem vollständigen Bild, vorhandenem Alternativtext und optionaler Bildunterschrift. Die Lightbox navigiert über Schalter und linke beziehungsweise rechte Pfeiltaste durch alle gültigen Bilder in Datenreihenfolge, auch wenn die Kachelansicht noch eingeklappt ist. An den Grenzen findet kein Umlauf statt; bei nur einem Bild werden die Navigationsschalter ausgeblendet.
 
 Der initiale Fokus liegt auf dem sichtbaren Schließen-Schalter. Schließen ist per Schalter, Escape und eindeutigem Klick auf die Dialogfläche außerhalb des Panels möglich. Pointerdown innerhalb des Panels verhindert ein versehentliches Schließen beim Loslassen außerhalb. Das native Modalverhalten hält Hintergrund und außerhalb liegende Bedienelemente inert; jedes Schließen gibt den Fokus an die auslösende Kachel zurück. Es wurden keine Übergangs- oder Bildwechselanimationen ergänzt.
+
+#### `js/venue-map.js`
+
+Steuert den getrennten nativen Kartendialog für Veranstaltungsorte. Der Controller übernimmt einen ausschließlich aus validierten Ortsdaten erzeugten Auslöser, öffnet den Dialog, fokussiert den Schließen-Schalter und initialisiert erst nach dieser bewussten Aktion Leaflet und die OSM-Tiles. Beim normalen Seitenaufruf entsteht keine Verbindung zu OpenStreetMap.
+
+Die Karte verwendet einen exakten Kreismarker, die Zoomstufe 16 und die zentral konfigurierte Tile-URL `https://tile.openstreetmap.org/{z}/{x}/{y}.png`. Die Attribution zu OpenStreetMap bleibt im Kartenbereich sichtbar. Schließen per Schalter, Escape oder sicher erkanntem Backdrop-Klick entfernt die Karteninstanz vollständig und gibt den Fokus an den Ortsauslöser zurück. Eine lokale Ortsbeschreibung und ein freiwilliger externer OSM-Link bleiben als Alternative verfügbar, wenn Tiles nicht vollständig geladen werden können.
+
+Leaflet 1.9.4 liegt unverändert samt BSD-2-Clause-Lizenz und dokumentierten SHA-256-Prüfsummen unter `assets/vendor/leaflet/`. Es wird weder von einem CDN geladen noch über einen Paketmanager verwaltet. Die Anwendung setzt für die Karte keine Cookies und verwendet keinen Browser-Speicher. Externe Tile-Anfragen übertragen technisch bedingt Netzwerkdaten an die OpenStreetMap Foundation und müssen vor produktiver Aktivierung in der Datenschutzerklärung berücksichtigt werden.
 
 Fehlerzustände:
 
@@ -409,6 +429,9 @@ event-utils.js ─────────────────────�
 venues.js ──> eventVenues ──> EventUtils.resolveEventLocation()
                                   ├──> Timeline und Archiv
                                   └──> Veranstaltungsdetailseite
+                                            │
+                                            └──> venue-map.js
+                                                  └── Klick ──> OSM-Tiles
 ```
 
 Die fachliche Modularisierung erfolgt über getrennte klassische Skripte. Es gibt weiterhin keine ES-Module und keine Import-/Export-Syntax.
@@ -479,7 +502,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | Datei | Direkte Laufzeitabhängigkeiten |
 |---|---|
 | `index.html` | `style.css`, Daten, `EventUtils`, Startseitenmodule |
-| `event.html` | `style.css`, `event.css`, Daten, `EventUtils`, Navigation, Detailrenderer, gemeinsame Lightbox |
+| `event.html` | `style.css`, `event.css`, lokale Leaflet-Dateien, Daten, `EventUtils`, Navigation, Detailrenderer, Kartencontroller, gemeinsame Lightbox |
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
 | `events.js` | optional `developmentEvents` |
@@ -490,6 +513,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `gallery.js` | `events`, `EventUtils`, Galerie-DOM und Galerie-CSS |
 | `event-detail.js` | `events`, `EventUtils`, Detail-DOM und `event.css` |
 | `gallery-lightbox.js` | deklaratives Galeriemarkup, natives `<dialog>` und Lightbox-CSS aus `event.css` |
+| `venue-map.js` | validiertes Karten-Trigger-Markup, natives `<dialog>`, lokales Leaflet und nach Nutzeraktion OSM-Tiles |
 | `navigation.js` | gemeinsame Header- und Navigationsstruktur |
 | `main.js` | Footer-Jahr und Demo-Datenattribut |
 
@@ -811,6 +835,17 @@ node --test tests/*.test.js
 - zehn zusätzliche Motive und deren Sprungziele in der statischen Startseitengalerie;
 - unveränderte Header- und Footer-Navigation.
 
+`tests/venue-map.test.js` prüft:
+
+- ausschließlich lokale und unveränderte Leaflet-1.9.4-Laufzeitdateien samt Lizenz und SHA-256;
+- kontrollierte Stylesheet- und Script-Reihenfolge ohne CDN;
+- zugänglich beschrifteten Kartendialog und koordinatenabhängigen Kartenbutton;
+- keine Tile-Verbindung beim normalen Seitenstart;
+- Karteninitialisierung erst nach bewusstem Öffnen;
+- Kartenabbau und Fokus-Rückgabe beim Schließen;
+- Ablehnung unvollständiger oder ungültiger Kartenpositionen;
+- Ausschluss eigener Cookie- oder Browserspeichermechanismen.
+
 ### 5.2 Browserprüfungen
 
 IA-002 wurde geprüft mit:
@@ -878,6 +913,17 @@ GES-002 ergänzt die Browserprüfung um:
 - fehlende Assets und Browserkonsole;
 - Startseite und Veranstaltungsdetailseite als Regression.
 
+EVT-LOC-001 ergänzt die Browserprüfung um:
+
+- unveränderte Ortsdarstellung ohne zentrale Referenz oder Koordinaten;
+- sichtbaren, per Maus, Tastatur und Touch bedienbaren Kartenaufruf ausschließlich bei gültigen Koordinaten;
+- ausbleibende OSM-Anfragen vor dem Kartenaufruf und Tile-Anfragen unmittelbar danach;
+- exakten Marker, sichtbare Attribution und freiwilligen externen OSM-Fallback;
+- Schließen per Schalter, Escape und Backdrop sowie Fokus-Rückgabe;
+- Touch-Zoom, Tastatursteuerung und mindestens 44 Pixel große Bedienelemente;
+- 320, 360, 480, 820, 1024 und 1440 Pixel sowie Hoch-/Querformat;
+- Browserkonsole, fehlende Assets und horizontale Überläufe.
+
 ### 5.3 Barrierearme Grundlagen
 
 - Skip-Link;
@@ -905,7 +951,7 @@ GES-002 ergänzt die Browserprüfung um:
 - Produktive Daten und Entwicklungsdaten bleiben strikt getrennt.
 - Optionale Inhalte erzeugen weder leere Flächen noch künstliche Platzhalter.
 - Timeline, Countdown, Galerie und Detailseite verwenden dasselbe Datenmodell.
-- Die Lösung bleibt ohne Framework, Build-System oder externe Abhängigkeit lauffähig.
+- Die Lösung bleibt ohne Framework und Build-System lauffähig; Leaflet ist als einzige Fremdbibliothek lokal und versionsgebunden abgelegt.
 
 ### 6.2 Verbleibende Grenzen
 
@@ -917,6 +963,7 @@ GES-002 ergänzt die Browserprüfung um:
 - Tests konzentrieren sich derzeit auf Hilfsfunktionen und Datenmodell; es existiert kein dauerhaftes DOM-Testsystem.
 - Der Demo-Schalter ist weiterhin eine manuelle Veröffentlichungsvoraussetzung.
 - Es gibt noch keine Deployment- oder Content-Security-Konfiguration.
+- OSM-Tiles sind ein externer Best-effort-Dienst ohne eigene Verfügbarkeitsgarantie; Richtlinien und Datenschutzerklärung müssen vor produktiver Ortsmigration geprüft bleiben.
 
 ### 6.3 Sinnvolle spätere Refactorings
 
@@ -935,4 +982,4 @@ Erst nach den nächsten fachlichen Ausbauschritten sind sinnvoll:
 
 Mit IA-002 ist aus der reinen Startseitenchronik eine integrierte, datengetriebene Veranstaltungsarchitektur entstanden. Ein verbindliches Modell versorgt Countdown, Timeline, Archiv, Galerie und universelle Detailseite. Gemeinsame Hilfsfunktionen verhindern doppelte URL- und Validierungslogik, während klar getrennte Entwicklungsdaten alle optionalen Zustände prüfbar machen.
 
-Die technische Grundlage für produktive Veranstaltungsdetails ist vollständig. Der nächste fachliche Schritt ist die kontrollierte Pflege realer, freigegebener Inhalte und die Vervollständigung der rechtlichen und redaktionellen Veröffentlichungsgrundlage.
+Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Reale Orte und Koordinaten sind noch nicht eingetragen. Die nächsten fachlichen Schritte bleiben deren einzeln freigegebene Migration sowie die Vervollständigung der rechtlichen und redaktionellen Veröffentlichungsgrundlage.

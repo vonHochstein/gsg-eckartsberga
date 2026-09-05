@@ -37,6 +37,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - kompakter Header beim Scrollen;
 - automatisch wechselnde Galerievorschau;
 - native Galerie-Lightbox mit Tastatursteuerung, Fokusführung und responsiver Darstellung;
+- technische Grundlage für zentrale Veranstaltungsorte und eine erst nach bewusstem Klick geladene, responsive OpenStreetMap-Karte;
 - sichtbare Fokuszustände und Sprunglink zum Hauptinhalt;
 - Unterstützung reduzierter Bewegung;
 - responsive Qualitätsprüfung vom kleinen Smartphone bis zum großen Bildschirm.
@@ -99,6 +100,7 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - fachlich geprüfte Inhalte für Impressum und Datenschutz bereitstellen;
 - externe Dienste und Einwilligungserfordernisse bewerten;
 - rechtssichere Karten- beziehungsweise Anfahrtslösung festlegen;
+- OSM-Tile-Nutzung, Datenschutzhinweise und Bannerverzicht vor der ersten produktiven Ortsmigration fachlich bestätigen;
 - Veröffentlichungsvoraussetzungen dokumentieren.
 
 ### Abschnitt 5: Galerie und Medien

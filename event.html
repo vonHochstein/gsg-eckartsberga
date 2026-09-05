@@ -22,6 +22,7 @@
 
   <link rel="icon" type="image/png" href="assets/img/logo-gsg-eckartsberga.png" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
   <link rel="stylesheet" href="event.css" />
 
   <script src="js/data/dev-events.js" defer></script>
@@ -29,6 +30,8 @@
   <script src="js/data/events.js" defer></script>
   <script src="js/event-utils.js" defer></script>
   <script src="js/navigation.js" defer></script>
+  <script src="assets/vendor/leaflet/leaflet.js" defer></script>
+  <script src="js/venue-map.js" defer></script>
   <script src="js/event-detail.js" defer></script>
   <script src="js/gallery-lightbox.js" defer></script>
   <script src="js/main.js" defer></script>
@@ -151,6 +154,57 @@
             <span aria-hidden="true">→</span>
           </button>
         </nav>
+      </div>
+    </dialog>
+
+    <dialog
+      class="event-lightbox venue-map-dialog"
+      id="venue-map-dialog"
+      aria-labelledby="venue-map-title"
+      aria-describedby="venue-map-provider-notice"
+    >
+      <div class="event-lightbox-panel venue-map-panel">
+        <header class="event-lightbox-header">
+          <h2 id="venue-map-title">Standortkarte</h2>
+          <button
+            class="event-lightbox-control event-lightbox-close"
+            id="venue-map-close"
+            type="button"
+            autofocus
+          >
+            <span aria-hidden="true">×</span>
+            Schließen
+          </button>
+        </header>
+
+        <div class="venue-map-summary">
+          <p class="venue-map-name" id="venue-map-name"></p>
+          <p id="venue-map-description" hidden></p>
+          <p class="venue-map-provider-notice" id="venue-map-provider-notice">
+            Die Karte wird nach Ihrer Auswahl direkt von OpenStreetMap geladen.
+            Dabei wird eine Verbindung zu Servern der OpenStreetMap Foundation
+            aufgebaut.
+          </p>
+        </div>
+
+        <div
+          class="venue-map-canvas"
+          id="venue-map-canvas"
+          role="region"
+          aria-label="OpenStreetMap-Karte"
+        ></div>
+
+        <p class="venue-map-status" id="venue-map-status" role="status" hidden></p>
+
+        <a
+          class="event-lightbox-control venue-map-external"
+          id="venue-map-external"
+          href="https://www.openstreetmap.org/"
+          rel="external"
+        >
+          Standort direkt bei OpenStreetMap öffnen
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </dialog>
 
