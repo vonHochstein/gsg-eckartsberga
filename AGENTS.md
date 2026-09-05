@@ -22,3 +22,11 @@ Vor Änderungen an Veranstaltungsdaten oder ihrer Darstellung muss der Abschnitt
 [Organisatorische Herkunft von Veranstaltungen](docs/01_ENTWICKLUNGSGRUNDSÄTZE.md#organisatorische-herkunft-von-veranstaltungen)
 vollständig gelesen und befolgt werden. Die kanonische Regel wird auch hier nicht
 dupliziert.
+
+Vor jeder Erstellung, Änderung oder Migration eines Events muss außerdem der
+Abschnitt
+[Pflege und Migration zentraler Veranstaltungsorte](docs/01_ENTWICKLUNGSGRUNDSÄTZE.md#pflege-und-migration-zentraler-veranstaltungsorte)
+vollständig gelesen und befolgt werden. Er enthält die verbindliche Prüfung von
+`js/data/venues.js`, die Wiederverwendungs- und Unsicherheitsregeln sowie den
+kontrollierten Legacy-Fallback. Auch diese Regel wird hier bewusst nicht
+dupliziert.

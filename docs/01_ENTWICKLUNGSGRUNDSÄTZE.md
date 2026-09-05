@@ -41,6 +41,54 @@ Verbindlich gilt:
 
 Das GSG-Logo und das Logo des Schützenkreises dürfen niemals ersatzweise für eine Fremdveranstaltung verwendet werden, wenn ihre organisatorische Zuordnung nicht zutrifft. Eine Logoentscheidung darf nicht allein aus Titel, Kategorie oder Vermutung abgeleitet werden; bei unklarer Herkunft bleibt die Darstellung ohne Veranstalterlogo.
 
+### Pflege und Migration zentraler Veranstaltungsorte
+
+`js/data/venues.js` ist die zentrale Stammdatenquelle für wiederkehrende
+Veranstaltungsorte. Vor jeder Erstellung, Änderung oder Migration eines Events
+muss die Ortsangabe zuerst gegen diesen Bestand geprüft werden.
+
+Der verbindliche Ablauf lautet:
+
+```text
+Quell-Ortsangabe → bestehenden Venue-Bestand prüfen → vorhandenen Venue
+wiederverwenden / neuen Venue zur Prüfung anlegen / bei Unsicherheit
+Legacy-location beibehalten
+```
+
+Verbindlich gilt:
+
+1. Vor der Anlage eines neuen Venue wird geprüft, ob derselbe reale
+   Veranstaltungsort bereits unter einer vorhandenen ID oder einer abweichenden
+   Bezeichnung existiert.
+2. Ist der Ort bereits eindeutig vorhanden, wird seine bestehende `venueId`
+   wiederverwendet. Name, Beschreibung und Koordinaten werden nicht redundant
+   im Event gepflegt.
+3. Abweichende Schreibweisen wie „Schießstand X“, „Schießanlage X“ oder eine
+   reine Ortsbezeichnung rechtfertigen keinen automatischen neuen
+   Venue-Datensatz.
+4. Ist die Identität zweier Ortsangaben nicht eindeutig, wird weder
+   eigenmächtig zugeordnet noch ein möglicherweise doppelter Venue angelegt.
+   Die Unklarheit wird als Prüfpunkt vorgelegt und die Entscheidung abgewartet.
+5. Ein tatsächlich neuer wiederkehrender Veranstaltungsort wird zuerst als
+   Stammdatensatz in `js/data/venues.js` angelegt und anschließend mittels
+   `venueId` aus dem Event referenziert.
+6. Reale Koordinaten müssen vor ihrer Aufnahme verifiziert werden. Sie dürfen
+   nicht aus Namen, Adressen oder ungeprüften Suchtreffern erraten werden.
+7. Liegen für einen neuen Ort noch keine hinreichend verifizierten zentralen
+   Ortsdaten vor, bleibt das bestehende Feld `location` zulässig. Es wird kein
+   künstlicher Venue allein zur technischen Vereinheitlichung angelegt.
+8. Bestehende Venue-IDs sind stabile technische Schlüssel. Sie dürfen nicht
+   beiläufig umbenannt, ersetzt oder dupliziert werden.
+9. Änderungen an Name, Beschreibung oder insbesondere Koordinaten eines
+   bestehenden Venue sind Stammdatenänderungen. Vor der Änderung wird geprüft,
+   welche Events die betreffende `venueId` verwenden.
+10. Koordinaten werden ausschließlich am zentralen Venue und nicht redundant in
+    einzelnen Events gepflegt.
+11. Bestehende Legacy-`location`-Angaben werden weiterhin schrittweise und
+    kontrolliert migriert. Eine automatische Sammelmigration findet nicht statt.
+12. Diese Venue-Prüfung ist verbindlicher Bestandteil aller zukünftigen
+    Event-Migrationspakete.
+
 ## 3. Informationen nur einmal pflegen
 
 Für jede fachliche Information soll es genau eine maßgebliche Quelle geben. Weitere Ansichten leiten ihre Ausgabe daraus ab.
