@@ -56,6 +56,7 @@ const productionEvents = [
     category: "Pokalwettkampf",
     start: "2024-09-07T09:00:00",
     end: "2024-09-07T16:00:00",
+    venueId: "jaegerschiessstand-markroehlitz",
     location: "Schießstand der Jägerschaft Markröhlitz",
     organizer: "Jagdverein Weißenfels e.V.",
     description:
@@ -456,6 +457,7 @@ const productionEvents = [
     category: "Kreismeisterschaft",
     start: "2026-09-12T09:30:00",
     end: "2026-09-12T13:00:00",
+    venueId: "jaegerschiessstand-markroehlitz",
     location: "Jägerschießstand Markröhlitz",
     organizer: "Schützenkreis \"SUED\"",
     description:

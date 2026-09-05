@@ -296,7 +296,7 @@ Enthält ausschließlich klar markierte, erfundene Entwicklungsdaten. Sie decken
 
 #### `js/data/venues.js`
 
-Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsorte. Als erster realer Stammdatensatz ist der Jägerschießstand Markröhlitz mit der stabilen ID `jaegerschiessstand-markroehlitz` und den ausdrücklich vorgegebenen Koordinaten 51.222440, 11.872128 hinterlegt. Noch kein Event referenziert diesen Venue; bestehende `location`-Angaben bleiben bis zu ihrer jeweils freigegebenen Einzelmigration unverändert.
+Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsorte. Als erster realer Stammdatensatz ist der Jägerschießstand Markröhlitz mit der stabilen ID `jaegerschiessstand-markroehlitz` und den ausdrücklich vorgegebenen Koordinaten 51.222440, 11.872128 hinterlegt. Die Veranstaltungen `pokal-halbautomat-2024` und `km-halbautomat-kk-gk-2026` referenzieren diesen Venue; ihre bestehenden `location`-Angaben bleiben unverändert als Legacy-Rückfall erhalten.
 
 #### `js/event-utils.js`
 
@@ -982,4 +982,4 @@ Erst nach den nächsten fachlichen Ausbauschritten sind sinnvoll:
 
 Mit IA-002 ist aus der reinen Startseitenchronik eine integrierte, datengetriebene Veranstaltungsarchitektur entstanden. Ein verbindliches Modell versorgt Countdown, Timeline, Archiv, Galerie und universelle Detailseite. Gemeinsame Hilfsfunktionen verhindern doppelte URL- und Validierungslogik, während klar getrennte Entwicklungsdaten alle optionalen Zustände prüfbar machen.
 
-Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Der erste reale Venue ist zentral hinterlegt, wird aber noch von keinem Event referenziert. Die nächsten fachlichen Schritte bleiben die jeweils einzeln freigegebene Eventmigration sowie die Vervollständigung der rechtlichen und redaktionellen Veröffentlichungsgrundlage.
+Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Der erste reale Venue ist zentral hinterlegt und wird von zwei fachlich bestätigten Events referenziert. Weitere Ortsumstellungen bleiben jeweils einzeln freizugebende Eventmigrationen; daneben ist die rechtliche und redaktionelle Veröffentlichungsgrundlage zu vervollständigen.

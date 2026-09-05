@@ -267,10 +267,10 @@ test("fällt bei unbekannten, ungültigen oder doppelten Ortsreferenzen sicher z
   assert.equal(resolveEventLocation(null, []), null);
 });
 
-test("bewahrt alle produktiven Legacy-Ortsangaben ohne zentrale Ortsdaten", () => {
+test("bewahrt produktive Legacy-Ortsangaben ohne zentrale Venue-Referenz", () => {
   const { productionEvents: productEvents } = loadEventData(false);
 
-  productEvents.forEach((event) => {
+  productEvents.filter((event) => !event.venueId).forEach((event) => {
     const expectedLocation =
       typeof event.location === "string" && event.location.trim()
         ? { name: event.location.trim() }
@@ -1155,7 +1155,17 @@ test("Pokal Halbautomat 2024 ist quellengetreu hinterlegt", () => {
   assert.equal(event.category, "Pokalwettkampf");
   assert.equal(event.start, "2024-09-07T09:00:00");
   assert.equal(event.end, "2024-09-07T16:00:00");
+  assert.equal(event.venueId, "jaegerschiessstand-markroehlitz");
   assert.equal(event.location, "Schießstand der Jägerschaft Markröhlitz");
+  assert.deepEqual(
+    resolveEventLocation(event, Array.from(loadVenueData())),
+    {
+      id: "jaegerschiessstand-markroehlitz",
+      name: "Jägerschießstand Markröhlitz",
+      latitude: 51.222440,
+      longitude: 11.872128
+    }
+  );
   assert.equal(event.organizer, "Jagdverein Weißenfels e.V.");
   assert.equal(
     event.description,
@@ -1970,7 +1980,17 @@ test("KM Zentralfeuer Halbautomat 2026 ist quellengetreu hinterlegt", () => {
   assert.equal(event.category, "Kreismeisterschaft");
   assert.equal(event.start, "2026-09-12T09:30:00");
   assert.equal(event.end, "2026-09-12T13:00:00");
+  assert.equal(event.venueId, "jaegerschiessstand-markroehlitz");
   assert.equal(event.location, "Jägerschießstand Markröhlitz");
+  assert.deepEqual(
+    resolveEventLocation(event, Array.from(loadVenueData())),
+    {
+      id: "jaegerschiessstand-markroehlitz",
+      name: "Jägerschießstand Markröhlitz",
+      latitude: 51.222440,
+      longitude: 11.872128
+    }
+  );
   assert.equal(event.organizer, 'Schützenkreis "SUED"');
   assert.equal(
     event.description,
