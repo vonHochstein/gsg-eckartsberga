@@ -119,6 +119,34 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 - **Zu prüfen:** Freigabe des Vereins, verbindliche Originalvorlagen, Markenfarben, Einsatzvarianten und Umfang der Überarbeitung.
 - **Abschlusskriterium:** Freigegebenes Briefing für Kanten, Farbkräftigung, Gold- und Blauton, Kontrast, Schatten, Weißflächen und exakt runde Kreisform.
 
+### P-15 – Medienflächen der Schützenkönig-Karten
+
+- **Status:** Offen
+- **Frage:** Wie sollen die unterschiedlich proportionierten Bilder auf `erfolge.html` die Medienflächen der Schützenkönig-Karten künftig ausfüllen, ohne störende horizontale oder vertikale Freiflächen beziehungsweise Balken zu erzeugen?
+- **Zu prüfen:** Alle zehn Hoch- und Querformate gemeinsam auf großen und kleinen Ansichten vergleichen und eine gestalterisch konsistente Lösung festlegen. Bilddateien dürfen dabei nicht destruktiv beschnitten werden.
+- **Abschlusskriterium:** Abgenommene Kartendarstellung, die alle Seitenverhältnisse hochwertig behandelt und keine unbeabsichtigten Freiflächen erzeugt.
+
+### P-16 – Kopfgestaltung von Erfolgs- und Vorstandsseite
+
+- **Status:** Offen
+- **Frage:** Wie werden die Kopfbereiche von `erfolge.html` und `vorstand.html` an die Gestaltung von `geschichte.html` als verbindliche Referenz angeglichen?
+- **Zu prüfen:** Integrierte Überschrift und farbliche Hintergrundabsetzung der Geschichtsseite mit den derzeitigen kartenartigen Eventseiten-Köpfen vergleichen; bestehende Komponenten und Designregeln vorrangig wiederverwenden.
+- **Abschlusskriterium:** Abgenommenes gemeinsames Kopfkonzept für Erfolgs- und Vorstandsseite, das sich sichtbar an `geschichte.html` orientiert, ohne die übrigen Seitenstrukturen unnötig zu verändern.
+
+### P-17 – Fokuspositionen der Schützenkönig-Bilder in der Startseitengalerie
+
+- **Status:** Offen
+- **Frage:** Welche individuellen `object-position`-Werte stellen alle zehn Schützenkönig-Motive in der flächigen Startseitengalerie sinnvoll dar, ohne Köpfe abzuschneiden?
+- **Zu prüfen:** Jedes Motiv auf den maßgeblichen Desktop- und Mobilbreiten visuell kontrollieren und die Fokuspositionen einzeln festlegen. Die Bilddateien bleiben unverändert und werden nicht destruktiv beschnitten.
+- **Abschlusskriterium:** Visuell abgenommene Fokuspositionen für alle zehn Motive ohne störend abgeschnittene Köpfe.
+
+### P-18 – Reihenfolge der globalen Footerbereiche
+
+- **Status:** Offen
+- **Frage:** Wurde gegenüber einem früheren Projektstand die Reihenfolge des Navigations-/Steuerleistenbereichs und des Bereichs mit Logo beziehungsweise Vereinsdarstellung vertauscht?
+- **Zu prüfen:** Aktuelles Footer-Markup und aktuelle Darstellung mit der Git-Historie beziehungsweise dem maßgeblichen früheren Stand vergleichen; erst danach die gestalterisch richtige Reihenfolge bewerten.
+- **Abschlusskriterium:** Dokumentierter historischer Vergleich und bewusste Entscheidung, die aktuelle Reihenfolge beizubehalten oder in einem eigenen Arbeitspaket anzupassen.
+
 ## Noch zu bewertende Funktionserweiterungen
 
 Die folgenden Notizen sind vollständig im [Ideenspeicher](05_IDEENSPEICHER.md) erfasst und werden erst bei möglicher Übernahme in die Roadmap einzeln geprüft:

@@ -106,13 +106,16 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - zentrale Medien- und Metadatenstruktur festlegen;
 - Galerie aus gepflegten Daten erzeugen;
 - weitere Bildformate und Dateigrößen optimieren;
-- responsive Bildvarianten und sinnvolle Alternativtexte etablieren.
+- responsive Bildvarianten und sinnvolle Alternativtexte etablieren;
+- Medienflächen der Schützenkönig-Karten sowie die individuellen Fokuspositionen ihrer zehn Motive in der Startseitengalerie gestalterisch überarbeiten.
 
 ### Abschnitt 6: Zugänglichkeit und Oberflächenqualität
 
 - Zugänglichkeit mit spezialisierten Prüfwerkzeugen vertiefend kontrollieren;
 - Kontraste und Textskalierung formal prüfen;
-- neu hinzukommende Komponenten mit Tastatur und unterstützenden Technologien prüfen.
+- neu hinzukommende Komponenten mit Tastatur und unterstützenden Technologien prüfen;
+- Kopfbereiche von Erfolgs- und Vorstandsseite anhand der Geschichtsseite vereinheitlichen;
+- Reihenfolge der globalen Footerbereiche zunächst anhand der Git-Historie prüfen und erst danach überarbeiten oder bewusst beibehalten.
 
 ### Abschnitt 7: Technische Stabilisierung
 
