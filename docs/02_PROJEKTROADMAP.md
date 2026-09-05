@@ -24,6 +24,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - Vereinsübersicht, Geschichtsteaser und eigenständige chronologische Geschichtsseite;
 - eigenständige Vorstands- und Ansprechpartnerseite mit bestätigten Funktionen und Namen;
 - eigenständige Erfolgsseite mit den zehn von der bisherigen Vereinswebsite überlieferten Schützenkönig-Einträgen und gemeinsamer Lightbox;
+- eigenständige Seite für Schießbahnen und Vereinshaus mit bestätigten Nutzungsangaben und vier freigegebenen Anlagenaufnahmen;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
 - abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
 - konsistenter Footer mit ausschließlich vorhandenen Sprungzielen;
@@ -92,7 +93,7 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - benötigte Inhalte und redaktionelle Verantwortlichkeiten klären;
 - reale Inhalte, Testdaten und Platzhalter eindeutig voneinander abgrenzen;
 - endgültige Seiten- und Bereichsstruktur festlegen;
-- weitere Vereins-, Sport-, Anlagen-, besondere Erfolgs-, Mitgliedschafts- und Kontaktinhalte einpflegen;
+- weitere Vereins-, Sport-, besondere Erfolgs-, Mitgliedschafts- und Kontaktinhalte einpflegen;
 - freigegebene direkte Kontaktwege ergänzen.
 
 ### Abschnitt 2: Rechtliche Veröffentlichungsgrundlage

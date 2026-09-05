@@ -23,6 +23,7 @@ Umgesetzt und geprüft sind:
 - responsive Startseite mit Hero, Vereinsinformationen und Mitgliedschaftsteaser;
 - statische, responsive Geschichtsseite mit semantischer Chronologie und sichtbarer Quelleneinordnung;
 - statische Vorstands- und Ansprechpartnerseite auf Basis der vorhandenen Detailseitenkomponenten;
+- statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
 - dynamische Anzeige der nächsten Veranstaltung mit Countdown;
 - Timeline für kommende, aktuelle und archivierte Veranstaltungen;
@@ -46,7 +47,7 @@ Umgesetzt und geprüft sind:
 Noch nicht umgesetzt sind insbesondere:
 
 - freigegebene Detailinhalte für produktive Veranstaltungen;
-- weitere Vereins-, Anlagen-, besondere Erfolgs- und Kontaktinhalte;
+- weitere Vereins-, besondere Erfolgs- und Kontaktinhalte;
 - Impressum und Datenschutz;
 - vollständige produktive Galerie;
 - Backend, CMS, Formulare, Suche und Mitgliederbereich;
@@ -75,11 +76,13 @@ Die Anwendung verwendet:
 ├── event.html
 ├── erfolge.html
 ├── geschichte.html
+├── schiessbahnen.html
 ├── vorstand.html
 ├── style.css
 ├── event.css
 ├── erfolge.css
 ├── geschichte.css
+├── schiessbahnen.css
 ├── notes.rtf
 ├── assets/
 │   ├── dev/
@@ -96,6 +99,8 @@ Die Anwendung verwendet:
 │       │   └── fünf freigegebene historische JPEG-Medien
 │       ├── achievements/
 │       │   └── zehn freigegebene Aufnahmen der Schützenkönige
+│       ├── facilities/
+│       │   └── vier freigegebene Aufnahmen der Vereinsanlage
 │       ├── logo-gsg-eckartsberga.png
 │       └── logo-schuetzenkreis-sued.png
 ├── js/
@@ -115,6 +120,7 @@ Die Anwendung verwendet:
 ├── tests/
 │   ├── achievements-page.test.js
 │   ├── event-utils.test.js
+│   ├── facility-page.test.js
 │   ├── history-page.test.js
 │   ├── board-page.test.js
 │   └── venue-map.test.js
@@ -228,6 +234,21 @@ Lightbox wie Veranstaltungs- und Geschichtsmedien. Die vorhandene Startseitenkar
 „Erfolge“ ist der einzige neue Einstieg; Header und Footer erhalten keinen
 zusätzlichen Navigationspunkt.
 
+#### `schiessbahnen.html`
+
+Die statische Anlagen-Unterseite verwendet denselben Seiteneinstieg wie die
+Geschichtsseite und stellt die bestätigten Nutzungsangaben der
+25-Meter-Raumschießanlage in einer kompakten Definitionsliste dar. Vier
+freigegebene Aufnahmen zeigen die 25-Meter-Bahn, ihre Duellscheiben, die
+Luftgewehrbahn und den Sitzungsraum. Die vorhandene Startseitenkarte
+„Schießbahnen & Vereinshaus“ ist der einzige neue Einstieg; Header und Footer
+erhalten keinen weiteren Navigationspunkt.
+
+Alle vier Bilder bleiben vollständig und unbeschnitten. Sie verwenden genau ein
+natives Dialogelement und den unveränderten gemeinsamen Controller
+`js/gallery-lightbox.js`. Ohne JavaScript bleiben sämtliche Inhalte und Bilder
+lesbar; lediglich die Vergrößerung entfällt.
+
 ### 2.2 CSS
 
 #### `style.css`
@@ -278,6 +299,13 @@ Enthält ausschließlich die seitenspezifische Darstellung der Vereinschronik:
 
 Design-Tokens, Header, Navigation, Fokusdarstellung und Footer stammen weiterhin
 aus `style.css`.
+
+#### `schiessbahnen.css`
+
+Enthält ausschließlich das responsive Fakten- und Medienlayout der
+Anlagen-Unterseite. Der Seitenkopf und gemeinsame Gestaltungsregeln stammen aus
+`geschichte.css`, die Lightbox aus `event.css` und alle globalen Design-Tokens,
+Navigationselemente und Footerregeln aus `style.css`.
 
 ### 2.3 JavaScript
 
@@ -834,6 +862,15 @@ node --test tests/*.test.js
 - unveränderten sichtbaren Inhalt der verlinkten Erfolgskarte;
 - zehn zusätzliche Motive und deren Sprungziele in der statischen Startseitengalerie;
 - unveränderte Header- und Footer-Navigation.
+
+`tests/facility-page.test.js` prüft:
+
+- statischen Seitenrahmen, genau eine H1 und den Einstieg über die sichtbar unveränderte Startseitenkarte;
+- ausschließlich die bestätigten Angaben zur Nutzung, Standgebühr sowie zu Leihwaffen und Munition;
+- Ausschluss ungeprüfter Kontakt-, Adress-, Öffnungs- und Trainingsangaben;
+- vier lokale Anlagenmedien mit festen Maßen, Alternativtexten, Bildunterschriften und Prüfsummen;
+- vollständige responsive Medienausgabe und die unveränderte gemeinsame Lightbox;
+- unveränderte Header- und Footer-Navigation sowie ausschließlich vorhandene lokale Ziele.
 
 `tests/venue-map.test.js` prüft:
 
