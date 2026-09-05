@@ -22,6 +22,7 @@
     "certificate",
     "other"
   ]);
+  const VENUE_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
   const SCHUETZENKREIS_SUED_LOGO = Object.freeze({
     src: "assets/img/logo-schuetzenkreis-sued.png",
     alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
@@ -307,6 +308,75 @@
     }, []);
   }
 
+  function isValidLatitude(value) {
+    return (
+      typeof value === "number" &&
+      Number.isFinite(value) &&
+      value >= -90 &&
+      value <= 90
+    );
+  }
+
+  function isValidLongitude(value) {
+    return (
+      typeof value === "number" &&
+      Number.isFinite(value) &&
+      value >= -180 &&
+      value <= 180
+    );
+  }
+
+  function normalizeVenue(venue) {
+    if (!isRecord(venue)) return null;
+
+    const id = normalizedString(venue.id);
+    const name = normalizedString(venue.name);
+
+    if (!id || !VENUE_ID_PATTERN.test(id) || !name) {
+      return null;
+    }
+
+    const normalizedVenue = { id, name };
+    const description = normalizedOptionalString(venue.description);
+    const hasValidCoordinates =
+      isValidLatitude(venue.latitude) &&
+      isValidLongitude(venue.longitude);
+
+    if (description) normalizedVenue.description = description;
+
+    if (hasValidCoordinates) {
+      normalizedVenue.latitude = venue.latitude;
+      normalizedVenue.longitude = venue.longitude;
+    }
+
+    return normalizedVenue;
+  }
+
+  function normalizeVenues(venues) {
+    if (!Array.isArray(venues)) return [];
+
+    return venues.map(normalizeVenue).filter(Boolean);
+  }
+
+  function resolveEventLocation(event, venues) {
+    if (!isRecord(event)) return null;
+
+    const venueId = normalizedString(event.venueId);
+
+    if (venueId) {
+      const matches = normalizeVenues(venues).filter(
+        (venue) => venue.id === venueId
+      );
+
+      if (matches.length === 1) {
+        return { ...matches[0] };
+      }
+    }
+
+    const legacyLocation = normalizedString(event.location);
+    return legacyLocation ? { name: legacyLocation } : null;
+  }
+
   function getEventTitle(event) {
     if (!isRecord(event)) return null;
 
@@ -429,6 +499,9 @@
     normalizeResults,
     normalizeEventDocuments,
     normalizeExternalLinks,
+    normalizeVenue,
+    normalizeVenues,
+    resolveEventLocation,
     getEventTitle,
     getEventOrganizerLogo,
     getEventPhase,

@@ -17,6 +17,9 @@ const {
   normalizeResults,
   normalizeEventDocuments,
   normalizeExternalLinks,
+  normalizeVenue,
+  normalizeVenues,
+  resolveEventLocation,
   getEventTitle,
   getEventOrganizerLogo,
   getEventPhase,
@@ -25,6 +28,8 @@ const {
   createDetailUrl,
   resolveEventBySlug
 } = globalThis.EventUtils;
+
+const venuesPath = path.resolve(__dirname, "../js/data/venues.js");
 
 function createCoreEvent(overrides = {}) {
   return {
@@ -78,6 +83,184 @@ function loadEventData(useDemoData) {
 
   return context.eventDataSnapshot;
 }
+
+function loadVenueData() {
+  const venueDataSource = fs.readFileSync(venuesPath, "utf8");
+  const context = vm.createContext({});
+
+  vm.runInContext(venueDataSource, context, { filename: "venues.js" });
+  vm.runInContext(
+    "globalThis.eventVenueSnapshot = eventVenues;",
+    context
+  );
+
+  return context.eventVenueSnapshot;
+}
+
+test("liefert eine leere zentrale Ortsdatenbank ohne vorgezogene Echtdaten", () => {
+  assert.deepEqual(Array.from(loadVenueData()), []);
+});
+
+test("lädt zentrale Ortsdaten vor allen Ortsverbrauchern", () => {
+  ["index.html", "event.html"].forEach((fileName) => {
+    const html = fs.readFileSync(
+      path.resolve(__dirname, `../${fileName}`),
+      "utf8"
+    );
+    const venuesIndex = html.indexOf('src="js/data/venues.js"');
+    const utilsIndex = html.indexOf('src="js/event-utils.js"');
+    const consumerIndex = html.indexOf(
+      fileName === "index.html"
+        ? 'src="js/calendar.js"'
+        : 'src="js/event-detail.js"'
+    );
+
+    assert.ok(venuesIndex >= 0, `${fileName}: venues.js fehlt`);
+    assert.ok(venuesIndex < utilsIndex, `${fileName}: venues.js lädt zu spät`);
+    assert.ok(utilsIndex < consumerIndex, `${fileName}: EventUtils lädt zu spät`);
+  });
+});
+
+test("normalisiert vollständige Veranstaltungsorte ohne Eingabedaten zu verändern", () => {
+  const venue = {
+    id: " beispiel-schiessstand ",
+    name: " Beispiel-Schießstand ",
+    description: " Am Waldrand ",
+    latitude: 51.123456,
+    longitude: 11.654321
+  };
+  const originalVenue = structuredClone(venue);
+
+  assert.deepEqual(normalizeVenue(venue), {
+    id: "beispiel-schiessstand",
+    name: "Beispiel-Schießstand",
+    description: "Am Waldrand",
+    latitude: 51.123456,
+    longitude: 11.654321
+  });
+  assert.deepEqual(venue, originalVenue);
+});
+
+test("verwirft Veranstaltungsorte ohne gültige ID oder Bezeichnung", () => {
+  [
+    null,
+    [],
+    {},
+    { id: "", name: "Ort" },
+    { id: "Ungueltige-ID", name: "Ort" },
+    { id: "ungueltige id", name: "Ort" },
+    { id: "gueltige-id", name: "  " }
+  ].forEach((venue) => assert.equal(normalizeVenue(venue), null));
+});
+
+test("übernimmt Koordinaten nur als vollständiges gültiges Zahlenpaar", () => {
+  const baseVenue = { id: "testort", name: "Testort" };
+  const validCoordinates = [
+    { latitude: -90, longitude: -180 },
+    { latitude: 0, longitude: 0 },
+    { latitude: 90, longitude: 180 }
+  ];
+
+  validCoordinates.forEach((coordinates) => {
+    assert.deepEqual(normalizeVenue({ ...baseVenue, ...coordinates }), {
+      ...baseVenue,
+      ...coordinates
+    });
+  });
+
+  [
+    { latitude: 51 },
+    { longitude: 11 },
+    { latitude: "51", longitude: 11 },
+    { latitude: 51, longitude: "11" },
+    { latitude: Number.NaN, longitude: 11 },
+    { latitude: 91, longitude: 11 },
+    { latitude: 51, longitude: 181 }
+  ].forEach((coordinates) => {
+    assert.deepEqual(normalizeVenue({ ...baseVenue, ...coordinates }), baseVenue);
+  });
+});
+
+test("normalisiert Ortslisten stabil und verwirft nur ungültige Einträge", () => {
+  const venues = [
+    { id: "erster-ort", name: "Erster Ort" },
+    { id: "ungueltig", name: "" },
+    { id: "zweiter-ort", name: "Zweiter Ort", description: "  " }
+  ];
+
+  assert.deepEqual(normalizeVenues(venues), [
+    { id: "erster-ort", name: "Erster Ort" },
+    { id: "zweiter-ort", name: "Zweiter Ort" }
+  ]);
+  assert.deepEqual(normalizeVenues(null), []);
+});
+
+test("löst einen eindeutig referenzierten Ort vor der Legacy-Angabe auf", () => {
+  const event = {
+    venueId: "zentraler-ort",
+    location: "Veraltete Ortsangabe"
+  };
+  const venues = [
+    {
+      id: "zentraler-ort",
+      name: "Zentraler Ort",
+      description: "Standortbeschreibung",
+      latitude: 51,
+      longitude: 11
+    }
+  ];
+
+  assert.deepEqual(resolveEventLocation(event, venues), venues[0]);
+});
+
+test("fällt bei unbekannten, ungültigen oder doppelten Ortsreferenzen sicher zurück", () => {
+  const legacyLocation = "Bisheriger Veranstaltungsort";
+  const duplicateVenues = [
+    { id: "doppelter-ort", name: "Erster Treffer" },
+    { id: "doppelter-ort", name: "Zweiter Treffer" }
+  ];
+
+  assert.deepEqual(
+    resolveEventLocation(
+      { venueId: "unbekannt", location: ` ${legacyLocation} ` },
+      duplicateVenues
+    ),
+    { name: legacyLocation }
+  );
+  assert.deepEqual(
+    resolveEventLocation(
+      { venueId: "doppelter-ort", location: legacyLocation },
+      duplicateVenues
+    ),
+    { name: legacyLocation }
+  );
+  assert.deepEqual(
+    resolveEventLocation(
+      { venueId: "doppelter-ort" },
+      duplicateVenues
+    ),
+    null
+  );
+  assert.deepEqual(resolveEventLocation({ location: "  " }, []), null);
+  assert.equal(resolveEventLocation(null, []), null);
+});
+
+test("bewahrt alle produktiven Legacy-Ortsangaben ohne zentrale Ortsdaten", () => {
+  const { productionEvents: productEvents } = loadEventData(false);
+
+  productEvents.forEach((event) => {
+    const expectedLocation =
+      typeof event.location === "string" && event.location.trim()
+        ? { name: event.location.trim() }
+        : null;
+
+    assert.deepEqual(
+      resolveEventLocation(event, loadVenueData()),
+      expectedLocation,
+      event.slug
+    );
+  });
+});
 
 test("berechnet die zeitlichen Veranstaltungsphasen an allen Grenzen", () => {
   const event = createCoreEvent({

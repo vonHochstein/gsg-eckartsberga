@@ -90,7 +90,11 @@
       .filter((result) => result.kind === "external");
     const externalLinks = eventUtils.normalizeExternalLinks(event.externalLinks);
     const category = getOptionalText(event.category);
-    const location = getOptionalText(event.location);
+    const locationData = eventUtils.resolveEventLocation(
+      event,
+      typeof eventVenues !== "undefined" ? eventVenues : []
+    );
+    const location = locationData?.name || "";
     const organizer = getOptionalText(event.organizer);
     const organizerLogo = eventUtils.getEventOrganizerLogo(event);
     const description = getOptionalText(event.description);

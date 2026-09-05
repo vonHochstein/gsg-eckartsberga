@@ -95,7 +95,8 @@ Die Anwendung verwendet:
 ├── js/
 │   ├── data/
 │   │   ├── dev-events.js
-│   │   └── events.js
+│   │   ├── events.js
+│   │   └── venues.js
 │   ├── calendar.js
 │   ├── countdown.js
 │   ├── event-detail.js
@@ -147,13 +148,14 @@ Die Startseite enthält:
 Die Script-Reihenfolge ist:
 
 1. `js/data/dev-events.js`
-2. `js/data/events.js`
-3. `js/event-utils.js`
-4. `js/navigation.js`
-5. `js/countdown.js`
-6. `js/calendar.js`
-7. `js/gallery.js`
-8. `js/main.js`
+2. `js/data/venues.js`
+3. `js/data/events.js`
+4. `js/event-utils.js`
+5. `js/navigation.js`
+6. `js/countdown.js`
+7. `js/calendar.js`
+8. `js/gallery.js`
+9. `js/main.js`
 
 #### `event.html`
 
@@ -162,12 +164,13 @@ Die universelle Detailseite enthält dieselben gemeinsamen Seitenbausteine, ein 
 Sie lädt bewusst keine Startseitenmodule für Countdown, Timeline oder Galerieanimation. Ihre Script-Reihenfolge ist:
 
 1. `js/data/dev-events.js`
-2. `js/data/events.js`
-3. `js/event-utils.js`
-4. `js/navigation.js`
-5. `js/event-detail.js`
-6. `js/gallery-lightbox.js`
-7. `js/main.js`
+2. `js/data/venues.js`
+3. `js/data/events.js`
+4. `js/event-utils.js`
+5. `js/navigation.js`
+6. `js/event-detail.js`
+7. `js/gallery-lightbox.js`
+8. `js/main.js`
 
 #### `geschichte.html`
 
@@ -281,6 +284,10 @@ Enthält:
 
 Enthält ausschließlich klar markierte, erfundene Entwicklungsdaten. Sie decken knappe und vollständige Veranstaltungen, Bild- und Galeriefälle, Dokumente, Legacy-Downloads, Datei- und externe Ergebnisse, externe Links, lange Texte sowie Anmeldepflicht ab.
 
+#### `js/data/venues.js`
+
+Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsorte. Die Infrastrukturdatei ist zunächst leer; reale Orte und Koordinaten werden erst in einzeln freigegebenen Migrationsschritten ergänzt.
+
 #### `js/event-utils.js`
 
 Stellt genau einen globalen Namensraum `window.EventUtils` bereit. Die Funktionen sind DOM-unabhängig und verändern übergebene Daten nicht.
@@ -295,6 +302,9 @@ Stellt genau einen globalen Namensraum `window.EventUtils` bereit. Die Funktione
 | `normalizeResults(results)` | normalisiert Datei- und externe Ergebnisse |
 | `normalizeEventDocuments(event)` | führt neue Dokumente, Ergebnisdateien und Downloads stabil und ohne URL-Duplikate zusammen |
 | `normalizeExternalLinks(externalLinks)` | normalisiert ausschließlich sichere externe HTTP-/HTTPS-Links |
+| `normalizeVenue(venue)` | normalisiert einen Ort und übernimmt Koordinaten nur als vollständiges gültiges Zahlenpaar |
+| `normalizeVenues(venues)` | normalisiert eine Ortsliste stabil und verwirft ungültige Einträge |
+| `resolveEventLocation(event, venues)` | löst eine eindeutige `venueId` auf und fällt andernfalls auf `location` zurück |
 | `getEventTitle(event)` | liefert `title` mit Rückfall auf `shortTitle` |
 | `getEventOrganizerLogo(event)` | liefert nur für exakt freigegebene `organizer`-Werte ein lokales Herkunftslogo, sonst `null` |
 | `isDetailCapable(event)` | prüft Slug, Titel und gültigen Startzeitpunkt |
@@ -307,7 +317,7 @@ Ermittelt die nächste zukünftige Veranstaltung, aktualisiert Titel, Kategorie,
 
 #### `js/calendar.js`
 
-Erzeugt Timeline und Archiv. Für Titel, Bild, kanonische Dokumente, externe Ergebnisse, Galerie und Detailfähigkeit werden die passenden `EventUtils`-Funktionen verwendet. Der Dokumentstatus berücksichtigt `documents`, Ergebnisdateien und Legacy-Downloads; der Ergebnisstatus ausschließlich externe Ergebnisquellen. Detailfähige Karten erhalten einen semantischen, tastaturbedienbaren Vollflächen-Link. Nicht detailfähige Karten bleiben normale Artikel.
+Erzeugt Timeline und Archiv. Für Titel, Ort, Bild, kanonische Dokumente, externe Ergebnisse, Galerie und Detailfähigkeit werden die passenden `EventUtils`-Funktionen verwendet. Eine eindeutige zentrale Ortsreferenz liefert den sichtbaren Ortsnamen; bestehende `location`-Angaben bleiben vollständiger Rückfall. Der Dokumentstatus berücksichtigt `documents`, Ergebnisdateien und Legacy-Downloads; der Ergebnisstatus ausschließlich externe Ergebnisquellen. Detailfähige Karten erhalten einen semantischen, tastaturbedienbaren Vollflächen-Link. Nicht detailfähige Karten bleiben normale Artikel.
 
 #### `js/gallery.js`
 
@@ -332,7 +342,7 @@ sowie Vor-/Zurück- und Pfeiltastennavigation.
 
 #### `js/event-detail.js`
 
-Liest ausschließlich den URL-Parameter `event`, löst den Slug über `EventUtils` auf und rendert:
+Liest ausschließlich den URL-Parameter `event`, löst den Slug sowie den sichtbaren Veranstaltungsort über `EventUtils` auf und rendert:
 
 - Veranstaltungskopf;
 - optionales, eindeutig über `organizer` zugeordnetes Herkunftslogo;
@@ -395,6 +405,10 @@ event-utils.js ─────────────────────�
                                     ├──> Timeline-Rendering und Verlinkung
                                     ├──> Galerie-Normalisierung und Verlinkung
                                     └──> Detailauflösung und Detail-Rendering
+
+venues.js ──> eventVenues ──> EventUtils.resolveEventLocation()
+                                  ├──> Timeline und Archiv
+                                  └──> Veranstaltungsdetailseite
 ```
 
 Die fachliche Modularisierung erfolgt über getrennte klassische Skripte. Es gibt weiterhin keine ES-Module und keine Import-/Export-Syntax.
@@ -469,6 +483,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
 | `events.js` | optional `developmentEvents` |
+| `venues.js` | keine Laufzeitabhängigkeit; zunächst leere zentrale Ortsliste |
 | `event-utils.js` | standardisierte Browser-/JavaScript-APIs, kein DOM |
 | `countdown.js` | `events`, `EventUtils`, Startseiten-DOM |
 | `calendar.js` | `events`, `EventUtils`, Timeline-DOM und Timeline-CSS |
@@ -494,6 +509,7 @@ Nach erfolgreichem Rendering werden gesetzt:
   start: "2026-03-07T09:00:00",
   end: "2026-03-07T17:00:00",
   editorialStatus: null,
+  venueId: null,
   location: "Lossa",
   organizer: "Kreisschützenverband",
   description: "",
@@ -519,7 +535,8 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `start` | String | erforderlicher, lokal interpretierter Startzeitpunkt |
 | `end` | String | optionaler Endzeitpunkt |
 | `editorialStatus` | String oder `null` | optionaler redaktioneller Sonderzustand `cancelled` oder `postponed` |
-| `location` | String | optionaler Ort |
+| `venueId` | String | optionale exakte Referenz auf einen zentralen Veranstaltungsort |
+| `location` | String | optionaler Legacy-Ort und Rückfall bei nicht auflösbarer `venueId` |
 | `organizer` | String | optionaler Veranstalter; dient bei exaktem Allowlist-Treffer zusätzlich der Herkunftslogo-Zuordnung |
 | `description` | String | optionale Beschreibung |
 | `image` | Objekt oder `null` | optionales Titelbild |
@@ -540,6 +557,22 @@ Für eine Detailseite sind erforderlich:
 - gültiger `start`.
 
 Alle weiteren Detailfelder sind optional.
+
+#### 4.1.1 Zentrale Veranstaltungsorte
+
+```js
+{
+  id: "beispiel-schiessstand",
+  name: "Beispiel-Schießstand",
+  description: "Optionale ergänzende Standortbeschreibung",
+  latitude: 51.0,
+  longitude: 11.0
+}
+```
+
+`id` und `name` sind erforderlich. Die ID verwendet kleingeschriebenes Kebab-Case und wird ausschließlich exakt aufgelöst. `description` ist optional. Koordinaten werden nur übernommen, wenn Breitengrad und Längengrad als endliche Zahlen vollständig vorliegen und innerhalb von −90 bis +90 beziehungsweise −180 bis +180 liegen. Zahlenketten und unvollständige Paare erzeugen keine Kartenposition.
+
+Eine eindeutig auflösbare `venueId` hat Vorrang vor einer parallel vorhandenen `location`. Unbekannte, ungültige, gelöschte oder doppelte IDs führen kontrolliert zum bisherigen `location`-Wert zurück; ohne Rückfall wird kein Ort ausgegeben. Namen oder Beschreibungstexte werden nicht zur Zuordnung geraten. Bestehende Veranstaltungen benötigen deshalb keine Sammelmigration.
 
 ### 4.2 Titelbild
 
@@ -734,6 +767,7 @@ Abgedeckt sind:
 - unveränderte Eingabedaten;
 - Demo-Schalter `true` und `false`;
 - produktives Datenmodell;
+- zentrale Ortsnormalisierung, eindeutige Referenzauflösung und Legacy-Rückfall;
 - vollständige Demo-Testabdeckung;
 - Existenz lokaler Entwicklungsressourcen.
 

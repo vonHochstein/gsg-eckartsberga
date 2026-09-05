@@ -252,7 +252,11 @@ function createEventMarkup(event) {
     gallery.length === 1 ? "1 Bild" : `${gallery.length} Bilder`;
   const title = eventUtils?.getEventTitle(event) || "Veranstaltung";
   const category = event.category || "Veranstaltung";
-  const location = event.location || "Ort folgt";
+  const locationData = eventUtils?.resolveEventLocation(
+    event,
+    typeof eventVenues !== "undefined" ? eventVenues : []
+  );
+  const location = locationData?.name || "Ort folgt";
   const image = eventUtils?.normalizeImage(event.image) || null;
   const detailUrl = eventUtils?.createDetailUrl(event) || null;
   const imageMarkup = image
