@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 5. September 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001 und EVT-LOC-001
+**Stand:** 6. September 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001 und GB-001
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -24,6 +24,7 @@ Umgesetzt und geprüft sind:
 - statische, responsive Geschichtsseite mit semantischer Chronologie und sichtbarer Quelleneinordnung;
 - statische Vorstands- und Ansprechpartnerseite auf Basis der vorhandenen Detailseitenkomponenten;
 - statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
+- datengetriebene Gästebuch-Unterseite mit validiertem, derzeit bewusst leerem Veröffentlichungsbestand;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
 - dynamische Anzeige der nächsten Veranstaltung mit Countdown;
 - Timeline für kommende, aktuelle und archivierte Veranstaltungen;
@@ -75,12 +76,14 @@ Die Anwendung verwendet:
 ├── index.html
 ├── event.html
 ├── erfolge.html
+├── gaestebuch.html
 ├── geschichte.html
 ├── schiessbahnen.html
 ├── vorstand.html
 ├── style.css
 ├── event.css
 ├── erfolge.css
+├── gaestebuch.css
 ├── geschichte.css
 ├── schiessbahnen.css
 ├── notes.rtf
@@ -107,6 +110,7 @@ Die Anwendung verwendet:
 │   ├── data/
 │   │   ├── dev-events.js
 │   │   ├── events.js
+│   │   ├── guestbook-entries.js
 │   │   └── venues.js
 │   ├── calendar.js
 │   ├── countdown.js
@@ -114,6 +118,7 @@ Die Anwendung verwendet:
 │   ├── event-utils.js
 │   ├── gallery.js
 │   ├── gallery-lightbox.js
+│   ├── guestbook.js
 │   ├── main.js
 │   ├── navigation.js
 │   └── venue-map.js
@@ -121,6 +126,7 @@ Die Anwendung verwendet:
 │   ├── achievements-page.test.js
 │   ├── event-utils.test.js
 │   ├── facility-page.test.js
+│   ├── guestbook.test.js
 │   ├── history-page.test.js
 │   ├── board-page.test.js
 │   └── venue-map.test.js
@@ -249,6 +255,15 @@ natives Dialogelement und den unveränderten gemeinsamen Controller
 `js/gallery-lightbox.js`. Ohne JavaScript bleiben sämtliche Inhalte und Bilder
 lesbar; lediglich die Vergrößerung entfällt.
 
+#### `gaestebuch.html`
+
+Die eigenständige Gästebuchseite verwendet den Seiteneinstieg der Geschichts-
+und Anlagen-Unterseite. Sie rendert alle validierten veröffentlichten Einträge
+aus `js/data/guestbook-entries.js` in absteigender Datumsreihenfolge und zeigt
+bei leerem Bestand einen verständlichen Leerzustand. Die erste Fassung enthält
+weder Formular noch Formspree-Anbindung, Produktiveinträge oder ungeprüfte
+personenbezogene Daten.
+
 ### 2.2 CSS
 
 #### `style.css`
@@ -307,6 +322,12 @@ Anlagen-Unterseite. Der Seitenkopf und gemeinsame Gestaltungsregeln stammen aus
 `geschichte.css`, die Lightbox aus `event.css` und alle globalen Design-Tokens,
 Navigationselemente und Footerregeln aus `style.css`.
 
+#### `gaestebuch.css`
+
+Enthält ausschließlich die einspaltige, responsive Eintragsliste und ihren
+Leerzustand. Seitenkopf, Rücklink, Design-Tokens, Header und Footer werden aus
+den bereits vorhandenen Stylesheets übernommen.
+
 ### 2.3 JavaScript
 
 #### `js/data/events.js`
@@ -325,6 +346,21 @@ Enthält ausschließlich klar markierte, erfundene Entwicklungsdaten. Sie decken
 #### `js/data/venues.js`
 
 Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsorte. Als erster realer Stammdatensatz ist der Jägerschießstand Markröhlitz mit der stabilen ID `jaegerschiessstand-markroehlitz` und den ausdrücklich vorgegebenen Koordinaten 51.222440, 11.872128 hinterlegt. Die Veranstaltungen `pokal-halbautomat-2024` und `km-halbautomat-kk-gk-2026` referenzieren diesen Venue; ihre bestehenden `location`-Angaben bleiben unverändert als Legacy-Rückfall erhalten.
+
+#### `js/data/guestbook-entries.js`
+
+Definiert `publishedGuestbookEntries` als einzige öffentliche Datenquelle für
+manuell geprüfte und freigegebene Gästebucheinträge. Der eingecheckte Bestand
+ist derzeit bewusst leer; ungeprüfte Formulareingänge und interne
+Moderationsinformationen gehören nicht in diese öffentlich ausgelieferte Datei.
+
+#### `js/guestbook.js`
+
+Normalisiert Gästebucheinträge ohne Veränderung der Eingabedaten, verwirft
+fehlende Pflichtfelder, ungültige ISO-Daten und doppelte IDs und sortiert stabil
+nach Datum absteigend. Texte werden ausschließlich über DOM-`textContent`
+ausgegeben. `window.GuestbookUtils` stellt die DOM-unabhängigen Funktionen für
+Normalisierung und Datumsformatierung bereit.
 
 #### `js/event-utils.js`
 
@@ -460,6 +496,10 @@ venues.js ──> eventVenues ──> EventUtils.resolveEventLocation()
                                             │
                                             └──> venue-map.js
                                                   └── Klick ──> OSM-Tiles
+
+guestbook-entries.js ──> publishedGuestbookEntries
+                              │
+                              └──> guestbook.js ──> gaestebuch.html
 ```
 
 Die fachliche Modularisierung erfolgt über getrennte klassische Skripte. Es gibt weiterhin keine ES-Module und keine Import-/Export-Syntax.
@@ -533,6 +573,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `event.html` | `style.css`, `event.css`, lokale Leaflet-Dateien, Daten, `EventUtils`, Navigation, Detailrenderer, Kartencontroller, gemeinsame Lightbox |
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
+| `gaestebuch.html` | `style.css`, `event.css`, `geschichte.css`, `gaestebuch.css`, veröffentlichte Gästebuchdaten, Gästebuchrenderer, Navigation, Footer-Jahr |
 | `events.js` | optional `developmentEvents` |
 | `venues.js` | keine Laufzeitabhängigkeit; zentrale Ortsstammdaten mit stabilen IDs und optionalen Koordinaten |
 | `event-utils.js` | standardisierte Browser-/JavaScript-APIs, kein DOM |
@@ -542,12 +583,32 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `event-detail.js` | `events`, `EventUtils`, Detail-DOM und `event.css` |
 | `gallery-lightbox.js` | deklaratives Galeriemarkup, natives `<dialog>` und Lightbox-CSS aus `event.css` |
 | `venue-map.js` | validiertes Karten-Trigger-Markup, natives `<dialog>`, lokales Leaflet und nach Nutzeraktion OSM-Tiles |
+| `guestbook.js` | `publishedGuestbookEntries` sowie optionale DOM-Ziele der Gästebuchseite und Startseite |
 | `navigation.js` | gemeinsame Header- und Navigationsstruktur |
 | `main.js` | Footer-Jahr und Demo-Datenattribut |
 
 ---
 
 ## 4. Verbindliches Datenmodell
+
+### 4.0 Gästebucheintrag
+
+```js
+{
+  id: "guestbook-2026-001",
+  displayName: "Freigegebener Anzeigename",
+  date: "2026-09-06",
+  text: "Freigegebener Gästebucheintrag",
+  featuredOnHome: true
+}
+```
+
+`id`, `displayName`, `date` und `text` sind erforderlich.
+`featuredOnHome` ist optional und wird ausschließlich bei exakt `true` aktiv.
+Die Aufnahme in `publishedGuestbookEntries` bedeutet bereits die manuell
+bestätigte Veröffentlichung; ein zusätzlicher Veröffentlichungsstatus sowie
+interne Herkunfts- oder Moderationsdaten sind nicht Teil des öffentlichen
+Modells.
 
 ### 4.1 Veranstaltung
 

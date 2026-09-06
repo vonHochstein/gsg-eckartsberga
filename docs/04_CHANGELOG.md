@@ -47,6 +47,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Zentrale, zunächst leere Veranstaltungsortsdatenquelle mit validierter Auflösung über optionale `venueId`-Referenzen.
 - Lokal versioniertes Leaflet 1.9.4 und nativer Standortdialog für erst nach bewusstem Klick geladene OpenStreetMap-Karten.
 - Jägerschießstand Markröhlitz als erster verifizierter zentraler Venue-Stammdatensatz, referenziert durch zwei fachlich bestätigte Veranstaltungen.
+- Eigenständige Gästebuch-Unterseite mit zentralem, validiertem Veröffentlichungsmodell und verständlichem Leerzustand.
 
 ### Geändert
 
