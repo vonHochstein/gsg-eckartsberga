@@ -147,6 +147,13 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 - **Zu prüfen:** Aktuelles Footer-Markup und aktuelle Darstellung mit der Git-Historie beziehungsweise dem maßgeblichen früheren Stand vergleichen; erst danach die gestalterisch richtige Reihenfolge bewerten.
 - **Abschlusskriterium:** Dokumentierter historischer Vergleich und bewusste Entscheidung, die aktuelle Reihenfolge beizubehalten oder in einem eigenen Arbeitspaket anzupassen.
 
+### P-19 – Inhaltliche Feinüberarbeitung Schießbahnen und Vereinshaus
+
+- **Status:** Offen
+- **Frage:** Welche inhaltlichen Angaben auf `schiessbahnen.html` müssen sachlich korrigiert oder präzisiert werden?
+- **Zu prüfen:** Sachlich korrekte Beschreibung und Zuordnung der einzelnen Anlagenbilder einschließlich ihrer Bildunterschriften und Alternativtexte sowie gegebenenfalls weitere kleinere sachliche Formulierungen innerhalb der Seite. Bis zur späteren Vorgabe beziehungsweise gemeinsamen Prüfung durch den Auftraggeber werden daraus keine konkreten Korrekturen abgeleitet oder Angaben vermutet.
+- **Abschlusskriterium:** Die betroffenen Inhalte sind einzeln mit dem Auftraggeber geprüft und die freigegebenen sachlichen Korrekturen in einem separaten Arbeitspaket umgesetzt. Technische Umsetzung, Layout, Seitenaufbau, Medienintegration und Funktionalität bleiben dabei unverändert.
+
 ## Noch zu bewertende Funktionserweiterungen
 
 Die folgenden Notizen sind vollständig im [Ideenspeicher](05_IDEENSPEICHER.md) erfasst und werden erst bei möglicher Übernahme in die Roadmap einzeln geprüft:
