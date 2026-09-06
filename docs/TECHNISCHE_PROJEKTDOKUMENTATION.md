@@ -160,6 +160,7 @@ Die Startseite enthält:
 - Vereins- und Geschichtsteaser;
 - Renderziel für die Timeline;
 - Galerievorschau;
+- datengetriebener, bei fehlenden freigegebenen Stimmen vollständig verborgener Gästebuch-Teaser;
 - Mitgliedschaftsteaser;
 - Demo-Hinweis;
 - Footer;
@@ -170,12 +171,14 @@ Die Script-Reihenfolge ist:
 1. `js/data/dev-events.js`
 2. `js/data/venues.js`
 3. `js/data/events.js`
-4. `js/event-utils.js`
-5. `js/navigation.js`
-6. `js/countdown.js`
-7. `js/calendar.js`
-8. `js/gallery.js`
-9. `js/main.js`
+4. `js/data/guestbook-entries.js`
+5. `js/event-utils.js`
+6. `js/navigation.js`
+7. `js/countdown.js`
+8. `js/calendar.js`
+9. `js/gallery.js`
+10. `js/guestbook.js`
+11. `js/main.js`
 
 #### `event.html`
 
@@ -280,6 +283,7 @@ Enthält das gemeinsame Gestaltungssystem und alle Startseitenstile:
 - Countdown;
 - Timeline und Archiv;
 - Galerievorschau;
+- Startseiten-Stimmen;
 - Footer;
 - responsive Regeln;
 - Reduced-Motion-Regeln.
@@ -359,8 +363,14 @@ Moderationsinformationen gehören nicht in diese öffentlich ausgelieferte Datei
 Normalisiert Gästebucheinträge ohne Veränderung der Eingabedaten, verwirft
 fehlende Pflichtfelder, ungültige ISO-Daten und doppelte IDs und sortiert stabil
 nach Datum absteigend. Texte werden ausschließlich über DOM-`textContent`
-ausgegeben. `window.GuestbookUtils` stellt die DOM-unabhängigen Funktionen für
-Normalisierung und Datumsformatierung bereit.
+ausgegeben. Dieselbe normalisierte Liste versorgt die Gästebuchseite und – nur
+für Einträge mit `featuredOnHome: true` – den Startseiten-Teaser. Bei mehreren
+Stimmen startet dieser zufällig und läuft anschließend im stabilen Datenbestand
+alle neun Sekunden zyklisch weiter. Manuelle Bedienung sowie Fokus- oder
+Zeigerinteraktion pausieren den Wechsel; reduzierte Bewegung deaktiviert
+Autoplay und Übergangsbewegung. `window.GuestbookUtils` stellt die
+DOM-unabhängigen Funktionen für Normalisierung, Startseitenauswahl,
+Datumsformatierung und Startindex bereit.
 
 #### `js/event-utils.js`
 
@@ -499,7 +509,8 @@ venues.js ──> eventVenues ──> EventUtils.resolveEventLocation()
 
 guestbook-entries.js ──> publishedGuestbookEntries
                               │
-                              └──> guestbook.js ──> gaestebuch.html
+                              └──> guestbook.js ──┬──> gaestebuch.html
+                                                  └──> index.html#stimmen
 ```
 
 Die fachliche Modularisierung erfolgt über getrennte klassische Skripte. Es gibt weiterhin keine ES-Module und keine Import-/Export-Syntax.
@@ -569,7 +580,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 
 | Datei | Direkte Laufzeitabhängigkeiten |
 |---|---|
-| `index.html` | `style.css`, Daten, `EventUtils`, Startseitenmodule |
+| `index.html` | `style.css`, Veranstaltungs-, Orts- und Gästebuchdaten, `EventUtils`, Startseitenmodule |
 | `event.html` | `style.css`, `event.css`, lokale Leaflet-Dateien, Daten, `EventUtils`, Navigation, Detailrenderer, Kartencontroller, gemeinsame Lightbox |
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
@@ -932,6 +943,16 @@ node --test tests/*.test.js
 - vier lokale Anlagenmedien mit festen Maßen, Alternativtexten, Bildunterschriften und Prüfsummen;
 - vollständige responsive Medienausgabe und die unveränderte gemeinsame Lightbox;
 - unveränderte Header- und Footer-Navigation sowie ausschließlich vorhandene lokale Ziele.
+
+`tests/guestbook.test.js` prüft:
+
+- Pflichtfelder, eindeutige IDs, gültige ISO-Daten und unveränderte Eingabedaten;
+- stabile Datumsreihenfolge und Auswahl ausschließlich freigegebener Startseitenstimmen;
+- bewusst leeren öffentlichen Produktivbestand und verständlichen Leerzustand;
+- Startseitenposition zwischen Galerie und Mitgliedschaft sowie verborgenen Zustand ohne Auswahl;
+- Wechselintervall, zufälligen Startindex, Pause-, Sichtbarkeits- und Reduced-Motion-Vertrag;
+- gemeinsame Rasterfläche der Stimmen und mindestens 44 Pixel große Bedienelemente;
+- Gästebuchlink in allen Footern ohne Erweiterung der Hauptnavigation.
 
 `tests/venue-map.test.js` prüft:
 

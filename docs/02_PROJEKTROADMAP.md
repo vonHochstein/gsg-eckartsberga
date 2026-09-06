@@ -25,6 +25,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - eigenständige Vorstands- und Ansprechpartnerseite mit bestätigten Funktionen und Namen;
 - eigenständige Erfolgsseite mit den zehn von der bisherigen Vereinswebsite überlieferten Schützenkönig-Einträgen und gemeinsamer Lightbox;
 - eigenständige Seite für Schießbahnen und Vereinshaus mit bestätigten Nutzungsangaben und vier freigegebenen Anlagenaufnahmen;
+- eigenständige Gästebuchseite mit zentralem Veröffentlichungsmodell, verständlichem Leerzustand und datengetriebenem Startseiten-Teaser;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
 - abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
 - konsistenter Footer mit ausschließlich vorhandenen Sprungzielen;
@@ -41,6 +42,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - technische Grundlage für zentrale Veranstaltungsorte und eine erst nach bewusstem Klick geladene, responsive OpenStreetMap-Karte;
 - sichtbare Fokuszustände und Sprunglink zum Hauptinhalt;
 - Unterstützung reduzierter Bewegung;
+- zugängliche Steuerung der Startseiten-Stimmen mit Pause, manueller Navigation und vollständig deaktiviertem Autoplay bei reduzierter Bewegung;
 - responsive Qualitätsprüfung vom kleinen Smartphone bis zum großen Bildschirm.
 
 ### Veranstaltungen
@@ -94,6 +96,7 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - reale Inhalte, Testdaten und Platzhalter eindeutig voneinander abgrenzen;
 - endgültige Seiten- und Bereichsstruktur festlegen;
 - weitere Vereins-, Sport-, besondere Erfolgs-, Mitgliedschafts- und Kontaktinhalte einpflegen;
+- veröffentlichungsfähige Altbestände des Gästebuchs einzeln prüfen und freigegebene Einträge übernehmen;
 - freigegebene direkte Kontaktwege ergänzen.
 
 ### Abschnitt 2: Rechtliche Veröffentlichungsgrundlage
@@ -142,7 +145,7 @@ Die folgenden Punkte sind mögliche Ausbaustufen. Sie sind nicht priorisiert und
 
 - Website-Suche;
 - Dunkelmodus;
-- Gästebuch;
+- moderiertes Gästebuchformular nach Datenschutz- und Anbieterprüfung;
 - Kontaktformular;
 - datenschutzgerechte Besucherstatistik;
 - geschützter Mitgliederbereich;

@@ -1023,6 +1023,166 @@ abbr[title] {
 }
 
 /* ==========================================
+   GUESTBOOK VOICES
+========================================== */
+
+.guestbook-voices {
+  padding-block: clamp(58px, 6vw, 76px);
+  border-top: 1px solid rgba(126, 94, 40, 0.12);
+}
+
+.guestbook-voices h2 {
+  margin-bottom: 0;
+}
+
+.guestbook-voices-panel {
+  position: relative;
+  max-width: 940px;
+  min-height: 238px;
+  margin-top: 28px;
+  padding: clamp(26px, 4vw, 38px);
+  overflow: hidden;
+  border: 1px solid rgba(126, 94, 40, 0.12);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+  box-shadow: 0 18px 44px rgba(65, 48, 24, 0.08);
+}
+
+.guestbook-voices-panel::before {
+  content: "“";
+  position: absolute;
+  top: -18px;
+  left: 22px;
+  color: rgba(214, 168, 79, 0.18);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(7rem, 14vw, 10rem);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.guestbook-voices-slides {
+  position: relative;
+  z-index: 1;
+  display: grid;
+}
+
+.guestbook-voice {
+  grid-area: 1 / 1;
+  align-self: center;
+  min-width: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(14px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0s linear 0.35s;
+}
+
+.guestbook-voice.is-active,
+.guestbook-voice.is-leaving {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.guestbook-voice.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.guestbook-voice.is-leaving {
+  transform: translateX(-14px);
+}
+
+.guestbook-voice blockquote p {
+  max-width: 820px;
+  color: #403a34;
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.guestbook-voice footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px 14px;
+  margin-top: 18px;
+}
+
+.guestbook-voice footer strong {
+  color: var(--color-dark);
+}
+
+.guestbook-voice footer time {
+  color: #766b5f;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.guestbook-voices-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 24px;
+  margin-top: 26px;
+}
+
+.guestbook-voices-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.guestbook-voices-button,
+.guestbook-voices-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(126, 94, 40, 0.24);
+  background: rgba(247, 243, 236, 0.72);
+  color: var(--color-dark);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.guestbook-voices-button {
+  border-radius: 999px;
+  font-size: 1.1rem;
+}
+
+.guestbook-voices-toggle {
+  padding: 8px 16px;
+  border-radius: 999px;
+}
+
+.guestbook-voices-button:hover,
+.guestbook-voices-toggle:hover {
+  border-color: rgba(155, 28, 28, 0.38);
+  background: rgba(155, 28, 28, 0.08);
+  color: var(--color-red);
+}
+
+.guestbook-voices-position {
+  min-width: 62px;
+  color: #6f6558;
+  font-size: 0.9rem !important;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ==========================================
    EVENT TIMELINE
 ========================================== */
 
@@ -1406,6 +1566,11 @@ abbr[title] {
 
   .gallery-preview-copy {
     padding: 26px 22px;
+  }
+
+  .guestbook-voices-footer {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .club-highlights {
@@ -1834,6 +1999,25 @@ html[data-development-data="active"] .site-footer {
     height: 46px;
   }
 
+  .guestbook-voices {
+    padding-block: 56px;
+  }
+
+  .guestbook-voices-panel {
+    min-height: 250px;
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .guestbook-voices-controls {
+    width: 100%;
+  }
+
+  .guestbook-voices-toggle {
+    flex: 1 1 100%;
+    order: 4;
+  }
+
   .main-nav {
     left: 16px;
     right: 16px;
@@ -1945,6 +2129,12 @@ html[data-development-data="active"] .site-footer {
   .gallery-feature.is-active img {
     animation: none;
     transform: scale(1.03);
+  }
+
+  .guestbook-voice,
+  .guestbook-voice.is-active,
+  .guestbook-voice.is-leaving {
+    transform: none;
   }
 
   .brand:hover img,

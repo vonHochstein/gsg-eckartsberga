@@ -48,6 +48,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Lokal versioniertes Leaflet 1.9.4 und nativer Standortdialog für erst nach bewusstem Klick geladene OpenStreetMap-Karten.
 - Jägerschießstand Markröhlitz als erster verifizierter zentraler Venue-Stammdatensatz, referenziert durch zwei fachlich bestätigte Veranstaltungen.
 - Eigenständige Gästebuch-Unterseite mit zentralem, validiertem Veröffentlichungsmodell und verständlichem Leerzustand.
+- Datengetriebener Startseitenbereich für freigegebene Gästebuchstimmen mit zugänglicher Wechselsteuerung und automatischem Leerzustand.
+- Gästebuchlink in den bestehenden Footern ohne Erweiterung der Hauptnavigation.
 
 ### Geändert
 

@@ -25,11 +25,13 @@
   <script src="js/data/dev-events.js" defer></script>
   <script src="js/data/venues.js" defer></script>
   <script src="js/data/events.js" defer></script>
+  <script src="js/data/guestbook-entries.js" defer></script>
   <script src="js/event-utils.js" defer></script>
   <script src="js/navigation.js" defer></script>
   <script src="js/countdown.js" defer></script>
   <script src="js/calendar.js" defer></script>
   <script src="js/gallery.js" defer></script>
+  <script src="js/guestbook.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 
@@ -551,6 +553,59 @@
       </div>
     </section>
 
+    <section
+      id="stimmen"
+      class="section section-light guestbook-voices"
+      aria-labelledby="guestbook-voices-title"
+      hidden
+    >
+      <div class="section-inner">
+        <p class="section-kicker">Gästebuch</p>
+        <h2 id="guestbook-voices-title">Stimmen unserer Gäste.</h2>
+
+        <div class="guestbook-voices-panel" data-guestbook-voices>
+          <div
+            class="guestbook-voices-slides"
+            data-guestbook-slides
+            aria-live="off"
+            aria-atomic="true"
+          ></div>
+
+          <div class="guestbook-voices-footer">
+            <div class="guestbook-voices-controls" data-guestbook-controls>
+              <button
+                class="guestbook-voices-button"
+                type="button"
+                data-guestbook-previous
+                aria-label="Vorherige Stimme"
+              >
+                <span aria-hidden="true">←</span>
+              </button>
+              <p class="guestbook-voices-position" data-guestbook-position></p>
+              <button
+                class="guestbook-voices-toggle"
+                type="button"
+                data-guestbook-toggle
+                aria-pressed="false"
+              >
+                Automatischen Wechsel pausieren
+              </button>
+              <button
+                class="guestbook-voices-button"
+                type="button"
+                data-guestbook-next
+                aria-label="Nächste Stimme"
+              >
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <a class="btn btn-primary" href="gaestebuch.html">Zum Gästebuch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="mitglied" class="section section-dark">
       <div class="section-inner">
         <p class="section-kicker">Mitmachen</p>
@@ -583,6 +638,7 @@
             <a href="#veranstaltungen">Veranstaltungen</a>
             <a href="#galerie">Galerie</a>
             <a href="#mitglied">Mitglied werden</a>
+            <a href="gaestebuch.html">Gästebuch</a>
           </nav>
         </div>
       </div>

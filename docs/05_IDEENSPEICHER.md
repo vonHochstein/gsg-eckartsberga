@@ -52,7 +52,7 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
 ## Kommunikation
 
 - Kontaktformular;
-- Gästebuch;
+- moderiertes Gästebuchformular für ausdrücklich zur Veröffentlichung bestimmte Nachrichten;
 - direkte, klar definierte Kontaktwege;
 - Benachrichtigungen über neue Termine oder Ergebnisse;
 - Verknüpfung geeigneter Vereinskanäle;

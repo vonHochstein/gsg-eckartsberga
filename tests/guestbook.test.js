@@ -10,12 +10,16 @@ const projectRoot = path.resolve(__dirname, "..");
 const dataPath = path.join(projectRoot, "js/data/guestbook-entries.js");
 const scriptPath = path.join(projectRoot, "js/guestbook.js");
 const pagePath = path.join(projectRoot, "gaestebuch.html");
+const indexPath = path.join(projectRoot, "index.html");
+const stylePath = path.join(projectRoot, "style.css");
 
 require(scriptPath);
 
 const {
   normalizeGuestbookEntries,
-  formatGuestbookDate
+  getFeaturedGuestbookEntries,
+  formatGuestbookDate,
+  selectInitialGuestbookIndex
 } = globalThis.GuestbookUtils;
 
 function readProjectFile(filePath) {
@@ -98,9 +102,37 @@ test("sortiert nach Datum absteigend und bei Gleichstand stabil", () => {
   );
 });
 
-test("formatiert ausschließlich gültige Daten", () => {
+test("liefert ausschließlich redaktionell ausgewählte Startseitenstimmen", () => {
+  const entries = [
+    {
+      id: "a",
+      displayName: "A",
+      date: "2026-01-01",
+      text: "A"
+    },
+    {
+      id: "b",
+      displayName: "B",
+      date: "2026-01-02",
+      text: "B",
+      featuredOnHome: true
+    }
+  ];
+
+  assert.deepEqual(
+    getFeaturedGuestbookEntries(entries).map((entry) => entry.id),
+    ["b"]
+  );
+});
+
+test("formatiert Daten und bestimmt den zufälligen Startindex deterministisch", () => {
   assert.equal(formatGuestbookDate("2026-09-06"), "6. September 2026");
   assert.equal(formatGuestbookDate("2026-02-30"), "");
+  assert.equal(selectInitialGuestbookIndex(1, 0.75), 0);
+  assert.equal(selectInitialGuestbookIndex(4, 0), 0);
+  assert.equal(selectInitialGuestbookIndex(4, 0.74), 2);
+  assert.equal(selectInitialGuestbookIndex(4, 1), 3);
+  assert.equal(selectInitialGuestbookIndex(0, 0.5), -1);
 });
 
 test("stellt die Gästebuchseite ohne Formular oder Produktivinhalt bereit", () => {
@@ -130,4 +162,106 @@ test("verwendet vorhandenen Seitenrahmen und erweitert die Hauptnavigation nicht
   assert.match(html, /geschichte\.css/);
   assert.match(html, /gaestebuch\.css/);
   assert.doesNotMatch(mainNavigation, /Gästebuch|gaestebuch\.html/);
+});
+
+test("ordnet den verborgenen Stimmenbereich zwischen Galerie und Mitgliedschaft ein", () => {
+  const html = readProjectFile(indexPath);
+  const galleryIndex = html.indexOf('<section id="galerie"');
+  const voicesIndex = html.indexOf('id="stimmen"');
+  const membershipIndex = html.indexOf('<section id="mitglied"');
+
+  assert.ok(galleryIndex >= 0);
+  assert.ok(voicesIndex > galleryIndex);
+  assert.ok(membershipIndex > voicesIndex);
+  assert.match(
+    html,
+    /id="stimmen"[\s\S]*?aria-labelledby="guestbook-voices-title"[\s\S]*?hidden/
+  );
+  assert.match(html, /data-guestbook-slides/);
+  assert.match(html, /data-guestbook-previous/);
+  assert.match(html, /data-guestbook-toggle/);
+  assert.match(html, /data-guestbook-next/);
+  assert.match(html, /href="gaestebuch\.html">Zum Gästebuch<\/a>/);
+});
+
+test("lädt Gästebuchdaten vor der gemeinsamen Gästebuchlogik", () => {
+  for (const filePath of [indexPath, pagePath]) {
+    const html = readProjectFile(filePath);
+    const dataIndex = html.indexOf("js/data/guestbook-entries.js");
+    const scriptIndex = html.indexOf("js/guestbook.js");
+
+    assert.ok(dataIndex >= 0);
+    assert.ok(scriptIndex > dataIndex);
+  }
+});
+
+test("verwendet den festgelegten Wechsel- und Bedienvertrag", () => {
+  const script = readProjectFile(scriptPath);
+
+  assert.match(script, /const ROTATION_INTERVAL = 9000;/);
+  assert.match(script, /const TRANSITION_DURATION = 350;/);
+  assert.match(script, /controls\.hidden = slides\.length < 2;/);
+  assert.match(script, /prefers-reduced-motion: reduce/);
+  assert.match(script, /root\.addEventListener\("pointerenter", pauseAutoplay\)/);
+  assert.match(script, /root\.addEventListener\("focusin", pauseAutoplay\)/);
+  assert.match(script, /document\.addEventListener\("visibilitychange"/);
+  assert.match(script, /autoplayEnabled \? "off" : "polite"/);
+  assert.match(script, /textContent = entry\.text/);
+});
+
+test("hält alle Stimmen in derselben Rasterfläche und Bedienelemente groß genug", () => {
+  const css = readProjectFile(stylePath);
+
+  assert.match(css, /\.guestbook-voices-slides\s*{[^}]*display:\s*grid;/s);
+  assert.match(css, /\.guestbook-voice\s*{[^}]*grid-area:\s*1 \/ 1;/s);
+  assert.match(
+    css,
+    /\.guestbook-voices-button,[\s\S]*?\.guestbook-voices-toggle\s*{[^}]*min-width:\s*44px;[^}]*min-height:\s*44px;/
+  );
+  assert.match(
+    css,
+    /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.guestbook-voice,[\s\S]*?transform:\s*none;/
+  );
+});
+
+test("verlinkt das Gästebuch in jedem Footer, aber in keiner Hauptnavigation", () => {
+  const pageNames = [
+    "index.html",
+    "event.html",
+    "geschichte.html",
+    "vorstand.html",
+    "erfolge.html",
+    "schiessbahnen.html",
+    "gaestebuch.html"
+  ];
+
+  pageNames.forEach((pageName) => {
+    const html = readProjectFile(path.join(projectRoot, pageName));
+    const footerNavigation = html.match(
+      /<nav class="footer-nav"[\s\S]*?<\/nav>/
+    )?.[0] ?? "";
+    const mainNavigation = html.match(
+      /<nav class="main-nav"[\s\S]*?<\/nav>/
+    )?.[0] ?? "";
+
+    assert.match(footerNavigation, /href="gaestebuch\.html"/);
+    assert.doesNotMatch(mainNavigation, /Gästebuch|gaestebuch\.html/);
+  });
+});
+
+test("verweist auf der Gästebuchseite ausschließlich auf vorhandene lokale Ziele", () => {
+  const html = readProjectFile(pagePath);
+  const references = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map(
+    (match) => match[1]
+  );
+
+  references.forEach((reference) => {
+    if (/^(?:#|https?:|mailto:|tel:)/.test(reference)) return;
+
+    const localPath = reference.split(/[?#]/, 1)[0];
+    assert.ok(
+      fs.existsSync(path.join(projectRoot, localPath)),
+      `Lokales Ziel fehlt: ${reference}`
+    );
+  });
 });
