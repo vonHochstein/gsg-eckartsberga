@@ -35,11 +35,79 @@ function loadPublishedEntries() {
     "globalThis.guestbookSnapshot = publishedGuestbookEntries;",
     context
   );
-  return context.guestbookSnapshot;
+  return JSON.parse(JSON.stringify(context.guestbookSnapshot));
 }
 
-test("stellt einen bewusst leeren veröffentlichten Datenbestand bereit", () => {
-  assert.deepEqual(Array.from(loadPublishedEntries()), []);
+test("stellt die fünf freigegebenen Bestandseinträge unverändert bereit", () => {
+  assert.deepEqual(loadPublishedEntries(), [
+    {
+      id: "guestbook-2025-001",
+      displayName: "Schützenverein Benninghofen-Brücherhof-Loh 1658 e. V.",
+      date: "2025-09-05",
+      text:
+        "Horrido aus dem schönen Dortmund, und viel Spaß bei eurem morgigen Fest.\n\nSehr schöne Webseite.",
+      featuredOnHome: true
+    },
+    {
+      id: "guestbook-2024-001",
+      displayName: "Steve",
+      date: "2024-01-29",
+      text: "Sehr gute Schießanlage, bis zum nächsten Mal.",
+      featuredOnHome: true
+    },
+    {
+      id: "guestbook-2023-001",
+      displayName: "Jörg",
+      date: "2023-08-21",
+      text: "Danke für das tolle Training, ich komm gern wieder.",
+      featuredOnHome: true
+    },
+    {
+      id: "guestbook-2022-002",
+      displayName: "Schmidt Uwe",
+      date: "2022-05-14",
+      text:
+        "Wir kommen wieder. das rund um die Uhr geschossen werden kann und zu jedem Tag ist super. weiter so GSG!",
+      featuredOnHome: false
+    },
+    {
+      id: "guestbook-2022-001",
+      displayName: "Müller",
+      date: "2022-05-01",
+      text: "Tolle Raumschießanlage, hat spaß gemacht. Danke",
+      featuredOnHome: true
+    }
+  ]);
+});
+
+test("normalisiert die Bestandseinträge in der verbindlichen Reihenfolge", () => {
+  const entries = normalizeGuestbookEntries(loadPublishedEntries());
+
+  assert.deepEqual(
+    entries.map((entry) => entry.id),
+    [
+      "guestbook-2025-001",
+      "guestbook-2024-001",
+      "guestbook-2023-001",
+      "guestbook-2022-002",
+      "guestbook-2022-001"
+    ]
+  );
+  assert.equal(new Set(entries.map((entry) => entry.id)).size, 5);
+});
+
+test("markiert ausschließlich die vier freigegebenen Stimmen für die Startseite", () => {
+  assert.deepEqual(
+    getFeaturedGuestbookEntries(loadPublishedEntries()).map(
+      (entry) => entry.displayName
+    ),
+    [
+      "Schützenverein Benninghofen-Brücherhof-Loh 1658 e. V.",
+      "Steve",
+      "Jörg",
+      "Müller"
+    ]
+  );
 });
 
 test("normalisiert Pflichtfelder und verändert die Eingabedaten nicht", () => {
@@ -135,7 +203,7 @@ test("formatiert Daten und bestimmt den zufälligen Startindex deterministisch",
   assert.equal(selectInitialGuestbookIndex(0, 0.5), -1);
 });
 
-test("stellt die Gästebuchseite ohne Formular oder Produktivinhalt bereit", () => {
+test("stellt die Gästebuchseite ohne Formular bereit", () => {
   const html = readProjectFile(pagePath);
 
   assert.equal([...html.matchAll(/<h1\b/gi)].length, 1);
@@ -221,6 +289,10 @@ test("hält alle Stimmen in derselben Rasterfläche und Bedienelemente groß gen
   assert.match(
     css,
     /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.guestbook-voice,[\s\S]*?transform:\s*none;/
+  );
+  assert.match(
+    css,
+    /\.guestbook-entry blockquote p,[\s\S]*?\.guestbook-voice blockquote p\s*{[^}]*white-space:\s*pre-line;/
   );
 });
 

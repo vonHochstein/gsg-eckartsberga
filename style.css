@@ -1066,6 +1066,11 @@ abbr[title] {
   display: grid;
 }
 
+.guestbook-entry blockquote p,
+.guestbook-voice blockquote p {
+  white-space: pre-line;
+}
+
 .guestbook-voice {
   grid-area: 1 / 1;
   align-self: center;

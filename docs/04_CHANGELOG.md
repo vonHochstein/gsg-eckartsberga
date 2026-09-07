@@ -50,6 +50,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Eigenständige Gästebuch-Unterseite mit zentralem, validiertem Veröffentlichungsmodell und verständlichem Leerzustand.
 - Datengetriebener Startseitenbereich für freigegebene Gästebuchstimmen mit zugänglicher Wechselsteuerung und automatischem Leerzustand.
 - Gästebuchlink in den bestehenden Footern ohne Erweiterung der Hauptnavigation.
+- Fünf freigegebene Einträge aus dem bisherigen Gästebuch übernommen, davon vier für die Startseiten-Stimmen ausgewählt.
 
 ### Geändert
 

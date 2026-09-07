@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 6. September 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001 und GB-001
+**Stand:** 7. September 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, GB-001 und GB-MIG-001
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -24,7 +24,7 @@ Umgesetzt und geprüft sind:
 - statische, responsive Geschichtsseite mit semantischer Chronologie und sichtbarer Quelleneinordnung;
 - statische Vorstands- und Ansprechpartnerseite auf Basis der vorhandenen Detailseitenkomponenten;
 - statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
-- datengetriebene Gästebuch-Unterseite mit validiertem, derzeit bewusst leerem Veröffentlichungsbestand;
+- datengetriebene Gästebuch-Unterseite mit fünf freigegebenen Bestandseinträgen;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
 - dynamische Anzeige der nächsten Veranstaltung mit Countdown;
 - Timeline für kommende, aktuelle und archivierte Veranstaltungen;
@@ -264,8 +264,7 @@ Die eigenständige Gästebuchseite verwendet den Seiteneinstieg der Geschichts-
 und Anlagen-Unterseite. Sie rendert alle validierten veröffentlichten Einträge
 aus `js/data/guestbook-entries.js` in absteigender Datumsreihenfolge und zeigt
 bei leerem Bestand einen verständlichen Leerzustand. Die erste Fassung enthält
-weder Formular noch Formspree-Anbindung, Produktiveinträge oder ungeprüfte
-personenbezogene Daten.
+weder Formular noch Formspree-Anbindung oder ungeprüfte personenbezogene Daten.
 
 ### 2.2 CSS
 
@@ -355,7 +354,8 @@ Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsort
 
 Definiert `publishedGuestbookEntries` als einzige öffentliche Datenquelle für
 manuell geprüfte und freigegebene Gästebucheinträge. Der eingecheckte Bestand
-ist derzeit bewusst leer; ungeprüfte Formulareingänge und interne
+enthält fünf migrierte Einträge aus den Jahren 2022 bis 2025; vier davon sind
+für die Startseite freigegeben. Ungeprüfte Formulareingänge und interne
 Moderationsinformationen gehören nicht in diese öffentlich ausgelieferte Datei.
 
 #### `js/guestbook.js`
@@ -948,7 +948,7 @@ node --test tests/*.test.js
 
 - Pflichtfelder, eindeutige IDs, gültige ISO-Daten und unveränderte Eingabedaten;
 - stabile Datumsreihenfolge und Auswahl ausschließlich freigegebener Startseitenstimmen;
-- bewusst leeren öffentlichen Produktivbestand und verständlichen Leerzustand;
+- fünf freigegebene Bestandseinträge, ihre exakten Texte und den weiterhin verfügbaren Leerzustand;
 - Startseitenposition zwischen Galerie und Mitgliedschaft sowie verborgenen Zustand ohne Auswahl;
 - Wechselintervall, zufälligen Startindex, Pause-, Sichtbarkeits- und Reduced-Motion-Vertrag;
 - gemeinsame Rasterfläche der Stimmen und mindestens 44 Pixel große Bedienelemente;
