@@ -3,7 +3,7 @@
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
 **Stand:** 9. September 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, GB-001, GB-MIG-001 und FOOT-VERB-001
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, GB-001, GB-MIG-001, FOOT-VERB-001 und LEGAL-DAT-001
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -25,6 +25,7 @@ Umgesetzt und geprüft sind:
 - statische Vorstands- und Ansprechpartnerseite auf Basis der vorhandenen Detailseitenkomponenten;
 - statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
 - datengetriebene Gästebuch-Unterseite mit fünf freigegebenen Bestandseinträgen;
+- statische, responsive Datenschutzerklärung mit klarer Trennung zwischen aktiver und verbindlich geplanter Technik;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
 - dynamische Anzeige der nächsten Veranstaltung mit Countdown;
 - Timeline für kommende, aktuelle und archivierte Veranstaltungen;
@@ -49,7 +50,7 @@ Noch nicht umgesetzt sind insbesondere:
 
 - freigegebene Detailinhalte für produktive Veranstaltungen;
 - weitere Vereins-, besondere Erfolgs- und Kontaktinhalte;
-- Impressum und Datenschutz;
+- Impressum sowie die fachliche Freigabe und abschließende Produktionsprüfung der Datenschutzerklärung;
 - vollständige produktive Galerie;
 - Backend, CMS, Formulare, Suche und Mitgliederbereich;
 - Build-, Deployment- und Hosting-Konfiguration.
@@ -80,7 +81,9 @@ Die Anwendung verwendet:
 ├── geschichte.html
 ├── schiessbahnen.html
 ├── vorstand.html
+├── datenschutz.html
 ├── style.css
+├── datenschutz.css
 ├── event.css
 ├── erfolge.css
 ├── gaestebuch.css
@@ -268,6 +271,21 @@ aus `js/data/guestbook-entries.js` in absteigender Datumsreihenfolge und zeigt
 bei leerem Bestand einen verständlichen Leerzustand. Die erste Fassung enthält
 weder Formular noch Formspree-Anbindung oder ungeprüfte personenbezogene Daten.
 
+#### `datenschutz.html`
+
+Die statische Datenschutzseite verwendet denselben integrierten Seitenkopf,
+Rücklink, Header und Footer wie die Geschichts-, Anlagen- und Gästebuchseite.
+Sie beschreibt den verbindlich vorgesehenen Betrieb über GitHub Pages mit
+STRATO-Domain-/DNS-Verwaltung, E-Mail-Kontakt, die vorhandenen öffentlichen
+Gästebucheinträge und die erst nach bewusster Aktivierung geladenen OSM-Karten.
+
+Formspree und counter.dev sind ausdrücklich als verbindlich geplanter, aber
+technisch noch nicht aktiver Produktionszustand gekennzeichnet. Die Seite bindet
+keine dieser externen Laufzeiten ein und erzeugt selbst keine automatischen
+Drittanfragen. Der Platzhalter für die endgültige Vereins-E-Mail-Adresse sowie
+die noch offenen Produktions-, Anbieter- und Rechtsprüfungen sind in den
+offenen Prüfpunkten verankert.
+
 ### 2.2 CSS
 
 #### `style.css`
@@ -297,6 +315,8 @@ die gemeinsame Copyrightzeile mit Vereinsname und Leitsatz. Die Logozeile bleibt
 über die gemeinsamen Footerregeln auch auf schmalen Ansichten in einer Reihe;
 die Navigation wechselt dort in ein festes Zweispaltenraster, damit ihre
 CSS-Separatoren nicht allein am Zeilenanfang oder -ende stehen.
+Die Sekundärnavigation enthält auf allen produktiven Seiten zusätzlich den
+zentralen Link zur Datenschutzerklärung.
 
 Die vom Auftraggeber extern vorbereiteten PNG-Fassungen werden unverändert
 verwendet: DSB mit 1013 × 720 Pixeln und SHA-256
@@ -349,6 +369,13 @@ Navigationselemente und Footerregeln aus `style.css`.
 Enthält ausschließlich die einspaltige, responsive Eintragsliste und ihren
 Leerzustand. Seitenkopf, Rücklink, Design-Tokens, Header und Footer werden aus
 den bereits vorhandenen Stylesheets übernommen.
+
+#### `datenschutz.css`
+
+Enthält ausschließlich die ruhige Langtextgliederung der Datenschutzseite. Der
+Seitenkopf und die globale Gestaltung stammen aus `geschichte.css`, der Rücklink
+aus `event.css` sowie Header, Footer, Design-Tokens und Fokusdarstellung aus
+`style.css`.
 
 ### 2.3 JavaScript
 
@@ -604,6 +631,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
 | `gaestebuch.html` | `style.css`, `event.css`, `geschichte.css`, `gaestebuch.css`, veröffentlichte Gästebuchdaten, Gästebuchrenderer, Navigation, Footer-Jahr |
+| `datenschutz.html` | `style.css`, `event.css`, `geschichte.css`, `datenschutz.css`, Navigation, Footer-Jahr |
 | `events.js` | optional `developmentEvents` |
 | `venues.js` | keine Laufzeitabhängigkeit; zentrale Ortsstammdaten mit stabilen IDs und optionalen Koordinaten |
 | `event-utils.js` | standardisierte Browser-/JavaScript-APIs, kein DOM |
@@ -982,6 +1010,17 @@ node --test tests/*.test.js
 - responsive Ein-Zeilen-Logogruppe sowie Separatoren ohne eingetippte oder
   isolierte Trennzeichen.
 
+`tests/privacy-page.test.js` prüft:
+
+- statischen Detailseitenrahmen, genau eine H1 und ausschließlich lokale
+  automatisch geladene Ressourcen;
+- verbindliche Vereins-, Register-, Hosting- und Domainangaben;
+- klare Kennzeichnung von Formspree und counter.dev als noch nicht aktive
+  Produktionsplanung;
+- tatsächlichen klickbasierten OSM-Ablauf sowie veröffentlichte
+  Gästebucheinträge und Betroffenenrechte;
+- Datenschutzlink in allen Footern ohne Erweiterung der Hauptnavigation.
+
 `tests/venue-map.test.js` prüft:
 
 - ausschließlich lokale und unveränderte Leaflet-1.9.4-Laufzeitdateien samt Lizenz und SHA-256;
@@ -1110,7 +1149,7 @@ EVT-LOC-001 ergänzt die Browserprüfung um:
 - Tests konzentrieren sich derzeit auf Hilfsfunktionen und Datenmodell; es existiert kein dauerhaftes DOM-Testsystem.
 - Der Demo-Schalter ist weiterhin eine manuelle Veröffentlichungsvoraussetzung.
 - Es gibt noch keine Deployment- oder Content-Security-Konfiguration.
-- OSM-Tiles sind ein externer Best-effort-Dienst ohne eigene Verfügbarkeitsgarantie; Richtlinien und Datenschutzerklärung müssen vor produktiver Ortsmigration geprüft bleiben.
+- OSM-Tiles sind ein externer Best-effort-Dienst ohne eigene Verfügbarkeitsgarantie; Richtlinien, konkrete Rechtsgrundlage und Produktionsrequests müssen vor Veröffentlichung abschließend geprüft werden.
 
 ### 6.3 Sinnvolle spätere Refactorings
 
@@ -1129,4 +1168,4 @@ Erst nach den nächsten fachlichen Ausbauschritten sind sinnvoll:
 
 Mit IA-002 ist aus der reinen Startseitenchronik eine integrierte, datengetriebene Veranstaltungsarchitektur entstanden. Ein verbindliches Modell versorgt Countdown, Timeline, Archiv, Galerie und universelle Detailseite. Gemeinsame Hilfsfunktionen verhindern doppelte URL- und Validierungslogik, während klar getrennte Entwicklungsdaten alle optionalen Zustände prüfbar machen.
 
-Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Der erste reale Venue ist zentral hinterlegt und wird von zwei fachlich bestätigten Events referenziert. Weitere Ortsumstellungen bleiben jeweils einzeln freizugebende Eventmigrationen; daneben ist die rechtliche und redaktionelle Veröffentlichungsgrundlage zu vervollständigen.
+Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Der erste reale Venue ist zentral hinterlegt und wird von zwei fachlich bestätigten Events referenziert. Die Datenschutzseite bildet den geprüften technischen Stand und die verbindlich vorgesehenen Dienste bereits ab; E-Mail-Adresse, Anbieterintegrationen, Produktionsrequests und rechtliche Einordnungen bleiben vor Veröffentlichung abschließend zu prüfen. Weitere Ortsumstellungen bleiben jeweils einzeln freizugebende Eventmigrationen.

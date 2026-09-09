@@ -52,10 +52,12 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Gästebuchlink in den bestehenden Footern ohne Erweiterung der Hauptnavigation.
 - Fünf freigegebene Einträge aus dem bisherigen Gästebuch übernommen, davon vier für die Startseiten-Stimmen ausgewählt.
 - Logos des Deutschen Schützenbundes und des Landesschützenverbandes Sachsen-Anhalt als verlinkte, responsive Dreiergruppe mit dem bestehenden GSG-Motiv in allen Footern ergänzt.
+- Eigenständige, responsive Datenschutzerklärung für den tatsächlichen und den klar gekennzeichneten geplanten Produktionszustand ergänzt.
 
 ### Geändert
 
 - Vom Auftraggeber vorbereitete Verbandslogo-Assets übernommen und den Footer auf allen Seiten in die Reihenfolge Logozeile, getrennte Sekundärnavigation und gemeinsame Copyright-/Leitsatzzeile gebracht.
+- Datenschutz als regulären Link in die bestehende Footer-Sekundärnavigation aller produktiven Seiten aufgenommen.
 - Startseite im Rahmen von IA-001 in Inhalt, Abständen, Karten, Hero, Galerie, Timeline und Footer vereinheitlicht.
 - Tote oder nur vorbereitete Links entfernt und vorhandene Startseiteninhalte abschließend formuliert.
 - Timeline semantisch gegliedert, stabil sortiert und das Jahresarchiv zugänglicher beschriftet.
@@ -111,6 +113,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Technische Projektdokumentation und Roadmap auf den Stand der neuen Vereinschronik fortgeschrieben.
 - Fortlaufende Altseitenanalyse mit belastbarem Initialbestand und verbindlicher
   Prüfung für künftige Migrations- und Modernisierungspakete etabliert.
+- Datenschutzbezogene Altseitenbefunde, verbindliche Pre-Publish-Prüfungen und den Grundsatz lokaler produktiver Medien dokumentiert.
 
 ---
 

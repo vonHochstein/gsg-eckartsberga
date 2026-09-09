@@ -49,16 +49,16 @@ keine rückwirkende Vollprüfung aller Altseiten.
 | ALT-002 | Die bisherige Vereinschronik erforderte eine klarere Trennung zwischen früher Schützentradition, der Neugründung von 1827 und der Gründung des heutigen Vereins im Jahr 1992. Problematische historische Kontinuitätsaussagen wurden im Zuge der Migration bestätigt. | Ohne diese Einordnung können überlieferte Bezugspunkte als lückenlos belegte Organisationsgeschichte des heutigen Vereins missverstanden werden. | Die neue Chronik trennt die Zeitstufen sprachlich, kennzeichnet Quellen und Überlieferung und führt offene historische Recherchen getrennt fort. | Behoben – weitere Quellen können einzelne Stationen später präzisieren. |
 | ALT-003 | Die frühere Seite „Bilder“ war keine allgemeine Galerie, sondern enthielt im Wesentlichen die jahrweise Zuordnung von Schützenkönigen und einer Schützenkönigin sowie einen sachfremden Kontaktaufruf. | Seitentitel und Inhaltshierarchie erschwerten die fachliche Einordnung; Erfolgsüberlieferung, Galerie und Kontakt waren nicht sauber getrennt. | Die belegten Einträge stehen auf der eigenständigen Seite „Erfolge“ im Abschnitt „Schützenkönige“. Der Kontaktaufruf wurde nicht als Erfolgsinhalt übernommen; Galeriefunktionen bleiben davon getrennt. | Behoben. |
 | ALT-004 | Die auf der früheren Seite überlieferte Schützenkönig-Reihe enthält keinen Eintrag für 2018, keine Einträge vor 2016 und für 2019 nur die einmal belegte Schreibweise „Dominice Wiegand“. | Eine vollständige Reihe oder korrigierte Namensform ließe sich ohne zusätzliche Vereinsquellen nur erfinden. | Die neue Website übernimmt ausschließlich die belegten Einträge, erzeugt keinen Platzhalter und hält Lücke sowie Schreibweise als offene redaktionelle Prüfung fest. | Teilweise behoben – quellengetreu veröffentlicht, inhaltliche Bestätigung bleibt offen. |
+| ALT-005 | Die Datenschutzdarstellung der bisherigen Jimdo-Website war plattformspezifisch und beschrieb unter anderem Google Analytics, Google reCAPTCHA und Jimdo Creator Statistics. Diese Dienste entsprechen nicht dem technischen Konzept der neuen Website. | Eine unveränderte Übernahme würde Dienste und Datenflüsse beschreiben, die auf der neuen Website nicht vorhanden sind, während deren tatsächliche beziehungsweise verbindlich geplante Technik nicht passend erklärt würde. | Die neue Datenschutzerklärung wird aus dem geprüften eigenen Codebestand abgeleitet. Sie trennt lokale Technik, klickbasierte OSM-Karten sowie noch nicht aktive Planungen für Formspree und counter.dev und übernimmt keine Jimdo-Textbausteine. | Teilweise behoben – technische Fassung integriert; fachliche Freigabe und Abgleich mit dem endgültigen Produktionszustand bleiben offen. |
 
 ## Datenschutz- und Rechtseinordnung des Initialbestands
 
-Die Projektdokumentation belegt die plattformspezifischen Jimdo-Medienquellen
-und die daraus folgende Abhängigkeit bei Herkunft und Sicherung. Sie enthält
-jedoch keine abgeschlossene technische oder rechtliche Gesamtprüfung des
-Cookie-, Dienst- oder Datenschutzverhaltens der bisherigen Jimdo-Website.
-Deshalb wird daraus weder ein Rechtsverstoß abgeleitet noch ein weitergehender
-Altseitenbefund behauptet. Rechtliche Aussagen dürfen erst nach einer gesonderten
-fachlichen Prüfung ergänzt werden.
+Die technische Datenschutz-Voranalyse und LEGAL-DAT-001 haben die für die neue
+Website tatsächlich implementierten beziehungsweise verbindlich geplanten
+Dienste abgegrenzt. Der Befund ALT-005 beschreibt ausschließlich die daraus
+belegbare fehlende technische Passung der alten Jimdo-Datenschutzdarstellung.
+Er enthält weder eine abschließende rechtliche Gesamtprüfung der bisherigen
+Website noch die Behauptung eines Rechtsverstoßes.
 
 ## Nachweise zum Initialbestand
 

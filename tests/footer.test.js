@@ -12,7 +12,8 @@ const pageFiles = [
   "erfolge.html",
   "vorstand.html",
   "schiessbahnen.html",
-  "gaestebuch.html"
+  "gaestebuch.html",
+  "datenschutz.html"
 ];
 
 function readProjectFile(relativePath) {
@@ -146,11 +147,15 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
 
   assert.match(
     css,
+    /\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(7, max-content\);/s
+  );
+  assert.match(
+    css,
     /\.footer-nav a \+ a\s*{[^}]*border-left:\s*1px solid rgba\(214, 168, 79, 0\.3\);/s
   );
   assert.match(
     css,
-    /@media \(max-width: 600px\)[\s\S]*?\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);/s
+    /@media \(max-width: 820px\)[\s\S]*?\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);/s
   );
   assert.match(
     css,
@@ -160,5 +165,6 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
   pageFiles.forEach((pageFile) => {
     const footer = getFooter(readProjectFile(pageFile));
     assert.doesNotMatch(footer, /<\/a>\s*\|\s*<a/);
+    assert.match(footer, /href="datenschutz\.html"/);
   });
 });

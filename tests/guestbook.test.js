@@ -304,7 +304,8 @@ test("verlinkt das Gästebuch in jedem Footer, aber in keiner Hauptnavigation", 
     "vorstand.html",
     "erfolge.html",
     "schiessbahnen.html",
-    "gaestebuch.html"
+    "gaestebuch.html",
+    "datenschutz.html"
   ];
 
   pageNames.forEach((pageName) => {

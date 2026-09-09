@@ -291,6 +291,12 @@ Bevor eine externe Lösung eingeführt wird, sind zu bewerten:
 
 Medien werden in angemessenen Formaten, Größen und Auflösungen bereitgestellt.
 
+Produktive Medien werden grundsätzlich lokal aus der Projektstruktur
+ausgeliefert. Externe Medienquellen dürfen nur nach vorheriger technischer und
+datenschutzbezogener Prüfung sowie einer dokumentierten Entscheidung eingebunden
+werden. Ungeprüftes Hotlinking ist kein zulässiger Ersatz für die kontrollierte
+Medienablage.
+
 ## 13. Datenschutz und Recht von Anfang an berücksichtigen
 
 Externe Dienste, Formulare, Karten, Besucherstatistiken, eingebettete Inhalte und geschützte Bereiche dürfen erst nach Prüfung der rechtlichen und organisatorischen Folgen eingebunden werden.

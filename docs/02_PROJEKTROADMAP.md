@@ -26,6 +26,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - eigenständige Erfolgsseite mit den zehn von der bisherigen Vereinswebsite überlieferten Schützenkönig-Einträgen und gemeinsamer Lightbox;
 - eigenständige Seite für Schießbahnen und Vereinshaus mit bestätigten Nutzungsangaben und vier freigegebenen Anlagenaufnahmen;
 - eigenständige Gästebuchseite mit zentralem Veröffentlichungsmodell, verständlichem Leerzustand und datengetriebenem Startseiten-Teaser;
+- eigenständige Datenschutzseite für den tatsächlichen und verbindlich geplanten Produktionszustand;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
 - abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
 - konsistenter Footer mit zentraler Logozeile, nachgeordneter Sekundärnavigation und gemeinsamer Vereins-/Leitsatzzeile;
@@ -103,10 +104,14 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 
 ### Abschnitt 2: Rechtliche Veröffentlichungsgrundlage
 
-- fachlich geprüfte Inhalte für Impressum und Datenschutz bereitstellen;
-- externe Dienste und Einwilligungserfordernisse bewerten;
+- fachlich geprüfte Inhalte für das Impressum bereitstellen;
+- integrierte Datenschutzerklärung vor Veröffentlichung fachlich freigeben und
+  gegen die endgültige Produktionskonfiguration prüfen;
+- Einwilligungserfordernisse für Formspree, counter.dev und die klickbasierte
+  Kartenfunktion abschließend bewerten;
 - rechtssichere Karten- beziehungsweise Anfahrtslösung festlegen;
-- OSM-Tile-Nutzung, Datenschutzhinweise und Bannerverzicht vor der ersten produktiven Ortsmigration fachlich bestätigen;
+- OSM-Tile-Nutzung, Datenschutzhinweise und Bannerverzicht vor Veröffentlichung
+  fachlich bestätigen;
 - Veröffentlichungsvoraussetzungen dokumentieren.
 
 ### Abschnitt 5: Galerie und Medien
@@ -134,7 +139,7 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 
 ### Abschnitt 8: Veröffentlichung und Betrieb
 
-- Hosting- und Deploymentweg festlegen;
+- GitHub Pages als Hosting sowie STRATO für Domain und DNS technisch einrichten;
 - Domains, HTTPS, Caching und Fehlerseiten prüfen;
 - Favicon, Suchmaschinenmetadaten und Social-Media-Vorschauen ergänzen;
 - Datensicherung und redaktionellen Pflegeprozess definieren;

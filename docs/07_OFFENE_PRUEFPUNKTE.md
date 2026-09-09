@@ -47,38 +47,45 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-05 – Cookies und Einwilligungsbanner
 
-- **Status:** Offen
+- **Status:** In Klärung
 - **Frage:** Kann die Website ohne Cookie- beziehungsweise Einwilligungsbanner betrieben werden?
-- **Zu prüfen:** alle Cookies, lokale Speicherungen, Statistik-, Formular-, Karten-, Medien- und sonstigen Drittanbieter; rechtliche Einordnung der finalen Implementierung.
+- **Zu prüfen:** Die technische Voranalyse hat für den aktuellen Stand keine eigenen Cookies oder Browser-Speicherungen festgestellt. Vor Veröffentlichung bleiben insbesondere die tatsächliche Formspree- und counter.dev-Konfiguration, der mögliche `sessionStorage`-Einsatz der Statistik, die klickbasierte OSM-Karte und die rechtliche Einordnung des finalen Gesamtzustands zu prüfen.
 - **Abschlusskriterium:** Vollständige Diensteliste und fachlich bestätigte Entscheidung zur erforderlichen Einwilligung.
 
 ### P-06 – Impressum und Datenschutzerklärung
 
-- **Status:** Offen
+- **Status:** In Klärung
 - **Frage:** Sind Impressum und Datenschutzerklärung vollständig und für die finale Website ausreichend?
-- **Zu prüfen:** Vereinsangaben, Vertretungsberechtigte, Registerdaten, Kontaktwege, Hosting, Protokolldaten, externe Dienste, Formulare und Betroffenenrechte.
+- **Zu prüfen:** Die technische Datenschutzfassung ist integriert. Vor Veröffentlichung müssen die Vereins-E-Mail-Adresse den Platzhalter `[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN]` ersetzen, der Text fachlich freigegeben und das noch fehlende Impressum separat umgesetzt werden. Hosting, Protokolldaten und externe Dienste werden zusätzlich über P-07 bis P-09 und P-23 geprüft.
 - **Abschlusskriterium:** Freigegebene Rechtstexte vor Veröffentlichung.
 
 ### P-07 – OSM-Veranstaltungskarten und spätere Anfahrtsdarstellung
 
-- **Status:** Offen
+- **Status:** In Klärung
 - **Frage:** Ist die erst nach bewusstem Klick geladene OSM-Kartenlösung für produktive Veranstaltungsorte rechtlich, datenschutzrechtlich und betrieblich freigegeben, und kann sie später für eine Anfahrtsdarstellung wiederverwendet werden?
-- **Zu prüfen:** aktuelle OSM-Tile-Richtlinie und Attribution, übertragene Netzwerkdaten, Datenschutzerklärung, Cookie-/Speicherprüfung, rechtliche Bewertung des Bannerverzichts, Ausfallsicherheit und barrierearme Textalternative. Reale Koordinaten werden erst nach dieser Prüfung und eigener inhaltlicher Freigabe produktiv zugeordnet.
+- **Zu prüfen:** Die lokale Leaflet-Einbindung, nutzerinitiierte Tile-Anfrage, Attribution sowie der Ausschluss eigener Cookies und Speichermechanismen sind technisch dokumentiert. Vor Veröffentlichung bleiben aktuelle OSM-Richtlinien, die konkrete Rechtsgrundlage, der Einwilligungsbedarf, ein Live-Netzwerktest, Ausfallsicherheit und barrierearme Textalternative abschließend zu bewerten.
 - **Abschlusskriterium:** Dokumentierte Freigabe der klickbasierten Lösung einschließlich Datenschutztext, Lizenznachweis, Netzwerkprüfung und Entscheidung zum Einwilligungsbedarf.
 
 ### P-08 – Formspree für Kontaktformular und Gästebuch
 
-- **Status:** Offen
-- **Frage:** Ist Formspree oder ein vergleichbarer Dienst fachlich, datenschutzrechtlich und betrieblich geeignet?
-- **Zu prüfen:** Auftragsverarbeitung, Serverstandort, Datenübermittlung, Spam-Schutz, Löschung, Einwilligung, Kosten, Barrierefreiheit und Anbieterbindung.
+- **Status:** In Klärung
+- **Frage:** Wie wird die verbindlich geplante Formspree-Anbindung für Kontaktformular und moderierte Gästebuchübermittlung datenschutzgerecht konfiguriert?
+- **Zu prüfen:** Vor der technischen Aktivierung Auftragsverarbeitung, konkrete Datenfelder, Speicherung, internationale Datenübermittlung, Spam-Schutz ohne ungeprüftes reCAPTCHA, Löschung, Einwilligung, Kosten, Barrierefreiheit und Anbieterbindung bewerten. Anschließend die Datenschutzerklärung gegen die reale Konfiguration prüfen. Gästebucheinträge dürfen nie automatisch veröffentlicht werden.
 - **Abschlusskriterium:** Bewertete Anbieterentscheidung und dokumentierter Datenfluss.
 
 ### P-09 – counter.dev für Besucherstatistik
 
+- **Status:** In Klärung
+- **Frage:** Wie wird die verbindlich geplante Reichweitenmessung mit counter.dev datenschutzgerecht aktiviert?
+- **Zu prüfen:** Vor Aktivierung tatsächliches Einbindungsskript und konkrete Statistikfelder, `sessionStorage`, Browser-Cache, Referrer, IP-basierte Länderableitung, Einwilligungsbedarf, Datenschutzerklärung, Ausfallsicherheit und Alternativen ohne Statistik prüfen. Danach die Datenschutzerklärung gegen die reale Konfiguration abgleichen.
+- **Abschlusskriterium:** Dokumentierte, fachlich freigegebene counter.dev-Konfiguration einschließlich Rechtsgrundlage, Einwilligungsentscheidung und aktualisiertem Datenschutztext.
+
+### P-23 – Datenschutzabgleich des Produktionsbetriebs
+
 - **Status:** Offen
-- **Frage:** Besteht ein ausreichender Nutzen und ist der Dienst datenschutzgerecht einsetzbar?
-- **Zu prüfen:** erhobene Daten, Cookies beziehungsweise Speichertechniken, IP-Verarbeitung, Drittlandbezug, Einwilligung, Datenschutzerklärung, Ausfallsicherheit und Alternativen ohne Tracking.
-- **Abschlusskriterium:** Begründete Entscheidung für einen konkreten Statistikansatz oder gegen Besucherzählung.
+- **Frage:** Entspricht die veröffentlichte Website technisch vollständig der vorbereiteten Datenschutzerklärung?
+- **Zu prüfen:** GitHub-Pages-Deployment und STRATO-Domain-/DNS-Konfiguration fertigstellen; anschließend unter der endgültigen Domain eine Live-Netzwerkprüfung sämtlicher Seiten und Interaktionen durchführen. Tatsächliche Requests, Hosting-Header, Referrer-Verhalten, mögliche Content-Security-Policy, Protokolldaten, externe Ressourcen und noch vorhandene Platzhalter gegen die Datenschutzerklärung prüfen. Produktive Medien müssen gemäß den Entwicklungsgrundsätzen lokal bleiben, sofern eine externe Quelle nicht zuvor ausdrücklich technisch und datenschutzbezogen freigegeben wurde.
+- **Abschlusskriterium:** Dokumentierter Produktionsscan ohne unerklärte Drittanfragen oder Widersprüche zur freigegebenen Datenschutzerklärung.
 
 ### P-20 – Nutzungsfreigabe Verbandslogos vor Veröffentlichung prüfen
 
