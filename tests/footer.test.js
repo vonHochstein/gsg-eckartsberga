@@ -32,14 +32,14 @@ function getFooter(html) {
   return footer[0];
 }
 
-test("liefert die beiden Verbandslogos unverändert aus", () => {
+test("liefert die freigegebenen Verbandslogo-Assets unverändert aus", () => {
   assert.equal(
     sha256("assets/img/logo-deutscher-schuetzenbund.png"),
-    "28a3d0cf9ea2afaf98b8bc21b2f1e40ef14683f8fec3bc94d8e81fce4069de16"
+    "f6dc6940d13ed57478c7af0cdb54474a7c2c5aae664bc1a6cf8681fd839239be"
   );
   assert.equal(
     sha256("assets/img/logo-landesschuetzenverband-sachsen-anhalt.png"),
-    "fadecb8a6a807cd195143fedc5984488daa25b8b6296664bd5f027cb31d9616f"
+    "c9dadabaaabeded322ccbe3382281fcce17cf7832e324254b4956b0777ee629f"
   );
 });
 
@@ -81,11 +81,11 @@ test("verwendet die verbindlichen externen Linkziele und zugängliche Bilddaten"
 
     assert.match(
       footer,
-      /href="https:\/\/www\.dsb\.de\/"[\s\S]*?rel="external"[\s\S]*?aria-label="Offizielle Website des Deutschen Schützenbundes"[\s\S]*?<img[\s\S]*?alt="Logo des Deutschen Schützenbundes"[\s\S]*?width="240"[\s\S]*?height="150"/
+      /href="https:\/\/www\.dsb\.de\/"[\s\S]*?rel="external"[\s\S]*?aria-label="Offizielle Website des Deutschen Schützenbundes"[\s\S]*?<img[\s\S]*?alt="Logo des Deutschen Schützenbundes"[\s\S]*?width="1013"[\s\S]*?height="720"/
     );
     assert.match(
       footer,
-      /href="https:\/\/www\.sv-st\.de\/"[\s\S]*?rel="external"[\s\S]*?aria-label="Offizielle Website des Landesschützenverbandes Sachsen-Anhalt"[\s\S]*?<img[\s\S]*?alt="Wappen des Landesschützenverbandes Sachsen-Anhalt"[\s\S]*?width="2500"[\s\S]*?height="4648"/
+      /href="https:\/\/www\.sv-st\.de\/"[\s\S]*?rel="external"[\s\S]*?aria-label="Offizielle Website des Landesschützenverbandes Sachsen-Anhalt"[\s\S]*?<img[\s\S]*?alt="Wappen des Landesschützenverbandes Sachsen-Anhalt"[\s\S]*?width="550"[\s\S]*?height="600"/
     );
     assert.match(footer, /srcset="assets\/img\/logo-eckig_v1\.webp"/);
     assert.match(footer, /src="assets\/img\/logo-eckig_v1\.png"/);
@@ -97,7 +97,7 @@ test("hält die drei Footerlogos responsiv in einer gemeinsamen Zeile", () => {
 
   assert.match(
     css,
-    /\.footer-signature\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:[^}]*clamp\(60px, 7vw, 104px\)[^}]*clamp\(124px, 14vw, 200px\)[^}]*clamp\(60px, 7vw, 104px\);/s
+    /\.footer-signature\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:[^}]*clamp\(82px, 9vw, 132px\)[^}]*clamp\(124px, 14vw, 200px\)[^}]*clamp\(60px, 7vw, 104px\);/s
   );
   assert.match(
     css,
@@ -105,7 +105,7 @@ test("hält die drei Footerlogos responsiv in einer gemeinsamen Zeile", () => {
   );
   assert.match(
     css,
-    /\.footer-association-link-dsb img\s*{[^}]*max-width:\s*104px;/s
+    /\.footer-association-link-dsb img\s*{[^}]*max-width:\s*132px;/s
   );
   assert.match(
     css,
@@ -115,4 +115,50 @@ test("hält die drei Footerlogos responsiv in einer gemeinsamen Zeile", () => {
     css,
     /\.footer-brand-illustration\s*{[^}]*width:\s*100%;[^}]*margin:\s*0;/s
   );
+});
+
+test("ordnet Logozeile, Navigation und Schlusszeile in jedem Footer verbindlich an", () => {
+  pageFiles.forEach((pageFile) => {
+    const footer = getFooter(readProjectFile(pageFile));
+    const logoRowIndex = footer.indexOf('class="footer-signature"');
+    const navigationIndex = footer.indexOf('class="footer-nav"');
+    const legalIndex = footer.indexOf('class="footer-legal"');
+
+    assert.ok(logoRowIndex >= 0, `${pageFile}: Logozeile fehlt`);
+    assert.ok(
+      navigationIndex > logoRowIndex,
+      `${pageFile}: Navigation steht nicht nach der Logozeile`
+    );
+    assert.ok(
+      legalIndex > navigationIndex,
+      `${pageFile}: Schlusszeile steht nicht nach der Navigation`
+    );
+    assert.doesNotMatch(footer, /class="footer-(?:identity|brand|copy)"/);
+    assert.match(
+      footer,
+      /©\s*<span id="current-year">2026<\/span>\s*Großkaliber Schützengilde Eckartsberga e\. V\. - Tradition\. Sport\. Gemeinschaft\./
+    );
+  });
+});
+
+test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () => {
+  const css = readProjectFile("style.css");
+
+  assert.match(
+    css,
+    /\.footer-nav a \+ a\s*{[^}]*border-left:\s*1px solid rgba\(214, 168, 79, 0\.3\);/s
+  );
+  assert.match(
+    css,
+    /@media \(max-width: 600px\)[\s\S]*?\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);/s
+  );
+  assert.match(
+    css,
+    /\.footer-nav a:nth-child\(even\)\s*{[^}]*border-left:\s*1px solid rgba\(214, 168, 79, 0\.3\);/s
+  );
+
+  pageFiles.forEach((pageFile) => {
+    const footer = getFooter(readProjectFile(pageFile));
+    assert.doesNotMatch(footer, /<\/a>\s*\|\s*<a/);
+  });
 });

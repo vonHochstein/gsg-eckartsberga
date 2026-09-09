@@ -110,6 +110,13 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 - **Zu prüfen:** Vereinsunterlagen oder verantwortliche Personen zu Titelvergabe und Namensschreibweise befragen; außerdem klären, ob vor 2016 weitere Einträge veröffentlicht werden sollen.
 - **Abschlusskriterium:** Dokumentierte redaktionelle Bestätigung oder begründete Entscheidung, die derzeitige quellengetreue Darstellung unverändert beizubehalten.
 
+### P-21 – Zuständige Waffenbehörde als externer Verweis
+
+- **Status:** Offen
+- **Frage:** Ist ein Link zur zuständigen Waffenbehörde für Besucher der Vereinswebsite fachlich sinnvoll, und wo soll er gegebenenfalls eingeordnet werden?
+- **Zu prüfen:** Tatsächlich zuständige Behörde, geeignete offizielle Zielseite und inhaltlich passende Position innerhalb der Website. Bis zur Klärung werden weder Behörde noch URL eingetragen.
+- **Abschlusskriterium:** Dokumentierte Zuständigkeits- und Zielseitenprüfung sowie bewusste redaktionelle Entscheidung über Aufnahme und Platzierung des Links.
+
 ## Qualität und Gestaltung
 
 ### P-12 – Nachweis vollständiger Responsivität
@@ -149,10 +156,9 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-18 – Reihenfolge der globalen Footerbereiche
 
-- **Status:** Offen
-- **Frage:** Wurde gegenüber einem früheren Projektstand die Reihenfolge des Navigations-/Steuerleistenbereichs und des Bereichs mit Logo beziehungsweise Vereinsdarstellung vertauscht?
-- **Zu prüfen:** Aktuelles Footer-Markup und aktuelle Darstellung mit der Git-Historie beziehungsweise dem maßgeblichen früheren Stand vergleichen; erst danach die gestalterisch richtige Reihenfolge bewerten.
-- **Abschlusskriterium:** Dokumentierter historischer Vergleich und bewusste Entscheidung, die aktuelle Reihenfolge beizubehalten oder in einem eigenen Arbeitspaket anzupassen.
+- **Status:** Entschieden
+- **Entscheidung:** Der Auftraggeber hat für alle Ansichten verbindlich die Reihenfolge Logozeile, dezente Trennung, Footer-Navigation und abschließende Copyright-/Leitsatzzeile festgelegt. Die zuvor vorangestellte Navigation wird entsprechend nachgeordnet.
+- **Abschlusskriterium:** Mit FOOT-POL-001 umgesetzt und durch die gemeinsame Footerprüfung aller Seiten abgesichert.
 
 ### P-19 – Inhaltliche Feinüberarbeitung Schießbahnen und Vereinshaus
 

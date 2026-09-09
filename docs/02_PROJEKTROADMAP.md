@@ -28,7 +28,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - eigenständige Gästebuchseite mit zentralem Veröffentlichungsmodell, verständlichem Leerzustand und datengetriebenem Startseiten-Teaser;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
 - abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
-- konsistenter Footer mit ausschließlich vorhandenen Sprungzielen;
+- konsistenter Footer mit zentraler Logozeile, nachgeordneter Sekundärnavigation und gemeinsamer Vereins-/Leitsatzzeile;
 - IA-001: Startseite technisch, gestalterisch und inhaltlich stabilisiert.
 
 ### Navigation und Interaktion
@@ -121,7 +121,6 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - Kontraste und Textskalierung formal prüfen;
 - neu hinzukommende Komponenten mit Tastatur und unterstützenden Technologien prüfen;
 - Kopfbereiche von Erfolgs- und Vorstandsseite anhand der Geschichtsseite vereinheitlichen;
-- Reihenfolge der globalen Footerbereiche zunächst anhand der Git-Historie prüfen und erst danach überarbeiten oder bewusst beibehalten.
 
 ### Abschnitt 7: Technische Stabilisierung
 

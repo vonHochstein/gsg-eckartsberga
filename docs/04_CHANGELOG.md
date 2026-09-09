@@ -55,6 +55,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Vom Auftraggeber vorbereitete Verbandslogo-Assets übernommen und den Footer auf allen Seiten in die Reihenfolge Logozeile, getrennte Sekundärnavigation und gemeinsame Copyright-/Leitsatzzeile gebracht.
 - Startseite im Rahmen von IA-001 in Inhalt, Abständen, Karten, Hero, Galerie, Timeline und Footer vereinheitlicht.
 - Tote oder nur vorbereitete Links entfernt und vorhandene Startseiteninhalte abschließend formuliert.
 - Timeline semantisch gegliedert, stabil sortiert und das Jahresarchiv zugänglicher beschriftet.

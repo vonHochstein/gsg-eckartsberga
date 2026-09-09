@@ -289,11 +289,22 @@ Enthält das gemeinsame Gestaltungssystem und alle Startseitenstile:
 - responsive Regeln;
 - Reduced-Motion-Regeln.
 
-Der gemeinsame Footer zeigt das vorhandene GSG-Motiv als optische Mitte zwischen
-dem verlinkten Logo des Deutschen Schützenbundes und dem verlinkten Wappen des
-Landesschützenverbandes Sachsen-Anhalt. Die transparente Dreiergruppe bleibt
-über die gemeinsamen Footerregeln auch auf schmalen Ansichten in einer Zeile;
-alle Seiten verwenden dieselben lokalen PNG-Dateien und externen Linkziele.
+Der gemeinsame Footer beginnt mit dem vorhandenen GSG-Motiv als optischer Mitte
+zwischen dem verlinkten Logo des Deutschen Schützenbundes und dem verlinkten
+Wappen des Landesschützenverbandes Sachsen-Anhalt. Eine dezente Linie trennt
+diese Logozeile von der nachgeordneten Sekundärnavigation. Den Abschluss bildet
+die gemeinsame Copyrightzeile mit Vereinsname und Leitsatz. Die Logozeile bleibt
+über die gemeinsamen Footerregeln auch auf schmalen Ansichten in einer Reihe;
+die Navigation wechselt dort in ein festes Zweispaltenraster, damit ihre
+CSS-Separatoren nicht allein am Zeilenanfang oder -ende stehen.
+
+Die vom Auftraggeber extern vorbereiteten PNG-Fassungen werden unverändert
+verwendet: DSB mit 1013 × 720 Pixeln und SHA-256
+`f6dc6940d13ed57478c7af0cdb54474a7c2c5aae664bc1a6cf8681fd839239be`,
+Landesschützenverband mit 550 × 600 Pixeln und SHA-256
+`c9dadabaaabeded322ccbe3382281fcce17cf7832e324254b4956b0777ee629f`.
+Die offiziellen Linkziele und zugänglichen Namen gelten weiterhin auf allen
+Seiten identisch.
 
 Die neu integrierten Vollflächen-Links für Timeline, Countdown und Galerie verwenden vorhandene Kartenstrukturen. Fokuszustände bleiben sichtbar.
 
@@ -961,6 +972,15 @@ node --test tests/*.test.js
 - Wechselintervall, zufälligen Startindex, Pause-, Sichtbarkeits- und Reduced-Motion-Vertrag;
 - gemeinsame Rasterfläche der Stimmen und mindestens 44 Pixel große Bedienelemente;
 - Gästebuchlink in allen Footern ohne Erweiterung der Hauptnavigation.
+
+`tests/footer.test.js` prüft:
+
+- unveränderte Prüfsummen und intrinsische Maße der freigegebenen Verbandslogos;
+- Reihenfolge DSB, GSG und Landesschützenverband innerhalb der Logozeile;
+- globale Reihenfolge Logozeile, Navigation und Copyright-/Leitsatzzeile;
+- konsistente externe Linkziele und zugängliche Namen auf allen Seiten;
+- responsive Ein-Zeilen-Logogruppe sowie Separatoren ohne eingetippte oder
+  isolierte Trennzeichen.
 
 `tests/venue-map.test.js` prüft:
 

@@ -19,6 +19,11 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
 
 - ausführliche Vereinsgeschichte;
 - Darstellung der Schießdisziplinen;
+- eigene Schießsport-Unterseite mit sachlicher Darstellung des Sportschießens bei
+  der GSG, verbandlicher Einordnung sowie den bereits vorhandenen Logos und
+  offiziellen Linkzielen von Deutschem Schützenbund und
+  Landesschützenverband Sachsen-Anhalt; konkrete Inhalte erst nach fachlicher
+  Abstimmung;
 - ausgewählte besondere Wettkampferfolge und Leistungen ergänzen;
 - Sponsorenübersicht;
 - Übersicht befreundeter Vereine;
