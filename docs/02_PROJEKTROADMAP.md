@@ -74,6 +74,8 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - Changelog-Grundstruktur und zentraler Ideenspeicher;
 - persönliche Projektnotizen vollständig ausgewertet und thematisch zugeordnet;
 - Verkaufsargumente und offene Prüfpunkte getrennt dokumentiert;
+- fortlaufende Altseitenanalyse als verbindlichen Bestandteil künftiger
+  Migrations- und Modernisierungspakete etabliert;
 - IA-002 mit technischem Stand, Architekturentscheidungen, Integrationen und Prüfprotokoll dokumentiert;
 - Projektphase 0 „Projektvorbereitung“ abgeschlossen.
 

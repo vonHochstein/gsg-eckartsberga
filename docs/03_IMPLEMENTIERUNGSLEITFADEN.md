@@ -30,6 +30,9 @@ Vor jeder größeren Änderung wird der Ist-Zustand untersucht. Dabei sind minde
 - Entsteht doppelte Daten- oder Inhaltspflege?
 - Welche Risiken bestehen für Mobilansicht, Zugänglichkeit, Leistung, Datenschutz oder Sicherheit?
 - Welche Dokumente müssen später aktualisiert werden?
+- Berührt das Paket Inhalte, Funktionen oder Strukturen der bisherigen Website,
+  und ergibt sich daraus ein wesentlicher Befund für die
+  [Altseitenanalyse](08_ALTSEITENANALYSE.md)?
 
 Die Analyse verändert noch keinen produktiven Quellcode.
 
@@ -82,6 +85,8 @@ Je nach Änderung gehören dazu:
 - Browserkonsole und technische Prüfungen;
 - Datenschutz- und Sicherheitsfolgen;
 - Aktualität der Dokumentation.
+- bei Altseitenbezug die dokumentierte Entscheidung, ob die Altseitenanalyse
+  ergänzt oder mangels relevanten Befunds unverändert bleibt.
 
 Prüfergebnisse und bekannte Einschränkungen werden nachvollziehbar festgehalten.
 
@@ -202,3 +207,5 @@ Konkrete Nachweise zu größeren Änderungen werden getrennt von diesem dauerhaf
 - Sind Datenschutz, Sicherheit und Leistung angemessen berücksichtigt?
 - Sind technische Dokumentation, Roadmap und Changelog aktuell?
 - Sind Folgepunkte klar erfasst und vom Abschluss getrennt?
+- Wurde bei einem Migrations- oder Modernisierungspaket mit Altseitenbezug die
+  verbindliche Altseitenanalyse geprüft und gegebenenfalls fortgeschrieben?

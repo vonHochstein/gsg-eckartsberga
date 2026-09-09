@@ -16,6 +16,33 @@ Vor der Umsetzung ist zu klären:
 - für welche Zielgruppe die Änderung bestimmt ist;
 - welches erwartete Verhalten als erfolgreich gilt.
 
+### Fortlaufende Altseitenanalyse bei Migration und Modernisierung
+
+Die [Altseitenanalyse](08_ALTSEITENANALYSE.md) ist verbindlicher Bestandteil aller
+Arbeitspakete, die Inhalte, Funktionen oder Strukturen der bisherigen
+GSG-Website berühren.
+
+Bei jedem solchen Arbeitspaket wird geprüft, ob ein wesentliches Defizit der
+bisherigen Website festgestellt oder ein bereits dokumentierter Befund bestätigt
+wurde. Ist dies der Fall, wird die Altseitenanalyse mit folgenden Angaben
+ergänzt oder fortgeschrieben:
+
+- belastbarer Altseiten-Befund;
+- sachliche Auswirkung beziehungsweise praktisches Problem;
+- Lösung oder bewusster Umgang auf der neuen Website;
+- aktueller Status.
+
+Einzelne Rechtschreibfehler, reine Geschmacksfragen, persönliche Kritik und
+künstlich konstruierte Probleme werden nicht aufgenommen. Bei rechtlichen oder
+datenschutzrechtlichen Fragen wird der tatsächliche Erkenntnisstand präzise als
+Prüf- oder Risikopunkt bezeichnet; ohne fachliche Prüfung wird insbesondere kein
+Rechtsverstoß behauptet. Liegt kein relevanter Befund vor, wird kein Eintrag
+erzeugt.
+
+Die Prüfung und eine gegebenenfalls erforderliche Aktualisierung der
+Altseitenanalyse gehören zur Abschlussprüfung des jeweiligen Migrations- oder
+Modernisierungspakets.
+
 ## 2. Datengetrieben arbeiten
 
 Wiederkehrende oder strukturierte Inhalte sollen als Daten modelliert und aus einer zentralen Quelle ausgegeben werden. Das betrifft insbesondere Veranstaltungen, Downloads, Ergebnisse, Galerien und später gegebenenfalls Ansprechpartner, Sponsoren oder Dokumente.
@@ -287,6 +314,8 @@ Je nach Änderung sind anzupassen:
 - abgeschlossene Änderungen in `04_CHANGELOG.md`;
 - neue verbindliche Entscheidungen im passenden Leitdokument;
 - ungeprüfte Zukunftsideen in `05_IDEENSPEICHER.md`.
+- wesentliche Befunde aus Migration und Altseitenmodernisierung in
+  `08_ALTSEITENANALYSE.md`.
 
 ## 16. Qualität wird überprüfbar definiert
 
@@ -303,5 +332,7 @@ Ein Abschnitt gilt erst nach gemeinsamer Qualitätskontrolle und erfolgreichem R
 - Bleibt bestehendes Verhalten erhalten?
 - Sind Mobilansicht, Zugänglichkeit, Datenschutz und Leistung berücksichtigt?
 - Sind Abnahmekriterien und notwendige Dokumentationsänderungen festgelegt?
+- Wurde bei Arbeiten mit Bezug zur bisherigen Website der mögliche
+  Aktualisierungsbedarf der Altseitenanalyse geprüft?
 
 Kann eine dieser Fragen nicht beantwortet werden, wird vor der Implementierung weiter analysiert.

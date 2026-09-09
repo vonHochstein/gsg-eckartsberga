@@ -109,6 +109,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Historische Medienfassungen intern mit Herkunft und Prüfsummen inventarisiert und von öffentlich ausgelieferten Assets getrennt.
 - Bestmögliche Jimdo-Quellfassungen, öffentliche Freigabe und unveränderte Web-Arbeitskopien der fünf Chronikmedien dokumentiert.
 - Technische Projektdokumentation und Roadmap auf den Stand der neuen Vereinschronik fortgeschrieben.
+- Fortlaufende Altseitenanalyse mit belastbarem Initialbestand und verbindlicher
+  Prüfung für künftige Migrations- und Modernisierungspakete etabliert.
 
 ---
 
