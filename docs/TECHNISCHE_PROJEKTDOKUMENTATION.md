@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 7. September 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, GB-001 und GB-MIG-001
+**Stand:** 9. September 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, GB-001, GB-MIG-001 und FOOT-VERB-001
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -104,7 +104,9 @@ Die Anwendung verwendet:
 │       │   └── zehn freigegebene Aufnahmen der Schützenkönige
 │       ├── facilities/
 │       │   └── vier freigegebene Aufnahmen der Vereinsanlage
+│       ├── logo-deutscher-schuetzenbund.png
 │       ├── logo-gsg-eckartsberga.png
+│       ├── logo-landesschuetzenverband-sachsen-anhalt.png
 │       └── logo-schuetzenkreis-sued.png
 ├── js/
 │   ├── data/
@@ -163,7 +165,7 @@ Die Startseite enthält:
 - datengetriebener, bei fehlenden freigegebenen Stimmen vollständig verborgener Gästebuch-Teaser;
 - Mitgliedschaftsteaser;
 - Demo-Hinweis;
-- Footer;
+- gemeinsamer Footer mit zentralem Vereinslogo und verlinkten Verbandslogos;
 - Script-Einbindungen für Daten, Hilfsfunktionen und Startseitenlogik.
 
 Die Script-Reihenfolge ist:
@@ -286,6 +288,12 @@ Enthält das gemeinsame Gestaltungssystem und alle Startseitenstile:
 - Footer;
 - responsive Regeln;
 - Reduced-Motion-Regeln.
+
+Der gemeinsame Footer zeigt das vorhandene GSG-Motiv als optische Mitte zwischen
+dem verlinkten Logo des Deutschen Schützenbundes und dem verlinkten Wappen des
+Landesschützenverbandes Sachsen-Anhalt. Die transparente Dreiergruppe bleibt
+über die gemeinsamen Footerregeln auch auf schmalen Ansichten in einer Zeile;
+alle Seiten verwenden dieselben lokalen PNG-Dateien und externen Linkziele.
 
 Die neu integrierten Vollflächen-Links für Timeline, Countdown und Galerie verwenden vorhandene Kartenstrukturen. Fokuszustände bleiben sichtbar.
 

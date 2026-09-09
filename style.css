@@ -1757,14 +1757,55 @@ html[data-development-data="active"] .site-footer {
 
 .footer-signature {
   width: 100%;
+  display: grid;
+  grid-template-columns:
+    clamp(60px, 7vw, 104px)
+    clamp(124px, 14vw, 200px)
+    clamp(60px, 7vw, 104px);
+  align-items: center;
+  justify-content: center;
+  column-gap: clamp(8px, 2.2vw, 32px);
   margin-top: 14px;
   padding-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.footer-association-link {
+  width: 100%;
+  min-width: 44px;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  opacity: 0.84;
+  transition: opacity 0.2s ease;
+}
+
+.footer-association-link:hover,
+.footer-association-link:focus-visible {
+  opacity: 1;
+}
+
+.footer-association-link img {
+  width: auto;
+  height: auto;
+}
+
+.footer-association-link-dsb img {
+  width: 100%;
+  max-width: 104px;
+}
+
+.footer-association-link-state img {
+  width: auto;
+  height: clamp(70px, 7.65vw, 110px);
+  max-width: 100%;
+}
+
 .footer-brand-illustration {
-  width: min(100%, 240px);
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 4px;
   border: 1px solid rgba(214, 168, 79, 0.16);
   border-radius: 8px;
@@ -1979,10 +2020,6 @@ html[data-development-data="active"] .site-footer {
     padding-top: 18px;
   }
 
-  .footer-brand-illustration {
-    width: min(66vw, 230px);
-  }
-
   .footer-legal {
     margin-top: 12px;
   }
@@ -2100,9 +2137,6 @@ html[data-development-data="active"] .site-footer {
     padding: 32px 18px 34px;
   }
 
-  .footer-brand-illustration {
-    width: min(66vw, 220px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

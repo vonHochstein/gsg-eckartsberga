@@ -80,6 +80,13 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 - **Zu prüfen:** erhobene Daten, Cookies beziehungsweise Speichertechniken, IP-Verarbeitung, Drittlandbezug, Einwilligung, Datenschutzerklärung, Ausfallsicherheit und Alternativen ohne Tracking.
 - **Abschlusskriterium:** Begründete Entscheidung für einen konkreten Statistikansatz oder gegen Besucherzählung.
 
+### P-20 – Nutzungsfreigabe Verbandslogos vor Veröffentlichung prüfen
+
+- **Status:** Offen
+- **Frage:** Dürfen die eingebundenen Logos des Deutschen Schützenbundes und des Landesschützenverbandes Sachsen-Anhalt auf der öffentlichen Vereinswebsite verwendet werden, und gelten dafür besondere Bedingungen?
+- **Zu prüfen:** Vor dem öffentlichen Produktivgang Nutzungsfreigabe und mögliche Darstellungsvorgaben beim jeweiligen Verband prüfen beziehungsweise erforderlichenfalls bestätigen lassen. Die offene Prüfung blockiert die lokale Entwicklungsintegration nicht.
+- **Abschlusskriterium:** Dokumentierte Freigabe oder verbindlich geklärte Nutzungsbedingungen für beide Verbandslogos vor Veröffentlichung.
+
 ## Inhalte und Zugriff
 
 ### P-10 – Satzung öffentlich oder intern

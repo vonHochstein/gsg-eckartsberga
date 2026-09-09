@@ -51,6 +51,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Datengetriebener Startseitenbereich für freigegebene Gästebuchstimmen mit zugänglicher Wechselsteuerung und automatischem Leerzustand.
 - Gästebuchlink in den bestehenden Footern ohne Erweiterung der Hauptnavigation.
 - Fünf freigegebene Einträge aus dem bisherigen Gästebuch übernommen, davon vier für die Startseiten-Stimmen ausgewählt.
+- Logos des Deutschen Schützenbundes und des Landesschützenverbandes Sachsen-Anhalt als verlinkte, responsive Dreiergruppe mit dem bestehenden GSG-Motiv in allen Footern ergänzt.
 
 ### Geändert
 
