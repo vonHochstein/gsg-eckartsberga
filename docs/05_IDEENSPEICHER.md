@@ -20,10 +20,13 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
 - ausführliche Vereinsgeschichte;
 - Darstellung der Schießdisziplinen;
 - eigene Schießsport-Unterseite mit sachlicher Darstellung des Sportschießens bei
-  der GSG, verbandlicher Einordnung sowie den bereits vorhandenen Logos und
-  offiziellen Linkzielen von Deutschem Schützenbund und
-  Landesschützenverband Sachsen-Anhalt; konkrete Inhalte erst nach fachlicher
-  Abstimmung;
+  der GSG und verbandlicher Einordnung von Deutschem Schützenbund,
+  Landesschützenverband Sachsen-Anhalt und Kreisschützenverband Burgenlandkreis -
+  Weißenfels Schützenkreis SUED Sachsen-Anhalt e.V.; die bestehenden Planungen zu
+  Logos und offiziellen Linkzielen von DSB und Landesschützenverband bleiben
+  maßgeblich, während Darstellung, Logo, Verlinkung und weitere Inhalte des
+  Kreisschützenverbandes erst im späteren Schießsport-Paket geprüft und festgelegt
+  werden;
 - ausgewählte besondere Wettkampferfolge und Leistungen ergänzen;
 - Sponsorenübersicht;
 - Übersicht befreundeter Vereine;

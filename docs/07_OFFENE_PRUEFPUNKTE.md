@@ -117,6 +117,13 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 - **Zu prüfen:** Tatsächlich zuständige Behörde, geeignete offizielle Zielseite und inhaltlich passende Position innerhalb der Website. Bis zur Klärung werden weder Behörde noch URL eingetragen.
 - **Abschlusskriterium:** Dokumentierte Zuständigkeits- und Zielseitenprüfung sowie bewusste redaktionelle Entscheidung über Aufnahme und Platzierung des Links.
 
+### P-22 – Offizielle Website der Stadt Eckartsberga als regionaler Verweis
+
+- **Status:** Offen
+- **Frage:** Soll die offizielle Website der Stadt Eckartsberga als regionaler Bezug verlinkt werden?
+- **Zu prüfen:** Ob der Verweis inhaltlich sinnvoll ist und an welcher Stelle er Besucher unterstützt. Bis zur Klärung werden weder Platzierung noch konkrete URL festgelegt.
+- **Abschlusskriterium:** Dokumentierte redaktionelle Entscheidung über Aufnahme und inhaltlich passende Platzierung des Verweises.
+
 ## Qualität und Gestaltung
 
 ### P-12 – Nachweis vollständiger Responsivität
