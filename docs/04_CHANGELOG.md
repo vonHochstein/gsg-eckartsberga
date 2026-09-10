@@ -56,6 +56,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Öffentliche Datenschutzseite konsequent auf den vorgesehenen Veröffentlichungszustand ausgerichtet und interne Entwicklungs- und Prüfvermerke in die Projektdokumentation verlagert.
 - Vom Auftraggeber vorbereitete Verbandslogo-Assets übernommen und den Footer auf allen Seiten in die Reihenfolge Logozeile, getrennte Sekundärnavigation und gemeinsame Copyright-/Leitsatzzeile gebracht.
 - Datenschutz als regulären Link in die bestehende Footer-Sekundärnavigation aller produktiven Seiten aufgenommen.
 - Startseite im Rahmen von IA-001 in Inhalt, Abständen, Karten, Hero, Galerie, Timeline und Footer vereinheitlicht.

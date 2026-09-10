@@ -25,7 +25,7 @@ Umgesetzt und geprüft sind:
 - statische Vorstands- und Ansprechpartnerseite auf Basis der vorhandenen Detailseitenkomponenten;
 - statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
 - datengetriebene Gästebuch-Unterseite mit fünf freigegebenen Bestandseinträgen;
-- statische, responsive Datenschutzerklärung mit klarer Trennung zwischen aktiver und verbindlich geplanter Technik;
+- statische, responsive Datenschutzerklärung für den vorgesehenen Veröffentlichungszustand;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
 - dynamische Anzeige der nächsten Veranstaltung mit Countdown;
 - Timeline für kommende, aktuelle und archivierte Veranstaltungen;
@@ -279,12 +279,14 @@ Sie beschreibt den verbindlich vorgesehenen Betrieb über GitHub Pages mit
 STRATO-Domain-/DNS-Verwaltung, E-Mail-Kontakt, die vorhandenen öffentlichen
 Gästebucheinträge und die erst nach bewusster Aktivierung geladenen OSM-Karten.
 
-Formspree und counter.dev sind ausdrücklich als verbindlich geplanter, aber
-technisch noch nicht aktiver Produktionszustand gekennzeichnet. Die Seite bindet
-keine dieser externen Laufzeiten ein und erzeugt selbst keine automatischen
-Drittanfragen. Der Platzhalter für die endgültige Vereins-E-Mail-Adresse sowie
-die noch offenen Produktions-, Anbieter- und Rechtsprüfungen sind in den
-offenen Prüfpunkten verankert.
+Die öffentliche Textfassung beschreibt Formspree und counter.dev entsprechend
+dem vorgesehenen Veröffentlichungszustand. Beide Dienste sind im aktuellen
+Entwicklungsstand technisch noch nicht aktiv; dieser interne Stand sowie die
+noch offenen Produktions-, Anbieter- und Rechtsprüfungen werden ausschließlich
+in der Projektdokumentation geführt. Die Seite bindet keine dieser externen
+Laufzeiten ein und erzeugt selbst keine automatischen Drittanfragen. Die
+Platzhalter für die endgültige Vereins-E-Mail-Adresse und den späteren Stand der
+Erklärung sind in den offenen Prüfpunkten verankert.
 
 ### 2.2 CSS
 
@@ -1015,8 +1017,8 @@ node --test tests/*.test.js
 - statischen Detailseitenrahmen, genau eine H1 und ausschließlich lokale
   automatisch geladene Ressourcen;
 - verbindliche Vereins-, Register-, Hosting- und Domainangaben;
-- klare Kennzeichnung von Formspree und counter.dev als noch nicht aktive
-  Produktionsplanung;
+- Formspree und counter.dev in der öffentlichen Textfassung als Bestandteile
+  des vorgesehenen Veröffentlichungszustands ohne interne Arbeitsvermerke;
 - tatsächlichen klickbasierten OSM-Ablauf sowie veröffentlichte
   Gästebucheinträge und Betroffenenrechte;
 - Datenschutzlink in allen Footern ohne Erweiterung der Hauptnavigation.

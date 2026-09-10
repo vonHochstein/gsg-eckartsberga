@@ -56,7 +56,7 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 - **Status:** In Klärung
 - **Frage:** Sind Impressum und Datenschutzerklärung vollständig und für die finale Website ausreichend?
-- **Zu prüfen:** Die technische Datenschutzfassung ist integriert. Vor Veröffentlichung müssen die Vereins-E-Mail-Adresse den Platzhalter `[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN]` ersetzen, der Text fachlich freigegeben und das noch fehlende Impressum separat umgesetzt werden. Hosting, Protokolldaten und externe Dienste werden zusätzlich über P-07 bis P-09 und P-23 geprüft.
+- **Zu prüfen:** Die für den Veröffentlichungszustand formulierte technische Datenschutzfassung ist integriert. Vor Veröffentlichung müssen die Vereins-E-Mail-Adresse den Platzhalter `[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN]` und das Veröffentlichungsdatum den Platzhalter `[STAND VOR VERÖFFENTLICHUNG ERGÄNZEN]` ersetzen. Außerdem sind die Rechtsgrundlage für die weitere Veröffentlichung der aus dem bisherigen öffentlichen Vereinsgästebuch übernommenen Altbestände fachlich zu klären, der Gesamttext freizugeben und das noch fehlende Impressum separat umzusetzen. Hosting, Protokolldaten und externe Dienste werden zusätzlich über P-07 bis P-09 und P-23 geprüft.
 - **Abschlusskriterium:** Freigegebene Rechtstexte vor Veröffentlichung.
 
 ### P-07 – OSM-Veranstaltungskarten und spätere Anfahrtsdarstellung
@@ -70,7 +70,7 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 - **Status:** In Klärung
 - **Frage:** Wie wird die verbindlich geplante Formspree-Anbindung für Kontaktformular und moderierte Gästebuchübermittlung datenschutzgerecht konfiguriert?
-- **Zu prüfen:** Vor der technischen Aktivierung Auftragsverarbeitung, konkrete Datenfelder, Speicherung, internationale Datenübermittlung, Spam-Schutz ohne ungeprüftes reCAPTCHA, Löschung, Einwilligung, Kosten, Barrierefreiheit und Anbieterbindung bewerten. Anschließend die Datenschutzerklärung gegen die reale Konfiguration prüfen. Gästebucheinträge dürfen nie automatisch veröffentlicht werden.
+- **Zu prüfen:** Vor der technischen Aktivierung Auftragsverarbeitung, konkrete Datenfelder, Speicherung, internationale Datenübermittlung, Spam-Schutz ohne ungeprüftes reCAPTCHA, Löschung, Rechtsgrundlagen für Kontaktübermittlung, Gästebuchübermittlung und spätere Veröffentlichung, Kosten, Barrierefreiheit und Anbieterbindung bewerten. Anschließend die Datenschutzerklärung gegen die reale Konfiguration prüfen. Gästebucheinträge dürfen nie automatisch veröffentlicht werden.
 - **Abschlusskriterium:** Bewertete Anbieterentscheidung und dokumentierter Datenfluss.
 
 ### P-09 – counter.dev für Besucherstatistik

@@ -65,6 +65,9 @@ Während der Implementierung gelten folgende Regeln:
 - keine unabhängigen Nebenarbeiten in denselben Abschnitt aufnehmen;
 - Unsicherheiten und notwendige Abweichungen früh sichtbar machen;
 - temporäre Lösungen ausdrücklich kennzeichnen und mit einem Folgeschritt versehen.
+- öffentliche Seiteninhalte gemäß den Entwicklungsgrundsätzen für den
+  vorgesehenen Veröffentlichungszustand formulieren und interne Arbeitsvermerke
+  ausschließlich in der Projektdokumentation führen.
 
 Wenn sich während der Umsetzung eine wesentliche neue Anforderung ergibt, wird der Plan angepasst, bevor der Umfang erweitert wird.
 

@@ -43,6 +43,14 @@ Die Prüfung und eine gegebenenfalls erforderliche Aktualisierung der
 Altseitenanalyse gehören zur Abschlussprüfung des jeweiligen Migrations- oder
 Modernisierungspakets.
 
+### Öffentliche Inhalte bilden den Veröffentlichungszustand ab
+
+Öffentliche Website-Inhalte werden grundsätzlich so formuliert, wie sie im
+vorgesehenen Veröffentlichungszustand erscheinen sollen. Interne
+Entwicklungsstände, offene Implementierungsschritte, Pre-Publish-Prüfungen und
+technische Arbeitsvermerke werden ausschließlich in der Projektdokumentation
+geführt und nicht als Seiteninhalt veröffentlicht.
+
 ## 2. Datengetrieben arbeiten
 
 Wiederkehrende oder strukturierte Inhalte sollen als Daten modelliert und aus einer zentralen Quelle ausgegeben werden. Das betrifft insbesondere Veranstaltungen, Downloads, Ergebnisse, Galerien und später gegebenenfalls Ansprechpartner, Sponsoren oder Dokumente.

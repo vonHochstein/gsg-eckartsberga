@@ -84,27 +84,59 @@ test("trennt GitHub-Pages-Hosting und STRATO-Domainverwaltung", () => {
   assert.doesNotMatch(html, /keine personenbezogenen Daten gespeichert/i);
 });
 
-test("kennzeichnet Formspree und counter.dev ehrlich als noch nicht aktiv", () => {
+test("beschreibt Formspree und counter.dev für den Veröffentlichungszustand", () => {
   const html = readProjectFile(privacyPath);
 
-  assert.match(html, /Formspree ist derzeit noch nicht technisch eingebunden/);
-  assert.match(html, /Kontaktformular und eine\s+getrennte Gästebuchübermittlung/);
-  assert.match(html, /führt niemals automatisch zu\s+einer Veröffentlichung/);
-  assert.match(html, /manuelle Aufnahme in den öffentlichen Gästebuchbestand/);
-  assert.match(html, /counter\.dev ist derzeit noch nicht technisch eingebunden/);
-  assert.match(html, /keine\s+Cookies und kein IP-Adress-Fingerprinting/);
+  assert.match(html, /Kontaktformular und die Gästebuchübermittlung nutzt diese\s+Website Formspree/);
+  assert.match(html, /führt niemals automatisch zu einer\s+Veröffentlichung/);
+  assert.match(html, /manuelle\s+Aufnahme in den öffentlichen Gästebuchbestand/);
+  assert.match(html, /setzt diese Website counter\.dev ein/);
+  assert.match(html, /keine\s+Cookies und kein\s+IP-Adress-Fingerprinting/);
   assert.match(html, /<code>sessionStorage<\/code>/);
   assert.match(html, /Browser-Cache und\s+den Referrer/);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /formspree\.io\/f\//i);
 });
 
-test("beschreibt veröffentlichte Gästebucheinträge und ihre Freigabe", () => {
+test("beschreibt die Herkunft veröffentlichter Gästebuch-Altbestände zurückhaltend", () => {
+  const html = readProjectFile(privacyPath);
+  const guestbookSection = html.match(
+    /<section class="privacy-section" aria-labelledby="privacy-guestbook-title">([\s\S]*?)<\/section>/
+  )?.[1] ?? "";
+
+  assert.match(guestbookSection, /Anzeigename, Eintragsdatum und Text öffentlich/);
+  assert.match(guestbookSection, /aus dem bisherigen\s+öffentlichen Vereinsgästebuch/);
+  assert.match(guestbookSection, /waren dort bereits\s+öffentlich sichtbar/);
+  assert.doesNotMatch(guestbookSection, /Einwilligung|Art\. 6/i);
+});
+
+test("enthält keine öffentlichen Entwicklungs- und Prüfvermerke", () => {
+  const html = readProjectFile(privacyPath);
+  const visibleText = html
+    .replace(/\[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN\]/g, "")
+    .replace(/\[STAND VOR VERÖFFENTLICHUNG ERGÄNZEN\]/g, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ");
+
+  assert.doesNotMatch(
+    visibleText,
+    /\bgeplant\b|noch nicht|Produktionszustand|vor Aktivierung|vor Veröffentlichung|nach der tatsächlichen Einbindung/i
+  );
+  assert.doesNotMatch(html, /class="privacy-status-note"/);
+});
+
+test("sichert E-Mail und Stand als eindeutige Pre-Publish-Platzhalter ab", () => {
   const html = readProjectFile(privacyPath);
 
-  assert.match(html, /freigegebener\s+Anzeigename, das Eintragsdatum und der freigegebene Text/);
-  assert.match(html, /Art\. 6 Abs\. 1 Buchst\. a DSGVO/);
-  assert.match(html, /mit Wirkung für die Zukunft widerrufen/);
+  assert.equal(
+    countMatches(html, /\[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN\]/g),
+    1
+  );
+  assert.equal(
+    countMatches(html, /\[STAND VOR VERÖFFENTLICHUNG ERGÄNZEN\]/g),
+    1
+  );
+  assert.doesNotMatch(html, /9\. September 2026/);
 });
 
 test("bildet den tatsächlich implementierten OSM-Ablauf ab", () => {
