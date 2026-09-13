@@ -2006,6 +2006,11 @@ test("KM Zentralfeuer Halbautomat 2026 ist quellengetreu hinterlegt", () => {
       label: "Anmeldung – KM Zentralfeuer Halbautomat 2026",
       url: "assets/documents/events/2026/2026_08_18 Anmeldung KM Zentralfeuer Halbautomat 2026.ods",
       type: "form"
+    },
+    {
+      label: "Ergebnisprotokoll – KM Zentralfeuer Halbautomat 2026",
+      url: "assets/documents/events/2026/2026_09_12 Ergebnisprotokoll KM Zentralfeuer Halbautomat 2026.pdf",
+      type: "result-list"
     }
   ]);
   assert.deepEqual(
@@ -2018,7 +2023,11 @@ test("KM Zentralfeuer Halbautomat 2026 ist quellengetreu hinterlegt", () => {
       true
     );
   });
-  assert.equal(new Set(event.documents.map((document) => document.url)).size, 2);
+  assert.equal(new Set(event.documents.map((document) => document.url)).size, 3);
+  assert.equal(
+    event.documents.filter((document) => document.type === "result-list").length,
+    1
+  );
   assert.equal(event.image, null);
   assert.deepEqual(Array.from(event.gallery), []);
   assert.deepEqual(Array.from(event.results), []);

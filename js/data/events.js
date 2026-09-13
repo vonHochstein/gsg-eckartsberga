@@ -474,6 +474,11 @@ const productionEvents = [
         label: "Anmeldung – KM Zentralfeuer Halbautomat 2026",
         url: "assets/documents/events/2026/2026_08_18 Anmeldung KM Zentralfeuer Halbautomat 2026.ods",
         type: "form"
+      },
+      {
+        label: "Ergebnisprotokoll – KM Zentralfeuer Halbautomat 2026",
+        url: "assets/documents/events/2026/2026_09_12 Ergebnisprotokoll KM Zentralfeuer Halbautomat 2026.pdf",
+        type: "result-list"
       }
     ],
     downloads: [],

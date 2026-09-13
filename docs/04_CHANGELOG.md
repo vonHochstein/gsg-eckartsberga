@@ -36,6 +36,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Produktiver Veranstaltungseintrag für das Schützenfest Naumburg 2024 mit Einladung.
 - Produktiver Veranstaltungseintrag für den 14. Apoldaer Knicker-Grand-Prix 2026 mit bildbasierter Ausschreibung.
 - Produktiver Veranstaltungseintrag für den Sommerpokal im Wurfscheibenschießen 2026 in Lossa mit bildbasierter Ausschreibung.
+- Ergebnisprotokoll der Kreismeisterschaft Zentralfeuer Halbautomat 2026 als unveränderte PDF beim bestehenden Veranstaltungseintrag ergänzt.
 - Eigenständige, responsive Geschichtsseite als semantisch geordnete Vereinschronik mit sichtbarer Quellen- und Einordnungssektion.
 - Startseitenteaser als zugänglicher Einstieg in die Vereinschronik.
 - Fünf freigegebene historische Medien in den zugehörigen Chronikstationen sowie drei historische Fotografien in der Startseitengalerie.
