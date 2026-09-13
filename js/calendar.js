@@ -246,7 +246,9 @@ function createEventMarkup(event) {
   );
   const gallery = eventUtils?.normalizeGallery(event.gallery) || [];
   const hasDocuments = documents.length > 0;
-  const hasResults = results.length > 0;
+  const hasResults = results.length > 0 || documents.some(
+    (document) => document.type === "result-list"
+  );
   const hasGallery = gallery.length > 0;
   const galleryLabel =
     gallery.length === 1 ? "1 Bild" : `${gallery.length} Bilder`;
