@@ -440,6 +440,11 @@ const productionEvents = [
         label: "Ausschreibung Eckartsburg-Pokal 2026",
         url: "assets/documents/events/2026/2026_08_14 Ausschreibung Eckartsburg-Pokal 2026.pdf",
         type: "invitation"
+      },
+      {
+        label: "Ergebnisprotokoll Eckartsburg-Pokal 2026",
+        url: "assets/documents/events/2026/2026_09_05 Ergebnisprotokoll Eckartsburg-Pokal 2026.pdf",
+        type: "result-list"
       }
     ],
     downloads: [],

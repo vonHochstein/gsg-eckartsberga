@@ -1938,11 +1938,21 @@ test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () 
       label: "Ausschreibung Eckartsburg-Pokal 2026",
       url: "assets/documents/events/2026/2026_08_14 Ausschreibung Eckartsburg-Pokal 2026.pdf",
       type: "invitation"
+    },
+    {
+      label: "Ergebnisprotokoll Eckartsburg-Pokal 2026",
+      url: "assets/documents/events/2026/2026_09_05 Ergebnisprotokoll Eckartsburg-Pokal 2026.pdf",
+      type: "result-list"
     }
   ]);
-  assert.equal(
-    fs.existsSync(path.resolve(__dirname, `../${event.documents[0].url}`)),
-    true
+  assert.ok(
+    event.documents.every((document) =>
+      fs.existsSync(path.resolve(__dirname, `../${document.url}`))
+    )
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
   );
   assert.equal(event.image, null);
   assert.deepEqual(Array.from(event.gallery), []);
