@@ -96,6 +96,7 @@
     );
     const location = locationData?.name || "";
     const organizer = getOptionalText(event.organizer);
+    const host = getOptionalText(event.host);
     const organizerLogo = eventUtils.getEventOrganizerLogo(event);
     const description = getOptionalText(event.description);
     const organizerLogoMarkup = createOrganizerLogoMarkup(organizerLogo);
@@ -123,6 +124,9 @@
         : "",
       organizer
         ? createFactMarkup("Veranstalter", escapeHTML(organizer))
+        : "",
+      host
+        ? createFactMarkup("Ausrichter", escapeHTML(host))
         : "",
       event.registrationRequired === true
         ? createFactMarkup("Anmeldung erforderlich", "Ja")

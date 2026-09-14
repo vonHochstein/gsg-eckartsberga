@@ -465,6 +465,7 @@ const productionEvents = [
     venueId: "jaegerschiessstand-markroehlitz",
     location: "Jägerschießstand Markröhlitz",
     organizer: "Schützenkreis \"SUED\"",
+    host: "Jägerverein Weißenfels e.V.",
     description:
       "Kreismeisterschaft im Zentralfeuer-Selbstladegewehr auf 100 Meter, liegend aufgelegt mit Zielfernrohr.",
     image: null,

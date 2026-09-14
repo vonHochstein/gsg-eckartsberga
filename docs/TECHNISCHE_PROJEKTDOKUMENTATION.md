@@ -724,6 +724,7 @@ Modells.
 | `venueId` | String | optionale exakte Referenz auf einen zentralen Veranstaltungsort |
 | `location` | String | optionaler Legacy-Ort und Rückfall bei nicht auflösbarer `venueId` |
 | `organizer` | String | optionaler Veranstalter; dient bei exaktem Allowlist-Treffer zusätzlich der Herkunftslogo-Zuordnung |
+| `host` | String | optionaler Ausrichter; organisatorisch vom Veranstalter und vom physischen Veranstaltungsort getrennt |
 | `description` | String | optionale Beschreibung |
 | `image` | Objekt oder `null` | optionales Titelbild |
 | `gallery` | Array | optionale Galeriebilder |

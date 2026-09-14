@@ -2002,6 +2002,11 @@ test("KM Zentralfeuer Halbautomat 2026 ist quellengetreu hinterlegt", () => {
     }
   );
   assert.equal(event.organizer, 'Schützenkreis "SUED"');
+  assert.equal(event.host, "Jägerverein Weißenfels e.V.");
+  assert.equal(
+    getEventOrganizerLogo(event)?.src,
+    "assets/img/logo-schuetzenkreis-sued.png"
+  );
   assert.equal(
     event.description,
     "Kreismeisterschaft im Zentralfeuer-Selbstladegewehr auf 100 Meter, liegend aufgelegt mit Zielfernrohr."
