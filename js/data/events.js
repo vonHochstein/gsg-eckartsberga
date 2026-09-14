@@ -281,6 +281,7 @@ const productionEvents = [
     category: "Kreismeisterschaft",
     start: "2026-03-20T12:00:00",
     end: "2026-03-21T17:00:00",
+    venueId: "schiessstand-sv-1990-hohenmoelsen-koepsen",
     location:
       "Schießstand SV 1990 HHM, Am Werk 4, 06679 Hohenmölsen OT Köpsen",
     organizer: 'Schützenkreis "SUED"',

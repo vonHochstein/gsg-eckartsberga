@@ -408,7 +408,7 @@ Enthält ausschließlich klar markierte, erfundene Entwicklungsdaten. Sie decken
 
 #### `js/data/venues.js`
 
-Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsorte. Der Jägerschießstand Markröhlitz ist mit der stabilen ID `jaegerschiessstand-markroehlitz` und den ausdrücklich vorgegebenen Koordinaten 51.222440, 11.872128 hinterlegt. Die Veranstaltungen `pokal-halbautomat-2024` und `km-halbautomat-kk-gk-2026` referenzieren diesen Venue. Das Schützenhaus Buttstädt ist mit der stabilen ID `schuetzenhaus-buttstaedt` und den vom Auftraggeber vorgegebenen Koordinaten 51.12592, 11.43023 hinterlegt; `eckartsburg-pokal-2026` referenziert es. Die bestehenden `location`-Angaben bleiben unverändert als Legacy-Rückfall erhalten.
+Definiert die zentrale Liste `eventVenues` für wiederkehrende Veranstaltungsorte. Der Jägerschießstand Markröhlitz ist mit der stabilen ID `jaegerschiessstand-markroehlitz` und den ausdrücklich vorgegebenen Koordinaten 51.222440, 11.872128 hinterlegt. Die Veranstaltungen `pokal-halbautomat-2024` und `km-halbautomat-kk-gk-2026` referenzieren diesen Venue. Das Schützenhaus Buttstädt ist mit der stabilen ID `schuetzenhaus-buttstaedt` und den vom Auftraggeber vorgegebenen Koordinaten 51.12592, 11.43023 hinterlegt; `eckartsburg-pokal-2026` referenziert es. Der Schießstand des Schützenvereins 1990 Hohenmölsen in Köpsen ist mit der ID `schiessstand-sv-1990-hohenmoelsen-koepsen` und den vom Auftraggeber vorgegebenen Koordinaten 51.16555, 12.06697 hinterlegt; `km-gk-pistole-revolver-2026` referenziert ihn. Die bestehenden `location`-Angaben bleiben unverändert als Legacy-Rückfall erhalten.
 
 #### `js/data/guestbook-entries.js`
 

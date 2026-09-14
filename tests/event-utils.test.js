@@ -98,10 +98,10 @@ function loadVenueData() {
   return context.eventVenueSnapshot;
 }
 
-test("liefert die beiden zentralen Orte als gültige Kartenorte", () => {
+test("liefert die drei zentralen Orte als gültige Kartenorte", () => {
   const venues = Array.from(loadVenueData());
 
-  assert.equal(venues.length, 2);
+  assert.equal(venues.length, 3);
   assert.deepEqual(normalizeVenues(venues), [
     {
       id: "jaegerschiessstand-markroehlitz",
@@ -114,6 +114,13 @@ test("liefert die beiden zentralen Orte als gültige Kartenorte", () => {
       name: "Schützenhaus Buttstädt",
       latitude: 51.12592,
       longitude: 11.43023
+    },
+    {
+      id: "schiessstand-sv-1990-hohenmoelsen-koepsen",
+      name: "Schießstand Schützenverein 1990 Hohenmölsen",
+      description: "Am Werk 4, 06679 Hohenmölsen OT Köpsen",
+      latitude: 51.16555,
+      longitude: 12.06697
     }
   ]);
   assert.deepEqual(
@@ -138,6 +145,19 @@ test("liefert die beiden zentralen Orte als gültige Kartenorte", () => {
       name: "Schützenhaus Buttstädt",
       latitude: 51.12592,
       longitude: 11.43023
+    }
+  );
+  assert.deepEqual(
+    resolveEventLocation(
+      { venueId: "schiessstand-sv-1990-hohenmoelsen-koepsen" },
+      venues
+    ),
+    {
+      id: "schiessstand-sv-1990-hohenmoelsen-koepsen",
+      name: "Schießstand Schützenverein 1990 Hohenmölsen",
+      description: "Am Werk 4, 06679 Hohenmölsen OT Köpsen",
+      latitude: 51.16555,
+      longitude: 12.06697
     }
   );
 });
@@ -2100,13 +2120,20 @@ test("KM GK-Pistole/Revolver 2026 ist anhand der Ausschreibung hinterlegt", () =
   assert.equal(event.category, "Kreismeisterschaft");
   assert.equal(event.start, "2026-03-20T12:00:00");
   assert.equal(event.end, "2026-03-21T17:00:00");
-  assert.equal(event.venueId, undefined);
+  assert.equal(
+    event.venueId,
+    "schiessstand-sv-1990-hohenmoelsen-koepsen"
+  );
   assert.equal(
     event.location,
     "Schießstand SV 1990 HHM, Am Werk 4, 06679 Hohenmölsen OT Köpsen"
   );
   assert.deepEqual(resolveEventLocation(event, Array.from(loadVenueData())), {
-    name: event.location
+    id: "schiessstand-sv-1990-hohenmoelsen-koepsen",
+    name: "Schießstand Schützenverein 1990 Hohenmölsen",
+    description: "Am Werk 4, 06679 Hohenmölsen OT Köpsen",
+    latitude: 51.16555,
+    longitude: 12.06697
   });
   assert.equal(event.organizer, 'Schützenkreis "SUED"');
   assert.equal(

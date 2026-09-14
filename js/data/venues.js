@@ -18,5 +18,12 @@ const eventVenues = [
     name: "Schützenhaus Buttstädt",
     latitude: 51.12592,
     longitude: 11.43023
+  },
+  {
+    id: "schiessstand-sv-1990-hohenmoelsen-koepsen",
+    name: "Schießstand Schützenverein 1990 Hohenmölsen",
+    description: "Am Werk 4, 06679 Hohenmölsen OT Köpsen",
+    latitude: 51.16555,
+    longitude: 12.06697
   }
 ];
