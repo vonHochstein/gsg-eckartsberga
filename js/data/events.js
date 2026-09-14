@@ -246,6 +246,40 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 27,
+    slug: "km-trap-2026",
+    title: "Kreismeisterschaft Schützenkreis SUED Trap 2026",
+    shortTitle: "KM Trap 2026",
+    category: "Kreismeisterschaft",
+    start: "2026-03-07T09:00:00",
+    end: "2026-03-07T16:00:00",
+    location: "Schießstand Lossa, Kammerforststraße",
+    organizer: 'Schützenkreis "SUED"',
+    host: "Schützenverein Eckartsberga",
+    description:
+      "Am 7. März 2026 findet auf dem Schießstand Lossa die Kreismeisterschaft Trap des Schützenkreises SUED statt. Geschossen werden drei oder fünf Serien zu je 25 Wurfscheiben.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Kreismeisterschaft Trap 2026",
+        url: "assets/documents/events/2026/2026_02_08 Ausschreibung Kreismeisterschaft Trap 2026.pdf",
+        type: "announcement"
+      },
+      {
+        label: "Ergebnisprotokoll Kreismeisterschaft Trap 2026",
+        url: "assets/documents/events/2026/2026_03_08 Ergebnisprotokoll Kreismeisterschaft Trap 2026.pdf",
+        type: "result-list"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 15,
     slug: "abend-der-vereine-2026",
     title: "Abend der Vereine 2026",

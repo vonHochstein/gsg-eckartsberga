@@ -27,6 +27,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Veranstalter und Ausrichter beim KM Zentralfeuer Halbautomat 2026 quellengetreu getrennt; optionales Ausrichterfeld auf der Detailseite ergänzt.
 - Kreismeisterschaft GK-Pistole/Revolver 2026 mit getrenntem Veranstalter und Ausrichter, beiden Wettkampftagen und der Originalausschreibung als Produktivtermin ergänzt.
 - Ergebnisprotokolle Freihand und Auflage der Kreismeisterschaft GK-Pistole/Revolver 2026 als zwei unveränderte Veranstaltungsdokumente ergänzt.
+- Kreismeisterschaft Trap 2026 in Lossa mit Ausschreibung und Ergebnisprotokoll als Produktivtermin ergänzt.
 - Produktiver Veranstaltungseintrag für den 35. offenen Pokal des Bürgermeisters der Stadt Apolda mit Ausschreibung.
 - Produktiver Veranstaltungseintrag für den Kreisschützentag 2026 des Schützenkreises SUED mit Einladung.
 - Produktiver Veranstaltungseintrag für den Abend der Vereine 2026 mit Einladung.

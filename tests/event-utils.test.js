@@ -1884,6 +1884,72 @@ test("2. Buttstädter Pokal 2025 ist quellengetreu hinterlegt", () => {
   assert.equal(event.featured, false);
 });
 
+test("Kreismeisterschaft Trap 2026 ist mit Ausschreibung und Ergebnisprotokoll hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matches = productionEvents.filter((entry) => entry.slug === "km-trap-2026");
+  const [event] = matches;
+
+  assert.equal(matches.length, 1);
+  assert.equal(productionEvents.filter((entry) => entry.id === 27).length, 1);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.title, "Kreismeisterschaft Schützenkreis SUED Trap 2026");
+  assert.equal(event.shortTitle, "KM Trap 2026");
+  assert.equal(event.category, "Kreismeisterschaft");
+  assert.equal(event.start, "2026-03-07T09:00:00");
+  assert.equal(event.end, "2026-03-07T16:00:00");
+  assert.equal(event.venueId, undefined);
+  assert.equal(event.location, "Schießstand Lossa, Kammerforststraße");
+  assert.deepEqual(resolveEventLocation(event, Array.from(loadVenueData())), {
+    name: event.location
+  });
+  assert.equal(event.organizer, 'Schützenkreis "SUED"');
+  assert.equal(event.host, "Schützenverein Eckartsberga");
+  assert.equal(
+    getEventOrganizerLogo(event)?.src,
+    "assets/img/logo-schuetzenkreis-sued.png"
+  );
+  assert.equal(
+    event.description,
+    "Am 7. März 2026 findet auf dem Schießstand Lossa die Kreismeisterschaft Trap des Schützenkreises SUED statt. Geschossen werden drei oder fünf Serien zu je 25 Wurfscheiben."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung Kreismeisterschaft Trap 2026",
+      url: "assets/documents/events/2026/2026_02_08 Ausschreibung Kreismeisterschaft Trap 2026.pdf",
+      type: "announcement"
+    },
+    {
+      label: "Ergebnisprotokoll Kreismeisterschaft Trap 2026",
+      url: "assets/documents/events/2026/2026_03_08 Ergebnisprotokoll Kreismeisterschaft Trap 2026.pdf",
+      type: "result-list"
+    }
+  ]);
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  const expectedHashes = [
+    "c2ab0fe8f71501b0337ca2020c18ae81e42a0e444552c52104d18b1dc76369cc",
+    "5cbc7e644c4394061b1a77b996a14700891684bbc2ac7bd8197e955ec7d1cd97"
+  ];
+  event.documents.forEach((document, index) => {
+    const documentPath = path.resolve(__dirname, `../${document.url}`);
+    assert.equal(fs.existsSync(documentPath), true);
+    assert.equal(
+      crypto.createHash("sha256").update(fs.readFileSync(documentPath)).digest("hex"),
+      expectedHashes[index]
+    );
+  });
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
 test("Abend der Vereine 2026 ist quellengetreu hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(
