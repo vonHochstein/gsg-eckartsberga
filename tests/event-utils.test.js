@@ -97,16 +97,22 @@ function loadVenueData() {
   return context.eventVenueSnapshot;
 }
 
-test("liefert den Jägerschießstand Markröhlitz als gültigen Kartenort", () => {
+test("liefert die beiden zentralen Orte als gültige Kartenorte", () => {
   const venues = Array.from(loadVenueData());
 
-  assert.equal(venues.length, 1);
+  assert.equal(venues.length, 2);
   assert.deepEqual(normalizeVenues(venues), [
     {
       id: "jaegerschiessstand-markroehlitz",
       name: "Jägerschießstand Markröhlitz",
       latitude: 51.222440,
       longitude: 11.872128
+    },
+    {
+      id: "schuetzenhaus-buttstaedt",
+      name: "Schützenhaus Buttstädt",
+      latitude: 51.12592,
+      longitude: 11.43023
     }
   ]);
   assert.deepEqual(
@@ -119,6 +125,18 @@ test("liefert den Jägerschießstand Markröhlitz als gültigen Kartenort", () =
       name: "Jägerschießstand Markröhlitz",
       latitude: 51.222440,
       longitude: 11.872128
+    }
+  );
+  assert.deepEqual(
+    resolveEventLocation(
+      { venueId: "schuetzenhaus-buttstaedt" },
+      venues
+    ),
+    {
+      id: "schuetzenhaus-buttstaedt",
+      name: "Schützenhaus Buttstädt",
+      latitude: 51.12592,
+      longitude: 11.43023
     }
   );
 });
@@ -1924,7 +1942,17 @@ test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () 
   assert.equal(event.category, "Pokalwettkampf");
   assert.equal(event.start, "2026-09-05T09:00:00");
   assert.equal("end" in event, false);
+  assert.equal(event.venueId, "schuetzenhaus-buttstaedt");
   assert.equal(event.location, "Schützenhaus Buttstädt");
+  assert.deepEqual(
+    resolveEventLocation(event, Array.from(loadVenueData())),
+    {
+      id: "schuetzenhaus-buttstaedt",
+      name: "Schützenhaus Buttstädt",
+      latitude: 51.12592,
+      longitude: 11.43023
+    }
+  );
   assert.equal(
     event.organizer,
     "Großkaliber Schützengilde 1503 Eckartsberga e.V."

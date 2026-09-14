@@ -429,6 +429,7 @@ const productionEvents = [
     shortTitle: "Eckartsburg-Pokal",
     category: "Pokalwettkampf",
     start: "2026-09-05T09:00:00",
+    venueId: "schuetzenhaus-buttstaedt",
     location: "Schützenhaus Buttstädt",
     organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V.",
     description:
