@@ -274,6 +274,36 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 26,
+    slug: "km-gk-pistole-revolver-2026",
+    title: 'Kreismeisterschaft SK "SUED" GK-Pistole/Revolver 2026',
+    shortTitle: "KM GK-Pistole/Revolver 2026",
+    category: "Kreismeisterschaft",
+    start: "2026-03-20T12:00:00",
+    end: "2026-03-21T17:00:00",
+    location:
+      "Schießstand SV 1990 HHM, Am Werk 4, 06679 Hohenmölsen OT Köpsen",
+    organizer: 'Schützenkreis "SUED"',
+    host: "Schützenverein 1990 Hohenmölsen e.V. gegr. 1748",
+    description:
+      "Der Schützenkreis SUED veranstaltet am 20. und 21. März 2026 die Kreismeisterschaft GK-Pistole/Revolver in Hohenmölsen. Geschossen wird am Freitag von 12 bis 18 Uhr und am Samstag von 9 bis 17 Uhr.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Kreismeisterschaft GK-Pistole/Revolver 2026",
+        url: "assets/documents/events/2026/2026_02_08 Ausschreibung KM GK-Pistole-Revolver 2026.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
     id: 14,
     slug: "kreisschuetzentag-2026-schuetzenkreis-sued",
     title: "Kreisschützentag 2026 „Schützenkreis SUED“",

@@ -3,6 +3,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const crypto = require("node:crypto");
 const path = require("node:path");
 const vm = require("node:vm");
 
@@ -2075,6 +2076,72 @@ test("KM Zentralfeuer Halbautomat 2026 ist quellengetreu hinterlegt", () => {
   assert.deepEqual(Array.from(event.gallery), []);
   assert.deepEqual(Array.from(event.results), []);
   assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, true);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+});
+
+test("KM GK-Pistole/Revolver 2026 ist anhand der Ausschreibung hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "km-gk-pistole-revolver-2026"
+  );
+  const [event] = matchingEvents;
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(productionEvents.filter((entry) => entry.id === 26).length, 1);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(
+    event.title,
+    'Kreismeisterschaft SK "SUED" GK-Pistole/Revolver 2026'
+  );
+  assert.equal(event.shortTitle, "KM GK-Pistole/Revolver 2026");
+  assert.equal(event.category, "Kreismeisterschaft");
+  assert.equal(event.start, "2026-03-20T12:00:00");
+  assert.equal(event.end, "2026-03-21T17:00:00");
+  assert.equal(event.venueId, undefined);
+  assert.equal(
+    event.location,
+    "Schießstand SV 1990 HHM, Am Werk 4, 06679 Hohenmölsen OT Köpsen"
+  );
+  assert.deepEqual(resolveEventLocation(event, Array.from(loadVenueData())), {
+    name: event.location
+  });
+  assert.equal(event.organizer, 'Schützenkreis "SUED"');
+  assert.equal(
+    event.host,
+    "Schützenverein 1990 Hohenmölsen e.V. gegr. 1748"
+  );
+  assert.equal(
+    getEventOrganizerLogo(event)?.src,
+    "assets/img/logo-schuetzenkreis-sued.png"
+  );
+  assert.equal(
+    event.description,
+    "Der Schützenkreis SUED veranstaltet am 20. und 21. März 2026 die Kreismeisterschaft GK-Pistole/Revolver in Hohenmölsen. Geschossen wird am Freitag von 12 bis 18 Uhr und am Samstag von 9 bis 17 Uhr."
+  );
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ausschreibung Kreismeisterschaft GK-Pistole/Revolver 2026",
+      url: "assets/documents/events/2026/2026_02_08 Ausschreibung KM GK-Pistole-Revolver 2026.pdf",
+      type: "announcement"
+    }
+  ]);
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  const documentPath = path.resolve(__dirname, `../${event.documents[0].url}`);
+  assert.equal(fs.existsSync(documentPath), true);
+  assert.equal(
+    crypto.createHash("sha256").update(fs.readFileSync(documentPath)).digest("hex"),
+    "3d5e34986248fe910ce5d79427d4e098b27014128fdd36fd714a782fae37b468"
+  );
+  assert.equal(event.image, null);
+  assert.deepEqual(Array.from(event.gallery), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.results), []);
   assert.deepEqual(Array.from(event.externalLinks), []);
   assert.equal(event.registrationRequired, true);
   assert.equal(event.archive, true);

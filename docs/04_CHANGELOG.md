@@ -25,6 +25,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Produktiver Veranstaltungseintrag für den Hans-Peter-Nolding-Pokal 2026 mit Ausschreibung und ergänzendem Veranstaltungsflyer.
 - Vierseitiges Ergebnisprotokoll zum bestehenden Eckartsburg-Pokal 2026 als Veranstaltungsdokument ergänzt.
 - Veranstalter und Ausrichter beim KM Zentralfeuer Halbautomat 2026 quellengetreu getrennt; optionales Ausrichterfeld auf der Detailseite ergänzt.
+- Kreismeisterschaft GK-Pistole/Revolver 2026 mit getrenntem Veranstalter und Ausrichter, beiden Wettkampftagen und der Originalausschreibung als Produktivtermin ergänzt.
 - Produktiver Veranstaltungseintrag für den 35. offenen Pokal des Bürgermeisters der Stadt Apolda mit Ausschreibung.
 - Produktiver Veranstaltungseintrag für den Kreisschützentag 2026 des Schützenkreises SUED mit Einladung.
 - Produktiver Veranstaltungseintrag für den Abend der Vereine 2026 mit Einladung.
