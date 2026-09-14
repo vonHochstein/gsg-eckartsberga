@@ -25,5 +25,12 @@ const eventVenues = [
     description: "Am Werk 4, 06679 Hohenmölsen OT Köpsen",
     latitude: 51.16555,
     longitude: 12.06697
+  },
+  {
+    id: "schiessstand-lossa",
+    name: "Schießstand Lossa",
+    description: "Kammerforststraße",
+    latitude: 51.22738,
+    longitude: 11.37409
   }
 ];

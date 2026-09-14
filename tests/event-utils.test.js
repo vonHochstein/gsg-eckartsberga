@@ -98,10 +98,10 @@ function loadVenueData() {
   return context.eventVenueSnapshot;
 }
 
-test("liefert die drei zentralen Orte als gültige Kartenorte", () => {
+test("liefert die vier zentralen Orte als gültige Kartenorte", () => {
   const venues = Array.from(loadVenueData());
 
-  assert.equal(venues.length, 3);
+  assert.equal(venues.length, 4);
   assert.deepEqual(normalizeVenues(venues), [
     {
       id: "jaegerschiessstand-markroehlitz",
@@ -121,6 +121,13 @@ test("liefert die drei zentralen Orte als gültige Kartenorte", () => {
       description: "Am Werk 4, 06679 Hohenmölsen OT Köpsen",
       latitude: 51.16555,
       longitude: 12.06697
+    },
+    {
+      id: "schiessstand-lossa",
+      name: "Schießstand Lossa",
+      description: "Kammerforststraße",
+      latitude: 51.22738,
+      longitude: 11.37409
     }
   ]);
   assert.deepEqual(
@@ -158,6 +165,16 @@ test("liefert die drei zentralen Orte als gültige Kartenorte", () => {
       description: "Am Werk 4, 06679 Hohenmölsen OT Köpsen",
       latitude: 51.16555,
       longitude: 12.06697
+    }
+  );
+  assert.deepEqual(
+    resolveEventLocation({ venueId: "schiessstand-lossa" }, venues),
+    {
+      id: "schiessstand-lossa",
+      name: "Schießstand Lossa",
+      description: "Kammerforststraße",
+      latitude: 51.22738,
+      longitude: 11.37409
     }
   );
 });
@@ -1897,10 +1914,14 @@ test("Kreismeisterschaft Trap 2026 ist mit Ausschreibung und Ergebnisprotokoll h
   assert.equal(event.category, "Kreismeisterschaft");
   assert.equal(event.start, "2026-03-07T09:00:00");
   assert.equal(event.end, "2026-03-07T16:00:00");
-  assert.equal(event.venueId, undefined);
+  assert.equal(event.venueId, "schiessstand-lossa");
   assert.equal(event.location, "Schießstand Lossa, Kammerforststraße");
   assert.deepEqual(resolveEventLocation(event, Array.from(loadVenueData())), {
-    name: event.location
+    id: "schiessstand-lossa",
+    name: "Schießstand Lossa",
+    description: "Kammerforststraße",
+    latitude: 51.22738,
+    longitude: 11.37409
   });
   assert.equal(event.organizer, 'Schützenkreis "SUED"');
   assert.equal(event.host, "Schützenverein Eckartsberga");

@@ -253,6 +253,7 @@ const productionEvents = [
     category: "Kreismeisterschaft",
     start: "2026-03-07T09:00:00",
     end: "2026-03-07T16:00:00",
+    venueId: "schiessstand-lossa",
     location: "Schießstand Lossa, Kammerforststraße",
     organizer: 'Schützenkreis "SUED"',
     host: "Schützenverein Eckartsberga",
