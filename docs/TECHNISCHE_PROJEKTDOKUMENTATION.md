@@ -294,7 +294,8 @@ Erklärung sind in den offenen Prüfpunkten verankert.
 
 Das statische Impressum verwendet denselben integrierten Seitenkopf, Rücklink,
 Header, Footer und dieselbe Langtextgliederung wie die Datenschutzseite. Es
-enthält die bestätigten Vereins-, Anschrift-, Vorstands- und Registerangaben.
+enthält die bestätigten Vereins-, Anschrift-, Vorstands- und Registerangaben
+sowie einen kurzen Urheberrechtshinweis.
 Die endgültige Vereins-E-Mail-Adresse bleibt bis zur Veröffentlichung als
 eindeutiger Platzhalter offen; die fachliche Freigabe und weitere
 Anbieterkennzeichnungsfragen werden intern unter P-06 geprüft.

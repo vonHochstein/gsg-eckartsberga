@@ -58,6 +58,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Impressum um einen sachlichen Urheberrechtshinweis ergänzt und den bestätigten Namen Theobald Schneider auf der Vorstandsseite vereinheitlicht.
 - Kalenderkarten kennzeichnen Ergebnisse auch dann als verfügbar, wenn ein gültiges Ergebnisdokument statt einer externen Ergebnisquelle vorliegt.
 - Öffentliche Datenschutzseite konsequent auf den vorgesehenen Veröffentlichungszustand ausgerichtet und interne Entwicklungs- und Prüfvermerke in die Projektdokumentation verlagert.
 - Vom Auftraggeber vorbereitete Verbandslogo-Assets übernommen und den Footer auf allen Seiten in die Reihenfolge Logozeile, getrennte Sekundärnavigation und gemeinsame Copyright-/Leitsatzzeile gebracht.

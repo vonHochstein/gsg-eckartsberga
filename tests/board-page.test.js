@@ -49,7 +49,7 @@ test("trennt Vorstand und weitere Ansprechpartner fachlich", () => {
   const people = [
     ["Vorstandsvorsitzender", "Roland Matthes"],
     ["Stellvertretender Vorsitzender", "Steffen Ackermann"],
-    ["Kassenwart", "Theo Schneider"],
+    ["Kassenwart", "Theobald Schneider"],
     ["Sportwart", "Gerfried Barth"],
     ["Schriftführer", "Tommy Seeber"],
     ["Sachkundeprüfer", "Hubert Schorch"]

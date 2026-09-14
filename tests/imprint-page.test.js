@@ -45,7 +45,7 @@ test("verwendet für das Impressum den bestehenden Detailseitenrahmen", () => {
   assert.doesNotMatch(navigation(html, "main-nav"), /Impressum|impressum\.html/);
 });
 
-test("enthält ausschließlich die bestätigten Anbieterangaben", () => {
+test("enthält die bestätigten Anbieterangaben", () => {
   const html = readPage("impressum.html");
   const board = html.match(
     /<section class="privacy-section" aria-labelledby="imprint-board-title">([\s\S]*?)<\/section>/
@@ -61,7 +61,7 @@ test("enthält ausschließlich die bestätigten Anbieterangaben", () => {
     "Theobald Schneider",
     "Tommy Seeber"
   ].forEach((name) => assert.match(board, new RegExp("<li>" + name + "</li>")));
-  assert.doesNotMatch(board, /Theo Schneider/);
+  assert.doesNotMatch(board, /\bTheo Schneider\b/);
   assert.match(
     html,
     /Jeweils zwei Vorstandsmitglieder vertreten den Verein gemeinsam\./
@@ -72,6 +72,24 @@ test("enthält ausschließlich die bestätigten Anbieterangaben", () => {
     1
   );
   assert.doesNotMatch(html, /WhatsApp|Telefon|USt-IdNr|Steuernummer/);
+});
+
+test("ergänzt einen begrenzten Urheberrechtshinweis ohne pauschale Rechtebehauptung", () => {
+  const html = readPage("impressum.html");
+  const copyright = html.match(
+    /<section class="privacy-section" aria-labelledby="imprint-copyright-title">([\s\S]*?)<\/section>/
+  )?.[1] ?? "";
+
+  assert.equal((html.match(/<h2 id="imprint-copyright-title">/g) ?? []).length, 1);
+  assert.match(copyright, /<h2 id="imprint-copyright-title">Urheberrecht<\/h2>/);
+  assert.match(copyright, /Texte, Bilder,\s+Fotografien, Grafiken und sonstigen Inhalte/);
+  assert.match(copyright, /soweit\s+anwendbar, dem Urheberrecht/);
+  assert.match(copyright, /Rechte Dritter beachtet und Quellen\s+beziehungsweise Rechteinhaber nach Möglichkeit kenntlich gemacht/);
+  assert.match(copyright, /gesetzlich zulässigen Fälle hinaus bedarf der Zustimmung des\s+jeweiligen Rechteinhabers/);
+  assert.doesNotMatch(
+    copyright,
+    /sämtliche Inhalte (?:sind|gehören)|ausschließlich (?:dem Verein|uns)|jegliche Nutzung|ausnahmslos|distanzieren|unbeabsichtigten Urheberrechtsverletzungen|Abmahn/i
+  );
 });
 
 test("enthält keine historischen Disclaimer oder internen Rechtsprüfungen", () => {
