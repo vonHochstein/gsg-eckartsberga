@@ -58,6 +58,26 @@ test("zeigt das vorhandene KM-Ergebnisprotokoll in der Kalenderkarte an", () => 
   ]);
 });
 
+test("kennzeichnet beide KM-GK-Pistole/Revolver-Protokolle auf der Kalenderkarte", () => {
+  const eventSource = fs.readFileSync(
+    path.resolve(__dirname, "../js/data/events.js"),
+    "utf8"
+  );
+  const context = vm.createContext({});
+
+  vm.runInContext(eventSource, context, { filename: "events.js" });
+  const event = vm.runInContext(
+    'productionEvents.find((entry) => entry.slug === "km-gk-pistole-revolver-2026")',
+    context
+  );
+
+  assert.ok(event);
+  assert.deepEqual(resultStatus(renderCard(event)), [
+    "available",
+    "Ergebnisse verfügbar"
+  ]);
+});
+
 test("zeigt das Eckartsburg-Pokal-Ergebnisprotokoll in der Kalenderkarte an", () => {
   const eventSource = fs.readFileSync(
     path.resolve(__dirname, "../js/data/events.js"),

@@ -295,6 +295,16 @@ const productionEvents = [
         label: "Ausschreibung Kreismeisterschaft GK-Pistole/Revolver 2026",
         url: "assets/documents/events/2026/2026_02_08 Ausschreibung KM GK-Pistole-Revolver 2026.pdf",
         type: "announcement"
+      },
+      {
+        label: "Ergebnisprotokoll KM GK-Pistole/Revolver 2026 – Freihand",
+        url: "assets/documents/events/2026/2026_04_15 Ergebnisprotokoll KM GK-Pistole-Revolver 2026 Freihand.pdf",
+        type: "result-list"
+      },
+      {
+        label: "Ergebnisprotokoll KM GK-Pistole/Revolver 2026 – Auflage",
+        url: "assets/documents/events/2026/2026_04_15 Ergebnisprotokoll KM GK-Pistole-Revolver 2026 Auflage.pdf",
+        type: "result-list"
       }
     ],
     downloads: [],

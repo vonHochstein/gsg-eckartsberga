@@ -2153,17 +2153,39 @@ test("KM GK-Pistole/Revolver 2026 ist anhand der Ausschreibung hinterlegt", () =
       label: "Ausschreibung Kreismeisterschaft GK-Pistole/Revolver 2026",
       url: "assets/documents/events/2026/2026_02_08 Ausschreibung KM GK-Pistole-Revolver 2026.pdf",
       type: "announcement"
+    },
+    {
+      label: "Ergebnisprotokoll KM GK-Pistole/Revolver 2026 – Freihand",
+      url: "assets/documents/events/2026/2026_04_15 Ergebnisprotokoll KM GK-Pistole-Revolver 2026 Freihand.pdf",
+      type: "result-list"
+    },
+    {
+      label: "Ergebnisprotokoll KM GK-Pistole/Revolver 2026 – Auflage",
+      url: "assets/documents/events/2026/2026_04_15 Ergebnisprotokoll KM GK-Pistole-Revolver 2026 Auflage.pdf",
+      type: "result-list"
     }
   ]);
   assert.deepEqual(
     JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
     JSON.parse(JSON.stringify(event.documents))
   );
-  const documentPath = path.resolve(__dirname, `../${event.documents[0].url}`);
-  assert.equal(fs.existsSync(documentPath), true);
+  const expectedHashes = [
+    "3d5e34986248fe910ce5d79427d4e098b27014128fdd36fd714a782fae37b468",
+    "426d6719e5ae83be67fc2d0321102ba61ed3692aac5f68a4f86c4074224d9f7c",
+    "44e1b7c978c5a7997730a164a065b0fed5d3a81c98db75bde21b06fd62510088"
+  ];
+  event.documents.forEach((document, index) => {
+    const documentPath = path.resolve(__dirname, `../${document.url}`);
+    assert.equal(fs.existsSync(documentPath), true);
+    assert.equal(
+      crypto.createHash("sha256").update(fs.readFileSync(documentPath)).digest("hex"),
+      expectedHashes[index]
+    );
+  });
+  assert.equal(new Set(event.documents.map((document) => document.url)).size, 3);
   assert.equal(
-    crypto.createHash("sha256").update(fs.readFileSync(documentPath)).digest("hex"),
-    "3d5e34986248fe910ce5d79427d4e098b27014128fdd36fd714a782fae37b468"
+    event.documents.filter((document) => document.type === "result-list").length,
+    2
   );
   assert.equal(event.image, null);
   assert.deepEqual(Array.from(event.gallery), []);
