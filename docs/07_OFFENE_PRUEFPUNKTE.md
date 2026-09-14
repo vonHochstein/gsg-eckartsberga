@@ -56,8 +56,15 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 - **Status:** In Klärung
 - **Frage:** Sind Impressum und Datenschutzerklärung vollständig und für die finale Website ausreichend?
-- **Zu prüfen:** Die für den Veröffentlichungszustand formulierte technische Datenschutzfassung ist integriert. Vor Veröffentlichung müssen die Vereins-E-Mail-Adresse den Platzhalter `[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN]` und das Veröffentlichungsdatum den Platzhalter `[STAND VOR VERÖFFENTLICHUNG ERGÄNZEN]` ersetzen. Außerdem sind die Rechtsgrundlage für die weitere Veröffentlichung der aus dem bisherigen öffentlichen Vereinsgästebuch übernommenen Altbestände fachlich zu klären, der Gesamttext freizugeben und das noch fehlende Impressum separat umzusetzen. Hosting, Protokolldaten und externe Dienste werden zusätzlich über P-07 bis P-09 und P-23 geprüft.
+- **Zu prüfen:** Impressum und für den Veröffentlichungszustand formulierte Datenschutzfassung sind integriert. Vor Veröffentlichung müssen die Vereins-E-Mail-Adresse den Platzhalter `[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN]` auf beiden Seiten und das Veröffentlichungsdatum den Platzhalter `[STAND VOR VERÖFFENTLICHUNG ERGÄNZEN]` in der Datenschutzerklärung ersetzen. Anhand des endgültigen Webangebots ist zu prüfen, ob eine zusätzliche Verantwortlichenangabe nach § 18 Abs. 2 MStV nötig ist. Nach Fertigstellung der Kontaktarchitektur ist zu klären, ob neben der Vereins-E-Mail eine weitere unmittelbare Kommunikationsmöglichkeit für die Anbieterkennzeichnung erforderlich ist. Beim Vorstand ist zu erfragen, ob eine anzugebende USt-IdNr. oder Wirtschafts-Identifikationsnummer erteilt wurde; eine normale Steuernummer wird nicht vorsorglich veröffentlicht. Ebenfalls sind mögliche Informationspflichten nach dem Verbraucherstreitbeilegungsrecht anhand der tatsächlichen Vereinstätigkeit zu prüfen. Für die Datenschutzerklärung bleiben die Rechtsgrundlage der übernommenen öffentlichen Gästebuch-Altbestände, die fachliche Gesamtfreigabe und der Abgleich mit dem endgültigen Produktionsbetrieb offen. Hosting, Protokolldaten und externe Dienste werden zusätzlich über P-07 bis P-09 und P-23 geprüft.
 - **Abschlusskriterium:** Freigegebene Rechtstexte vor Veröffentlichung.
+
+### P-24 – Namensabweichung auf der Vorstandsseite
+
+- **Status:** Offen
+- **Frage:** Wie soll der Name des Vorstandsmitglieds auf `vorstand.html` öffentlich geführt werden?
+- **Zu prüfen:** Im Impressum ist nach dem vom Auftraggeber verifizierten Registerstand „Theobald Schneider“ angegeben; auf der bestehenden Vorstandsseite steht „Theo Schneider“. Ob „Theo“ ein freigegebener Ruf- oder Kurzname ist, ist nicht geklärt. Die Vorstandsseite bleibt bis zur redaktionellen Entscheidung unverändert.
+- **Abschlusskriterium:** Bestätigte öffentliche Namensform und gegebenenfalls gesonderte redaktionelle Nachführung der Vorstandsseite.
 
 ### P-07 – OSM-Veranstaltungskarten und spätere Anfahrtsdarstellung
 

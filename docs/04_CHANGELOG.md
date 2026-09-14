@@ -54,6 +54,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Fünf freigegebene Einträge aus dem bisherigen Gästebuch übernommen, davon vier für die Startseiten-Stimmen ausgewählt.
 - Logos des Deutschen Schützenbundes und des Landesschützenverbandes Sachsen-Anhalt als verlinkte, responsive Dreiergruppe mit dem bestehenden GSG-Motiv in allen Footern ergänzt.
 - Eigenständige, responsive Datenschutzerklärung für den tatsächlichen und den klar gekennzeichneten geplanten Produktionszustand ergänzt.
+- Eigenständiges Impressum mit bestätigten Vereins-, Vertretungs- und Registerangaben sowie Footerlink auf allen Seiten ergänzt.
 
 ### Geändert
 

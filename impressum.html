@@ -5,33 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Veröffentlichte Gästebucheinträge der Großkaliber Schützengilde 1503 Eckartsberga e. V."
+    content="Impressum der Großkaliber Schützengilde Eckartsberga e. V."
   />
   <meta name="theme-color" content="#111111" />
 
   <meta property="og:locale" content="de_DE" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="GSG Eckartsberga" />
-  <meta property="og:title" content="Gästebuch · GSG Eckartsberga" />
+  <meta property="og:title" content="Impressum · GSG Eckartsberga" />
   <meta
     property="og:description"
-    content="Veröffentlichte Stimmen von Gästen der GSG Eckartsberga."
+    content="Anbieterkennzeichnung und Kontakt der Großkaliber Schützengilde Eckartsberga e. V."
   />
 
-  <title>Gästebuch · GSG Eckartsberga</title>
+  <title>Impressum · GSG Eckartsberga</title>
 
   <link rel="icon" type="image/png" href="assets/img/logo-gsg-eckartsberga.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="event.css" />
   <link rel="stylesheet" href="geschichte.css" />
-  <link rel="stylesheet" href="gaestebuch.css" />
-  <script src="js/data/guestbook-entries.js" defer></script>
+  <link rel="stylesheet" href="datenschutz.css" />
   <script src="js/navigation.js" defer></script>
-  <script src="js/guestbook.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 
-<body class="history-page guestbook-page">
+<body class="history-page privacy-page">
   <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
 
   <header class="site-header history-site-header">
@@ -76,33 +74,55 @@
           <span aria-hidden="true">←&nbsp;</span>
           Zurück zur Startseite
         </a>
-        <p class="history-eyebrow">Gästebuch</p>
-        <h1>Stimmen unserer Gäste</h1>
-        <p class="history-intro">
-          Hier erscheinen ausschließlich Gästebucheinträge, die geprüft und
-          ausdrücklich zur Veröffentlichung freigegeben wurden.
-        </p>
+        <p class="history-eyebrow">Rechtliches</p>
+        <h1>Impressum</h1>
+        <p class="history-intro">Angaben zum Anbieter dieser Website.</p>
       </div>
     </header>
 
-    <section class="guestbook-overview" aria-labelledby="guestbook-title">
-      <div class="guestbook-content">
-        <p class="section-kicker">Gästebuch</p>
-        <h2 id="guestbook-title">Veröffentlichte Einträge</h2>
+    <article class="privacy-overview" aria-label="Anbieterkennzeichnung">
+      <div class="history-content privacy-content">
+        <div class="privacy-document">
+          <section class="privacy-section" aria-labelledby="imprint-provider-title">
+            <p class="section-kicker">Anbieter</p>
+            <h2 id="imprint-provider-title">Verein und Anschrift</h2>
+            <address>
+              <strong>Großkaliber Schützengilde Eckartsberga e. V.</strong><br />
+              Tromsdorfer Straße 13<br />
+              06647 An der Poststraße OT Herrengosserstedt
+            </address>
+          </section>
 
-        <div class="guestbook-list" id="guestbook-list"></div>
-        <p class="guestbook-empty" id="guestbook-empty" hidden>
-          Noch sind keine Gästebucheinträge veröffentlicht.
-        </p>
+          <section class="privacy-section" aria-labelledby="imprint-board-title">
+            <p class="section-kicker">Vertretung</p>
+            <h2 id="imprint-board-title">Vorstand</h2>
+            <p>Der Verein wird vertreten durch:</p>
+            <ul>
+              <li>Roland Matthes</li>
+              <li>Steffen Ackermann</li>
+              <li>Gerfried Barth</li>
+              <li>Theobald Schneider</li>
+              <li>Tommy Seeber</li>
+            </ul>
+            <p>Jeweils zwei Vorstandsmitglieder vertreten den Verein gemeinsam.</p>
+          </section>
 
-        <noscript>
-          <p class="guestbook-empty">
-            Für die Anzeige der veröffentlichten Gästebucheinträge muss
-            JavaScript aktiviert sein.
-          </p>
-        </noscript>
+          <section class="privacy-section" aria-labelledby="imprint-register-title">
+            <p class="section-kicker">Eintragung</p>
+            <h2 id="imprint-register-title">Vereinsregister</h2>
+            <p>Amtsgericht Stendal<br />VR 45185</p>
+          </section>
+
+          <section class="privacy-section" aria-labelledby="imprint-contact-title">
+            <p class="section-kicker">Kontakt</p>
+            <h2 id="imprint-contact-title">Kontakt</h2>
+            <p class="privacy-placeholder">
+              E-Mail: [VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN]
+            </p>
+          </section>
+        </div>
       </div>
-    </section>
+    </article>
   </main>
 
   <footer class="site-footer">
@@ -162,8 +182,8 @@
           <a href="index.html#veranstaltungen">Veranstaltungen</a>
           <a href="index.html#galerie">Galerie</a>
           <a href="index.html#mitglied">Mitglied werden</a>
-          <a href="gaestebuch.html" aria-current="page">Gästebuch</a>
-          <a href="impressum.html">Impressum</a>
+          <a href="gaestebuch.html">Gästebuch</a>
+          <a href="impressum.html" aria-current="page">Impressum</a>
           <a href="datenschutz.html">Datenschutz</a>
         </nav>
       </div>

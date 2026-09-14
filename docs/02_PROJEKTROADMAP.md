@@ -27,6 +27,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - eigenständige Seite für Schießbahnen und Vereinshaus mit bestätigten Nutzungsangaben und vier freigegebenen Anlagenaufnahmen;
 - eigenständige Gästebuchseite mit zentralem Veröffentlichungsmodell, verständlichem Leerzustand und datengetriebenem Startseiten-Teaser;
 - eigenständige Datenschutzseite für den tatsächlichen und verbindlich geplanten Produktionszustand;
+- eigenständiges Impressum mit bestätigten Anbieter-, Vertretungs- und Registerangaben;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
 - abgeschlossene Startseitenbereiche für Veranstaltungen, Galerie und Mitgliedschaft;
 - konsistenter Footer mit zentraler Logozeile, nachgeordneter Sekundärnavigation und gemeinsamer Vereins-/Leitsatzzeile;
@@ -104,7 +105,7 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 
 ### Abschnitt 2: Rechtliche Veröffentlichungsgrundlage
 
-- fachlich geprüfte Inhalte für das Impressum bereitstellen;
+- integriertes Impressum einschließlich Vereins-E-Mail und offener Anbieterkennzeichnungsfragen vor Veröffentlichung fachlich freigeben;
 - integrierte Datenschutzerklärung vor Veröffentlichung fachlich freigeben und
   gegen die endgültige Produktionskonfiguration prüfen;
 - Einwilligungserfordernisse für Formspree, counter.dev und die klickbasierte

@@ -1728,7 +1728,7 @@ html[data-development-data="active"] .site-footer {
 
 .footer-nav {
   display: grid;
-  grid-template-columns: repeat(7, max-content);
+  grid-template-columns: repeat(8, max-content);
   align-items: stretch;
   justify-content: center;
   margin: 0 auto;
@@ -1743,8 +1743,8 @@ html[data-development-data="active"] .site-footer {
 }
 
 .footer-nav a + a {
-  margin-left: clamp(12px, 1.8vw, 22px);
-  padding-left: clamp(12px, 1.8vw, 22px);
+  margin-left: clamp(8px, 1.2vw, 18px);
+  padding-left: clamp(8px, 1.2vw, 18px);
   border-left: 1px solid rgba(214, 168, 79, 0.3);
 }
 

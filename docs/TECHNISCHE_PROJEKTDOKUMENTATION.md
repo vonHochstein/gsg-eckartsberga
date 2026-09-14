@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 9. September 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, GB-001, GB-MIG-001, FOOT-VERB-001 und LEGAL-DAT-001
+**Stand:** 14. September 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, GB-001, GB-MIG-001, FOOT-VERB-001, LEGAL-DAT-001 und LEGAL-IMP-001
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -26,6 +26,7 @@ Umgesetzt und geprüft sind:
 - statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
 - datengetriebene Gästebuch-Unterseite mit fünf freigegebenen Bestandseinträgen;
 - statische, responsive Datenschutzerklärung für den vorgesehenen Veröffentlichungszustand;
+- statisches, responsives Impressum mit bestätigten Anbieter- und Registerangaben;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
 - dynamische Anzeige der nächsten Veranstaltung mit Countdown;
 - Timeline für kommende, aktuelle und archivierte Veranstaltungen;
@@ -50,7 +51,7 @@ Noch nicht umgesetzt sind insbesondere:
 
 - freigegebene Detailinhalte für produktive Veranstaltungen;
 - weitere Vereins-, besondere Erfolgs- und Kontaktinhalte;
-- Impressum sowie die fachliche Freigabe und abschließende Produktionsprüfung der Datenschutzerklärung;
+- fachliche Freigabe des Impressums und der Datenschutzerklärung sowie deren abschließende Produktionsprüfung;
 - vollständige produktive Galerie;
 - Backend, CMS, Formulare, Suche und Mitgliederbereich;
 - Build-, Deployment- und Hosting-Konfiguration.
@@ -82,6 +83,7 @@ Die Anwendung verwendet:
 ├── schiessbahnen.html
 ├── vorstand.html
 ├── datenschutz.html
+├── impressum.html
 ├── style.css
 ├── datenschutz.css
 ├── event.css
@@ -288,6 +290,15 @@ Laufzeiten ein und erzeugt selbst keine automatischen Drittanfragen. Die
 Platzhalter für die endgültige Vereins-E-Mail-Adresse und den späteren Stand der
 Erklärung sind in den offenen Prüfpunkten verankert.
 
+#### `impressum.html`
+
+Das statische Impressum verwendet denselben integrierten Seitenkopf, Rücklink,
+Header, Footer und dieselbe Langtextgliederung wie die Datenschutzseite. Es
+enthält die bestätigten Vereins-, Anschrift-, Vorstands- und Registerangaben.
+Die endgültige Vereins-E-Mail-Adresse bleibt bis zur Veröffentlichung als
+eindeutiger Platzhalter offen; die fachliche Freigabe und weitere
+Anbieterkennzeichnungsfragen werden intern unter P-06 geprüft.
+
 ### 2.2 CSS
 
 #### `style.css`
@@ -317,8 +328,8 @@ die gemeinsame Copyrightzeile mit Vereinsname und Leitsatz. Die Logozeile bleibt
 über die gemeinsamen Footerregeln auch auf schmalen Ansichten in einer Reihe;
 die Navigation wechselt dort in ein festes Zweispaltenraster, damit ihre
 CSS-Separatoren nicht allein am Zeilenanfang oder -ende stehen.
-Die Sekundärnavigation enthält auf allen produktiven Seiten zusätzlich den
-zentralen Link zur Datenschutzerklärung.
+Die Sekundärnavigation enthält auf allen produktiven Seiten Impressum und
+Datenschutz als benachbarte rechtliche Ziele.
 
 Die vom Auftraggeber extern vorbereiteten PNG-Fassungen werden unverändert
 verwendet: DSB mit 1013 × 720 Pixeln und SHA-256
@@ -374,7 +385,7 @@ den bereits vorhandenen Stylesheets übernommen.
 
 #### `datenschutz.css`
 
-Enthält ausschließlich die ruhige Langtextgliederung der Datenschutzseite. Der
+Enthält die ruhige Langtextgliederung der beiden rechtlichen Seiten. Der
 Seitenkopf und die globale Gestaltung stammen aus `geschichte.css`, der Rücklink
 aus `event.css` sowie Header, Footer, Design-Tokens und Fokusdarstellung aus
 `style.css`.
@@ -634,6 +645,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
 | `gaestebuch.html` | `style.css`, `event.css`, `geschichte.css`, `gaestebuch.css`, veröffentlichte Gästebuchdaten, Gästebuchrenderer, Navigation, Footer-Jahr |
 | `datenschutz.html` | `style.css`, `event.css`, `geschichte.css`, `datenschutz.css`, Navigation, Footer-Jahr |
+| `impressum.html` | `style.css`, `event.css`, `geschichte.css`, `datenschutz.css`, Navigation, Footer-Jahr |
 | `events.js` | optional `developmentEvents` |
 | `venues.js` | keine Laufzeitabhängigkeit; zentrale Ortsstammdaten mit stabilen IDs und optionalen Koordinaten |
 | `event-utils.js` | standardisierte Browser-/JavaScript-APIs, kein DOM |
@@ -1023,6 +1035,17 @@ node --test tests/*.test.js
   Gästebucheinträge und Betroffenenrechte;
 - Datenschutzlink in allen Footern ohne Erweiterung der Hauptnavigation.
 
+`tests/imprint-page.test.js` prüft:
+
+- den bestehenden Detailseitenrahmen, bestätigte Anbieterangaben und den
+  eindeutigen E-Mail-Platzhalter;
+- Ausschluss alter Disclaimer, unbelegter Kontaktangaben und öffentlicher
+  Arbeitsvermerke;
+- Impressum und Datenschutz als funktionierende rechtliche Footerziele auf
+  allen produktiven Seiten;
+- vorhandene lokale Ressourcen und interne Linkziele ohne automatische
+  Drittanfragen.
+
 `tests/venue-map.test.js` prüft:
 
 - ausschließlich lokale und unveränderte Leaflet-1.9.4-Laufzeitdateien samt Lizenz und SHA-256;
@@ -1170,4 +1193,4 @@ Erst nach den nächsten fachlichen Ausbauschritten sind sinnvoll:
 
 Mit IA-002 ist aus der reinen Startseitenchronik eine integrierte, datengetriebene Veranstaltungsarchitektur entstanden. Ein verbindliches Modell versorgt Countdown, Timeline, Archiv, Galerie und universelle Detailseite. Gemeinsame Hilfsfunktionen verhindern doppelte URL- und Validierungslogik, während klar getrennte Entwicklungsdaten alle optionalen Zustände prüfbar machen.
 
-Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Der erste reale Venue ist zentral hinterlegt und wird von zwei fachlich bestätigten Events referenziert. Die Datenschutzseite bildet den geprüften technischen Stand und die verbindlich vorgesehenen Dienste bereits ab; E-Mail-Adresse, Anbieterintegrationen, Produktionsrequests und rechtliche Einordnungen bleiben vor Veröffentlichung abschließend zu prüfen. Weitere Ortsumstellungen bleiben jeweils einzeln freizugebende Eventmigrationen.
+Die technische Grundlage für produktive Veranstaltungsdetails und schrittweise zentral gepflegte Veranstaltungsorte ist vollständig. Der erste reale Venue ist zentral hinterlegt und wird von zwei fachlich bestätigten Events referenziert. Impressum und Datenschutzseite sind integriert; E-Mail-Adresse, Anbieterintegrationen, Produktionsrequests und rechtliche Einordnungen bleiben vor Veröffentlichung abschließend zu prüfen. Weitere Ortsumstellungen bleiben jeweils einzeln freizugebende Eventmigrationen.

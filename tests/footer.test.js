@@ -13,6 +13,7 @@ const pageFiles = [
   "vorstand.html",
   "schiessbahnen.html",
   "gaestebuch.html",
+  "impressum.html",
   "datenschutz.html"
 ];
 
@@ -147,7 +148,7 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
 
   assert.match(
     css,
-    /\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(7, max-content\);/s
+    /\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(8, max-content\);/s
   );
   assert.match(
     css,
