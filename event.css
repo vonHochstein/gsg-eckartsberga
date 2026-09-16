@@ -536,7 +536,7 @@
   grid-template-rows: minmax(0, 1fr) auto;
   min-height: 0;
   place-items: center;
-  gap: 12px;
+  row-gap: 0;
   padding-block: 12px;
 }
 
@@ -560,6 +560,7 @@
 
 .event-lightbox-media figcaption {
   max-width: 860px;
+  margin-block-start: 12px;
   overflow-wrap: anywhere;
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.95rem;
