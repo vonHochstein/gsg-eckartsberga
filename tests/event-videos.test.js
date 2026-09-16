@@ -79,3 +79,26 @@ test("bewahrt reine Bildergalerien und leere Medienzustände", () => {
   assert.match(eventCss, /\.event-gallery\s*\{[^}]*grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\);/s);
   assert.doesNotMatch(eventCss, /\.event-videos\s*\{/);
 });
+
+test("reserviert Beschreibung und Navigation unabhängig vom Medienformat", () => {
+  assert.match(
+    eventCss,
+    /\.event-lightbox-panel\s*\{[^}]*grid-template-rows:\s*auto minmax\(0, 1fr\) auto;[^}]*height:\s*calc\(100svh - clamp\(24px, 6vw, 64px\)\);[^}]*overflow:\s*hidden;/s
+  );
+  assert.match(
+    eventCss,
+    /\.event-lightbox-media\s*\{[^}]*grid-template-rows:\s*minmax\(0, 1fr\) auto;/s
+  );
+  assert.match(
+    eventCss,
+    /\.event-lightbox-media img,\s*\.event-lightbox-media video:not\(\[hidden\]\)\s*\{[^}]*max-height:\s*100%;[^}]*border-radius:\s*12px;[^}]*clip-path:\s*inset\(0 round 12px\);[^}]*object-fit:\s*contain;/s
+  );
+  assert.match(
+    eventCss,
+    /\.event-lightbox-media video:not\(\[hidden\]\)\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;/s
+  );
+  assert.doesNotMatch(
+    eventCss,
+    /\.event-lightbox-media (?:img|video:not\(\[hidden\]\))\s*\{[^}]*100svh/s
+  );
+});

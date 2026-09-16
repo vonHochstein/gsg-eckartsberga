@@ -68,6 +68,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Die gemeinsame Medien-Lightbox reserviert für Beschreibungen und Positionsanzeige eigenen Raum; Bilder und Videos nutzen den verbleibenden Platz seitenverhältnisgetreu und mit einheitlich geclippten Rundungen.
 - Bilder und lokale Videos werden auf Eventdetailseiten als gemeinsame Mediengalerie mit einer durchgehenden Lightbox-Navigation dargestellt; laufende Videos werden beim Wechsel und Schließen beendet und zurückgesetzt.
 - Lange Eventbeschreibungen in Timeline- und Archivkarten responsiv auf drei beziehungsweise mobil vier Zeilen begrenzt, ohne die vollständigen Detailtexte zu verändern.
 - Veranstaltungsdaten können bei unbekannter Uhrzeit ein reines ISO-Datum verwenden; die Oberfläche gibt dann keine erfundete Uhrzeit aus.
