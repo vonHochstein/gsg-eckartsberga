@@ -87,7 +87,7 @@ test("reserviert Beschreibung und Navigation unabhängig vom Medienformat", () =
   );
   assert.match(
     eventCss,
-    /\.event-lightbox-media\s*\{[^}]*grid-template-rows:\s*minmax\(0, 1fr\) auto;/s
+    /\.event-lightbox-media\s*\{[^}]*grid-template-rows:\s*minmax\(0, 1fr\) auto;[^}]*gap:\s*12px;[^}]*padding-block:\s*12px;/s
   );
   assert.match(
     eventCss,

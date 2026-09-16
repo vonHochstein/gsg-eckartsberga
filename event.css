@@ -537,6 +537,7 @@
   min-height: 0;
   place-items: center;
   gap: 12px;
+  padding-block: 12px;
 }
 
 .event-lightbox-media img,
