@@ -12,6 +12,7 @@
     const previousButton = document.getElementById("event-lightbox-previous");
     const nextButton = document.getElementById("event-lightbox-next");
     const lightboxImage = document.getElementById("event-lightbox-image");
+    const lightboxVideo = document.getElementById("event-lightbox-video");
     const lightboxCaption = document.getElementById("event-lightbox-caption");
     const lightboxPosition = document.getElementById("event-lightbox-position");
 
@@ -34,6 +35,24 @@
     );
     const gallery = galleryTriggers
       .map((trigger) => {
+        if (trigger.dataset.galleryKind === "video") {
+          const src = trigger.dataset.gallerySrc?.trim();
+          const title = trigger.dataset.galleryTitle?.trim();
+
+          if (!lightboxVideo || !src || !title) return null;
+
+          return {
+            kind: "video",
+            src,
+            title,
+            poster: trigger.dataset.galleryPoster?.trim() || "",
+            width: Number(trigger.dataset.galleryWidth) || null,
+            height: Number(trigger.dataset.galleryHeight) || null,
+            caption:
+              trigger.closest("figure")?.querySelector("figcaption")?.textContent.trim() || ""
+          };
+        }
+
         const image = trigger.querySelector("img");
         const caption = trigger.closest("figure")?.querySelector("figcaption");
 
@@ -42,6 +61,7 @@
         }
 
         return {
+          kind: "image",
           src: image.getAttribute("src"),
           alt: image.getAttribute("alt"),
           width: Number(image.getAttribute("width")) || null,
@@ -58,6 +78,7 @@
     let currentIndex = 0;
     let invokingButton = null;
     let pointerStartedOnBackdrop = false;
+    const galleryHasVideos = gallery.some((item) => item.kind === "video");
 
     galleryRoot.addEventListener("click", (event) => {
       const target =
@@ -72,7 +93,7 @@
       if (requestedIndex < 0) return;
 
       invokingButton = target;
-      showGalleryImage(requestedIndex);
+      showGalleryMedia(requestedIndex);
       dialog.showModal();
       closeButton.focus({ preventScroll: true });
     });
@@ -90,12 +111,17 @@
         return;
       }
 
-      if (event.key === "ArrowLeft") {
+      const videoHasFocus =
+        lightboxVideo &&
+        event.target instanceof Element &&
+        (event.target === lightboxVideo || event.target.closest("video"));
+
+      if (event.key === "ArrowLeft" && !videoHasFocus) {
         event.preventDefault();
         navigateGallery(-1);
       }
 
-      if (event.key === "ArrowRight") {
+      if (event.key === "ArrowRight" && !videoHasFocus) {
         event.preventDefault();
         navigateGallery(1);
       }
@@ -126,6 +152,7 @@
     });
 
     dialog.addEventListener("close", () => {
+      pauseAndResetVideo();
       const focusTarget = invokingButton;
       invokingButton = null;
       pointerStartedOnBackdrop = false;
@@ -135,32 +162,35 @@
       }
     });
 
-    function showGalleryImage(index) {
+    function showGalleryMedia(index) {
       if (index < 0 || index >= gallery.length) return;
 
-      const image = gallery[index];
-      const hasMultipleImages = gallery.length > 1;
+      const item = gallery[index];
+      const hasMultipleMedia = gallery.length > 1;
 
       currentIndex = index;
-      lightboxImage.setAttribute("src", image.src);
-      lightboxImage.setAttribute("alt", image.alt);
-      lightboxImage.removeAttribute("width");
-      lightboxImage.removeAttribute("height");
+      pauseAndResetVideo();
 
-      if (image.width) {
-        lightboxImage.setAttribute("width", String(image.width));
+      if (item.kind === "video") {
+        showVideo(item);
+      } else {
+        showImage(item);
       }
 
-      if (image.height) {
-        lightboxImage.setAttribute("height", String(image.height));
-      }
+      lightboxCaption.textContent = item.caption;
+      lightboxCaption.hidden = !item.caption;
+      lightboxPosition.textContent = `${galleryHasVideos ? "Medium" : "Bild"} ${index + 1} von ${gallery.length}`;
 
-      lightboxCaption.textContent = image.caption;
-      lightboxCaption.hidden = !image.caption;
-      lightboxPosition.textContent = `Bild ${index + 1} von ${gallery.length}`;
-
-      previousButton.hidden = !hasMultipleImages;
-      nextButton.hidden = !hasMultipleImages;
+      previousButton.hidden = !hasMultipleMedia;
+      nextButton.hidden = !hasMultipleMedia;
+      previousButton.setAttribute(
+        "aria-label",
+        galleryHasVideos ? "Vorheriges Medium" : "Vorheriges Bild"
+      );
+      nextButton.setAttribute(
+        "aria-label",
+        galleryHasVideos ? "Nächstes Medium" : "Nächstes Bild"
+      );
       previousButton.setAttribute("aria-disabled", String(index === 0));
       nextButton.setAttribute(
         "aria-disabled",
@@ -168,16 +198,79 @@
       );
     }
 
+    function showImage(image) {
+      lightboxImage.hidden = false;
+      lightboxImage.setAttribute("src", image.src);
+      lightboxImage.setAttribute("alt", image.alt);
+      setMediaDimensions(lightboxImage, image);
+
+      if (lightboxVideo) {
+        lightboxVideo.hidden = true;
+      }
+    }
+
+    function showVideo(video) {
+      if (!lightboxVideo) return;
+
+      lightboxImage.hidden = true;
+      lightboxVideo.hidden = false;
+      lightboxVideo.setAttribute("src", video.src);
+      lightboxVideo.setAttribute("aria-label", video.title);
+      setMediaDimensions(lightboxVideo, video);
+
+      if (video.poster) {
+        lightboxVideo.setAttribute("poster", video.poster);
+      } else {
+        lightboxVideo.removeAttribute("poster");
+      }
+
+      lightboxVideo.load();
+    }
+
+    function setMediaDimensions(element, media) {
+      element.removeAttribute("width");
+      element.removeAttribute("height");
+
+      if (media.width) {
+        element.setAttribute("width", String(media.width));
+      }
+
+      if (media.height) {
+        element.setAttribute("height", String(media.height));
+      }
+    }
+
+    function pauseAndResetVideo() {
+      if (!lightboxVideo) return;
+
+      lightboxVideo.pause();
+
+      try {
+        lightboxVideo.currentTime = 0;
+      } catch (_error) {
+        // Ein noch nicht geladener lokaler Stream besitzt keine suchbare Position.
+      }
+
+      lightboxVideo.removeAttribute("src");
+      lightboxVideo.removeAttribute("poster");
+      lightboxVideo.removeAttribute("aria-label");
+      lightboxVideo.removeAttribute("width");
+      lightboxVideo.removeAttribute("height");
+      lightboxVideo.load();
+      lightboxVideo.hidden = true;
+    }
+
     function navigateGallery(direction) {
       const targetIndex = currentIndex + direction;
 
       if (targetIndex < 0 || targetIndex >= gallery.length) return;
 
-      showGalleryImage(targetIndex);
+      showGalleryMedia(targetIndex);
     }
 
     function closeLightbox() {
       if (dialog.open) {
+        pauseAndResetVideo();
         dialog.close();
       }
     }

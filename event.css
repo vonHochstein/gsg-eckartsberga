@@ -365,6 +365,7 @@
 }
 
 .event-gallery-open {
+  position: relative;
   display: block;
   width: 100%;
   padding: 0;
@@ -372,6 +373,43 @@
   background: transparent;
   cursor: zoom-in;
   font: inherit;
+}
+
+.event-gallery-open-video {
+  cursor: pointer;
+}
+
+.event-gallery-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.86);
+  border-radius: 50%;
+  background: rgba(18, 18, 18, 0.78);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.34);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.event-gallery-play::before {
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 16px solid var(--color-white);
+  content: "";
+}
+
+.event-gallery-video-fallback {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--color-dark);
 }
 
 .event-gallery-open:focus-visible {
@@ -395,37 +433,6 @@
 }
 
 .event-gallery figcaption {
-  padding: 13px 15px 15px;
-  overflow-wrap: anywhere;
-  color: #544d44;
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.event-videos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: 18px;
-}
-
-.event-video-item {
-  min-width: 0;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #e6dfd4;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.11);
-}
-
-.event-video {
-  display: block;
-  width: 100%;
-  max-height: 620px;
-  background: var(--color-dark);
-  object-fit: contain;
-}
-
-.event-video-item figcaption {
   padding: 13px 15px 15px;
   overflow-wrap: anywhere;
   color: #544d44;
@@ -535,6 +542,16 @@
   max-width: 100%;
   max-height: calc(100svh - 240px);
   border-radius: 12px;
+  object-fit: contain;
+}
+
+.event-lightbox-media video:not([hidden]) {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100svh - 240px);
+  border-radius: 12px;
+  background: var(--color-dark);
   object-fit: contain;
 }
 
@@ -756,8 +773,7 @@
   }
 
   .event-facts,
-  .event-gallery,
-  .event-videos {
+  .event-gallery {
     grid-template-columns: 1fr;
   }
 
@@ -791,6 +807,10 @@
   }
 
   .event-lightbox-media img {
+    max-height: calc(100svh - 270px);
+  }
+
+  .event-lightbox-media video:not([hidden]) {
     max-height: calc(100svh - 270px);
   }
 

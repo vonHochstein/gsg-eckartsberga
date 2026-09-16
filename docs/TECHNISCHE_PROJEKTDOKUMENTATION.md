@@ -37,8 +37,8 @@ Umgesetzt und geprüft sind:
 - getrennte produktive und nicht produktive Entwicklungsdaten;
 - gemeinsame Hilfsfunktionen unter `window.EventUtils`;
 - universelle Detailseite über `event.html?event=<slug>`;
-- Darstellung von Beschreibung, Veranstaltungsinformationen, Ergebnissen, Dokumenten, externen Links, lokalen Videos und Galerie;
-- native, barrierearme Lightbox für Galeriebilder mit Tastaturnavigation und Fokus-Rückgabe;
+- Darstellung von Beschreibung, Veranstaltungsinformationen, Ergebnissen, Dokumenten, externen Links und einer gemeinsamen Galerie für Bilder und lokale Videos;
+- native, barrierearme Medien-Lightbox für Bilder und lokale Videos mit Tastaturnavigation und Fokus-Rückgabe;
 - definierte Fehlerzustände für fehlende, unbekannte, unvollständige oder nicht eindeutige Veranstaltungen;
 - dynamische Dokument- und Open-Graph-Metadaten;
 - Verlinkung von Timeline, Countdown und eventbezogenem Galerie-Teaser auf Detailseiten;
@@ -484,9 +484,15 @@ Geschichtsseite vorbehalten.
 Initialisiert die gemeinsame native Lightbox für jedes mit
 `data-gallery-lightbox` gekennzeichnete Galerieraster. Bildquelle,
 Alternativtext, Abmessungen und Bildunterschrift werden aus dem semantischen
-Galeriemarkup gelesen. Veranstaltungsdetailseite, Geschichtsseite und Erfolgsseite
-verwenden damit denselben Controller für Fokusführung, Backdrop-Klick, Escape
-sowie Vor-/Zurück- und Pfeiltastennavigation.
+Galeriemarkup gelesen. Auf der Veranstaltungsdetailseite erkennt der Controller
+zusätzlich deklarativ gekennzeichnete lokale Videos und zeigt sie mit dem
+nativen HTML5-Player im selben Dialog. Veranstaltungsdetailseite,
+Geschichtsseite und Erfolgsseite verwenden damit denselben Controller für
+Fokusführung, Backdrop-Klick, Escape sowie Vor-/Zurück- und
+Pfeiltastennavigation. Beim Medienwechsel und Schließen pausiert und entlädt der
+Controller ein aktives Video und setzt seine Wiedergabeposition auf den Anfang
+zurück. Pfeiltasten des fokussierten nativen Videoplayers werden nicht als
+Galerienavigation behandelt.
 
 #### `js/event-detail.js`
 
@@ -501,8 +507,7 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug sowie den sichtb
 - kanonisch zusammengeführte Dokumente aus `documents`, Ergebnisdateien und Legacy-Downloads;
 - externe Ergebnisse;
 - externe Links;
-- optionale lokale Videos;
-- Galerie als abschließenden Inhaltsbereich.
+- gemeinsame Mediengalerie aus Galeriebildern und optionalen lokalen Videos als abschließenden Inhaltsbereich.
 
 Dokumente werden über `normalizeEventDocuments()` zusammengeführt und mit ihrer deutschen Typbezeichnung dargestellt. Ergebnisdateien erscheinen ausschließlich unter „Dokumente“, externe Ergebnisquellen ausschließlich unter „Ergebnisse“.
 
@@ -510,11 +515,11 @@ Die Herkunftslogo-Zuordnung verwendet eine exakte Allowlist in `EventUtils`. Tit
 
 Eine eindeutige zentrale Ortsreferenz liefert den sichtbaren Namen für Hero, Metadaten und Veranstaltungsinformationen. Ohne verwendbare Koordinaten bleibt der Ort dort reiner Text. Nur bei einem vollständigen gültigen Koordinatenpaar erscheint im Fakteneintrag die Schaltfläche „Karte anzeigen – lädt OpenStreetMap“. Timeline und Archiv bleiben frei von verschachtelten Karteninteraktionen.
 
-Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert. Lokale Videos verwenden den nativen HTML5-Player mit Bedienelementen, `preload="metadata"` und ohne Autoplay. Posterbilder, Videos und Wiedergabe bleiben vollständig lokal; das Laden der Detailseite erzeugt dadurch keine Verbindung zu einem Videoanbieter.
+Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert. Galeriebilder und lokale Videos bleiben im Datenmodell getrennt und werden erst für die Ausgabe zu einer gemeinsamen Medienfolge zusammengeführt. Videokacheln verwenden das lokale Posterbild und ein dekoratives Play-Symbol. Im Dialog verwenden Videos den nativen HTML5-Player mit Bedienelementen, `preload="metadata"` und ohne Autoplay. Posterbilder, Videos und Wiedergabe bleiben vollständig lokal; das Laden der Detailseite erzeugt dadurch keine Verbindung zu einem Videoanbieter.
 
-Bis zu sechs gültige Galeriebilder werden vollständig dargestellt. Bei mehr als sechs Bildern zeigt die Seite zunächst die ersten sechs in Datenreihenfolge. Ein nativer, tastaturbedienbarer Schalter blendet die verbleibenden Bilder ein und wieder aus; Beschriftung und `aria-expanded` folgen dem tatsächlichen Zustand. Beim Einklappen wird die Position des Schalters im sichtbaren Bereich stabilisiert. Ungültige Galerieeinträge werden bereits durch `EventUtils.normalizeGallery()` verworfen und zählen nicht gegen diese Grenze.
+Bis zu sechs gültige Medien werden zunächst vollständig dargestellt. Bei mehr als sechs Medien zeigt die Seite die ersten sechs in der zusammengeführten Reihenfolge: zuerst die gepflegten Galeriebilder, danach die lokalen Videos. Ein nativer, tastaturbedienbarer Schalter blendet die verbleibenden Medien ein und wieder aus; Beschriftung und `aria-expanded` folgen dem tatsächlichen Zustand. Beim Einklappen wird die Position des Schalters im sichtbaren Bereich stabilisiert. Reine Bildergalerien behalten ihre bisherige Beschriftung und Darstellung; auch reine Videogalerien sowie vollständig leere Medienbestände werden ohne Sonderdatenmodell verarbeitet.
 
-Jede Galeriekachel öffnet über `gallery-lightbox.js` dasselbe native `<dialog>` mit dem vollständigen Bild, vorhandenem Alternativtext und optionaler Bildunterschrift. Die Lightbox navigiert über Schalter und linke beziehungsweise rechte Pfeiltaste durch alle gültigen Bilder in Datenreihenfolge, auch wenn die Kachelansicht noch eingeklappt ist. An den Grenzen findet kein Umlauf statt; bei nur einem Bild werden die Navigationsschalter ausgeblendet.
+Jede Medienkachel öffnet über `gallery-lightbox.js` dasselbe native `<dialog>` mit dem vollständigen Bild oder lokalen Video und der vorhandenen Beschriftung. Die Lightbox navigiert über Schalter und linke beziehungsweise rechte Pfeiltaste durch alle gültigen Medien in Datenreihenfolge, auch wenn die Kachelansicht noch eingeklappt ist. An den Grenzen findet kein Umlauf statt; bei nur einem Medium werden die Navigationsschalter ausgeblendet.
 
 Der initiale Fokus liegt auf dem sichtbaren Schließen-Schalter. Schließen ist per Schalter, Escape und eindeutigem Klick auf die Dialogfläche außerhalb des Panels möglich. Pointerdown innerhalb des Panels verhindert ein versehentliches Schließen beim Loslassen außerhalb. Das native Modalverhalten hält Hintergrund und außerhalb liegende Bedienelemente inert; jedes Schließen gibt den Fokus an die auslösende Kachel zurück. Es wurden keine Übergangs- oder Bildwechselanimationen ergänzt.
 

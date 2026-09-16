@@ -194,8 +194,7 @@
           ${createDocumentsSection(documents)}
           ${createResultsSection(results)}
           ${createExternalLinksSection(externalLinks)}
-          ${createVideosSection(videos)}
-          ${createGallerySection(gallery)}
+          ${createGallerySection(gallery, videos)}
         </div>
       </article>
     `;
@@ -520,55 +519,41 @@
     `;
   }
 
-  function createGallerySection(gallery) {
-    if (gallery.length === 0) return "";
+  function createGallerySection(gallery, videos) {
+    const media = [
+      ...gallery.map((image) => ({ kind: "image", ...image })),
+      ...videos.map((video) => ({ kind: "video", ...video }))
+    ];
 
-    const figures = gallery
+    if (media.length === 0) return "";
+
+    const figures = media
       .map(
-        (image, index) => `
+        (item, index) => `
           <figure
             class="event-gallery-item"
             ${index >= galleryPreviewLimit ? "hidden" : ""}
           >
-            <button
-              class="event-gallery-open"
-              type="button"
-              data-gallery-index="${index}"
-              aria-haspopup="dialog"
-            >
-              <img
-                src="${escapeHTML(image.src)}"
-                alt="${escapeHTML(image.alt)}"
-                ${createDimensionAttributes(image)}
-                loading="lazy"
-                decoding="async"
-              />
-              <span class="event-gallery-open-label">vergrößern</span>
-            </button>
-            ${
-              image.caption
-                ? `<figcaption>${escapeHTML(image.caption)}</figcaption>`
-                : ""
-            }
+            ${createGalleryTrigger(item, index)}
+            ${createGalleryCaption(item)}
           </figure>
         `
       )
       .join("");
-    const hiddenImageCount = Math.max(
-      gallery.length - galleryPreviewLimit,
-      0
-    );
+    const hiddenMediaCount = Math.max(media.length - galleryPreviewLimit, 0);
+    const mediaLabel = videos.length > 0 ? "Medien" : "Bilder";
     const toggleMarkup =
-      hiddenImageCount > 0
+      hiddenMediaCount > 0
         ? `
           <button
             class="btn btn-primary event-gallery-toggle"
             type="button"
             aria-controls="event-gallery-items"
             aria-expanded="false"
-            data-hidden-image-count="${hiddenImageCount}"
+            data-hidden-media-count="${hiddenMediaCount}"
+            data-media-label="${mediaLabel}"
           >
-            Weitere ${hiddenImageCount} Bilder anzeigen
+            Weitere ${hiddenMediaCount} ${mediaLabel} anzeigen
           </button>
         `
         : "";
@@ -588,40 +573,64 @@
     `;
   }
 
-  function createVideosSection(videos) {
-    if (videos.length === 0) return "";
-
-    const figures = videos
-      .map(
-        (video) => `
-          <figure class="event-video-item">
-            <video
-              class="event-video"
-              controls
-              preload="metadata"
-              playsinline
-              aria-label="${escapeHTML(video.title)}"
-              ${createDimensionAttributes(video)}
-              ${video.poster ? `poster="${escapeHTML(video.poster)}"` : ""}
-            >
-              <source src="${escapeHTML(video.src)}" type="video/mp4" />
-              Ihr Browser unterstützt die Videowiedergabe nicht.
-              <a href="${escapeHTML(video.src)}">${escapeHTML(video.title)} öffnen</a>
-            </video>
-            <figcaption>${escapeHTML(video.title)}</figcaption>
-          </figure>
-        `
-      )
-      .join("");
+  function createGalleryTrigger(item, index) {
+    if (item.kind === "video") {
+      return `
+        <button
+          class="event-gallery-open event-gallery-open-video"
+          type="button"
+          data-gallery-index="${index}"
+          data-gallery-kind="video"
+          data-gallery-src="${escapeHTML(item.src)}"
+          data-gallery-title="${escapeHTML(item.title)}"
+          ${item.poster ? `data-gallery-poster="${escapeHTML(item.poster)}"` : ""}
+          ${item.width ? `data-gallery-width="${item.width}"` : ""}
+          ${item.height ? `data-gallery-height="${item.height}"` : ""}
+          aria-haspopup="dialog"
+        >
+          ${
+            item.poster
+              ? `<img
+                  src="${escapeHTML(item.poster)}"
+                  alt=""
+                  ${createDimensionAttributes(item)}
+                  loading="lazy"
+                  decoding="async"
+                />`
+              : '<span class="event-gallery-video-fallback" aria-hidden="true"></span>'
+          }
+          <span class="event-gallery-play" aria-hidden="true"></span>
+          <span class="event-gallery-open-label">${escapeHTML(item.title)} abspielen</span>
+        </button>
+      `;
+    }
 
     return `
-      <section class="event-section" aria-labelledby="event-videos-title">
-        <h2 id="event-videos-title">Videos</h2>
-        <div class="event-videos">
-          ${figures}
-        </div>
-      </section>
+      <button
+        class="event-gallery-open"
+        type="button"
+        data-gallery-index="${index}"
+        data-gallery-kind="image"
+        aria-haspopup="dialog"
+      >
+        <img
+          src="${escapeHTML(item.src)}"
+          alt="${escapeHTML(item.alt)}"
+          ${createDimensionAttributes(item)}
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="event-gallery-open-label">vergrößern</span>
+      </button>
     `;
+  }
+
+  function createGalleryCaption(item) {
+    const caption = item.kind === "video" ? item.title : item.caption;
+
+    return caption
+      ? `<figcaption>${escapeHTML(caption)}</figcaption>`
+      : "";
   }
 
   function initializeGalleryToggle() {
@@ -632,7 +641,8 @@
     const galleryItems = Array.from(
       detailRoot.querySelectorAll(".event-gallery-item")
     );
-    const hiddenImageCount = Number(toggle.dataset.hiddenImageCount);
+    const hiddenMediaCount = Number(toggle.dataset.hiddenMediaCount);
+    const mediaLabel = toggle.dataset.mediaLabel || "Bilder";
 
     toggle.addEventListener("click", () => {
       const isExpanded = toggle.getAttribute("aria-expanded") === "true";
@@ -646,8 +656,8 @@
 
       toggle.setAttribute("aria-expanded", String(!isExpanded));
       toggle.textContent = isExpanded
-        ? `Weitere ${hiddenImageCount} Bilder anzeigen`
-        : "Weniger Bilder anzeigen";
+        ? `Weitere ${hiddenMediaCount} ${mediaLabel} anzeigen`
+        : `Weniger ${mediaLabel} anzeigen`;
 
       if (buttonTopBeforeCollapse === null) return;
 
