@@ -42,6 +42,14 @@ function resultStatus(markup) {
   return match?.slice(1);
 }
 
+function mediaStatus(markup) {
+  const match = markup.match(
+    /<span class="timeline-chip ([^"]+)"><span aria-hidden="true">📷<\/span>&nbsp;([^<]+)<\/span>/
+  );
+
+  return match?.slice(1);
+}
+
 test("zeigt das vorhandene KM-Ergebnisprotokoll in der Kalenderkarte an", () => {
   const eventSource = fs.readFileSync(
     path.resolve(__dirname, "../js/data/events.js"),
@@ -157,6 +165,60 @@ test("meldet ohne gültige Ergebnisquelle weiterhin keine Ergebnisse", () => {
       "Ergebnisse folgen"
     ]);
   }
+});
+
+test("weist Bilder und Videos auf Eventkarten getrennt und grammatisch korrekt aus", () => {
+  const image = {
+    src: "assets/img/events/test.jpg",
+    alt: "Testbild"
+  };
+  const video = {
+    src: "assets/video/events/test.mp4",
+    title: "Testvideo"
+  };
+
+  assert.deepEqual(mediaStatus(renderCard({ gallery: [image] })), [
+    "available",
+    "1 Bild"
+  ]);
+  assert.deepEqual(mediaStatus(renderCard({ gallery: [image, image] })), [
+    "available",
+    "2 Bilder"
+  ]);
+  assert.deepEqual(mediaStatus(renderCard({ videos: [video] })), [
+    "available",
+    "1 Video"
+  ]);
+  assert.deepEqual(mediaStatus(renderCard({ videos: [video, video] })), [
+    "available",
+    "2 Videos"
+  ]);
+  assert.deepEqual(
+    mediaStatus(renderCard({ gallery: [image], videos: [video] })),
+    ["available", "1 Bild · 1 Video"]
+  );
+  assert.equal(mediaStatus(renderCard()), undefined);
+  assert.doesNotMatch(renderCard(), /Galerie folgt/);
+});
+
+test("zeigt beim Tag der offenen Tür 2025 sieben Bilder und zwei Videos", () => {
+  const eventSource = fs.readFileSync(
+    path.resolve(__dirname, "../js/data/events.js"),
+    "utf8"
+  );
+  const context = vm.createContext({});
+
+  vm.runInContext(eventSource, context, { filename: "events.js" });
+  const event = vm.runInContext(
+    'productionEvents.find((entry) => entry.slug === "tag-der-offenen-tuer-2025")',
+    context
+  );
+
+  assert.ok(event);
+  assert.deepEqual(mediaStatus(renderCard(event)), [
+    "available",
+    "7 Bilder · 2 Videos"
+  ]);
 });
 
 test("begrenzt Eventvorschauen auf drei Zeilen und mobil auf vier Zeilen", () => {

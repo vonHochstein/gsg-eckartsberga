@@ -245,13 +245,26 @@ function createEventMarkup(event) {
     (result) => result.kind === "external"
   );
   const gallery = eventUtils?.normalizeGallery(event.gallery) || [];
+  const videos = eventUtils?.normalizeVideos(event.videos) || [];
   const hasDocuments = documents.length > 0;
   const hasResults = results.length > 0 || documents.some(
     (document) => document.type === "result-list"
   );
-  const hasGallery = gallery.length > 0;
-  const galleryLabel =
-    gallery.length === 1 ? "1 Bild" : `${gallery.length} Bilder`;
+  const mediaLabels = [];
+
+  if (gallery.length > 0) {
+    mediaLabels.push(
+      gallery.length === 1 ? "1 Bild" : `${gallery.length} Bilder`
+    );
+  }
+
+  if (videos.length > 0) {
+    mediaLabels.push(
+      videos.length === 1 ? "1 Video" : `${videos.length} Videos`
+    );
+  }
+
+  const mediaLabel = mediaLabels.join(" · ");
   const title = eventUtils?.getEventTitle(event) || "Veranstaltung";
   const category = event.category || "Veranstaltung";
   const locationData = eventUtils?.resolveEventLocation(
@@ -299,7 +312,7 @@ function createEventMarkup(event) {
         <div class="timeline-chips" aria-label="Verfügbare Inhalte">
           <span class="timeline-chip ${hasDocuments ? "available" : "disabled"}"><span aria-hidden="true">📄</span>&nbsp;${hasDocuments ? "Dokumente verfügbar" : "Dokumente folgen"}</span>
           <span class="timeline-chip ${hasResults ? "available" : "disabled"}"><span aria-hidden="true">🏆</span>&nbsp;${hasResults ? "Ergebnisse verfügbar" : "Ergebnisse folgen"}</span>
-          <span class="timeline-chip ${hasGallery ? "available" : "disabled"}"><span aria-hidden="true">📷</span>&nbsp;${hasGallery ? galleryLabel : "Galerie folgt"}</span>
+          ${mediaLabel ? `<span class="timeline-chip available"><span aria-hidden="true">📷</span>&nbsp;${mediaLabel}</span>` : ""}
         </div>
 
       </div>

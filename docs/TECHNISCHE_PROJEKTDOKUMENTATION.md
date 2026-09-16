@@ -615,6 +615,8 @@ Die Detailseite ist ein universelles Template. Es existieren keine einzelnen HTM
 #### Timeline
 
 1. `calendar.js` normalisiert die benötigten Eventbereiche.
+   Vorhandene Bilder und Videos werden dabei getrennt gezählt und gemeinsam als
+   konkrete Medienangabe ausgegeben; ohne gültige Medien entfällt diese Angabe.
 2. `EventUtils.createDetailUrl(event)` entscheidet über die Verlinkung.
 3. Bei gültiger URL umschließt ein Vollflächen-Link den Karteninhalt.
 4. Ohne URL bleibt die Karte ein nicht interaktiver Artikel.
