@@ -12,6 +12,10 @@ const calendarSource = fs.readFileSync(
   path.resolve(__dirname, "../js/calendar.js"),
   "utf8"
 );
+const styleSource = fs.readFileSync(
+  path.resolve(__dirname, "../style.css"),
+  "utf8"
+);
 
 function renderCard(overrides = {}) {
   const context = vm.createContext({
@@ -153,4 +157,40 @@ test("meldet ohne gültige Ergebnisquelle weiterhin keine Ergebnisse", () => {
       "Ergebnisse folgen"
     ]);
   }
+});
+
+test("begrenzt Eventvorschauen auf drei Zeilen und mobil auf vier Zeilen", () => {
+  const desktopRule = styleSource.match(
+    /\.timeline-description\s*\{([^}]*)\}/
+  )?.[1];
+  const mobileSection = styleSource.slice(
+    styleSource.indexOf("@media (max-width: 480px)"),
+    styleSource.indexOf("@media (prefers-reduced-motion: reduce)")
+  );
+  const mobileRule = mobileSection.match(
+    /\.timeline-description\s*\{([^}]*)\}/
+  )?.[1];
+
+  assert.ok(desktopRule);
+  assert.match(desktopRule, /display:\s*-webkit-box;/);
+  assert.match(desktopRule, /overflow:\s*hidden;/);
+  assert.match(desktopRule, /-webkit-box-orient:\s*vertical;/);
+  assert.match(desktopRule, /-webkit-line-clamp:\s*3;/);
+  assert.match(desktopRule, /line-clamp:\s*3;/);
+  assert.ok(mobileRule);
+  assert.match(mobileRule, /-webkit-line-clamp:\s*4;/);
+  assert.match(mobileRule, /line-clamp:\s*4;/);
+});
+
+test("behält kurze und lange Eventtexte vollständig im Vorschaumarkup", () => {
+  const shortDescription = "Kurzer Veranstaltungstext.";
+  const longDescription =
+    "Dieser ausführliche Veranstaltungstext bleibt vollständig in den Daten und im HTML erhalten, obwohl seine sichtbare Darstellung in der Kalenderkarte ausschließlich über CSS auf wenige Zeilen begrenzt wird.";
+
+  const shortMarkup = renderCard({ description: shortDescription });
+  const longMarkup = renderCard({ description: longDescription });
+
+  assert.equal(shortMarkup.includes(shortDescription), true);
+  assert.equal(longMarkup.includes(longDescription), true);
+  assert.match(longMarkup, /class="timeline-description"/);
 });

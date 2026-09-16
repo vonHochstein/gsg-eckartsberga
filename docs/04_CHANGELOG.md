@@ -67,6 +67,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Lange Eventbeschreibungen in Timeline- und Archivkarten responsiv auf drei beziehungsweise mobil vier Zeilen begrenzt, ohne die vollständigen Detailtexte zu verändern.
 - Veranstaltungsdaten können bei unbekannter Uhrzeit ein reines ISO-Datum verwenden; die Oberfläche gibt dann keine erfundete Uhrzeit aus.
 - Impressum um einen sachlichen Urheberrechtshinweis ergänzt und den bestätigten Namen Theobald Schneider auf der Vorstandsseite vereinheitlicht.
 - Kalenderkarten kennzeichnen Ergebnisse auch dann als verfügbar, wenn ein gültiges Ergebnisdokument statt einer externen Ergebnisquelle vorliegt.

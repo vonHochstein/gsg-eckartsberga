@@ -461,7 +461,7 @@ Ermittelt die nächste zukünftige Veranstaltung, aktualisiert Titel, Kategorie,
 
 #### `js/calendar.js`
 
-Erzeugt Timeline und Archiv. Für Titel, Ort, Bild, kanonische Dokumente, externe Ergebnisse, Galerie und Detailfähigkeit werden die passenden `EventUtils`-Funktionen verwendet. Eine eindeutige zentrale Ortsreferenz liefert den sichtbaren Ortsnamen; bestehende `location`-Angaben bleiben vollständiger Rückfall. Der Dokumentstatus berücksichtigt `documents`, Ergebnisdateien und Legacy-Downloads; der Ergebnisstatus gültige Dokumente vom Typ `result-list` sowie externe Ergebnisquellen. Detailfähige Karten erhalten einen semantischen, tastaturbedienbaren Vollflächen-Link. Nicht detailfähige Karten bleiben normale Artikel.
+Erzeugt Timeline und Archiv. Für Titel, Ort, Bild, kanonische Dokumente, externe Ergebnisse, Galerie und Detailfähigkeit werden die passenden `EventUtils`-Funktionen verwendet. Eine eindeutige zentrale Ortsreferenz liefert den sichtbaren Ortsnamen; bestehende `location`-Angaben bleiben vollständiger Rückfall. Der Dokumentstatus berücksichtigt `documents`, Ergebnisdateien und Legacy-Downloads; der Ergebnisstatus gültige Dokumente vom Typ `result-list` sowie externe Ergebnisquellen. Detailfähige Karten erhalten einen semantischen, tastaturbedienbaren Vollflächen-Link. Nicht detailfähige Karten bleiben normale Artikel. Eventbeschreibungen bleiben im Markup vollständig erhalten und werden ausschließlich in diesen Vorschaukarten per CSS auf drei Zeilen beziehungsweise im bestehenden Smartphone-Breakpoint bis 480 Pixel auf vier Zeilen begrenzt. Die Eventdetailseite bleibt davon unberührt.
 
 #### `js/gallery.js`
 
