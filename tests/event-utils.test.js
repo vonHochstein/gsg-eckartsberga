@@ -15,6 +15,7 @@ const {
   isSafeUrl,
   normalizeImage,
   normalizeGallery,
+  normalizeVideos,
   normalizeDownloads,
   normalizeDocuments,
   normalizeResults,
@@ -1062,6 +1063,15 @@ test("Normalisierung verändert die übergebenen Daten nicht", () => {
       caption: " Text "
     }
   ];
+  const videos = [
+    {
+      src: " assets/video/test.mp4 ",
+      title: " Testvideo ",
+      poster: " assets/video/test.jpg ",
+      width: 1920,
+      height: 1080
+    }
+  ];
   const downloads = [
     {
       label: " Datei ",
@@ -1083,24 +1093,65 @@ test("Normalisierung verändert die übergebenen Daten nicht", () => {
     }
   ];
   const snapshots = JSON.parse(
-    JSON.stringify({ image, gallery, downloads, results, links })
+    JSON.stringify({ image, gallery, videos, downloads, results, links })
   );
 
   const normalizedImage = normalizeImage(image);
   const normalizedGallery = normalizeGallery(gallery);
+  const normalizedVideos = normalizeVideos(videos);
   const normalizedDownloads = normalizeDownloads(downloads);
   const normalizedResults = normalizeResults(results);
   const normalizedLinks = normalizeExternalLinks(links);
 
   assert.deepEqual(
-    { image, gallery, downloads, results, links },
+    { image, gallery, videos, downloads, results, links },
     snapshots
   );
   assert.notEqual(normalizedImage, image);
   assert.notEqual(normalizedGallery[0], gallery[0]);
+  assert.notEqual(normalizedVideos[0], videos[0]);
   assert.notEqual(normalizedDownloads[0], downloads[0]);
   assert.notEqual(normalizedResults[0], results[0]);
   assert.notEqual(normalizedLinks[0], links[0]);
+});
+
+test("normalisiert ausschließlich lokale Eventvideos", () => {
+  const videos = [
+    {
+      src: " assets/video/events/demo.mp4 ",
+      title: " Video 1 ",
+      poster: " assets/video/events/demo.jpg ",
+      width: 1920,
+      height: 1080
+    },
+    {
+      src: "assets/video/events/ohne-poster.mp4",
+      title: "Video 2"
+    },
+    {
+      src: "https://www.youtube.com/watch?v=demo",
+      title: "Externes Video"
+    },
+    {
+      src: "assets/video/events/ungueltig.mp4",
+      title: ""
+    }
+  ];
+
+  assert.deepEqual(normalizeVideos(videos), [
+    {
+      src: "assets/video/events/demo.mp4",
+      title: "Video 1",
+      poster: "assets/video/events/demo.jpg",
+      width: 1920,
+      height: 1080
+    },
+    {
+      src: "assets/video/events/ohne-poster.mp4",
+      title: "Video 2"
+    }
+  ]);
+  assert.deepEqual(normalizeVideos(undefined), []);
 });
 
 test("Produktionsbetrieb ist der eingecheckte Standard", () => {
@@ -1165,6 +1216,13 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
         true
       );
     });
+
+    if (Object.prototype.hasOwnProperty.call(event, "videos")) {
+      assert.equal(Array.isArray(event.videos), true);
+      assert.equal(normalizeVideos(event.videos).length, event.videos.length);
+    } else {
+      assert.deepEqual(normalizeVideos(event.videos), []);
+    }
   });
 });
 
@@ -1638,6 +1696,22 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`;
   assert.equal(event.image, null);
   assert.equal(event.gallery.length, 7);
   assert.equal(new Set(event.gallery.map((image) => image.src)).size, 7);
+  assert.deepEqual(JSON.parse(JSON.stringify(event.videos)), [
+    {
+      src: "assets/video/events/2025/2013 Vereinsvideo GSG Eckartsberga.mp4",
+      title: "Video 1",
+      poster: "assets/video/events/2025/2013 Vereinsvideo GSG Eckartsberga Poster.jpg",
+      width: 1920,
+      height: 1080
+    },
+    {
+      src: "assets/video/events/2025/2024_09_07 Vereinsvideo GSG Eckartsberga.mp4",
+      title: "Video 2",
+      poster: "assets/video/events/2025/2024_09_07 Vereinsvideo GSG Eckartsberga Poster.jpg",
+      width: 1080,
+      height: 1920
+    }
+  ]);
   assert.deepEqual(Array.from(event.documents), []);
   assert.deepEqual(Array.from(event.downloads), []);
   assert.deepEqual(Array.from(event.results), []);
@@ -1662,6 +1736,23 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`;
     assert.equal(
       crypto.createHash("sha256").update(fs.readFileSync(imagePath)).digest("hex"),
       expectedHashes[index]
+    );
+  });
+
+  const expectedVideoHashes = [
+    "4670c6b04af22ceac13bb3af31674137c6c574dfa2ca1e305f8e15267ba9a3ec",
+    "db7065a3a0899ff61ecfce6d998c4c3f1c8745d58de93dcf7089d5d4437185e8"
+  ];
+
+  event.videos.forEach((video, index) => {
+    const videoPath = path.resolve(__dirname, `../${video.src}`);
+    const posterPath = path.resolve(__dirname, `../${video.poster}`);
+
+    assert.equal(fs.existsSync(videoPath), true);
+    assert.equal(fs.existsSync(posterPath), true);
+    assert.equal(
+      crypto.createHash("sha256").update(fs.readFileSync(videoPath)).digest("hex"),
+      expectedVideoHashes[index]
     );
   });
 });

@@ -183,10 +183,9 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-24 – Videos zum Tag der offenen Tür 2025
 
-- **Status:** Offen
-- **Frage:** Wie sollen die zwei kurzen, bislang über YouTube bereitgestellten Videos aus dem ursprünglichen Veranstaltungsmaterial zum Tag der offenen Tür 2025 später datenschutzgerecht und dauerhaft verfügbar gemacht werden?
-- **Zu prüfen:** Originalquellen beziehungsweise verfügbare Dateien, Veröffentlichungsrechte, Datenschutz, Hosting und die übergreifende Videodarstellung gemeinsam mit dem vorgesehenen Video-Arbeitspaket bewerten. Die Videos sind derzeit weder eingebettet noch öffentlich verlinkt.
-- **Abschlusskriterium:** Abgenommene, projektweit tragfähige Videoentscheidung und – falls freigegeben – gesonderte technische Migration der zwei vorhandenen Videos.
+- **Status:** Entschieden
+- **Entscheidung:** Die beiden vom Auftraggeber bereitgestellten Originaldateien werden unverändert als lokale MP4-Assets mit lokalen Posterbildern beim Event „Tag der offenen Tür 2025“ veröffentlicht. Die Eventdetailseite verwendet ausschließlich den nativen HTML5-Player mit Metadaten-Vorladen und ohne Autoplay; YouTube, externe Videodienste und externe Vorschaubilder werden nicht eingebunden.
+- **Abschlusskriterium:** Mit EVT-VID-001 umgesetzt und durch technische Datei-, Datenmodell-, Browser- und Netzwerkprüfung abgesichert.
 
 ## Noch zu bewertende Funktionserweiterungen
 

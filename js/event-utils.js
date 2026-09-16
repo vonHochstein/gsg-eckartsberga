@@ -208,6 +208,41 @@
       .filter(Boolean);
   }
 
+  function isLocalMediaUrl(value) {
+    const normalizedUrl = normalizedString(value);
+
+    if (!normalizedUrl || !isSafeUrl(normalizedUrl)) return false;
+
+    return !/^([a-z][a-z\d+.-]*:|\/\/|\\\\)/i.test(normalizedUrl);
+  }
+
+  function normalizeVideos(videos) {
+    if (!Array.isArray(videos)) return [];
+
+    return videos.reduce((normalizedVideos, video) => {
+      if (!isRecord(video)) return normalizedVideos;
+
+      const src = normalizedString(video.src);
+      const title = normalizedString(video.title);
+
+      if (!src || !title || !isLocalMediaUrl(src)) {
+        return normalizedVideos;
+      }
+
+      const normalizedVideo = { src, title };
+      const poster = normalizedOptionalString(video.poster);
+      const width = normalizedDimension(video.width);
+      const height = normalizedDimension(video.height);
+
+      if (poster && isLocalMediaUrl(poster)) normalizedVideo.poster = poster;
+      if (width !== null) normalizedVideo.width = width;
+      if (height !== null) normalizedVideo.height = height;
+
+      normalizedVideos.push(normalizedVideo);
+      return normalizedVideos;
+    }, []);
+  }
+
   function appendOptionalFileMetadata(target, source) {
     ["description", "fileType", "fileSize"].forEach((property) => {
       const value = normalizedOptionalString(source[property]);
@@ -538,6 +573,7 @@
     isSafeUrl,
     normalizeImage,
     normalizeGallery,
+    normalizeVideos,
     normalizeDownloads,
     normalizeDocuments,
     normalizeResults,

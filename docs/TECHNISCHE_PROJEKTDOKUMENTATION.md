@@ -2,8 +2,8 @@
 
 ## Großkaliber Schützengilde 1503 Eckartsberga e. V.
 
-**Stand:** 14. September 2026
-**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, GB-001, GB-MIG-001, FOOT-VERB-001, LEGAL-DAT-001 und LEGAL-IMP-001
+**Stand:** 16. September 2026
+**Fortgeschrieben nach:** IA-001, IA-002, AP 1 bis AP 5B, GES-001, GES-002, MIG-VOR-001, EVT-LOC-001, EVT-VID-001, GB-001, GB-MIG-001, FOOT-VERB-001, LEGAL-DAT-001 und LEGAL-IMP-001
 **Art des Projekts:** Statische, vollständig clientseitig gerenderte Website ohne Framework und Build-System
 
 Dieses Dokument beschreibt ausschließlich den technischen Ist-Zustand. Projektvision, Entwicklungsregeln und organisatorischer Ablauf werden in den übrigen Dokumenten unter `/docs` gepflegt.
@@ -37,7 +37,7 @@ Umgesetzt und geprüft sind:
 - getrennte produktive und nicht produktive Entwicklungsdaten;
 - gemeinsame Hilfsfunktionen unter `window.EventUtils`;
 - universelle Detailseite über `event.html?event=<slug>`;
-- Darstellung von Beschreibung, Veranstaltungsinformationen, Ergebnissen, Dokumenten, externen Links und Galerie;
+- Darstellung von Beschreibung, Veranstaltungsinformationen, Ergebnissen, Dokumenten, externen Links, lokalen Videos und Galerie;
 - native, barrierearme Lightbox für Galeriebilder mit Tastaturnavigation und Fokus-Rückgabe;
 - definierte Fehlerzustände für fehlende, unbekannte, unvollständige oder nicht eindeutige Veranstaltungen;
 - dynamische Dokument- und Open-Graph-Metadaten;
@@ -99,6 +99,9 @@ Die Anwendung verwendet:
 │   ├── vendor/
 │   │   └── leaflet/
 │   │       └── lokal versionierte Leaflet-1.9.4-Laufzeitdateien und Lizenz
+│   ├── video/
+│   │   └── events/2025/
+│   │       └── zwei lokale MP4-Videos mit lokalen Posterbildern
 │   └── img/
 │       ├── hero-eckartsburg.jpg
 │       ├── hero-eckartsburg.png
@@ -441,6 +444,7 @@ Stellt genau einen globalen Namensraum `window.EventUtils` bereit. Die Funktione
 | `isSafeUrl(value)` | erlaubt lokale relative Pfade sowie HTTP/HTTPS und sperrt unsichere Protokolle |
 | `normalizeImage(image)` | normalisiert ein Titelbild oder liefert `null` |
 | `normalizeGallery(gallery)` | normalisiert Galeriebilder und verwirft ungültige Einträge |
+| `normalizeVideos(videos)` | normalisiert ausschließlich lokale Eventvideos mit optionalem Poster und Abmessungen |
 | `normalizeDownloads(downloads)` | normalisiert bestehende Downloadobjekte für Legacy-Verbraucher |
 | `normalizeDocuments(documents)` | normalisiert typisierte Dokumente mit dokumentenspezifischer URL-Prüfung |
 | `normalizeResults(results)` | normalisiert Datei- und externe Ergebnisse |
@@ -497,6 +501,7 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug sowie den sichtb
 - kanonisch zusammengeführte Dokumente aus `documents`, Ergebnisdateien und Legacy-Downloads;
 - externe Ergebnisse;
 - externe Links;
+- optionale lokale Videos;
 - Galerie als abschließenden Inhaltsbereich.
 
 Dokumente werden über `normalizeEventDocuments()` zusammengeführt und mit ihrer deutschen Typbezeichnung dargestellt. Ergebnisdateien erscheinen ausschließlich unter „Dokumente“, externe Ergebnisquellen ausschließlich unter „Ergebnisse“.
@@ -505,7 +510,7 @@ Die Herkunftslogo-Zuordnung verwendet eine exakte Allowlist in `EventUtils`. Tit
 
 Eine eindeutige zentrale Ortsreferenz liefert den sichtbaren Namen für Hero, Metadaten und Veranstaltungsinformationen. Ohne verwendbare Koordinaten bleibt der Ort dort reiner Text. Nur bei einem vollständigen gültigen Koordinatenpaar erscheint im Fakteneintrag die Schaltfläche „Karte anzeigen – lädt OpenStreetMap“. Timeline und Archiv bleiben frei von verschachtelten Karteninteraktionen.
 
-Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert.
+Leere oder ungültige optionale Bereiche werden vollständig ausgelassen. Ein ungültiges oder vor `start` liegendes `end` wird ignoriert. Lokale Videos verwenden den nativen HTML5-Player mit Bedienelementen, `preload="metadata"` und ohne Autoplay. Posterbilder, Videos und Wiedergabe bleiben vollständig lokal; das Laden der Detailseite erzeugt dadurch keine Verbindung zu einem Videoanbieter.
 
 Bis zu sechs gültige Galeriebilder werden vollständig dargestellt. Bei mehr als sechs Bildern zeigt die Seite zunächst die ersten sechs in Datenreihenfolge. Ein nativer, tastaturbedienbarer Schalter blendet die verbleibenden Bilder ein und wieder aus; Beschriftung und `aria-expanded` folgen dem tatsächlichen Zustand. Beim Einklappen wird die Position des Schalters im sichtbaren Bereich stabilisiert. Ungültige Galerieeinträge werden bereits durch `EventUtils.normalizeGallery()` verworfen und zählen nicht gegen diese Grenze.
 
@@ -701,6 +706,7 @@ Modells.
   description: "",
   image: null,
   gallery: [],
+  videos: [],
   documents: [],
   downloads: [],
   results: [],
@@ -728,6 +734,7 @@ Modells.
 | `description` | String | optionale Beschreibung |
 | `image` | Objekt oder `null` | optionales Titelbild |
 | `gallery` | Array | optionale Galeriebilder |
+| `videos` | Array | optionale lokale Eventvideos |
 | `documents` | Array | kanonische, typisierte Veranstaltungsdokumente |
 | `downloads` | Array | vorübergehend unterstützte Legacy-Downloads |
 | `results` | Array | optionale Datei- oder externe Ergebnisse |
@@ -791,7 +798,21 @@ Eine eindeutig auflösbare `venueId` hat Vorrang vor einer parallel vorhandenen 
 
 `src` und `alt` sind erforderlich. `caption`, `width` und `height` sind optional.
 
-### 4.4 Dokumente
+### 4.4 Lokale Videos
+
+```js
+{
+  src: "assets/video/events/2025/2013 Vereinsvideo GSG Eckartsberga.mp4",
+  title: "Video 1",
+  poster: "assets/video/events/2025/2013 Vereinsvideo GSG Eckartsberga Poster.jpg",
+  width: 1920,
+  height: 1080
+}
+```
+
+`src` und `title` sind erforderlich. `poster`, `width` und `height` sind optional. Video- und Posterpfade müssen lokale relative Ziele sein; externe HTTP-/HTTPS-Quellen werden für dieses Modell bewusst verworfen. Der native Player lädt mit `preload="metadata"` nur die zur Darstellung erforderlichen Metadaten vor und startet weder Bild noch Ton automatisch. Poster stammen ausschließlich aus den zugehörigen lokalen Originalvideos.
+
+### 4.5 Dokumente
 
 ```js
 {
@@ -826,7 +847,7 @@ Dokumentziele dürfen relative URLs oder absolute HTTPS-URLs mit gültigem Host 
 
 Externe Ergebnisse bleiben außerhalb des Dokumentenmodells. Bei identischer, getrimmter URL bleibt ausschließlich der erste normalisierte Eintrag erhalten. Innerhalb jeder Quelle bleibt die gepflegte Reihenfolge bestehen. Die Funktion verändert keine Eingabedaten.
 
-### 4.5 Downloads (Legacy)
+### 4.6 Downloads (Legacy)
 
 ```js
 {
@@ -840,7 +861,7 @@ Externe Ergebnisse bleiben außerhalb des Dokumentenmodells. Bei identischer, ge
 
 Das bisherige Feld bleibt für bestehende Veranstaltungen rückwärtskompatibel verfügbar. Sichtbare Verbraucher verwenden die kanonische Zusammenführung; dabei werden gültige Legacy-Einträge als Dokumenttyp `other` übernommen. Neue redaktionelle Daten sollen unter `documents` gepflegt werden.
 
-### 4.6 Ergebnisse
+### 4.7 Ergebnisse
 
 ```js
 {
@@ -862,7 +883,7 @@ Andere Ergebnisarten werden nicht gerendert.
 
 Ergebnisdateien mit `kind: "file"` werden durch `normalizeEventDocuments()` als Dokumenttyp `result-list` bereitgestellt und ausschließlich im Dokumentbereich ausgegeben. Externe Ergebnisse bleiben davon getrennt und erscheinen ausschließlich unter „Ergebnisse“.
 
-### 4.7 Externe Links
+### 4.8 Externe Links
 
 ```js
 {
@@ -874,7 +895,7 @@ Ergebnisdateien mit `kind: "file"` werden durch `normalizeEventDocuments()` als 
 
 `label` und eine absolute sichere HTTP-/HTTPS-URL sind erforderlich. Externe Ziele werden sichtbar gekennzeichnet, aber nicht automatisch in einem neuen Fenster geöffnet.
 
-### 4.7 Datumsregeln
+### 4.9 Datumsregeln
 
 - `start` und `end` verwenden lokale ISO-Daten (`YYYY-MM-DD`) oder lokale
   ISO-ähnliche Datums-/Zeitwerte (`YYYY-MM-DDTHH:MM:SS`) ohne
@@ -889,7 +910,7 @@ Ergebnisdateien mit `kind: "file"` werden durch `normalizeEventDocuments()` als 
 - Datum und – nur sofern belegt – Uhrzeit werden mit semantischen
   `<time>`-Elementen ausgegeben.
 
-### 4.8 Lebenszyklus
+### 4.10 Lebenszyklus
 
 Die zeitliche Phase einer Veranstaltung wird nicht im Datensatz gespeichert. `EventUtils.getEventPhase(event, referenceTime)` berechnet sie aus `start`, einem verwendbaren `end` und dem übergebenen Referenzzeitpunkt:
 

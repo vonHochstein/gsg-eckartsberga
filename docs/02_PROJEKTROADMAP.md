@@ -63,6 +63,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - unkontrollierte Testveranstaltungen aus dem produktiven Datenbestand entfernt;
 - getrennte, schaltbare Entwicklungs-Testdaten für Archiv, Galerie und sämtliche optionalen Detailbereiche ergänzt;
 - IA-002: universelle Veranstaltungsdetailseite unter `event.html?event=<slug>` umgesetzt;
+- optionale lokale Eventvideos mit nativem HTML5-Player, lokalen Posterbildern und ohne Drittanbieter-Verbindung umgesetzt;
 - leere Detailbereiche, fehlerhafte Enddaten und nicht verwendbare Verweise werden kontrolliert ausgeblendet;
 - eindeutige Fehlerzustände für fehlende Parameter, unbekannte Slugs, unvollständige Kerndaten und doppelte Slugs;
 - Timeline, Countdown und Galerie-Teaser ausschließlich über `EventUtils.createDetailUrl()` mit den Detailseiten verbunden;

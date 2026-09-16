@@ -86,6 +86,7 @@
     const endIsDateOnly = end && eventUtils.isDateOnlyValue(event.end);
     const image = eventUtils.normalizeImage(event.image);
     const gallery = eventUtils.normalizeGallery(event.gallery);
+    const videos = eventUtils.normalizeVideos(event.videos);
     const documents = eventUtils.normalizeEventDocuments(event);
     const results = eventUtils
       .normalizeResults(event.results)
@@ -193,6 +194,7 @@
           ${createDocumentsSection(documents)}
           ${createResultsSection(results)}
           ${createExternalLinksSection(externalLinks)}
+          ${createVideosSection(videos)}
           ${createGallerySection(gallery)}
         </div>
       </article>
@@ -582,6 +584,42 @@
           ${figures}
         </div>
         ${toggleMarkup}
+      </section>
+    `;
+  }
+
+  function createVideosSection(videos) {
+    if (videos.length === 0) return "";
+
+    const figures = videos
+      .map(
+        (video) => `
+          <figure class="event-video-item">
+            <video
+              class="event-video"
+              controls
+              preload="metadata"
+              playsinline
+              aria-label="${escapeHTML(video.title)}"
+              ${createDimensionAttributes(video)}
+              ${video.poster ? `poster="${escapeHTML(video.poster)}"` : ""}
+            >
+              <source src="${escapeHTML(video.src)}" type="video/mp4" />
+              Ihr Browser unterstützt die Videowiedergabe nicht.
+              <a href="${escapeHTML(video.src)}">${escapeHTML(video.title)} öffnen</a>
+            </video>
+            <figcaption>${escapeHTML(video.title)}</figcaption>
+          </figure>
+        `
+      )
+      .join("");
+
+    return `
+      <section class="event-section" aria-labelledby="event-videos-title">
+        <h2 id="event-videos-title">Videos</h2>
+        <div class="event-videos">
+          ${figures}
+        </div>
       </section>
     `;
   }
