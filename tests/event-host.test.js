@@ -17,11 +17,11 @@ const detailSource = fs.readFileSync(
   "utf8"
 );
 
-function loadKmEvent() {
+function loadEvent(slug) {
   const context = vm.createContext({});
   vm.runInContext(eventSource, context, { filename: "events.js" });
   return vm.runInContext(
-    'productionEvents.find((event) => event.slug === "km-halbautomat-kk-gk-2026")',
+    `productionEvents.find((event) => event.slug === ${JSON.stringify(slug)})`,
     context
   );
 }
@@ -58,7 +58,7 @@ function renderDetail(event) {
 }
 
 test("trennt Veranstalter und Ausrichter bei der KM Zentralfeuer Halbautomat", () => {
-  const markup = renderDetail(loadKmEvent());
+  const markup = renderDetail(loadEvent("km-halbautomat-kk-gk-2026"));
   const organizerIndex = markup.indexOf("Veranstalter</span>");
   const hostIndex = markup.indexOf("Ausrichter</span>");
 
@@ -69,11 +69,20 @@ test("trennt Veranstalter und Ausrichter bei der KM Zentralfeuer Halbautomat", (
 });
 
 test("lässt bei Events ohne Ausrichterangabe die Faktenliste unverändert", () => {
-  const event = loadKmEvent();
+  const event = loadEvent("km-halbautomat-kk-gk-2026");
 
   for (const host of [undefined, "", "  ", null]) {
     const markup = renderDetail({ ...event, host });
     assert.match(markup, /Veranstalter</);
     assert.doesNotMatch(markup, /Ausrichter</);
   }
+});
+
+test("zeigt bei einem reinen Veranstaltungsdatum keine erfundene Uhrzeit", () => {
+  const markup = renderDetail(loadEvent("tag-der-offenen-tuer-2025"));
+
+  assert.match(markup, /<span class="event-fact-label">Datum<\/span>/);
+  assert.match(markup, /datetime="2025-09-06"/);
+  assert.match(markup, /Samstag, 06\. September 2025/);
+  assert.doesNotMatch(markup, /00:00|02:00|Beginn<\/span>/);
 });

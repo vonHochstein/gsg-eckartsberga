@@ -80,8 +80,10 @@
 
   function renderEvent(event) {
     const title = eventUtils.getEventTitle(event);
-    const start = new Date(event.start);
+    const start = eventUtils.parseEventDate(event.start);
+    const startIsDateOnly = eventUtils.isDateOnlyValue(event.start);
     const end = getValidEndDate(event.end, start);
+    const endIsDateOnly = end && eventUtils.isDateOnlyValue(event.end);
     const image = eventUtils.normalizeImage(event.image);
     const gallery = eventUtils.normalizeGallery(event.gallery);
     const documents = eventUtils.normalizeEventDocuments(event);
@@ -107,13 +109,17 @@
     const imageMarkup = image ? createHeroImageMarkup(image) : "";
     const factItems = [
       createFactMarkup(
-        "Beginn",
-        createDateTimeMarkup(event.start.trim(), start)
+        startIsDateOnly ? "Datum" : "Beginn",
+        startIsDateOnly
+          ? createDateMarkup(event.start.trim(), start)
+          : createDateTimeMarkup(event.start.trim(), start)
       ),
       end
         ? createFactMarkup(
             "Ende",
-            createDateTimeMarkup(event.end.trim(), end)
+            endIsDateOnly
+              ? createDateMarkup(event.end.trim(), end)
+              : createDateTimeMarkup(event.end.trim(), end)
           )
         : "",
       location
@@ -146,7 +152,14 @@
               ${organizerLogoMarkup}
               ${labelsMarkup}
               <h1 id="event-title">${escapeHTML(title)}</h1>
-              ${createDateSummaryMarkup(event.start.trim(), start, event.end, end)}
+              ${createDateSummaryMarkup(
+                event.start.trim(),
+                start,
+                startIsDateOnly,
+                event.end,
+                end,
+                endIsDateOnly
+              )}
               ${
                 location
                   ? `<p class="event-hero-location">${escapeHTML(location)}</p>`
@@ -263,8 +276,25 @@
     `;
   }
 
-  function createDateSummaryMarkup(startValue, start, endValue, end) {
+  function createDateSummaryMarkup(
+    startValue,
+    start,
+    startIsDateOnly,
+    endValue,
+    end,
+    endIsDateOnly
+  ) {
     if (!end) {
+      if (startIsDateOnly) {
+        return `
+          <p class="event-date-summary">
+            <strong>
+              <time datetime="${escapeHTML(startValue)}">${escapeHTML(formatDate(start))}</time>
+            </strong>
+          </p>
+        `;
+      }
+
       return `
         <p class="event-date-summary">
           <strong>
@@ -278,6 +308,18 @@
     }
 
     const normalizedEndValue = endValue.trim();
+
+    if (startIsDateOnly || endIsDateOnly) {
+      return `
+        <p class="event-date-summary">
+          <strong>
+            <time datetime="${escapeHTML(startValue)}">${escapeHTML(formatDate(start))}</time>
+            bis
+            <time datetime="${escapeHTML(normalizedEndValue)}">${escapeHTML(formatDate(end))}</time>
+          </strong>
+        </p>
+      `;
+    }
 
     if (isSameDay(start, end)) {
       return `
@@ -317,6 +359,14 @@
     return `
       <time datetime="${escapeHTML(dateTimeValue)}">
         ${escapeHTML(formatDateTime(date))}
+      </time>
+    `;
+  }
+
+  function createDateMarkup(dateValue, date) {
+    return `
+      <time datetime="${escapeHTML(dateValue)}">
+        ${escapeHTML(formatDate(date))}
       </time>
     `;
   }
@@ -588,9 +638,11 @@
   function getValidEndDate(endValue, start) {
     if (typeof endValue !== "string" || !endValue.trim()) return null;
 
-    const end = new Date(endValue);
+    const end = eventUtils.parseEventDate(endValue, {
+      endOfDay: eventUtils.isDateOnlyValue(endValue)
+    });
 
-    if (!Number.isFinite(end.getTime()) || end.getTime() < start.getTime()) {
+    if (!end || end.getTime() < start.getTime()) {
       return null;
     }
 

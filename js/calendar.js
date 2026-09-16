@@ -17,18 +17,18 @@ function renderTimeline(eventList) {
   recentThreshold.setDate(recentThreshold.getDate() - 30);
 
   const upcomingEvents = validEvents
-    .filter((event) => new Date(event.end || event.start) >= now)
+    .filter((event) => getEventEndDate(event) >= now)
     .sort(compareEventsAscending);
 
   const recentPastEvents = validEvents
     .filter((event) => {
-      const eventEnd = new Date(event.end || event.start);
+      const eventEnd = getEventEndDate(event);
       return eventEnd < now && eventEnd >= recentThreshold;
     })
     .sort(compareEventsDescending);
 
   const archiveEvents = validEvents
-    .filter((event) => new Date(event.end || event.start) < recentThreshold)
+    .filter((event) => getEventEndDate(event) < recentThreshold)
     .sort(compareEventsDescending);
 
   renderEventSection(
@@ -116,7 +116,7 @@ function renderArchive(pastEvents) {
   if (!archiveList) return;
 
   const eventsByYear = pastEvents.reduce((groups, event) => {
-    const year = new Date(event.start).getFullYear();
+    const year = parseEventDate(event.start).getFullYear();
 
     if (!groups[year]) {
       groups[year] = [];
@@ -321,41 +321,55 @@ function createEventMarkup(event) {
 }
 
 function compareEventsAscending(a, b) {
-  const timeDifference = new Date(a.start) - new Date(b.start);
+  const timeDifference = parseEventDate(a.start) - parseEventDate(b.start);
   return timeDifference || String(a.id).localeCompare(String(b.id), "de", { numeric: true });
 }
 
 function compareEventsDescending(a, b) {
-  const timeDifference = new Date(b.start) - new Date(a.start);
+  const timeDifference = parseEventDate(b.start) - parseEventDate(a.start);
   return timeDifference || String(a.id).localeCompare(String(b.id), "de", { numeric: true });
 }
 
 function formatMonth(dateString) {
-  return new Date(dateString).toLocaleDateString("de-DE", {
+  return parseEventDate(dateString).toLocaleDateString("de-DE", {
     month: "long",
     year: "numeric"
   });
 }
 
 function formatDay(dateString) {
-  return new Date(dateString).toLocaleDateString("de-DE", {
+  return parseEventDate(dateString).toLocaleDateString("de-DE", {
     day: "2-digit"
   });
 }
 
 function formatShortMonth(dateString) {
-  return new Date(dateString).toLocaleDateString("de-DE", {
+  return parseEventDate(dateString).toLocaleDateString("de-DE", {
     month: "short"
   }).replace(".", "");
 }
 
 function formatFullDate(dateString) {
-  return new Date(dateString).toLocaleDateString("de-DE", {
+  return parseEventDate(dateString).toLocaleDateString("de-DE", {
     weekday: "long",
     day: "2-digit",
     month: "long",
     year: "numeric"
   });
+}
+
+function parseEventDate(dateString, options = {}) {
+  return (
+    window.EventUtils?.parseEventDate(dateString, options) ||
+    new Date(dateString)
+  );
+}
+
+function getEventEndDate(event) {
+  const endValue = event.end || event.start;
+  const useEndOfDay = window.EventUtils?.isDateOnlyValue(endValue) === true;
+
+  return parseEventDate(endValue, { endOfDay: useEndOfDay });
 }
 
 function escapeHTML(value) {

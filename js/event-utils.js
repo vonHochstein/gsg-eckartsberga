@@ -23,6 +23,7 @@
     "other"
   ]);
   const VENUE_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+  const DATE_ONLY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
   const SCHUETZENKREIS_SUED_LOGO = Object.freeze({
     src: "assets/img/logo-schuetzenkreis-sued.png",
     alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
@@ -62,6 +63,44 @@
       value > 0
       ? value
       : null;
+  }
+
+  function isDateOnlyValue(value) {
+    const normalizedValue = normalizedString(value);
+    if (!normalizedValue) return false;
+
+    const match = normalizedValue.match(DATE_ONLY_PATTERN);
+    if (!match) return false;
+
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    const parsedDate = new Date(year, month - 1, day);
+
+    return (
+      parsedDate.getFullYear() === year &&
+      parsedDate.getMonth() === month - 1 &&
+      parsedDate.getDate() === day
+    );
+  }
+
+  function parseEventDate(value, options = {}) {
+    const normalizedValue = normalizedString(value);
+    if (!normalizedValue) return null;
+
+    if (isDateOnlyValue(normalizedValue)) {
+      const [, year, month, day] = normalizedValue.match(DATE_ONLY_PATTERN);
+      const date = new Date(Number(year), Number(month) - 1, Number(day));
+
+      if (options.endOfDay === true) {
+        date.setHours(23, 59, 59, 999);
+      }
+
+      return date;
+    }
+
+    const date = new Date(normalizedValue);
+    return Number.isFinite(date.getTime()) ? date : null;
   }
 
   function isSafeUrl(value) {
@@ -402,9 +441,8 @@
     if (!isRecord(event)) return null;
 
     const startValue = normalizedString(event.start);
-    const startTime = startValue
-      ? new Date(startValue).getTime()
-      : Number.NaN;
+    const startDate = parseEventDate(startValue);
+    const startTime = startDate?.getTime() ?? Number.NaN;
     const referenceTimestamp = new Date(referenceTime).getTime();
 
     if (
@@ -416,12 +454,16 @@
 
     const endValue = normalizedString(event.end);
     const parsedEndTime = endValue
-      ? new Date(endValue).getTime()
+      ? parseEventDate(endValue, {
+          endOfDay: isDateOnlyValue(endValue)
+        })?.getTime()
       : Number.NaN;
     const effectiveEndTime =
       Number.isFinite(parsedEndTime) && parsedEndTime >= startTime
         ? parsedEndTime
-        : startTime;
+        : isDateOnlyValue(startValue)
+          ? parseEventDate(startValue, { endOfDay: true }).getTime()
+          : startTime;
 
     if (referenceTimestamp < startTime) {
       return EVENT_PHASES.UPCOMING;
@@ -455,7 +497,7 @@
     const slug = normalizedString(event.slug);
     const title = getEventTitle(event);
     const start = normalizedString(event.start);
-    const startTime = start ? new Date(start).getTime() : Number.NaN;
+    const startTime = parseEventDate(start)?.getTime() ?? Number.NaN;
 
     return Boolean(slug && title && Number.isFinite(startTime));
   }
@@ -491,6 +533,8 @@
   }
 
   globalScope.EventUtils = Object.freeze({
+    isDateOnlyValue,
+    parseEventDate,
     isSafeUrl,
     normalizeImage,
     normalizeGallery,

@@ -490,7 +490,7 @@ Liest ausschließlich den URL-Parameter `event`, löst den Slug sowie den sichtb
 
 - Veranstaltungskopf;
 - optionales, eindeutig über `organizer` zugeordnetes Herkunftslogo;
-- Datum und Uhrzeit;
+- Datum und – sofern belegt – Uhrzeit;
 - Titelbild;
 - Beschreibung;
 - Veranstaltungsinformationen;
@@ -718,8 +718,8 @@ Modells.
 | `title` | String | primärer Titel |
 | `shortTitle` | String | Titelrückfall und Kurzform |
 | `category` | String | optionale Kategorie |
-| `start` | String | erforderlicher, lokal interpretierter Startzeitpunkt |
-| `end` | String | optionaler Endzeitpunkt |
+| `start` | String | erforderliches, lokal interpretiertes ISO-Datum oder Startzeitpunkt |
+| `end` | String | optionales ISO-Datum oder optionaler Endzeitpunkt |
 | `editorialStatus` | String oder `null` | optionaler redaktioneller Sonderzustand `cancelled` oder `postponed` |
 | `venueId` | String | optionale exakte Referenz auf einen zentralen Veranstaltungsort |
 | `location` | String | optionaler Legacy-Ort und Rückfall bei nicht auflösbarer `venueId` |
@@ -876,13 +876,18 @@ Ergebnisdateien mit `kind: "file"` werden durch `normalizeEventDocuments()` als 
 
 ### 4.7 Datumsregeln
 
-- `start` und `end` verwenden derzeit lokale ISO-ähnliche Strings ohne Zeitzonenangabe;
+- `start` und `end` verwenden lokale ISO-Daten (`YYYY-MM-DD`) oder lokale
+  ISO-ähnliche Datums-/Zeitwerte (`YYYY-MM-DDTHH:MM:SS`) ohne
+  Zeitzonenangabe;
 - die Interpretation erfolgt in der lokalen Zeitzone des Browsers;
+- ein reines ISO-Datum wird ohne Uhrzeit ausgegeben und gilt für die
+  Lebenszyklusberechnung bis zum Ende dieses Kalendertags;
 - ein ungültiges `start` verhindert die Detailansicht;
 - ein fehlendes oder ungültiges `end` wird ignoriert;
 - ein vor `start` liegendes `end` wird ebenfalls ignoriert;
 - eintägige und mehrtägige Veranstaltungen werden automatisch unterschieden;
-- Datum und Uhrzeit werden mit semantischen `<time>`-Elementen ausgegeben.
+- Datum und – nur sofern belegt – Uhrzeit werden mit semantischen
+  `<time>`-Elementen ausgegeben.
 
 ### 4.8 Lebenszyklus
 
@@ -895,7 +900,9 @@ Die zeitliche Phase einer Veranstaltung wird nicht im Datensatz gespeichert. `Ev
 | `past` | Referenzzeitpunkt liegt nach dem effektiven Ende |
 | `null` | `start` oder Referenzzeitpunkt ist ungültig |
 
-Ein fehlendes, ungültiges oder vor `start` liegendes `end` wird für die Phasenberechnung ignoriert. In diesem Fall gilt `start` als effektives Ende.
+Ein fehlendes, ungültiges oder vor `start` liegendes `end` wird für die
+Phasenberechnung ignoriert. Bei einem Start mit Uhrzeit gilt dann `start` als
+effektives Ende; bei einem reinen Startdatum gilt das Ende dieses Kalendertags.
 
 Der optionale redaktionelle Sonderzustand bleibt von der zeitlichen Phase getrennt. `EventUtils.getEventEditorialStatus(event)` akzeptiert ausschließlich:
 

@@ -4,22 +4,33 @@ function getNextEvent() {
   const eventList = typeof events !== "undefined" && Array.isArray(events) ? events : [];
 
   return eventList
-    .filter((event) => new Date(event.start) > now)
+    .filter((event) => parseEventDate(event.start) > now)
     .sort((a, b) => {
-      const timeDifference = new Date(a.start) - new Date(b.start);
+      const timeDifference = parseEventDate(a.start) - parseEventDate(b.start);
       return timeDifference || String(a.id).localeCompare(String(b.id), "de", { numeric: true });
     })[0] ?? null;
 }
 
 function formatEventDate(dateString) {
-  return new Intl.DateTimeFormat("de-DE", {
+  const options = {
     weekday: "long",
     day: "2-digit",
     month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
-  }).format(new Date(dateString));
+    year: "numeric"
+  };
+
+  if (window.EventUtils?.isDateOnlyValue(dateString) !== true) {
+    options.hour = "2-digit";
+    options.minute = "2-digit";
+  }
+
+  return new Intl.DateTimeFormat("de-DE", options).format(
+    parseEventDate(dateString)
+  );
+}
+
+function parseEventDate(dateString) {
+  return window.EventUtils?.parseEventDate(dateString) || new Date(dateString);
 }
 
 const nextEvent = getNextEvent();
@@ -70,7 +81,7 @@ function updateCountdown() {
   if (!daysElement || !hoursElement || !minutesElement) return;
   if (!nextEvent) return;
 
-  const targetTime = new Date(nextEvent.start).getTime();
+  const targetTime = parseEventDate(nextEvent.start).getTime();
   const currentTime = Date.now();
   const difference = targetTime - currentTime;
 

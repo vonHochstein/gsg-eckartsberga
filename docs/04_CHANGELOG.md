@@ -28,6 +28,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Kreismeisterschaft GK-Pistole/Revolver 2026 mit getrenntem Veranstalter und Ausrichter, beiden Wettkampftagen und der Originalausschreibung als Produktivtermin ergänzt.
 - Ergebnisprotokolle Freihand und Auflage der Kreismeisterschaft GK-Pistole/Revolver 2026 als zwei unveränderte Veranstaltungsdokumente ergänzt.
 - Kreismeisterschaft Trap 2026 in Lossa mit Ausschreibung und Ergebnisprotokoll als Produktivtermin ergänzt.
+- Tag der offenen Tür 2025 als Rückblick mit sieben einzigartigen Aufnahmen und bestehender Event-Lightbox ergänzt.
 - Produktiver Veranstaltungseintrag für den 35. offenen Pokal des Bürgermeisters der Stadt Apolda mit Ausschreibung.
 - Produktiver Veranstaltungseintrag für den Kreisschützentag 2026 des Schützenkreises SUED mit Einladung.
 - Produktiver Veranstaltungseintrag für den Abend der Vereine 2026 mit Einladung.
@@ -66,6 +67,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Veranstaltungsdaten können bei unbekannter Uhrzeit ein reines ISO-Datum verwenden; die Oberfläche gibt dann keine erfundete Uhrzeit aus.
 - Impressum um einen sachlichen Urheberrechtshinweis ergänzt und den bestätigten Namen Theobald Schneider auf der Vorstandsseite vereinheitlicht.
 - Kalenderkarten kennzeichnen Ergebnisse auch dann als verfügbar, wenn ein gültiges Ergebnisdokument statt einer externen Ergebnisquelle vorliegt.
 - Öffentliche Datenschutzseite konsequent auf den vorgesehenen Veröffentlichungszustand ausgerichtet und interne Entwicklungs- und Prüfvermerke in die Projektdokumentation verlagert.

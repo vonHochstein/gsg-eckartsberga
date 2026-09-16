@@ -10,6 +10,8 @@ const vm = require("node:vm");
 require(path.resolve(__dirname, "../js/event-utils.js"));
 
 const {
+  isDateOnlyValue,
+  parseEventDate,
   isSafeUrl,
   normalizeImage,
   normalizeGallery,
@@ -474,6 +476,41 @@ test("bleibt für bestehende Datensätze abwärtskompatibel und unverändernd", 
   );
   assert.equal(getEventEditorialStatus(event), null);
   assert.deepEqual(event, originalEvent);
+});
+
+test("interpretiert reine ISO-Daten lokal und ohne erfundene Uhrzeit", () => {
+  assert.equal(isDateOnlyValue("2025-09-06"), true);
+  assert.equal(isDateOnlyValue("2025-02-29"), false);
+  assert.equal(isDateOnlyValue("2025-09-06T09:00:00"), false);
+
+  const date = parseEventDate("2025-09-06");
+  const endOfDay = parseEventDate("2025-09-06", { endOfDay: true });
+
+  assert.equal(date.getFullYear(), 2025);
+  assert.equal(date.getMonth(), 8);
+  assert.equal(date.getDate(), 6);
+  assert.equal(date.getHours(), 0);
+  assert.equal(endOfDay.getHours(), 23);
+  assert.equal(endOfDay.getMinutes(), 59);
+  assert.equal(parseEventDate("kein-datum"), null);
+});
+
+test("behandelt Veranstaltungen ohne bekannte Uhrzeit bis zum Tagesende als laufend", () => {
+  const event = createCoreEvent({ start: "2025-09-06" });
+
+  assert.equal(
+    getEventPhase(event, new Date(2025, 8, 5, 23, 59, 59)),
+    "upcoming"
+  );
+  assert.equal(
+    getEventPhase(event, new Date(2025, 8, 6, 12, 0, 0)),
+    "ongoing"
+  );
+  assert.equal(
+    getEventPhase(event, new Date(2025, 8, 7, 0, 0, 0)),
+    "past"
+  );
+  assert.equal(isDetailCapable(event), true);
 });
 
 test("erkennt detailfähige und nicht detailfähige Veranstaltungen", () => {
@@ -1099,7 +1136,10 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
   const { productionEvents } = loadEventData(false);
 
   productionEvents.forEach((event) => {
-    assert.equal(event.image, null);
+    assert.equal(
+      event.image === null || normalizeImage(event.image) !== null,
+      true
+    );
     assert.equal(Array.isArray(event.gallery), true);
     assert.equal(Array.isArray(event.documents), true);
     assert.equal(Array.isArray(event.downloads), true);
@@ -1107,10 +1147,24 @@ test("Produktivtermine verwenden das neue Detailmodell ohne Demo-Inhalte", () =>
     assert.equal(Array.isArray(event.externalLinks), true);
     assert.equal("links" in event, false);
     assert.equal(event.developmentOnly, undefined);
-    assert.equal(event.gallery.length, 0);
     assert.equal(event.downloads.length, 0);
     assert.equal(event.results.length, 0);
     assert.equal(event.externalLinks.length, 0);
+
+    if (event.image) {
+      assert.equal(
+        fs.existsSync(path.resolve(__dirname, `../${event.image.src}`)),
+        true
+      );
+    }
+
+    event.gallery.forEach((image) => {
+      assert.notEqual(normalizeImage(image), null);
+      assert.equal(
+        fs.existsSync(path.resolve(__dirname, `../${image.src}`)),
+        true
+      );
+    });
   });
 });
 
@@ -1537,6 +1591,79 @@ test("6. Naumburger UTA-Pokal 2025 ist quellengetreu hinterlegt", () => {
   assert.equal(event.registrationRequired, true);
   assert.equal(event.archive, true);
   assert.equal(event.featured, false);
+});
+
+test("Tag der offenen Tür 2025 ist mit sieben einzigartigen Bildern hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "tag-der-offenen-tuer-2025"
+  );
+  const [event] = matchingEvents;
+  const expectedDescription = `Am 6. September 2025 öffnete die GSG Eckartsberga ihre Türen und lud zum gemeinsamen Schützenfest ein. Schützenfreunde aus befreundeten Vereinen, Gäste und Mitglieder kamen zusammen, um einen schönen Tag in geselliger Runde zu verbringen.
+
+Im Mittelpunkt standen dabei nicht nur der Schießsport, sondern vor allem das gemeinsame Vereinsleben und die Begegnung miteinander. Bei guter Stimmung wurde gefeiert, erzählt und natürlich auch die eine oder andere Runde auf dem Schießstand verbracht.
+
+Einen besonderen Anlass zum Feiern gab es ebenfalls: Beim vorausgegangenen Königsschießen hatte sich Steffen Ackermann durchgesetzt und wurde Schützenkönig 2025. Dazu gratuliert die GSG Eckartsberga noch einmal herzlich.
+
+Unser Dank gilt allen Gästen und befreundeten Schützenvereinen, die diesen Tag gemeinsam mit uns verbracht haben, sowie allen Mitgliedern und Helfern, die zum Gelingen des Festes beigetragen haben.
+
+Wir freuen uns auf ein Wiedersehen in Eckartsberga.`;
+  const expectedHashes = [
+    "3090a4615ba1e7c7e0bd5cc4108cf2e2835278168aed63c282c656672c9da1af",
+    "b6502f3e9bfca1c8abf903194cbcb366f54d182a1f8a342ec1621b620c38cca8",
+    "bc5111d3b69e37e29cf7be4c5db1e3fc8016ce76272535ddeb8c7b0fb6ba0ae9",
+    "900e9f116fc914fb6e3e11233b8a7769e58ae87b24ac0ef92eccab3464a562ae",
+    "9a246823db33adfb83eec09ad002d3ea7941e3470b4b654f0766e3589e0af48d",
+    "5404b21ccc4d27b038cb1b2242d3d73fa96d162fa89061da595a1a230ceb6bb4",
+    "62ce4aa08c4c9d2866995f0f590d1e0cb339cef5f3466e8a4071a0893eef70b3"
+  ];
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(productionEvents.filter((entry) => entry.id === 28).length, 1);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.title, "Tag der offenen Tür 2025");
+  assert.equal(event.shortTitle, "Tag der offenen Tür");
+  assert.equal(event.category, "Schützenfest");
+  assert.equal(event.start, "2025-09-06");
+  assert.equal("end" in event, false);
+  assert.equal(
+    event.location,
+    "Schützenhaus, Burgstraße 5, 06648 Eckartsberga"
+  );
+  assert.equal(
+    event.organizer,
+    "Großkaliber Schützengilde 1503 Eckartsberga e.V."
+  );
+  assert.equal(event.description, expectedDescription);
+  assert.equal(event.image, null);
+  assert.equal(event.gallery.length, 7);
+  assert.equal(new Set(event.gallery.map((image) => image.src)).size, 7);
+  assert.deepEqual(Array.from(event.documents), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, false);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+  assert.deepEqual(getEventOrganizerLogo(event), {
+    src: "assets/img/logo-gsg-eckartsberga.png",
+    alt: "Logo der GSG Eckartsberga",
+    width: 360,
+    height: 347
+  });
+
+  event.gallery.forEach((image, index) => {
+    const imagePath = path.resolve(__dirname, `../${image.src}`);
+
+    assert.notEqual(normalizeImage(image), null);
+    assert.ok(image.alt.length > 10);
+    assert.ok(image.caption.length > 10);
+    assert.equal(fs.existsSync(imagePath), true);
+    assert.equal(
+      crypto.createHash("sha256").update(fs.readFileSync(imagePath)).digest("hex"),
+      expectedHashes[index]
+    );
+  });
 });
 
 test("Bürgermeisterpokal Apolda 2026 ist quellengetreu hinterlegt", () => {

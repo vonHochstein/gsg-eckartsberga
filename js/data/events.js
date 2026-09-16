@@ -8,7 +8,7 @@
 // greifen später auf dieselben Daten zu.
 //
 // Hinweis zur Pflege:
-// - start und end immer im Format JJJJ-MM-TTTHH:MM:SS eintragen.
+// - start und end im Format JJJJ-MM-TT oder JJJJ-MM-TTTHH:MM:SS eintragen.
 // - category steuert die sichtbare Einordnung des Termins.
 // - featured kann später genutzt werden, um Termine besonders hervorzuheben.
 // - optionale Detailinhalte bleiben leer, solange keine echten Inhalte vorliegen.
@@ -215,6 +215,85 @@ const productionEvents = [
     results: [],
     externalLinks: [],
     registrationRequired: true,
+    archive: true,
+    featured: false
+  },
+  {
+    id: 28,
+    slug: "tag-der-offenen-tuer-2025",
+    title: "Tag der offenen Tür 2025",
+    shortTitle: "Tag der offenen Tür",
+    category: "Schützenfest",
+    start: "2025-09-06",
+    location: "Schützenhaus, Burgstraße 5, 06648 Eckartsberga",
+    organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V.",
+    description:
+      `Am 6. September 2025 öffnete die GSG Eckartsberga ihre Türen und lud zum gemeinsamen Schützenfest ein. Schützenfreunde aus befreundeten Vereinen, Gäste und Mitglieder kamen zusammen, um einen schönen Tag in geselliger Runde zu verbringen.
+
+Im Mittelpunkt standen dabei nicht nur der Schießsport, sondern vor allem das gemeinsame Vereinsleben und die Begegnung miteinander. Bei guter Stimmung wurde gefeiert, erzählt und natürlich auch die eine oder andere Runde auf dem Schießstand verbracht.
+
+Einen besonderen Anlass zum Feiern gab es ebenfalls: Beim vorausgegangenen Königsschießen hatte sich Steffen Ackermann durchgesetzt und wurde Schützenkönig 2025. Dazu gratuliert die GSG Eckartsberga noch einmal herzlich.
+
+Unser Dank gilt allen Gästen und befreundeten Schützenvereinen, die diesen Tag gemeinsam mit uns verbracht haben, sowie allen Mitgliedern und Helfern, die zum Gelingen des Festes beigetragen haben.
+
+Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
+    image: null,
+    gallery: [
+      {
+        src: "assets/img/events/2025/2025_08_29 Königsschießen 2025 Schützenadler vor dem Schießen.jpeg",
+        alt: "Bemalter Schützenadler vor dem Königsschießen 2025.",
+        caption: "Der Schützenadler vor dem Königsschießen 2025.",
+        width: 2048,
+        height: 2048
+      },
+      {
+        src: "assets/img/events/2025/2025_08_29 Königsschießen 2025 Schützenadler auf dem Schießstand.jpeg",
+        alt: "Bemalter Schützenadler auf dem Schießstand.",
+        caption: "Der Schützenadler auf dem Schießstand.",
+        width: 2048,
+        height: 2048
+      },
+      {
+        src: "assets/img/events/2025/2025_08_29 Königsschießen 2025 Trefferbild am Schützenadler.jpeg",
+        alt: "Nahaufnahme des getroffenen Schützenadlers.",
+        caption: "Treffer am Schützenadler während des Königsschießens 2025.",
+        width: 2048,
+        height: 2048
+      },
+      {
+        src: "assets/img/events/2025/2025_08_29 Königsschießen 2025 Teilnehmer mit Schützenadler.jpg",
+        alt: "Ein Teilnehmer hält den bemalten Schützenadler.",
+        caption: "Ein Teilnehmer mit dem Schützenadler nach dem Königsschießen 2025.",
+        width: 2048,
+        height: 2048
+      },
+      {
+        src: "assets/img/events/2025/2025_09_06 Tag der offenen Tür 2025 Schützenkönigsscheibe.jpg",
+        alt: "Drei Personen präsentieren die Schützenkönigsscheibe 2025.",
+        caption: "Präsentation der Schützenkönigsscheibe 2025.",
+        width: 923,
+        height: 2048
+      },
+      {
+        src: "assets/img/events/2025/2025_09_06 Tag der offenen Tür 2025 Vereinsrunde.jpg",
+        alt: "Mitglieder und Gäste sitzen beim Tag der offenen Tür unter einem Pavillon zusammen.",
+        caption: "Mitglieder und Gäste in geselliger Runde.",
+        width: 1536,
+        height: 2048
+      },
+      {
+        src: "assets/img/events/2025/2025_09_06 Tag der offenen Tür 2025 ausgestellte Schusswaffen.jpg",
+        alt: "Historische Lang- und Kurzwaffen liegen auf einem Ausstellungstisch.",
+        caption: "Ausgestellte historische Schusswaffen beim Tag der offenen Tür 2025.",
+        width: 2040,
+        height: 1530
+      }
+    ],
+    documents: [],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
     archive: true,
     featured: false
   },

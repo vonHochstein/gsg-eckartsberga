@@ -181,6 +181,13 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 - **Zu prüfen:** Sachlich korrekte Beschreibung und Zuordnung der einzelnen Anlagenbilder einschließlich ihrer Bildunterschriften und Alternativtexte sowie gegebenenfalls weitere kleinere sachliche Formulierungen innerhalb der Seite. Bis zur späteren Vorgabe beziehungsweise gemeinsamen Prüfung durch den Auftraggeber werden daraus keine konkreten Korrekturen abgeleitet oder Angaben vermutet.
 - **Abschlusskriterium:** Die betroffenen Inhalte sind einzeln mit dem Auftraggeber geprüft und die freigegebenen sachlichen Korrekturen in einem separaten Arbeitspaket umgesetzt. Technische Umsetzung, Layout, Seitenaufbau, Medienintegration und Funktionalität bleiben dabei unverändert.
 
+### P-24 – Videos zum Tag der offenen Tür 2025
+
+- **Status:** Offen
+- **Frage:** Wie sollen die zwei kurzen, bislang über YouTube bereitgestellten Videos aus dem ursprünglichen Veranstaltungsmaterial zum Tag der offenen Tür 2025 später datenschutzgerecht und dauerhaft verfügbar gemacht werden?
+- **Zu prüfen:** Originalquellen beziehungsweise verfügbare Dateien, Veröffentlichungsrechte, Datenschutz, Hosting und die übergreifende Videodarstellung gemeinsam mit dem vorgesehenen Video-Arbeitspaket bewerten. Die Videos sind derzeit weder eingebettet noch öffentlich verlinkt.
+- **Abschlusskriterium:** Abgenommene, projektweit tragfähige Videoentscheidung und – falls freigegeben – gesonderte technische Migration der zwei vorhandenen Videos.
+
 ## Noch zu bewertende Funktionserweiterungen
 
 Die folgenden Notizen sind vollständig im [Ideenspeicher](05_IDEENSPEICHER.md) erfasst und werden erst bei möglicher Übernahme in die Roadmap einzeln geprüft:
