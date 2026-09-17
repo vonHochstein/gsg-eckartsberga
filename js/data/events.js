@@ -292,14 +292,14 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     videos: [
       {
         src: "assets/video/events/2025/2013 Vereinsvideo GSG Eckartsberga.mp4",
-        title: "Video 1",
+        title: "Kanonensalut beim Tag der offenen Tür 2025.",
         poster: "assets/video/events/2025/2013 Vereinsvideo GSG Eckartsberga Poster.jpg",
         width: 1920,
         height: 1080
       },
       {
         src: "assets/video/events/2025/2024_09_07 Vereinsvideo GSG Eckartsberga.mp4",
-        title: "Video 2",
+        title: "Böllerschießen mit Handböllern beim Tag der offenen Tür 2025.",
         poster: "assets/video/events/2025/2024_09_07 Vereinsvideo GSG Eckartsberga Poster.jpg",
         width: 1080,
         height: 1920
