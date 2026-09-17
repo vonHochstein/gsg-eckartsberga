@@ -16,6 +16,12 @@ const lightboxSource = fs.readFileSync(
 );
 const eventHtml = fs.readFileSync(path.join(projectRoot, "event.html"), "utf8");
 const eventCss = fs.readFileSync(path.join(projectRoot, "event.css"), "utf8");
+const sharedLightboxPages = [
+  "event.html",
+  "geschichte.html",
+  "schiessbahnen.html",
+  "erfolge.html"
+].map((fileName) => fs.readFileSync(path.join(projectRoot, fileName), "utf8"));
 
 test("führt Bilder und lokale Videos erst für die Darstellung zusammen", () => {
   assert.match(detailSource, /normalizeVideos\(event\.videos\)/);
@@ -87,22 +93,32 @@ test("reserviert Beschreibung und Navigation unabhängig vom Medienformat", () =
   );
   assert.match(
     eventCss,
-    /\.event-lightbox-media\s*\{[^}]*grid-template-rows:\s*minmax\(0, 1fr\) auto;[^}]*row-gap:\s*0;[^}]*padding-block:\s*12px;/s
+    /\.event-lightbox-media\s*\{[^}]*grid-template-rows:\s*minmax\(0, 1fr\) auto;[^}]*row-gap:\s*12px;[^}]*padding-block:\s*12px;/s
+  );
+  sharedLightboxPages.forEach((pageSource) => {
+    assert.match(
+      pageSource,
+      /<figure class="event-lightbox-media">[\s\S]*?<div class="event-lightbox-viewport">[\s\S]*?id="event-lightbox-image"[\s\S]*?<\/div>[\s\S]*?<figcaption id="event-lightbox-caption"/s
+    );
+  });
+  assert.match(
+    eventCss,
+    /\.event-lightbox-viewport\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;[^}]*min-height:\s*0;[^}]*place-items:\s*end center;/s
   );
   assert.match(
     eventCss,
-    /\.event-lightbox-media figcaption\s*\{[^}]*margin-block-start:\s*12px;/s
+    /\.event-lightbox-viewport img,\s*\.event-lightbox-viewport video:not\(\[hidden\]\)\s*\{[^}]*max-height:\s*100%;[^}]*border-radius:\s*12px;[^}]*clip-path:\s*inset\(0 round 12px\);[^}]*object-fit:\s*contain;/s
   );
   assert.match(
     eventCss,
-    /\.event-lightbox-media img,\s*\.event-lightbox-media video:not\(\[hidden\]\)\s*\{[^}]*max-height:\s*100%;[^}]*border-radius:\s*12px;[^}]*clip-path:\s*inset\(0 round 12px\);[^}]*object-fit:\s*contain;/s
-  );
-  assert.match(
-    eventCss,
-    /\.event-lightbox-media video:not\(\[hidden\]\)\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;/s
+    /\.event-lightbox-viewport video:not\(\[hidden\]\)\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;/s
   );
   assert.doesNotMatch(
     eventCss,
-    /\.event-lightbox-media (?:img|video:not\(\[hidden\]\))\s*\{[^}]*100svh/s
+    /\.event-lightbox-viewport (?:img|video:not\(\[hidden\]\))\s*\{[^}]*100svh/s
+  );
+  assert.doesNotMatch(
+    eventCss,
+    /\.event-lightbox-media figcaption\s*\{[^}]*margin-block-start:/s
   );
 });

@@ -68,7 +68,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
-- Medienbeschriftungen in der gemeinsamen Lightbox erhalten nun einen ausdrücklich an der Beschriftung definierten Abstand zur sichtbaren Bild- oder Videokante.
+- Der gemeinsame Medienrahmen der Lightbox begrenzt Bilder und Videos nun zuverlässig auf ihre eigene Grid-Zeile, sodass der sichtbare Abstand zur Beschriftung erhalten bleibt.
+- Medienbeschriftungen in der gemeinsamen Lightbox erhalten einen festen 12-Pixel-Abstand zur sichtbaren Bild- oder Videokante.
 - Der gemeinsame Medienbereich der Lightbox hält nun ober- und unterhalb von Bildern und Videos einen einheitlichen vertikalen Abstand zu den Bedienelementen ein.
 - Eventkarten weisen vorhandene Bilder und Videos getrennt mit korrekten Singular- und Pluralformen aus; ohne Medien entfällt die bisherige Galerie-Platzhalterangabe.
 - Die gemeinsame Medien-Lightbox reserviert für Beschreibungen und Positionsanzeige eigenen Raum; Bilder und Videos nutzen den verbleibenden Platz seitenverhältnisgetreu und mit einheitlich geclippten Rundungen.
