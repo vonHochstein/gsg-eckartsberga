@@ -546,7 +546,7 @@
   height: 100%;
   min-width: 0;
   min-height: 0;
-  place-items: end center;
+  place-items: center;
 }
 
 .event-lightbox-viewport img,
