@@ -75,6 +75,19 @@ Wenn sich während der Umsetzung eine wesentliche neue Anforderung ergibt, wird 
 
 Vor der gemeinsamen Qualitätskontrolle prüft der Entwickler den Abschnitt gegen die vereinbarten Abnahmekriterien.
 
+Für reine Inhalts- und Datenmigrationen in bestehende, getestete Strukturen
+gilt die Routinearbeitsregel der Entwicklungsgrundsätze. Ohne Änderung an
+gemeinsamer Logik, Komponenten, Datenstruktur oder Schnittstellen werden keine
+neuen Tests geschrieben, keine vollständige Testsuite und keine vollständige
+Browser- oder Viewport-Abnahme ausgeführt. Die Selbstprüfung beschränkt sich in
+diesem Fall grundsätzlich auf:
+
+- `git status` und Kontrolle des vereinbarten Umfangs;
+- offensichtliche Syntaxfehler in geänderten Datendateien;
+- Existenz neu referenzierter lokaler Dateien;
+- `git diff --check`;
+- nur bei objektivem Bedarf einen kurzen, gezielten Smoke-Check.
+
 Je nach Änderung gehören dazu:
 
 - Hauptfunktion und relevante Randfälle;
@@ -120,7 +133,8 @@ Ein Implementierungsabschnitt gilt erst als abgeschlossen, wenn:
 - die Qualitätskontrolle erfolgreich war;
 - gefundene Blocker behoben wurden;
 - relevante Dokumentation aktualisiert ist;
-- Roadmap und Changelog den neuen Stand wiedergeben;
+- Roadmap und Changelog den neuen Stand wiedergeben, sofern sich deren Aussagen
+  oder Status durch das Arbeitspaket tatsächlich ändern;
 - keine unbeabsichtigten Änderungen im Arbeitsumfang enthalten sind.
 
 Erst danach darf der Roadmap-Status auf „Bereits umgesetzt“ geändert werden.
@@ -131,7 +145,10 @@ Erst danach darf der Roadmap-Status auf „Bereits umgesetzt“ geändert werden
 
 Beispiel: Textkorrektur oder Austausch eines einzelnen Bildes ohne strukturelle Auswirkung.
 
-Erforderlich sind mindestens Umfangsprüfung, Selbstprüfung und Changelog-Eintrag, sofern die Änderung veröffentlichungsrelevant ist.
+Erforderlich sind Umfangsprüfung und die minimale Selbstprüfung für
+Routinearbeiten. Ein Changelog-Eintrag oder weitere Dokumentationsänderungen
+erfolgen nur, wenn sich die dort dokumentierte Aussage oder ein Projektstatus
+tatsächlich ändert.
 
 ### Mittlere Änderung
 

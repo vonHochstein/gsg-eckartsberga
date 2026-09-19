@@ -255,9 +255,9 @@ Technische Modernisierung erfolgt zielgerichtet und nicht als pauschaler Technol
 
 ## 9. Bestehendes Verhalten schützen
 
-Eine Änderung darf vorhandene Funktionen nicht stillschweigend verändern. Beabsichtigte Verhaltensänderungen müssen Teil des Auftrags und des Reviews sein.
+Eine Änderung darf vorhandene Funktionen nicht stillschweigend verändern. Beabsichtigte Verhaltensänderungen müssen Teil des Auftrags und des Reviews sein. Umfang und Tiefe der Prüfung richten sich nach dem tatsächlichen technischen Risiko der Änderung.
 
-Vor Abschluss sind mindestens zu prüfen:
+Bei technischen Änderungen sind die jeweils betroffenen Punkte zu prüfen:
 
 - betroffene bestehende Funktionen;
 - Navigation und Verlinkungen;
@@ -265,6 +265,35 @@ Vor Abschluss sind mindestens zu prüfen:
 - Tastaturbedienung und sichtbare Zustände;
 - Datenfälle mit fehlenden oder leeren optionalen Werten;
 - Fehlersituationen und sinnvolle Fallbacks.
+
+### Ressourcenschonende Routinearbeiten
+
+Reine Inhalts- und Datenmigrationen in bereits bestehende und getestete
+Strukturen sind Routinearbeiten. Dazu gehören insbesondere neue oder geänderte
+Eventdatensätze, Texte, Bildunterschriften, lokale Bilder und Dokumente, die
+Verwendung vorhandener Veranstaltungsorte sowie die Aufnahme von Bildern in
+bestehende Galerien.
+
+Solange dabei keine gemeinsame technische Logik, Komponente, Datenstruktur oder
+Schnittstelle verändert wird, gilt:
+
+- Es werden keine neuen datensatzspezifischen Tests geschrieben.
+- Die vollständige Testsuite wird nicht routinemäßig ausgeführt.
+- Unveränderte Komponenten wie Eventrenderer, Galerie, Lightbox, Karte,
+  Dokumentanzeige oder Videoausgabe werden nicht erneut vollständig abgenommen.
+- Die technische Kontrolle beschränkt sich grundsätzlich auf Arbeitsbaum und
+  Umfang, offensichtliche Syntaxfehler geänderter Daten, die Existenz neu
+  referenzierter lokaler Dateien und `git diff --check`.
+- Ein kurzer gezielter Smoke-Check erfolgt nur, wenn die konkrete Änderung ihn
+  objektiv erfordert. Er wird nicht automatisch zu einer vollständigen Browser-
+  oder Responsive-Prüfung ausgeweitet.
+
+Umfangreiche automatisierte und manuelle Prüfungen bleiben erforderlich, wenn
+gemeinsame Logik, Komponenten, Datenmodelle, Schnittstellen, Renderer,
+Normalisierung, CSS-/Responsive-Verhalten, Navigation, Formulare, externe
+Dienste oder sicherheits-, datenschutz- beziehungsweise
+barrierefreiheitsrelevante Funktionen geändert werden. Die vollständige
+Testsuite bleibt außerdem geeigneten Sammel- und Releaseprüfungen vorbehalten.
 
 ## 10. Barrierefreiheit ist Grundanforderung
 
@@ -283,7 +312,10 @@ Insbesondere gelten:
 
 Jede neue Funktion wird für kleine und große Ansichten geplant. Mobile Nutzung ist kein verkleinerter Sonderfall, sondern ein gleichwertiger Nutzungskontext.
 
-Layout, Inhaltshierarchie, Interaktionsflächen und Medien müssen auf unterschiedlichen Bildschirmgrößen geprüft werden.
+Layout, Inhaltshierarchie, Interaktionsflächen und Medien müssen bei neuen oder
+geänderten Darstellungsfunktionen auf unterschiedlichen Bildschirmgrößen
+geprüft werden. Reine Routinearbeiten in unveränderten responsiven Komponenten
+lösen keine erneute vollständige Viewport-Prüfung aus.
 
 ## 12. Leistung und Einfachheit bewahren
 
@@ -320,6 +352,12 @@ Ein Mitgliederbereich erfordert ein echtes Berechtigungs- und Schutzkonzept; ein
 ## 15. Dokumentation gehört zur Änderung
 
 Eine Änderung ist erst vollständig, wenn die betroffene Dokumentation aktualisiert wurde.
+
+Reine Routinearbeiten erfordern keine Aktualisierung der technischen
+Projektdokumentation, Roadmap oder weiterer Planungsdokumente, sofern sich deren
+Aussagen, Status oder Entscheidungen nicht ändern. Die Regel zur
+Altseitenanalyse bleibt davon unberührt: Sie wird nur bei einem tatsächlich
+substanziellen Befund ergänzt.
 
 Je nach Änderung sind anzupassen:
 
