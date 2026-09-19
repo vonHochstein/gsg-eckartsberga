@@ -134,6 +134,49 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 29,
+    slug: "fruehjahrspokal-wurfscheibe-2025",
+    title: "Frühjahrspokal Wurfscheibe 2025",
+    shortTitle: "Frühjahrspokal Wurfscheibe",
+    category: "Pokalwettkampf",
+    start: "2025-05-31T09:00:00",
+    venueId: "schiessstand-lossa",
+    location: "Lossa",
+    description:
+      "Beim Frühjahrspokal Wurfscheibe 2025 belegte Roland Matthes den 1. Platz. David Neuhäuser wurde als „Ehrgeizigster Schütze“ ausgezeichnet. Ein Dank galt allen Helfern, die zur Durchführung der Veranstaltung beitrugen.",
+    image: null,
+    gallery: [
+      {
+        src: "assets/img/events/2025/2025_05_31 Frühjahrspokal Wurfscheibe 2025 01 Gruppenaufnahme.jpg",
+        alt: "Gruppenaufnahme beim Frühjahrspokal Wurfscheibe 2025 mit Urkunden und Pokalen.",
+        caption: "Gruppenaufnahme beim Frühjahrspokal Wurfscheibe 2025.",
+        width: 1600,
+        height: 1200
+      },
+      {
+        src: "assets/img/events/2025/2025_05_31 Frühjahrspokal Wurfscheibe 2025 02 Siegerehrung.jpg",
+        alt: "Gruppenaufnahme bei der Siegerehrung des Frühjahrspokals Wurfscheibe 2025.",
+        caption: "Siegerehrung beim Frühjahrspokal Wurfscheibe 2025.",
+        width: 1600,
+        height: 1200
+      },
+      {
+        src: "assets/img/events/2025/2025_05_31 Frühjahrspokal Wurfscheibe 2025 03 Pokale und Urkunden.jpg",
+        alt: "Pokale und Urkunden des Frühjahrspokals Wurfscheibe 2025 auf einem Tisch.",
+        caption: "Pokale und Urkunden des Frühjahrspokals Wurfscheibe 2025.",
+        width: 1600,
+        height: 1200
+      }
+    ],
+    documents: [],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 18,
     slug: "hans-peter-nolding-pokal-2025",
     title: "Hans-Peter-Nolding-Pokal 2025",
