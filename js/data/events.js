@@ -191,6 +191,77 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 10,
+    slug: "eckartsburg-pokal-2025",
+    title: "Eckartsburgpokal 2025",
+    shortTitle: "Eckartsburgpokal",
+    category: "Pokalwettkampf",
+    start: "2025-08-09T09:00:00",
+    venueId: "schuetzenhaus-buttstaedt",
+    location: "Schützenhaus Buttstädt",
+    organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V.",
+    description:
+      "Beim Eckartsburg-Pokal treten die Schützen in vier verschiedenen Disziplinen zum traditionellen Pokalwettkampf an.",
+    image: null,
+    gallery: [
+      {
+        src: "assets/img/events/2025/2025_08_09 Eckartsburgpokal 2025 01 Gruppenaufnahme.jpg",
+        alt: "Gruppenaufnahme beim Eckartsburgpokal 2025.",
+        caption: "Gruppenaufnahme beim Eckartsburgpokal 2025.",
+        width: 2048,
+        height: 2048
+      },
+      {
+        src: "assets/img/events/2025/2025_08_09 Eckartsburgpokal 2025 02 Siegerehrung.jpg",
+        alt: "Aufnahme von der Siegerehrung beim Eckartsburgpokal 2025.",
+        caption: "Siegerehrung beim Eckartsburgpokal 2025.",
+        width: 2048,
+        height: 1538
+      },
+      {
+        src: "assets/img/events/2025/2025_08_09 Eckartsburgpokal 2025 03 Siegerehrung.jpg",
+        alt: "Aufnahme von der Siegerehrung beim Eckartsburgpokal 2025.",
+        caption: "Siegerehrung beim Eckartsburgpokal 2025.",
+        width: 2048,
+        height: 1538
+      },
+      {
+        src: "assets/img/events/2025/2025_08_09 Eckartsburgpokal 2025 04 Siegerehrung.jpg",
+        alt: "Aufnahme von der Siegerehrung beim Eckartsburgpokal 2025.",
+        caption: "Siegerehrung beim Eckartsburgpokal 2025.",
+        width: 2048,
+        height: 1538
+      },
+      {
+        src: "assets/img/events/2025/2025_08_09 Eckartsburgpokal 2025 05 Siegerehrung.jpg",
+        alt: "Aufnahme von der Siegerehrung beim Eckartsburgpokal 2025.",
+        caption: "Siegerehrung beim Eckartsburgpokal 2025.",
+        width: 2048,
+        height: 1538
+      },
+      {
+        src: "assets/img/events/2025/2025_08_09 Eckartsburgpokal 2025 06 Siegerehrung.jpg",
+        alt: "Aufnahme von der Siegerehrung beim Eckartsburgpokal 2025.",
+        caption: "Siegerehrung beim Eckartsburgpokal 2025.",
+        width: 2048,
+        height: 1538
+      }
+    ],
+    documents: [
+      {
+        label: "Ergebnisprotokoll Eckartsburgpokal 2025",
+        url: "assets/documents/events/2025/2025_08_09 Ergebnisprotokoll Eckartsburgpokal 2025.pdf",
+        type: "result-list"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 19,
     slug: "naumburger-uta-pokal-2025",
     title: "6. Naumburger UTA-Pokal 2025",

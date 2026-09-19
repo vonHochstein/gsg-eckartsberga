@@ -130,6 +130,28 @@ test("zeigt das Eckartsburg-Pokal-Ergebnisprotokoll in der Kalenderkarte an", ()
   ]);
 });
 
+test("zeigt Ergebnisse und sechs Bilder beim Eckartsburgpokal 2025 an", () => {
+  const eventSource = fs.readFileSync(
+    path.resolve(__dirname, "../js/data/events.js"),
+    "utf8"
+  );
+  const context = vm.createContext({});
+
+  vm.runInContext(eventSource, context, { filename: "events.js" });
+  const event = vm.runInContext(
+    'productionEvents.find((entry) => entry.slug === "eckartsburg-pokal-2025")',
+    context
+  );
+  const markup = renderCard(event);
+
+  assert.ok(event);
+  assert.deepEqual(resultStatus(markup), [
+    "available",
+    "Ergebnisse verfügbar"
+  ]);
+  assert.deepEqual(mediaStatus(markup), ["available", "6 Bilder"]);
+});
+
 test("erkennt Ergebnisdateien aus dem bisherigen results-Feld", () => {
   const markup = renderCard({
     results: [{

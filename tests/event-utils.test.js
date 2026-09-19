@@ -1651,6 +1651,92 @@ test("6. Naumburger UTA-Pokal 2025 ist quellengetreu hinterlegt", () => {
   assert.equal(event.featured, false);
 });
 
+test("Eckartsburgpokal 2025 ist mit Ergebnissen und sechs Bildern hinterlegt", () => {
+  const { productionEvents } = loadEventData(false);
+  const matchingEvents = productionEvents.filter(
+    (entry) => entry.slug === "eckartsburg-pokal-2025"
+  );
+  const [event] = matchingEvents;
+  const expectedImageHashes = [
+    "a6718dfc9e588bdd79eb389be5f2030aea97452c7f65689c6106e4aa6e3050bc",
+    "d09ae3ef1f53446da37f74347b5021813559fd1b37cf72d019fe5854ef38f153",
+    "1267a0a6a2c2cc8c752dff0fc32763df5c7fbd94c5b1e12443c6634817467bc6",
+    "96373bf4e830ed4aad8c04b463632de9cd2932690768cb83ae0402ad44d93f16",
+    "09ff0167d9a57c09a1896cb073415efeca22a2c8da665248c220b3e64a73ef86",
+    "d593015ee470c20be97bde4411de23d5838aef9262ff053bdf2d6319bb98b54c"
+  ];
+
+  assert.equal(matchingEvents.length, 1);
+  assert.equal(productionEvents.filter((entry) => entry.id === 10).length, 1);
+  assert.equal(isDetailCapable(event), true);
+  assert.equal(event.title, "Eckartsburgpokal 2025");
+  assert.equal(event.shortTitle, "Eckartsburgpokal");
+  assert.equal(event.category, "Pokalwettkampf");
+  assert.equal(event.start, "2025-08-09T09:00:00");
+  assert.equal("end" in event, false);
+  assert.equal(event.venueId, "schuetzenhaus-buttstaedt");
+  assert.equal(event.location, "Schützenhaus Buttstädt");
+  assert.deepEqual(
+    resolveEventLocation(event, Array.from(loadVenueData())),
+    {
+      id: "schuetzenhaus-buttstaedt",
+      name: "Schützenhaus Buttstädt",
+      latitude: 51.12592,
+      longitude: 11.43023
+    }
+  );
+  assert.equal(
+    event.organizer,
+    "Großkaliber Schützengilde 1503 Eckartsberga e.V."
+  );
+  assert.equal(
+    event.description,
+    "Beim Eckartsburg-Pokal treten die Schützen in vier verschiedenen Disziplinen zum traditionellen Pokalwettkampf an."
+  );
+  assert.equal(event.image, null);
+  assert.equal(event.gallery.length, 6);
+  assert.equal(new Set(event.gallery.map((image) => image.src)).size, 6);
+  assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
+    {
+      label: "Ergebnisprotokoll Eckartsburgpokal 2025",
+      url: "assets/documents/events/2025/2025_08_09 Ergebnisprotokoll Eckartsburgpokal 2025.pdf",
+      type: "result-list"
+    }
+  ]);
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(normalizeEventDocuments(event))),
+    JSON.parse(JSON.stringify(event.documents))
+  );
+  assert.equal(
+    crypto
+      .createHash("sha256")
+      .update(
+        fs.readFileSync(path.resolve(__dirname, `../${event.documents[0].url}`))
+      )
+      .digest("hex"),
+    "c4eb2ecf7370b3b216ab5170f9300a6d8087fcbf5d991a3ee6654e02f1d8f55a"
+  );
+  assert.deepEqual(Array.from(event.results), []);
+  assert.deepEqual(Array.from(event.downloads), []);
+  assert.deepEqual(Array.from(event.externalLinks), []);
+  assert.equal(event.registrationRequired, false);
+  assert.equal(event.archive, true);
+  assert.equal(event.featured, false);
+
+  event.gallery.forEach((image, index) => {
+    const imagePath = path.resolve(__dirname, `../${image.src}`);
+
+    assert.notEqual(normalizeImage(image), null);
+    assert.ok(image.alt.length > 10);
+    assert.ok(image.caption.length > 10);
+    assert.equal(fs.existsSync(imagePath), true);
+    assert.equal(
+      crypto.createHash("sha256").update(fs.readFileSync(imagePath)).digest("hex"),
+      expectedImageHashes[index]
+    );
+  });
+});
+
 test("Tag der offenen Tür 2025 ist mit sieben einzigartigen Bildern hinterlegt", () => {
   const { productionEvents } = loadEventData(false);
   const matchingEvents = productionEvents.filter(

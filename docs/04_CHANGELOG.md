@@ -8,6 +8,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Hinzugefügt
 
+- Eckartsburgpokal 2025 mit zentralem Veranstaltungsort, unverändertem Ergebnisprotokoll und sechs Veranstaltungsaufnahmen als historischer Eventeintrag ergänzt.
 - Zwei lokale, unverändert übernommene MP4-Videos mit lokalen Posterbildern beim Event „Tag der offenen Tür 2025“ ergänzt und das Eventmodell um optionale lokale Videos erweitert.
 - SEO-Grundmetadaten und Favicon auf Basis des vorhandenen Vereinslogos.
 - Sprunglink zum Hauptinhalt, systematische Fokusdarstellung und Unterstützung für reduzierte Bewegung.
