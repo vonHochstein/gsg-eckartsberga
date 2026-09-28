@@ -179,6 +179,16 @@
   height: auto;
 }
 
+.chronicle-media .chronicle-media-landscape-crop {
+  aspect-ratio: 4 / 3;
+}
+
+.chronicle-media .chronicle-media-landscape-crop img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
 .chronicle-media figcaption {
   padding: 13px 15px 15px;
   overflow-wrap: anywhere;
