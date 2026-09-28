@@ -779,6 +779,35 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     registrationRequired: true,
     archive: true,
     featured: false
+  },
+  {
+    id: 30,
+    slug: "herbstpokal-wurfscheibe-2026",
+    title: "Herbstpokal Wurfscheibe 2026",
+    shortTitle: "Herbstpokal Wurfscheibe",
+    category: "Pokalwettkampf",
+    start: "2026-10-24T09:00:00",
+    end: "2026-10-24T16:00:00",
+    venueId: "schiessstand-lossa",
+    location: "Schießplatz Schützenverein Lossa",
+    organizer: "Großkaliber Schützengilde 1503 Eckartsberga e.V.",
+    description:
+      "Die GSG Eckartsberga lädt am 24. Oktober 2026 zum Herbstpokal im Wurfscheibenschießen nach Lossa ein. Pro Serie werden 20 Scheiben geschossen; gewertet werden die beiden besten Serien. Die Anmeldung ist vor Ort bis 12 Uhr möglich.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Herbstpokal Wurfscheibe 2026",
+        url: "assets/documents/events/2026/2026_09_23 Ausschreibung Herbstpokal Wurfscheibe 2026.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
   }
 ];
 
