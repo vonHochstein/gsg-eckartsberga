@@ -792,7 +792,7 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     location: "Schießstand der Jägerschaft Markröhlitz",
     organizer: "Jagdverein Weißenfels e.V.",
     description:
-      "Der Jagdverein Weißenfels veranstaltete am 26. September 2026 den Pokal Halbautomat für KK- und GK-Selbstladegewehre über 100 Meter. In der vorliegenden Teilauswertung belegte Ronny Schorch von der GSG Eckartsberga mit 381 Ringen den 1. Platz.",
+      "Der Pokal Halbautomat ist ein offener Wettbewerb für KK- und GK-Selbstladegewehre über 100 Meter mit Präzisions- und Duellserien.",
     image: null,
     gallery: [],
     documents: [
@@ -800,13 +800,6 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
         label: "Ausschreibung Pokal Halbautomat 2026",
         url: "assets/documents/events/2026/2026_09_05 Ausschreibung Pokal Halbautomat 2026.pdf",
         type: "announcement"
-      },
-      {
-        label: "Teilergebnis Pokal Halbautomat 2026",
-        url: "assets/documents/events/2026/2026_09_28 Teilergebnis Pokal Halbautomat 2026.jpg",
-        type: "result-list",
-        description:
-          "Vom Auftraggeber bereitgestellter Ausschnitt der Auswertung; keine vollständige Ergebnisliste."
       }
     ],
     downloads: [],

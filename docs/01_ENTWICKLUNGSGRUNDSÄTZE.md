@@ -76,6 +76,19 @@ Verbindlich gilt:
 
 Das GSG-Logo und das Logo des Schützenkreises dürfen niemals ersatzweise für eine Fremdveranstaltung verwendet werden, wenn ihre organisatorische Zuordnung nicht zutrifft. Eine Logoentscheidung darf nicht allein aus Titel, Kategorie oder Vermutung abgeleitet werden; bei unklarer Herkunft bleibt die Darstellung ohne Veranstalterlogo.
 
+### Kurzbeschreibungen und Ergebnisveröffentlichung bei Wettbewerben
+
+Die `description` eines Wettbewerbs enthält ausschließlich eine kurze,
+sachliche Beschreibung der Veranstaltung und ihrer Disziplinen beziehungsweise
+ihres Ablaufs. Namen von Teilnehmenden, Gewinnern, Platzierungen, Ringzahlen und
+andere personenbezogene Einzelergebnisse werden dort nicht genannt.
+
+Ergebnisse werden ausschließlich über gesonderte Ergebnisunterlagen
+veröffentlicht. Unvollständige Ergebnislisten, Ausschnitte oder vorläufige
+Teilergebnisse werden nicht eingebunden. Liegt noch keine vollständige
+offizielle Ergebnisliste vor, bleibt der Ergebnisbereich leer, bis eine solche
+Unterlage verfügbar und geprüft ist.
+
 ### Pflege und Migration zentraler Veranstaltungsorte
 
 `js/data/venues.js` ist die zentrale Stammdatenquelle für wiederkehrende
