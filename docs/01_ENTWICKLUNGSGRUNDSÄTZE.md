@@ -351,6 +351,15 @@ Bevor eine externe Lösung eingeführt wird, sind zu bewerten:
 
 Medien werden in angemessenen Formaten, Größen und Auflösungen bereitgestellt.
 
+Jedes produktiv eingebundene Video erhält ein lokales Posterbild aus einem
+repräsentativen Einzelbild des zugehörigen Videos. Das Poster wird in der
+Medienübersicht und im nativen Player vor Beginn der Wiedergabe verwendet; das
+Video startet weiterhin nicht automatisch. Seitenverhältnis und ein sinnvoller
+Motivausschnitt bleiben erhalten. Externe Poster, frei erfundene Ersatzmotive
+oder eine leere Schwarzfläche sind kein regulärer Veröffentlichungszustand. Eine
+technische Fallbackfläche ist nur für fehlerhafte oder noch unvollständige
+Übergangszustände zulässig.
+
 Produktive Medien werden grundsätzlich lokal aus der Projektstruktur
 ausgeliefert. Externe Medienquellen dürfen nur nach vorheriger technischer und
 datenschutzbezogener Prüfung sowie einer dokumentierten Entscheidung eingebunden

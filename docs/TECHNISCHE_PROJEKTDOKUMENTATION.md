@@ -100,8 +100,10 @@ Die Anwendung verwendet:
 │   │   └── leaflet/
 │   │       └── lokal versionierte Leaflet-1.9.4-Laufzeitdateien und Lizenz
 │   ├── video/
-│   │   └── events/2025/
-│   │       └── zwei lokale MP4-Videos mit lokalen Posterbildern
+│   │   ├── events/2025/
+│   │   │   └── zwei lokale MP4-Videos mit lokalen Posterbildern
+│   │   └── history/
+│   │       └── ein lokales MP4-Video mit lokalem Posterbild
 │   └── img/
 │       ├── hero-eckartsburg.jpg
 │       ├── hero-eckartsburg.png
@@ -817,7 +819,7 @@ Eine eindeutig auflösbare `venueId` hat Vorrang vor einer parallel vorhandenen 
 }
 ```
 
-`src` und `title` sind erforderlich. `poster`, `width` und `height` sind optional. Video- und Posterpfade müssen lokale relative Ziele sein; externe HTTP-/HTTPS-Quellen werden für dieses Modell bewusst verworfen. Der native Player lädt mit `preload="metadata"` nur die zur Darstellung erforderlichen Metadaten vor und startet weder Bild noch Ton automatisch. Poster stammen ausschließlich aus den zugehörigen lokalen Originalvideos.
+`src` und `title` sind technisch erforderlich; `width` und `height` sind optional. Ein lokales `poster` ist für produktiv eingebundene Videos redaktionell verbindlich. Die Normalisierung toleriert ein fehlendes Poster ausschließlich als robusten Übergangszustand. Video- und Posterpfade müssen lokale relative Ziele sein; externe HTTP-/HTTPS-Quellen werden für dieses Modell bewusst verworfen. Der native Player lädt mit `preload="metadata"` nur die zur Darstellung erforderlichen Metadaten vor und startet weder Bild noch Ton automatisch. Poster stammen ausschließlich aus einem repräsentativen Einzelbild des zugehörigen lokalen Originalvideos.
 
 ### 4.5 Dokumente
 
