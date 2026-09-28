@@ -781,6 +781,42 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     featured: false
   },
   {
+    id: 31,
+    slug: "pokal-halbautomat-2026",
+    title: "Pokal Halbautomat 2026",
+    shortTitle: "Pokal Halbautomat",
+    category: "Pokalwettkampf",
+    start: "2026-09-26T09:00:00",
+    end: "2026-09-26T15:00:00",
+    venueId: "jaegerschiessstand-markroehlitz",
+    location: "Schießstand der Jägerschaft Markröhlitz",
+    organizer: "Jagdverein Weißenfels e.V.",
+    description:
+      "Der Jagdverein Weißenfels veranstaltete am 26. September 2026 den Pokal Halbautomat für KK- und GK-Selbstladegewehre über 100 Meter. In der vorliegenden Teilauswertung belegte Ronny Schorch von der GSG Eckartsberga mit 381 Ringen den 1. Platz.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Pokal Halbautomat 2026",
+        url: "assets/documents/events/2026/2026_09_05 Ausschreibung Pokal Halbautomat 2026.pdf",
+        type: "announcement"
+      },
+      {
+        label: "Teilergebnis Pokal Halbautomat 2026",
+        url: "assets/documents/events/2026/2026_09_28 Teilergebnis Pokal Halbautomat 2026.jpg",
+        type: "result-list",
+        description:
+          "Vom Auftraggeber bereitgestellter Ausschnitt der Auswertung; keine vollständige Ergebnisliste."
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 30,
     slug: "herbstpokal-wurfscheibe-2026",
     title: "Herbstpokal Wurfscheibe 2026",
