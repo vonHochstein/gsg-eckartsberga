@@ -124,6 +124,13 @@ Verbindlich gilt:
 12. Diese Venue-Prüfung ist verbindlicher Bestandteil aller zukünftigen
     Event-Migrationspakete.
 
+### Zeitliche Abgrenzung der Veranstaltungsmigration
+
+Das reguläre Veranstaltungsarchiv wird grundsätzlich ab dem Jahr 2024
+migriert. Ältere Veranstaltungen werden nicht als reguläre Eventdatensätze
+übernommen. Historisch bedeutsame Ereignisse können stattdessen nach
+redaktioneller Prüfung als Station in die Vereinsgeschichte integriert werden.
+
 ## 3. Informationen nur einmal pflegen
 
 Für jede fachliche Information soll es genau eine maßgebliche Quelle geben. Weitere Ansichten leiten ihre Ausgabe daraus ab.

@@ -112,6 +112,23 @@ aufgeführten Quellfassungen. Es erfolgten keine Ausschnitte, Retuschen,
 Schärfungen, Kolorierungen oder erneuten verlustbehafteten Kompressionen. Der
 Zeitungsausschnitt von 1996 besitzt tatsächlich das Querformat 1279 × 670.
 
+## Vereinsjubiläum 2022
+
+Die nachfolgenden Medien wurden vom Auftraggeber für die öffentliche Chronik
+bereitgestellt und dem 30-jährigen Vereinsjubiläum von 2022 zugeordnet. Die
+Quelldateien wurden unverändert unter `.local-archive/history/2022-jubilaeum/`
+gesichert; die öffentlichen Arbeitskopien sind byte-identisch. Aus dem
+ursprünglichen Videodateinamen wird kein genauer Veranstaltungstermin
+abgeleitet.
+
+| Medium | Ursprüngliche lokale Datei | Maße / Laufzeit | Größe | SHA-256 | Öffentliche Arbeitskopie |
+|---|---|---:|---:|---|---|
+| Gruppenaufnahme mit Kanone | `01-jubilaeum-30-jahre-gsg-2022.jpg` | 1600 × 1200 | 452163 Bytes | `71b3b0fe5b056bb7d1dec1489d9c369f38a6d257979581312c5d65fa0c6c321c` | `assets/img/history/2022 30 Jahre GSG Eckartsberga Gruppenaufnahme mit Kanone.jpg` |
+| Salutschießen | `02-jubilaeum-30-jahre-gsg-2022.jpg` | 1600 × 1200 | 403216 Bytes | `f760df139c6a100050ef6a833d59f5f5ae386e975f5b7bb001faf937735dd926` | `assets/img/history/2022 30 Jahre GSG Eckartsberga Salutschießen.jpg` |
+| Jagdhornbläser | `03-jubilaeum-30-jahre-gsg-2022.jpg` | 1600 × 1200 | 417472 Bytes | `27176bf92de85451560e778665752dc21783f568c591f1e22cd54594d8bbab6e` | `assets/img/history/2022 30 Jahre GSG Eckartsberga Jagdhornbläser.jpg` |
+| Grußworte | `04-jubilaeum-30-jahre-gsg-2022.jpg` | 1500 × 2000 | 903969 Bytes | `b714c4b2e1c53acc25c055df23f8c27b6881a4c93b45734dab6ba9d129cdf18f` | `assets/img/history/2022 30 Jahre GSG Eckartsberga Grußworte.jpg` |
+| Film vom Salutschießen | `20230902 170026 (1080p_30fps_H264-128kbit_AAC).mp4` | 1920 × 1080 · 8,9 Sekunden | 5224848 Bytes | `439356a6a78ad884b85fb9ec5ee45086d964e05aadea1eb762378789a00d2a8a` | `assets/video/history/2022 30 Jahre GSG Eckartsberga Salutschießen.mp4` |
+
 ## Nicht als Chronikmedien übernommene Dateien
 
 Die auf der bisherigen Seite mehrfach verwendeten Vereinslogos sowie das
