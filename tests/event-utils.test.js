@@ -2375,8 +2375,8 @@ test("Eckartsburg-Pokal 2026 ist quellengetreu und detailfähig hinterlegt", () 
   );
   assert.deepEqual(JSON.parse(JSON.stringify(event.documents)), [
     {
-      label: "Ausschreibung Eckartsburg-Pokal 2026",
-      url: "assets/documents/events/2026/2026_08_14 Ausschreibung Eckartsburg-Pokal 2026.pdf",
+      label: "Einladung Eckartsburg-Pokal 2026",
+      url: "assets/documents/events/2026/2026_08_14 Einladung Eckartsburg-Pokal 2026.pdf",
       type: "invitation"
     },
     {
