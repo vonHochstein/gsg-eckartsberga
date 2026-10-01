@@ -78,6 +78,35 @@ const productionEvents = [
     featured: false
   },
   {
+    id: 33,
+    slug: "km-luftgewehr-luftpistole-2025",
+    title: 'Kreismeisterschaft SK "SUED" Luftgewehr/Luftpistole 2025',
+    shortTitle: "KM Luftgewehr/Luftpistole 2025",
+    category: "Kreismeisterschaft",
+    start: "2024-11-30T09:00:00",
+    end: "2024-11-30T16:00:00",
+    location: "Schießstand Großkaliberschützengilde Eckartsberga",
+    organizer: 'Schützenkreis "SUED"',
+    host: "Großkaliberschützengilde Eckartsberga",
+    description:
+      "Der Schützenkreis SUED veranstaltete am 30. November 2024 die Kreismeisterschaft Luftgewehr/Luftpistole 2025 auf dem Schießstand der GSG Eckartsberga. Ausgetragen wurden Einzel- und Mannschaftswertungen mit Luftgewehr und Luftpistole, jeweils frei und aufgelegt.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ergebnisprotokoll Kreismeisterschaft Luftgewehr/Luftpistole 2025",
+        url: "assets/documents/events/2024/2024_11_30 Ergebnisprotokoll Kreismeisterschaft Luftgewehr-Luftpistole 2025.pdf",
+        type: "result-list"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 21,
     slug: "elchschiessen-2025",
     title: "Elchschießen 2025",
