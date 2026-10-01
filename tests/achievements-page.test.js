@@ -144,8 +144,9 @@ test("stellt die statische Erfolgsseite im bestehenden Detailseitenrahmen bereit
 
   assert.equal(countMatches(html, /<h1\b/gi), 1);
   assert.match(html, /<h1 id="achievements-title">Erfolge<\/h1>/);
+  assert.match(html, /<h2 id="sporting-title">Sportliche Erfolge<\/h2>/);
   assert.match(html, /<h2 id="royal-title">Schützenkönige<\/h2>/);
-  assert.equal(countMatches(html, /class="event-section"/g), 1);
+  assert.equal(countMatches(html, /class="event-section"/g), 2);
   assert.match(html, /<body class="event-detail-page">/);
   assert.match(html, /class="event-back-link" href="index\.html#verein"/);
   assert.match(html, /<link rel="stylesheet" href="style\.css" \/>/);
@@ -159,7 +160,7 @@ test("führt zehn überlieferte Schützenkönige in absteigender Reihenfolge", (
   let previousPosition = -1;
 
   assert.equal(countMatches(html, /class="achievement-card"/g), 10);
-  assert.equal(countMatches(html, /data-gallery-index="\d+"/g), 10);
+  assert.equal(countMatches(html, /data-gallery-index="\d+"/g), 13);
 
   achievements.forEach(({ year, role, name }, index) => {
     const id = `schuetzenkoenig-${year}`;
@@ -169,7 +170,7 @@ test("führt zehn überlieferte Schützenkönige in absteigender Reihenfolge", (
     assert.equal(countMatches(html, new RegExp(`id="${id}"`, "g")), 1);
     assert.match(html, new RegExp(`${role} ${year}`));
     assert.match(html, new RegExp(name));
-    assert.match(html, new RegExp(`data-gallery-index="${index}"`));
+    assert.match(html, new RegExp(`data-gallery-index="${index + 3}"`));
     previousPosition = position;
   });
 
@@ -209,14 +210,14 @@ test("verwendet die gemeinsame Lightbox genau einmal", () => {
   assert.doesNotMatch(html, /event-detail\.js|gallery\.js/);
 });
 
-test("stellt die Porträts vollständig und responsiv im Kartenraster dar", () => {
+test("stellt die Porträts einheitlich und responsiv im Kartenraster dar", () => {
   const css = readProjectFile(achievementsCssPath);
 
   assert.match(
     css,
     /\.achievements-grid\s*\{[^}]*grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\);/s
   );
-  assert.match(css, /\.achievement-card-open img\s*\{[^}]*object-fit:\s*contain;/s);
+  assert.match(css, /\.achievement-card-open img\s*\{[^}]*object-fit:\s*cover;/s);
   assert.match(
     css,
     /@media \(max-width: 1024px\)[\s\S]*?\.achievements-grid\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/
