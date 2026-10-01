@@ -160,7 +160,7 @@ test("führt zehn überlieferte Schützenkönige in absteigender Reihenfolge", (
   let previousPosition = -1;
 
   assert.equal(countMatches(html, /class="achievement-card"/g), 10);
-  assert.equal(countMatches(html, /data-gallery-index="\d+"/g), 13);
+  assert.equal(countMatches(html, /data-gallery-index="\d+"/g), 16);
 
   achievements.forEach(({ year, role, name }, index) => {
     const id = `schuetzenkoenig-${year}`;
@@ -170,7 +170,7 @@ test("führt zehn überlieferte Schützenkönige in absteigender Reihenfolge", (
     assert.equal(countMatches(html, new RegExp(`id="${id}"`, "g")), 1);
     assert.match(html, new RegExp(`${role} ${year}`));
     assert.match(html, new RegExp(name));
-    assert.match(html, new RegExp(`data-gallery-index="${index + 3}"`));
+    assert.match(html, new RegExp(`data-gallery-index="${index + 6}"`));
     previousPosition = position;
   });
 

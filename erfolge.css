@@ -8,6 +8,12 @@
   scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
+.sport-achievement + .sport-achievement {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
 .sport-achievement-header {
   max-width: 860px;
 }
@@ -137,6 +143,11 @@
 }
 
 @media (max-width: 600px) {
+  .sport-achievement + .sport-achievement {
+    margin-top: 36px;
+    padding-top: 36px;
+  }
+
   .sport-achievement-results,
   .achievements-grid {
     grid-template-columns: 1fr;

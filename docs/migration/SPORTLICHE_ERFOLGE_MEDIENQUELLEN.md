@@ -20,3 +20,27 @@ Interne Archivablage:
 Fotografen, genaue Aufnahmezeitpunkte und weitergehende Provenienzangaben sind
 nicht bekannt. Die Bilder werden unverändert eingebunden; Zuschnitte entstehen
 nur in der responsiven Vorschau durch die bestehende CSS-Darstellung.
+
+## Thüringer Landesmeisterschaft 2023
+
+Die drei Bilder stammen aus dem öffentlich zugänglichen Eintrag der bisherigen
+GSG-Website. Gesichert wurden jeweils die bestmöglich erreichbaren
+Jimdo-Varianten mit `transf/none`. Die drei zusätzlich auf der Altseite
+verlinkten 25 × 25 Pixel großen Fassungen sind lediglich Miniaturen derselben
+Motive und wurden nicht als eigenständige Medien übernommen. Öffentliche Datei
+und interne Archivkopie sind jeweils SHA-256-identisch.
+
+| Öffentliche Datei | Jimdo-Quelle | Format und Maße | SHA-256 |
+|---|---|---|---|
+| `assets/img/achievements/2023-thueringer-landesmeisterschaft/2023 Thüringer Landesmeisterschaft Frank Pilz.jpg` | `https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/i16dac93fc301b610/version/1684045359/image.jpg` | JPEG · 269 × 805 · 68.336 Byte | `7f992133b440f832f31526f64987594bf4d6ac1b5ca0faa67da7f36ddcb2b279` |
+| `assets/img/achievements/2023-thueringer-landesmeisterschaft/2023 Thüringer Landesmeisterschaft Medaillen und Urkunden.jpg` | `https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/i50803ff3c66708d9/version/1684045359/image.jpg` | JPEG · 1080 × 1920 · 967.159 Byte | `aa803da0142d9d19d866bfada4cff2aa01050791401ffbcce1044571675df67b` |
+| `assets/img/achievements/2023-thueringer-landesmeisterschaft/2023 Thüringer Landesmeisterschaft Trefferbild.jpg` | `https://image.jimcdn.com/app/cms/image/transf/none/path/s224a23ebc6aaf13f/image/ib4c4135232ecbf94/version/1684045359/image.jpg` | JPEG · 1536 × 2048 · 138.111 Byte | `4358255d251f5e7c329644b66e2e297023b12a1b3c11d9fcebbf230b895e7311` |
+
+Interne Archivablage:
+`.local-archive/achievements/sporting-successes/jimdo-transf-none/`
+
+Die Altseite belegt zwei erste Plätze von Frank Pilz bei der Thüringer
+Landesmeisterschaft 2023, nennt jedoch weder die Disziplinen noch ein genaues
+Datum oder einen Austragungsort. Diese Angaben werden deshalb nicht ergänzt.
+Fotografen und weitergehende Provenienzangaben sind nicht bekannt. Die Bilder
+werden unverändert eingebunden.
