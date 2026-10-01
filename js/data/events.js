@@ -405,15 +405,15 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
       },
       {
         src: "assets/img/events/2025/2025_08_29 Königsschießen 2025 Teilnehmer mit Schützenadler.jpg",
-        alt: "Ein Teilnehmer hält den bemalten Schützenadler.",
-        caption: "Ein Teilnehmer mit dem Schützenadler nach dem Königsschießen 2025.",
+        alt: "Schützenkönig Steffen Ackermann hält den bemalten Schützenadler.",
+        caption: "Schützenkönig Steffen Ackermann mit dem Schützenadler nach dem Königsschießen 2025.",
         width: 2048,
         height: 2048
       },
       {
         src: "assets/img/events/2025/2025_09_06 Tag der offenen Tür 2025 Schützenkönigsscheibe.jpg",
-        alt: "Drei Personen präsentieren die Schützenkönigsscheibe 2025.",
-        caption: "Präsentation der Schützenkönigsscheibe 2025.",
+        alt: "Präsentation der Schützenscheibe 2025.",
+        caption: "Präsentation der Schützenscheibe 2025.",
         width: 923,
         height: 2048
       },
@@ -426,8 +426,8 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
       },
       {
         src: "assets/img/events/2025/2025_09_06 Tag der offenen Tür 2025 ausgestellte Schusswaffen.jpg",
-        alt: "Historische Lang- und Kurzwaffen liegen auf einem Ausstellungstisch.",
-        caption: "Ausgestellte historische Schusswaffen beim Tag der offenen Tür 2025.",
+        alt: "Handböller liegen auf einem Ausstellungstisch.",
+        caption: "Ausgestellte Handböller beim Tag der offenen Tür 2025.",
         width: 2040,
         height: 1530
       }
