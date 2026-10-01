@@ -101,10 +101,10 @@ function loadVenueData() {
   return context.eventVenueSnapshot;
 }
 
-test("liefert die vier zentralen Orte als gültige Kartenorte", () => {
+test("liefert die fünf zentralen Orte als gültige Kartenorte", () => {
   const venues = Array.from(loadVenueData());
 
-  assert.equal(venues.length, 4);
+  assert.equal(venues.length, 5);
   assert.deepEqual(normalizeVenues(venues), [
     {
       id: "jaegerschiessstand-markroehlitz",
@@ -131,6 +131,13 @@ test("liefert die vier zentralen Orte als gültige Kartenorte", () => {
       description: "Kammerforststraße",
       latitude: 51.22738,
       longitude: 11.37409
+    },
+    {
+      id: "grosskaliberschiessstand-bottendorf",
+      name: "Großkaliberschießstandanlage Bottendorf",
+      description: "Am Pfaffenrainweg in der Gemarkung Bottendorf",
+      latitude: 51.32137,
+      longitude: 11.39606
     }
   ]);
   assert.deepEqual(

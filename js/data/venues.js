@@ -32,5 +32,12 @@ const eventVenues = [
     description: "Kammerforststraße",
     latitude: 51.22738,
     longitude: 11.37409
+  },
+  {
+    id: "grosskaliberschiessstand-bottendorf",
+    name: "Großkaliberschießstandanlage Bottendorf",
+    description: "Am Pfaffenrainweg in der Gemarkung Bottendorf",
+    latitude: 51.32137,
+    longitude: 11.39606
   }
 ];

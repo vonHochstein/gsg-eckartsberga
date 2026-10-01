@@ -839,6 +839,36 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     featured: false
   },
   {
+    id: 32,
+    slug: "truthahn-und-bueffelschiessen-2026",
+    title: "Truthahn- und Büffelschießen 2026",
+    shortTitle: "Truthahn- und Büffelschießen",
+    category: "Schießwettkampf",
+    start: "2026-10-17T09:00:00",
+    venueId: "grosskaliberschiessstand-bottendorf",
+    location:
+      "Großkaliberschießstandanlage am Pfaffenrainweg, Bottendorf",
+    organizer: "Großkaliberschützenverein Bottendorf 1991 e.V.",
+    host: "Großkaliberschützenverein Bottendorf 1991 e.V.",
+    description:
+      "Das Truthahn- und Büffelschießen ist ein Schießwettbewerb mit Ordonnanzgewehr, Vorderlader, Sharps und Rolling Block, Unterhebelrepetierer sowie GK-Pistole und Revolver auf Fallplatten.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Truthahn- und Büffelschießen 2026",
+        url: "assets/documents/events/2026/2026_10_17 Ausschreibung Truthahn- und Büffelschießen 2026.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 30,
     slug: "herbstpokal-wurfscheibe-2026",
     title: "Herbstpokal Wurfscheibe 2026",
