@@ -103,7 +103,7 @@ test("reserviert Beschreibung und Navigation unabhängig vom Medienformat", () =
   });
   assert.match(
     eventCss,
-    /\.event-lightbox-viewport\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;[^}]*min-height:\s*0;[^}]*place-items:\s*end center;/s
+    /\.event-lightbox-viewport\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;[^}]*min-height:\s*0;[^}]*place-items:\s*center;/s
   );
   assert.match(
     eventCss,
