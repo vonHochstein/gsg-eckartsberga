@@ -231,10 +231,12 @@ die zugehörigen Chronikstationen.
 #### `vorstand.html`
 
 Die statische Unterseite stellt Vorstand und weitere Ansprechpartner fachlich
-getrennt dar. Sie verwendet ohne eigenes Stylesheet den Seitenrahmen, den
-Rücklink, den Hero, die Abschnittscontainer und das Faktenkartenraster aus
-`event.css`. Die vorhandene Startseitenkarte „Ansprechpartner“ ist der einzige
-neue Einstieg; Header und Footer wurden nicht um einen weiteren Link ergänzt.
+getrennt dar. Sie verwendet wie Geschichts-, Anlagen- und Gästebuchseite einen
+flächigen dunklen Seitenkopf sowie frei gegliederte Inhaltsbereiche auf dem
+hellen Seitenhintergrund. Die Funktionen und Namen stehen in einem
+seitenspezifischen, responsiven Listenraster ohne Eventkartenrahmen. Die
+vorhandene Startseitenkarte „Ansprechpartner“ bleibt der einzige Einstieg;
+Header und Footer wurden nicht um einen weiteren Link ergänzt.
 
 Die erste Fassung enthält ausschließlich bestätigte Funktionen und Namen. Sie
 veröffentlicht weder Porträtbilder noch direkte Kontaktdaten, Karte oder Anfahrt
@@ -243,11 +245,12 @@ das mobile Menü, `js/main.js` aktualisiert die Jahreszahl im Footer.
 
 #### `erfolge.html`
 
-Die statische Erfolgsseite verwendet denselben Detailseitenrahmen wie die
-Vorstands- und Veranstaltungsseiten. Ihre erste Fassung stellt ausschließlich
-die zehn auf der bisherigen Vereinswebsite dokumentierten Schützenkönige und
-die Schützenkönigin aus den Jahren 2016 bis 2026 dar; für 2018 existiert kein
-überlieferter Eintrag und kein Platzhalter.
+Die statische Erfolgsseite verwendet wie Geschichts-, Anlagen-, Gästebuch- und
+Vorstandsseite einen flächigen dunklen Seitenkopf und frei gegliederte
+Inhaltsbereiche statt des Veranstaltungsdetailrahmens. Sie stellt ausgewählte
+sportliche Erfolge sowie die zehn auf der bisherigen Vereinswebsite
+dokumentierten Schützenkönige und die Schützenkönigin aus den Jahren 2016 bis
+2026 dar; für 2018 existiert kein überlieferter Eintrag und kein Platzhalter.
 
 Die Aufnahmen erscheinen in einem responsiven Raster vollständig und
 unbeschnitten. Jede Kachel öffnet über `js/gallery-lightbox.js` dieselbe native

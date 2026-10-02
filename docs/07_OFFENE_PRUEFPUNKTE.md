@@ -156,10 +156,9 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-16 – Kopfgestaltung von Erfolgs- und Vorstandsseite
 
-- **Status:** Offen
-- **Frage:** Wie werden die Kopfbereiche von `erfolge.html` und `vorstand.html` an die Gestaltung von `geschichte.html` als verbindliche Referenz angeglichen?
-- **Zu prüfen:** Integrierte Überschrift und farbliche Hintergrundabsetzung der Geschichtsseite mit den derzeitigen kartenartigen Eventseiten-Köpfen vergleichen; bestehende Komponenten und Designregeln vorrangig wiederverwenden.
-- **Abschlusskriterium:** Abgenommenes gemeinsames Kopfkonzept für Erfolgs- und Vorstandsseite, das sich sichtbar an `geschichte.html` orientiert, ohne die übrigen Seitenstrukturen unnötig zu verändern.
+- **Status:** Entschieden
+- **Entscheidung:** `erfolge.html` und `vorstand.html` verwenden den flächigen dunklen Seitenkopf sowie die frei gegliederten Inhaltsbereiche der Geschichts-, Anlagen- und Gästebuchseiten. Der kartenartige Kopf- und Inhaltsrahmen bleibt echten Veranstaltungsdetailseiten vorbehalten.
+- **Abschlusskriterium:** Durch die gemeinsame Umstellung beider Seiten umgesetzt; Veranstaltungsseiten und übrige Unterseiten bleiben unverändert.
 
 ### P-17 – Fokuspositionen der Schützenkönig-Bilder in der Startseitengalerie
 

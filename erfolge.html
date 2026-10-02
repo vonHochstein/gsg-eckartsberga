@@ -23,6 +23,7 @@
   <link rel="icon" type="image/png" href="assets/img/logo-gsg-eckartsberga.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="event.css" />
+  <link rel="stylesheet" href="geschichte.css" />
   <link rel="stylesheet" href="erfolge.css" />
 
   <script src="js/navigation.js" defer></script>
@@ -30,10 +31,10 @@
   <script src="js/main.js" defer></script>
 </head>
 
-<body class="event-detail-page">
+<body class="history-page achievements-page">
   <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
 
-  <header class="site-header">
+  <header class="site-header history-site-header">
     <a
       href="index.html#start"
       class="brand"
@@ -68,23 +69,26 @@
     </nav>
   </header>
 
-  <main id="main-content" class="event-main">
-    <article class="event-detail" aria-labelledby="achievements-title">
-      <a class="event-back-link" href="index.html#verein">
-        <span aria-hidden="true">←&nbsp;</span>
-        Zurück zum Verein
-      </a>
+  <main id="main-content">
+    <header class="history-hero">
+      <div class="history-hero-inner">
+        <a class="event-back-link" href="index.html#verein">
+          <span aria-hidden="true">←&nbsp;</span>
+          Zurück zum Verein
+        </a>
+        <p class="history-eyebrow">Unser Verein</p>
+        <h1 id="achievements-title">Erfolge</h1>
+        <p class="history-intro">
+          Sportliche Erfolge und die dokumentierten Schützenkönige erzählen von
+          besonderen Leistungen und gelebter Tradition in der GSG Eckartsberga.
+        </p>
+      </div>
+    </header>
 
-      <header class="event-hero">
-        <div class="event-hero-layout">
-          <div class="event-hero-copy">
-            <h1 id="achievements-title">Erfolge</h1>
-          </div>
-        </div>
-      </header>
-
-      <div class="event-content" data-gallery-lightbox>
-        <section class="event-section" aria-labelledby="sporting-title">
+    <section class="achievements-overview" aria-label="Erfolge der GSG Eckartsberga">
+      <div class="history-content achievements-content" data-gallery-lightbox>
+        <section class="achievements-section" aria-labelledby="sporting-title">
+          <p class="section-kicker">Wettbewerbe</p>
           <h2 id="sporting-title">Sportliche Erfolge</h2>
 
           <article
@@ -340,7 +344,8 @@
           </article>
         </section>
 
-        <section class="event-section" aria-labelledby="royal-title">
+        <section class="achievements-section" aria-labelledby="royal-title">
+          <p class="section-kicker">Vereinstradition</p>
           <h2 id="royal-title">Schützenkönige</h2>
 
           <div class="achievements-grid">
@@ -576,7 +581,7 @@
           </div>
         </section>
       </div>
-    </article>
+    </section>
   </main>
 
   <dialog

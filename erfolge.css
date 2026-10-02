@@ -2,6 +2,27 @@
    SPORTLICHE ERFOLGE
 ========================================== */
 
+.achievements-overview {
+  padding: 96px 32px;
+}
+
+.achievements-section h2 {
+  max-width: 850px;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.08;
+}
+
+.achievements-section + .achievements-section {
+  margin-top: 76px;
+  padding-top: 76px;
+  border-top: 1px solid rgba(126, 94, 40, 0.22);
+}
+
+.achievements-section h2 + .sport-achievement,
+.achievements-section h2 + .achievements-grid {
+  margin-top: 44px;
+}
+
 .sport-achievement {
   display: grid;
   gap: 28px;
@@ -142,6 +163,17 @@
   }
 }
 
+@media (max-width: 820px) {
+  .achievements-overview {
+    padding: 72px 22px;
+  }
+
+  .achievements-section + .achievements-section {
+    margin-top: 58px;
+    padding-top: 58px;
+  }
+}
+
 @media (max-width: 600px) {
   .sport-achievement + .sport-achievement {
     margin-top: 36px;
@@ -151,5 +183,16 @@
   .sport-achievement-results,
   .achievements-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievements-overview {
+    padding: 58px 16px;
+  }
+
+  .achievements-section + .achievements-section {
+    margin-top: 48px;
+    padding-top: 48px;
   }
 }

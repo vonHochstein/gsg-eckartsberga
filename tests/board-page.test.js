@@ -7,6 +7,7 @@ const path = require("node:path");
 
 const projectRoot = path.resolve(__dirname, "..");
 const boardPath = path.join(projectRoot, "vorstand.html");
+const boardCssPath = path.join(projectRoot, "vorstand.css");
 const indexPath = path.join(projectRoot, "index.html");
 
 function readProjectFile(filePath) {
@@ -26,22 +27,26 @@ function getNavigationMarkup(html, className) {
   return html.match(pattern)?.[0] ?? "";
 }
 
-test("stellt die statische Vorstandsseite mit dem bestehenden Detailseitenrahmen bereit", () => {
+test("stellt die Vorstandsseite im etablierten statischen Unterseitenrahmen bereit", () => {
   assert.equal(fs.existsSync(boardPath), true);
+  assert.equal(fs.existsSync(boardCssPath), true);
 
   const boardHtml = readProjectFile(boardPath);
 
   assert.equal(countMatches(boardHtml, /<h1\b/gi), 1);
   assert.match(boardHtml, /<h1 id="board-title">Vorstand und Ansprechpartner<\/h1>/);
-  assert.match(boardHtml, /<body class="event-detail-page">/);
-  assert.match(boardHtml, /<main id="main-content" class="event-main">/);
+  assert.match(boardHtml, /<body class="history-page board-page">/);
+  assert.match(boardHtml, /<main id="main-content">/);
   assert.match(boardHtml, /class="event-back-link" href="index\.html#verein"/);
-  assert.match(boardHtml, /class="event-hero"/);
-  assert.match(boardHtml, /class="event-content"/);
-  assert.equal(countMatches(boardHtml, /class="event-section"/g), 2);
+  assert.match(boardHtml, /class="site-header history-site-header"/);
+  assert.match(boardHtml, /class="history-hero"/);
+  assert.match(boardHtml, /class="board-overview"/);
+  assert.equal(countMatches(boardHtml, /class="board-section"/g), 2);
+  assert.doesNotMatch(boardHtml, /class="(?:event-detail|event-hero|event-content|event-section)"/);
   assert.match(boardHtml, /<link rel="stylesheet" href="style\.css" \/>/);
   assert.match(boardHtml, /<link rel="stylesheet" href="event\.css" \/>/);
-  assert.doesNotMatch(boardHtml, /vorstand\.css/);
+  assert.match(boardHtml, /<link rel="stylesheet" href="geschichte\.css" \/>/);
+  assert.match(boardHtml, /<link rel="stylesheet" href="vorstand\.css" \/>/);
 });
 
 test("trennt Vorstand und weitere Ansprechpartner fachlich", () => {
@@ -60,7 +65,7 @@ test("trennt Vorstand und weitere Ansprechpartner fachlich", () => {
     boardHtml,
     /<h2 id="additional-contacts-title">Weitere Ansprechpartner<\/h2>/
   );
-  assert.equal(countMatches(boardHtml, /class="event-fact"/g), 6);
+  assert.equal(countMatches(boardHtml, /class="board-member"/g), 6);
 
   people.forEach(([role, name]) => {
     assert.equal(countMatches(boardHtml, new RegExp(role, "g")), 1);
@@ -68,10 +73,10 @@ test("trennt Vorstand und weitere Ansprechpartner fachlich", () => {
   });
 
   const boardSection = boardHtml.match(
-    /<section class="event-section" aria-labelledby="board-members-title">[\s\S]*?<\/section>/
+    /<section class="board-section">[\s\S]*?<\/section>/
   )?.[0] ?? "";
   const contactsSection = boardHtml.match(
-    /<section class="event-section" aria-labelledby="additional-contacts-title">[\s\S]*?<\/section>/
+    /<section class="board-section" aria-labelledby="additional-contacts-title">[\s\S]*?<\/section>/
   )?.[0] ?? "";
 
   assert.match(boardSection, /Roland Matthes/);

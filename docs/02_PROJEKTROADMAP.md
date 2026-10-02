@@ -129,7 +129,6 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - Zugänglichkeit mit spezialisierten Prüfwerkzeugen vertiefend kontrollieren;
 - Kontraste und Textskalierung formal prüfen;
 - neu hinzukommende Komponenten mit Tastatur und unterstützenden Technologien prüfen;
-- Kopfbereiche von Erfolgs- und Vorstandsseite anhand der Geschichtsseite vereinheitlichen;
 
 ### Abschnitt 7: Technische Stabilisierung
 

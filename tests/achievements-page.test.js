@@ -136,7 +136,7 @@ function getNavigationMarkup(html, className) {
   return html.match(pattern)?.[0] ?? "";
 }
 
-test("stellt die statische Erfolgsseite im bestehenden Detailseitenrahmen bereit", () => {
+test("stellt die Erfolgsseite im etablierten statischen Unterseitenrahmen bereit", () => {
   assert.equal(fs.existsSync(achievementsPath), true);
   assert.equal(fs.existsSync(achievementsCssPath), true);
 
@@ -146,11 +146,16 @@ test("stellt die statische Erfolgsseite im bestehenden Detailseitenrahmen bereit
   assert.match(html, /<h1 id="achievements-title">Erfolge<\/h1>/);
   assert.match(html, /<h2 id="sporting-title">Sportliche Erfolge<\/h2>/);
   assert.match(html, /<h2 id="royal-title">Schützenkönige<\/h2>/);
-  assert.equal(countMatches(html, /class="event-section"/g), 2);
-  assert.match(html, /<body class="event-detail-page">/);
+  assert.equal(countMatches(html, /class="achievements-section"/g), 2);
+  assert.match(html, /<body class="history-page achievements-page">/);
   assert.match(html, /class="event-back-link" href="index\.html#verein"/);
+  assert.match(html, /class="site-header history-site-header"/);
+  assert.match(html, /class="history-hero"/);
+  assert.match(html, /class="achievements-overview"/);
+  assert.doesNotMatch(html, /class="(?:event-detail|event-hero|event-content|event-section)"/);
   assert.match(html, /<link rel="stylesheet" href="style\.css" \/>/);
   assert.match(html, /<link rel="stylesheet" href="event\.css" \/>/);
+  assert.match(html, /<link rel="stylesheet" href="geschichte\.css" \/>/);
   assert.match(html, /<link rel="stylesheet" href="erfolge\.css" \/>/);
   assert.doesNotMatch(html, /Besondere Erfolge|Wettkampferfolge/);
 });

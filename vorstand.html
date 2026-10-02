@@ -23,15 +23,17 @@
   <link rel="icon" type="image/png" href="assets/img/logo-gsg-eckartsberga.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="event.css" />
+  <link rel="stylesheet" href="geschichte.css" />
+  <link rel="stylesheet" href="vorstand.css" />
 
   <script src="js/navigation.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 
-<body class="event-detail-page">
+<body class="history-page board-page">
   <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
 
-  <header class="site-header">
+  <header class="site-header history-site-header">
     <a
       href="index.html#start"
       class="brand"
@@ -66,59 +68,63 @@
     </nav>
   </header>
 
-  <main id="main-content" class="event-main">
-    <article class="event-detail" aria-labelledby="board-title">
-      <a class="event-back-link" href="index.html#verein">
-        <span aria-hidden="true">←&nbsp;</span>
-        Zurück zum Verein
-      </a>
+  <main id="main-content">
+    <header class="history-hero">
+      <div class="history-hero-inner">
+        <a class="event-back-link" href="index.html#verein">
+          <span aria-hidden="true">←&nbsp;</span>
+          Zurück zum Verein
+        </a>
+        <p class="history-eyebrow">Unser Verein</p>
+        <h1 id="board-title">Vorstand und Ansprechpartner</h1>
+        <p class="history-intro">
+          Der Vorstand und weitere Ansprechpartner übernehmen Verantwortung
+          für das Vereinsleben und die sportliche Arbeit der GSG Eckartsberga.
+        </p>
+      </div>
+    </header>
 
-      <header class="event-hero">
-        <div class="event-hero-layout">
-          <div class="event-hero-copy">
-            <h1 id="board-title">Vorstand und Ansprechpartner</h1>
-          </div>
-        </div>
-      </header>
-
-      <div class="event-content">
-        <section class="event-section" aria-labelledby="board-members-title">
+    <section class="board-overview" aria-labelledby="board-members-title">
+      <div class="history-content board-content">
+        <section class="board-section">
+          <p class="section-kicker">Vereinsleitung</p>
           <h2 id="board-members-title">Vorstand</h2>
-          <ul class="event-facts">
-            <li class="event-fact">
-              <span class="event-fact-label">Vorstandsvorsitzender</span>
-              <strong class="event-fact-value">Roland Matthes</strong>
+          <ul class="board-members">
+            <li class="board-member">
+              <span class="board-role">Vorstandsvorsitzender</span>
+              <strong class="board-name">Roland Matthes</strong>
             </li>
-            <li class="event-fact">
-              <span class="event-fact-label">Stellvertretender Vorsitzender</span>
-              <strong class="event-fact-value">Steffen Ackermann</strong>
+            <li class="board-member">
+              <span class="board-role">Stellvertretender Vorsitzender</span>
+              <strong class="board-name">Steffen Ackermann</strong>
             </li>
-            <li class="event-fact">
-              <span class="event-fact-label">Kassenwart</span>
-              <strong class="event-fact-value">Theobald Schneider</strong>
+            <li class="board-member">
+              <span class="board-role">Kassenwart</span>
+              <strong class="board-name">Theobald Schneider</strong>
             </li>
-            <li class="event-fact">
-              <span class="event-fact-label">Sportwart</span>
-              <strong class="event-fact-value">Gerfried Barth</strong>
+            <li class="board-member">
+              <span class="board-role">Sportwart</span>
+              <strong class="board-name">Gerfried Barth</strong>
             </li>
-            <li class="event-fact">
-              <span class="event-fact-label">Schriftführer</span>
-              <strong class="event-fact-value">Tommy Seeber</strong>
+            <li class="board-member">
+              <span class="board-role">Schriftführer</span>
+              <strong class="board-name">Tommy Seeber</strong>
             </li>
           </ul>
         </section>
 
-        <section class="event-section" aria-labelledby="additional-contacts-title">
+        <section class="board-section" aria-labelledby="additional-contacts-title">
+          <p class="section-kicker">Weitere Funktion</p>
           <h2 id="additional-contacts-title">Weitere Ansprechpartner</h2>
-          <ul class="event-facts">
-            <li class="event-fact">
-              <span class="event-fact-label">Sachkundeprüfer</span>
-              <strong class="event-fact-value">Hubert Schorch</strong>
+          <ul class="board-members">
+            <li class="board-member">
+              <span class="board-role">Sachkundeprüfer</span>
+              <strong class="board-name">Hubert Schorch</strong>
             </li>
           </ul>
         </section>
       </div>
-    </article>
+    </section>
   </main>
 
   <footer class="site-footer">
