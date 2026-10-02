@@ -235,7 +235,10 @@ test("verlinkt die sichtbar unveränderte Erfolgskarte", () => {
   )?.[0] ?? "";
 
   assert.notEqual(cardMarkup, "");
-  assert.match(cardMarkup, /<div class="highlight-icon" aria-hidden="true">🏆<\/div>/);
+  assert.match(
+    cardMarkup,
+    /<div class="highlight-icon" aria-hidden="true">\s*<svg\b/
+  );
   assert.match(cardMarkup, /<h3>Erfolge<\/h3>/);
   assert.match(
     cardMarkup,

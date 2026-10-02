@@ -150,7 +150,10 @@ test("verlinkt die sichtbar unveränderte Anlagenkarte", () => {
   )?.[0] ?? "";
 
   assert.notEqual(cardMarkup, "");
-  assert.match(cardMarkup, /<div class="highlight-icon" aria-hidden="true">🏡<\/div>/);
+  assert.match(
+    cardMarkup,
+    /<div class="highlight-icon" aria-hidden="true">\s*<svg\b/
+  );
   assert.match(cardMarkup, /<h3>Schießbahnen & Vereinshaus<\/h3>/);
   assert.match(
     cardMarkup,
