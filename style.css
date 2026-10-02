@@ -1737,7 +1737,7 @@ html[data-development-data="active"] .site-footer {
 
 .footer-nav {
   display: grid;
-  grid-template-columns: repeat(8, max-content);
+  grid-template-columns: repeat(9, max-content);
   align-items: stretch;
   justify-content: center;
   margin: 0 auto;
@@ -2006,6 +2006,11 @@ html[data-development-data="active"] .site-footer {
 
   .footer-nav a:nth-child(even) {
     border-left: 1px solid rgba(214, 168, 79, 0.3);
+  }
+
+  .footer-nav a:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    border-left: 0;
   }
 }
 

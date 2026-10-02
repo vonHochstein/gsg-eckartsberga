@@ -23,10 +23,10 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
   der GSG und verbandlicher Einordnung von Deutschem Schützenbund,
   Landesschützenverband Sachsen-Anhalt und Kreisschützenverband Burgenlandkreis -
   Weißenfels Schützenkreis SUED Sachsen-Anhalt e.V.; die bestehenden Planungen zu
-  Logos und offiziellen Linkzielen von DSB und Landesschützenverband bleiben
-  maßgeblich, während Darstellung, Logo, Verlinkung und weitere Inhalte des
-  Kreisschützenverbandes erst im späteren Schießsport-Paket geprüft und festgelegt
-  werden;
+  Logos von DSB und Landesschützenverband bleiben maßgeblich. Die Serviceseite
+  verlinkt bereits das offizielle Kreisverbandsverzeichnis des Landesverbandes;
+  eine weitergehende Darstellung, ein Logo und zusätzliche Inhalte des
+  Kreisschützenverbandes werden erst im späteren Schießsport-Paket geprüft;
 - ausgewählte besondere Wettkampferfolge und Leistungen ergänzen;
 - Sponsorenübersicht;
 - Übersicht befreundeter Vereine;

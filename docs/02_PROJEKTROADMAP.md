@@ -26,6 +26,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - eigenständige Erfolgsseite mit den zehn von der bisherigen Vereinswebsite überlieferten Schützenkönig-Einträgen und gemeinsamer Lightbox;
 - eigenständige Seite für Schießbahnen und Vereinshaus mit bestätigten Nutzungsangaben und vier freigegebenen Anlagenaufnahmen;
 - eigenständige Gästebuchseite mit zentralem Veröffentlichungsmodell, verständlichem Leerzustand und datengetriebenem Startseiten-Teaser;
+- eigenständige Serviceseite mit sechs ausgewählten offiziellen Anlaufstellen für Region, Verwaltung und Sport;
 - eigenständige Datenschutzseite für den tatsächlichen und verbindlich geplanten Produktionszustand;
 - eigenständiges Impressum mit bestätigten Anbieter-, Vertretungs- und Registerangaben;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
@@ -37,6 +38,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 
 - feststehender Header;
 - mobile Navigation;
+- Service als gemeinsames Hauptnavigationsziel sowie „Service & Links“ in der Footer-Sekundärnavigation aller Seiten;
 - Schließen des Menüs per Linkauswahl, Außenklick und Escape;
 - kompakter Header beim Scrollen;
 - automatisch wechselnde Galerievorschau;

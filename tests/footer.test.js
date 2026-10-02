@@ -13,6 +13,7 @@ const pageFiles = [
   "vorstand.html",
   "schiessbahnen.html",
   "gaestebuch.html",
+  "service.html",
   "impressum.html",
   "datenschutz.html"
 ];
@@ -148,7 +149,7 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
 
   assert.match(
     css,
-    /\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(8, max-content\);/s
+    /\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(9, max-content\);/s
   );
   assert.match(
     css,
@@ -161,6 +162,10 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
   assert.match(
     css,
     /\.footer-nav a:nth-child\(even\)\s*{[^}]*border-left:\s*1px solid rgba\(214, 168, 79, 0\.3\);/s
+  );
+  assert.match(
+    css,
+    /\.footer-nav a:last-child:nth-child\(odd\)\s*{[^}]*grid-column:\s*1 \/ -1;[^}]*border-left:\s*0;/s
   );
 
   pageFiles.forEach((pageFile) => {

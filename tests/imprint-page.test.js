@@ -15,6 +15,7 @@ const pageFiles = [
   "vorstand.html",
   "schiessbahnen.html",
   "gaestebuch.html",
+  "service.html",
   "datenschutz.html",
   "impressum.html"
 ];

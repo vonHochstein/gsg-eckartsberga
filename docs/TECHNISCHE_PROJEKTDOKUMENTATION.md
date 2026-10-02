@@ -25,6 +25,7 @@ Umgesetzt und geprüft sind:
 - statische Vorstands- und Ansprechpartnerseite auf Basis der vorhandenen Detailseitenkomponenten;
 - statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
 - datengetriebene Gästebuch-Unterseite mit fünf freigegebenen Bestandseinträgen;
+- statische, responsive Serviceseite mit sechs offiziellen externen Anlaufstellen und ohne automatisch geladene Drittressourcen;
 - statische, responsive Datenschutzerklärung für den vorgesehenen Veröffentlichungszustand;
 - statisches, responsives Impressum mit bestätigten Anbieter- und Registerangaben;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
@@ -81,6 +82,7 @@ Die Anwendung verwendet:
 ├── gaestebuch.html
 ├── geschichte.html
 ├── schiessbahnen.html
+├── service.html
 ├── vorstand.html
 ├── datenschutz.html
 ├── impressum.html
@@ -91,6 +93,7 @@ Die Anwendung verwendet:
 ├── gaestebuch.css
 ├── geschichte.css
 ├── schiessbahnen.css
+├── service.css
 ├── notes.rtf
 ├── assets/
 │   ├── dev/
@@ -309,6 +312,20 @@ Die endgültige Vereins-E-Mail-Adresse bleibt bis zur Veröffentlichung als
 eindeutiger Platzhalter offen; die fachliche Freigabe und weitere
 Anbieterkennzeichnungsfragen werden intern unter P-06 geprüft.
 
+#### `service.html`
+
+Die statische Serviceseite verwendet den gemeinsamen integrierten Seitenkopf
+und gliedert sechs ausgewählte offizielle Anlaufstellen in „Region und
+Verwaltung“ sowie „Verbände und Sport“. Sie lädt keine externen Medien,
+Stylesheets oder Skripte; Verbindungen zu den Zielseiten entstehen erst nach
+einem bewussten Linkklick. `service.css` ergänzt ausschließlich das responsive
+Listenlayout der Linkelemente.
+
+„Service“ ist zwischen Galerie und Mitgliedschaft Bestandteil der gemeinsamen
+Hauptnavigation. Im Footer steht „Service & Links“ nach „Mitglied werden“ und
+vor „Gästebuch“. Die Serviceseite kennzeichnet beide eigenen Links mit
+`aria-current="page"`.
+
 ### 2.2 CSS
 
 #### `style.css`
@@ -339,7 +356,9 @@ die gemeinsame Copyrightzeile mit Vereinsname und Leitsatz. Die Logozeile bleibt
 die Navigation wechselt dort in ein festes Zweispaltenraster, damit ihre
 CSS-Separatoren nicht allein am Zeilenanfang oder -ende stehen.
 Die Sekundärnavigation enthält auf allen produktiven Seiten Impressum und
-Datenschutz als benachbarte rechtliche Ziele.
+Datenschutz als benachbarte rechtliche Ziele. Sie umfasst mit „Service & Links“
+insgesamt neun Ziele; im mobilen Zweispaltenraster wird das alleinstehende letzte
+Ziel über beide Spalten zentriert.
 
 Die vom Auftraggeber extern vorbereiteten PNG-Fassungen werden unverändert
 verwendet: DSB mit 1013 × 720 Pixeln und SHA-256
@@ -663,6 +682,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
 | `gaestebuch.html` | `style.css`, `event.css`, `geschichte.css`, `gaestebuch.css`, veröffentlichte Gästebuchdaten, Gästebuchrenderer, Navigation, Footer-Jahr |
+| `service.html` | `style.css`, `event.css`, `geschichte.css`, `service.css`, Navigation, Footer-Jahr |
 | `datenschutz.html` | `style.css`, `event.css`, `geschichte.css`, `datenschutz.css`, Navigation, Footer-Jahr |
 | `impressum.html` | `style.css`, `event.css`, `geschichte.css`, `datenschutz.css`, Navigation, Footer-Jahr |
 | `events.js` | optional `developmentEvents` |
@@ -1066,6 +1086,16 @@ node --test tests/*.test.js
 - konsistente externe Linkziele und zugängliche Namen auf allen Seiten;
 - responsive Ein-Zeilen-Logogruppe sowie Separatoren ohne eingetippte oder
   isolierte Trennzeichen.
+
+`tests/service-page.test.js` prüft:
+
+- statischen Seitenrahmen, genau eine H1 und die beiden Inhaltsbereiche;
+- die sechs festgelegten offiziellen Zieladressen ohne automatisch geladene
+  Drittressourcen;
+- die konsistente Position und den aktuellen Zustand des Service-Links in
+  Hauptnavigation und Footer aller Seiten;
+- den Ausschluss einer zusätzlichen Startseitenkarte und vorgezogener
+  Partnerinhalte.
 
 `tests/privacy-page.test.js` prüft:
 

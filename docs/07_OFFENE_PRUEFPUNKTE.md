@@ -120,17 +120,17 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-21 – Zuständige Waffenbehörde als externer Verweis
 
-- **Status:** Offen
-- **Frage:** Ist ein Link zur zuständigen Waffenbehörde für Besucher der Vereinswebsite fachlich sinnvoll, und wo soll er gegebenenfalls eingeordnet werden?
-- **Zu prüfen:** Tatsächlich zuständige Behörde, geeignete offizielle Zielseite und inhaltlich passende Position innerhalb der Website. Bis zur Klärung werden weder Behörde noch URL eingetragen.
-- **Abschlusskriterium:** Dokumentierte Zuständigkeits- und Zielseitenprüfung sowie bewusste redaktionelle Entscheidung über Aufnahme und Platzierung des Links.
+- **Status:** Entschieden und umgesetzt
+- **Entscheidung:** Die zuständige Anlaufstelle wird sachlich als „Untere Waffenbehörde des Burgenlandkreises“ bezeichnet und auf der Serviceseite im Bereich „Region und Verwaltung“ geführt. Verlinkt wird die offizielle Seite des Rechts- und Ordnungsamts, die Waffen- und Sprengstoffrecht sowie Schießstätten als Aufgaben nennt; der Sitz in Naumburg wird nur ergänzend eingeordnet.
+- **Zielseite:** `https://www.burgenlandkreis.de/de/gefahrenabwehr/rechts-und-ordnungsamt.html`
+- **Abschluss:** Platzierung und Bezeichnung sind mit SERVICE-001 umgesetzt; eine verkürzende Bezeichnung als „Waffenbehörde Naumburg“ wird nicht verwendet.
 
 ### P-22 – Offizielle Website der Stadt Eckartsberga als regionaler Verweis
 
-- **Status:** Offen
-- **Frage:** Soll die offizielle Website der Stadt Eckartsberga als regionaler Bezug verlinkt werden?
-- **Zu prüfen:** Ob der Verweis inhaltlich sinnvoll ist und an welcher Stelle er Besucher unterstützt. Bis zur Klärung werden weder Platzierung noch konkrete URL festgelegt.
-- **Abschlusskriterium:** Dokumentierte redaktionelle Entscheidung über Aufnahme und inhaltlich passende Platzierung des Verweises.
+- **Status:** Entschieden und umgesetzt
+- **Entscheidung:** Die offizielle Stadtseite innerhalb der Verbandsgemeinde An der Finne wird auf der Serviceseite im Bereich „Region und Verwaltung“ als regionaler Bezug verlinkt.
+- **Zielseite:** `https://www.vgem-finne.de/webNC/de/content/content.php?areaID=4&menuID=3&active_menu=3&vhm=&area=Gemeinden&menu=Eckartsberga&content=`
+- **Abschluss:** Zielseite und inhaltliche Platzierung sind mit SERVICE-001 umgesetzt.
 
 ## Qualität und Gestaltung
 
