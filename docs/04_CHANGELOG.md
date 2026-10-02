@@ -70,6 +70,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Den redundanten, unverlinkten Schießsport-Hinweis aus dem Vereinsbereich entfernt und das verbleibende Kartenraster auf drei konkrete Einstiege reduziert.
 - Der gemeinsame Medienrahmen der Lightbox begrenzt Bilder und Videos nun zuverlässig auf ihre eigene Grid-Zeile, sodass der sichtbare Abstand zur Beschriftung erhalten bleibt.
 - Medienbeschriftungen in der gemeinsamen Lightbox erhalten einen festen 12-Pixel-Abstand zur sichtbaren Bild- oder Videokante.
 - Der gemeinsame Medienbereich der Lightbox hält nun ober- und unterhalb von Bildern und Videos einen einheitlichen vertikalen Abstand zu den Bedienelementen ein.
