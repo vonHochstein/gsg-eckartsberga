@@ -248,15 +248,16 @@ das mobile Menü, `js/main.js` aktualisiert die Jahreszahl im Footer.
 Die statische Erfolgsseite verwendet wie Geschichts-, Anlagen-, Gästebuch- und
 Vorstandsseite einen flächigen dunklen Seitenkopf und frei gegliederte
 Inhaltsbereiche statt des Veranstaltungsdetailrahmens. Sie stellt ausgewählte
-sportliche Erfolge sowie die zehn auf der bisherigen Vereinswebsite
-dokumentierten Schützenkönige und die Schützenkönigin aus den Jahren 2016 bis
-2026 dar; für 2018 existiert kein überlieferter Eintrag und kein Platzhalter.
+sportliche Erfolge sowie elf auf der bisherigen beziehungsweise archivierten
+Vereinswebsite dokumentierte Schützenkönige und die Schützenkönigin aus den
+Jahren 2016 bis 2026 dar. Der über eine archivierte Fassung wiederhergestellte
+Eintrag für 2018 erscheint mangels sicherbarer Bildquelle als reine Textkarte.
 
-Die Aufnahmen erscheinen in einem responsiven Raster vollständig und
-unbeschnitten. Jede Kachel öffnet über `js/gallery-lightbox.js` dieselbe native
-Lightbox wie Veranstaltungs- und Geschichtsmedien. Die vorhandene Startseitenkarte
-„Erfolge“ ist der einzige neue Einstieg; Header und Footer erhalten keinen
-zusätzlichen Navigationspunkt.
+Die zehn vorhandenen Aufnahmen erscheinen in einem responsiven Raster. Jede
+Bildkachel öffnet über `js/gallery-lightbox.js` dieselbe native Lightbox wie
+Veranstaltungs- und Geschichtsmedien; die Textkarte für 2018 ist nicht
+interaktiv. Die vorhandene Startseitenkarte „Erfolge“ ist der einzige neue
+Einstieg; Header und Footer erhalten keinen zusätzlichen Navigationspunkt.
 
 #### `schiessbahnen.html`
 

@@ -58,9 +58,9 @@ Die Datei wurde dafür nicht neu kodiert oder verändert.
   nennt **Gerfried Barth** als Schützenkönig 2018. Der Eintrag ist auf
   der heute erreichbaren Altseite nicht mehr vorhanden. Die damalige Bildquelle
   ist im archivierten HTML eindeutig zugeordnet, über ihre ursprüngliche
-  Jimdo-Adresse derzeit jedoch nicht mehr direkt abrufbar. Vor einer Ergänzung
-  auf der neuen Website müssen deshalb die redaktionelle Freigabe und eine
-  geeignete sicherbare Bildquelle geklärt werden.
+  Jimdo-Adresse derzeit jedoch nicht mehr direkt abrufbar. Der Auftraggeber hat
+  die Ergänzung des Eintrags freigegeben; Gerfried Barth wird deshalb ohne Bild
+  und ohne Lightbox-Funktion als Schützenkönig 2018 veröffentlicht.
 - Vor 2016 enthält die frühere Seite keine Einträge. Daraus wird nicht abgeleitet,
   dass keine früheren Schützenkönige existierten.
 - Die archivierte Vereinsseite vom 12.12.2019 führt den Folgejahrgang bereits

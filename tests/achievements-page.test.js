@@ -160,11 +160,11 @@ test("stellt die Erfolgsseite im etablierten statischen Unterseitenrahmen bereit
   assert.doesNotMatch(html, /Besondere Erfolge|Wettkampferfolge/);
 });
 
-test("führt zehn überlieferte Schützenkönige in absteigender Reihenfolge", () => {
+test("führt elf überlieferte Schützenkönige in absteigender Reihenfolge", () => {
   const html = readProjectFile(achievementsPath);
   let previousPosition = -1;
 
-  assert.equal(countMatches(html, /class="achievement-card"/g), 10);
+  assert.equal(countMatches(html, /class="achievement-card(?: [^"]*)?"/g), 11);
   assert.equal(countMatches(html, /data-gallery-index="\d+"/g), 16);
 
   achievements.forEach(({ year, role, name }, index) => {
@@ -179,7 +179,16 @@ test("führt zehn überlieferte Schützenkönige in absteigender Reihenfolge", (
     previousPosition = position;
   });
 
-  assert.doesNotMatch(html, /schuetzenkoenig-2018|Schützenkönig 2018/);
+  const position2019 = html.indexOf('id="schuetzenkoenig-2019"');
+  const position2018 = html.indexOf('id="schuetzenkoenig-2018"');
+  const position2017 = html.indexOf('id="schuetzenkoenig-2017"');
+  const entry2018 = html.slice(position2018, position2017);
+
+  assert.ok(position2019 < position2018 && position2018 < position2017);
+  assert.match(entry2018, /Schützenkönig 2018/);
+  assert.match(entry2018, /<strong class="achievement-name">Gerfried Barth<\/strong>/);
+  assert.match(entry2018, /class="achievement-card-placeholder"/);
+  assert.doesNotMatch(entry2018, /<img\b|event-gallery-open|data-gallery-index/);
   assert.equal(
     countMatches(
       html,

@@ -8,6 +8,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Hinzugefügt
 
+- Gerfried Barth auf Grundlage der archivierten eigenen Vereinsseite als Schützenkönig 2018 ohne nicht überliefertes Bild ergänzt.
 - Vier internationale Podiumsplätze von GSG-Schützen beim 15. MLAIC Grand Prix Austria 2023 auf der Erfolgsseite ergänzt.
 - Eckartsburgpokal 2025 mit zentralem Veranstaltungsort, unverändertem Ergebnisprotokoll und sechs Veranstaltungsaufnahmen als historischer Eventeintrag ergänzt.
 - Zwei lokale, unverändert übernommene MP4-Videos mit lokalen Posterbildern beim Event „Tag der offenen Tür 2025“ ergänzt und das Eventmodell um optionale lokale Videos erweitert.

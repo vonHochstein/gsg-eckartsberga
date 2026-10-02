@@ -136,6 +136,20 @@
   object-position: center 30%;
 }
 
+.achievement-card-placeholder {
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  background: #2a2825;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.achievement-card-placeholder span {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
 .achievement-card figcaption {
   display: grid;
   gap: 5px;

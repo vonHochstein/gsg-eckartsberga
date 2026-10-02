@@ -114,8 +114,9 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 - **Status:** In Klärung
 - **Rechercheergebnis:** Eine archivierte Fassung der eigenen Vereinsseite vom 12. Dezember 2019 nennt Gerfried Barth als Schützenkönig 2018 und führt den Folgejahrgang bereits als „Schützenkönig 2019 – Dominice Wiegand“. Der 2018-Eintrag ist auf der heute erreichbaren Altseite nicht mehr vorhanden. Eine gezielte Websuche ergab keinen unabhängigen lokalen Beleg für eine abweichende Schreibweise des Namens „Dominice Wiegand“.
-- **Zu prüfen:** Entscheiden, ob Gerfried Barth auf Grundlage der archivierten Vereinsquelle einschließlich eines noch zu sichernden geeigneten Bildes für 2018 ergänzt wird. Die historische Schreibweise „Dominice Wiegand“ bleibt bis zu einer Bestätigung durch Vereinsunterlagen oder die betreffende Person quellengetreu unverändert; außerdem bleibt zu klären, ob vor 2016 weitere Einträge veröffentlicht werden sollen.
-- **Abschlusskriterium:** Dokumentierte redaktionelle Entscheidung über die Ergänzung des Jahrgangs 2018 sowie Bestätigung oder begründete Beibehaltung der Schreibweise „Dominice Wiegand“.
+- **Entscheidung:** Gerfried Barth wird auf Grundlage der archivierten Vereinsquelle als Schützenkönig 2018 ergänzt. Da keine sicherbare Bildquelle vorliegt, erscheint der Eintrag bewusst ohne Bild und ohne Lightbox-Funktion.
+- **Zu prüfen:** Die historische Schreibweise „Dominice Wiegand“ bleibt bis zu einer Bestätigung durch Vereinsunterlagen oder die betreffende Person quellengetreu unverändert; außerdem bleibt zu klären, ob vor 2016 weitere Einträge veröffentlicht werden sollen.
+- **Abschlusskriterium:** Bestätigung oder begründete Beibehaltung der Schreibweise „Dominice Wiegand“ sowie eine redaktionelle Entscheidung zu möglichen Einträgen vor 2016.
 
 ### P-21 – Zuständige Waffenbehörde als externer Verweis
 
