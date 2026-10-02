@@ -112,10 +112,10 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-14 – Überlieferung der Schützenkönige vervollständigen
 
-- **Status:** Offen
-- **Frage:** Warum fehlt auf der bisherigen Vereinswebsite der Jahrgang 2018, und ist die dort ausschließlich einmal vorkommende Schreibweise „Dominice Wiegand“ für 2019 korrekt?
-- **Zu prüfen:** Vereinsunterlagen oder verantwortliche Personen zu Titelvergabe und Namensschreibweise befragen; außerdem klären, ob vor 2016 weitere Einträge veröffentlicht werden sollen.
-- **Abschlusskriterium:** Dokumentierte redaktionelle Bestätigung oder begründete Entscheidung, die derzeitige quellengetreue Darstellung unverändert beizubehalten.
+- **Status:** In Klärung
+- **Rechercheergebnis:** Eine archivierte Fassung der eigenen Vereinsseite vom 12. Dezember 2019 nennt Gerfried Barth als Schützenkönig 2018 und führt den Folgejahrgang bereits als „Schützenkönig 2019 – Dominice Wiegand“. Der 2018-Eintrag ist auf der heute erreichbaren Altseite nicht mehr vorhanden. Eine gezielte Websuche ergab keinen unabhängigen lokalen Beleg für eine abweichende Schreibweise des Namens „Dominice Wiegand“.
+- **Zu prüfen:** Entscheiden, ob Gerfried Barth auf Grundlage der archivierten Vereinsquelle einschließlich eines noch zu sichernden geeigneten Bildes für 2018 ergänzt wird. Die historische Schreibweise „Dominice Wiegand“ bleibt bis zu einer Bestätigung durch Vereinsunterlagen oder die betreffende Person quellengetreu unverändert; außerdem bleibt zu klären, ob vor 2016 weitere Einträge veröffentlicht werden sollen.
+- **Abschlusskriterium:** Dokumentierte redaktionelle Entscheidung über die Ergänzung des Jahrgangs 2018 sowie Bestätigung oder begründete Beibehaltung der Schreibweise „Dominice Wiegand“.
 
 ### P-21 – Zuständige Waffenbehörde als externer Verweis
 
@@ -175,7 +175,7 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 - **Status:** In Klärung
 - **Frage:** Welche inhaltlichen Angaben auf `schiessbahnen.html` müssen sachlich korrigiert oder präzisiert werden?
-- **Zu prüfen:** Der Auftraggeber hat bestätigt, dass die erste Aufnahme die 25-Meter-Bahn mit beiden Duellscheiben und die zweite Aufnahme die Luftgewehrbahn zeigt; diese Zuordnung ist korrigiert. Die bisherige Vereinsseite enthält genau diese vier unbeschrifteten Anlagenaufnahmen, weitere belastbare Innenaufnahmen wurden bei der öffentlichen Recherche nicht gefunden. Weitere Bilder und kleinere sachliche Formulierungen werden geprüft, sobald zusätzliches eigenes Material vorliegt.
+- **Zu prüfen:** Der Auftraggeber hat bestätigt, dass die erste Aufnahme die 25-Meter-Bahn mit beiden Duellscheiben und die zweite Aufnahme die Luftgewehrbahn zeigt; diese Zuordnung ist korrigiert. Die bisherige Vereinsseite enthält genau diese vier unbeschrifteten Anlagenaufnahmen, weitere belastbare Innenaufnahmen wurden bei der öffentlichen Recherche nicht gefunden. Weitere geeignete eigene Anlagenbilder werden eingepflegt, soweit sie vorhanden und eindeutig zugeordnet sind; kleinere sachliche Formulierungen werden geprüft, sobald zusätzliches eigenes Material vorliegt.
 - **Abschlusskriterium:** Die betroffenen Inhalte sind einzeln mit dem Auftraggeber geprüft und die freigegebenen sachlichen Korrekturen in einem separaten Arbeitspaket umgesetzt. Technische Umsetzung, Layout, Seitenaufbau, Medienintegration und Funktionalität bleiben dabei unverändert.
 
 ### P-24 – Videos zum Tag der offenen Tür 2025
