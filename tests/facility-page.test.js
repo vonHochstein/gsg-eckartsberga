@@ -14,16 +14,16 @@ const indexPath = path.join(projectRoot, "index.html");
 const facilityMedia = [
   {
     filename: "undatiert 25-Meter-Bahn Raumschießanlage GSG Eckartsberga.jpg",
-    alt: "Blick auf die 25-Meter-Bahn der Raumschießanlage",
-    caption: "Die 25-Meter-Bahn der Raumschießanlage.",
+    alt: "Blick auf die 25-Meter-Bahn mit den beiden Duellscheiben",
+    caption: "Die 25-Meter-Bahn mit den beiden Duellscheiben.",
     width: 1280,
     height: 960,
     hash: "889d1a675b48b717b5c9764f1e03a64c65bf41406a7922863d0cb9ea8f696aef"
   },
   {
-    filename: "undatiert Duellscheiben Raumschießanlage GSG Eckartsberga.jpg",
-    alt: "Duellscheiben auf der 25-Meter-Bahn",
-    caption: "Die Duellscheiben der 25-Meter-Bahn.",
+    filename: "undatiert Luftgewehrbahn Übersicht GSG Eckartsberga.jpg",
+    alt: "Übersicht über die Luftgewehrbahn",
+    caption: "Die Luftgewehrbahn.",
     width: 1280,
     height: 960,
     hash: "e29df06e8fe1419ab5440aba5d944b4d616225399165c7d6f469563f4b62b505"
@@ -31,7 +31,7 @@ const facilityMedia = [
   {
     filename: "undatiert Luftgewehrbahn GSG Eckartsberga.jpg",
     alt: "Blick auf die Luftgewehrbahn",
-    caption: "Die Luftgewehrbahn.",
+    caption: "Schießen auf der Luftgewehrbahn.",
     width: 3000,
     height: 4000,
     hash: "1e831a6e94319b682eb018ab97c58fc1bba1cd32ce835d444b446ec13140d003"

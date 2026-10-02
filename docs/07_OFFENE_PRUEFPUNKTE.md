@@ -149,10 +149,9 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-15 – Medienflächen der Schützenkönig-Karten
 
-- **Status:** Offen
-- **Frage:** Wie sollen die unterschiedlich proportionierten Bilder auf `erfolge.html` die Medienflächen der Schützenkönig-Karten künftig ausfüllen, ohne störende horizontale oder vertikale Freiflächen beziehungsweise Balken zu erzeugen?
-- **Zu prüfen:** Alle zehn Hoch- und Querformate gemeinsam auf großen und kleinen Ansichten vergleichen und eine gestalterisch konsistente Lösung festlegen. Bilddateien dürfen dabei nicht destruktiv beschnitten werden.
-- **Abschlusskriterium:** Abgenommene Kartendarstellung, die alle Seitenverhältnisse hochwertig behandelt und keine unbeabsichtigten Freiflächen erzeugt.
+- **Status:** Entschieden
+- **Entscheidung:** Die kachelfüllende Vorschau der Schützenkönig-Bilder auf `erfolge.html` ist gestalterisch abgenommen. Die Originalbilder und ihre vollständige Lightbox-Darstellung bleiben unverändert.
+- **Abschlusskriterium:** Mit der bestehenden `cover`-Darstellung der Übersicht erfüllt.
 
 ### P-16 – Kopfgestaltung von Erfolgs- und Vorstandsseite
 
@@ -162,10 +161,9 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-17 – Fokuspositionen der Schützenkönig-Bilder in der Startseitengalerie
 
-- **Status:** Offen
-- **Frage:** Welche individuellen `object-position`-Werte stellen alle zehn Schützenkönig-Motive in der flächigen Startseitengalerie sinnvoll dar, ohne Köpfe abzuschneiden?
-- **Zu prüfen:** Jedes Motiv auf den maßgeblichen Desktop- und Mobilbreiten visuell kontrollieren und die Fokuspositionen einzeln festlegen. Die Bilddateien bleiben unverändert und werden nicht destruktiv beschnitten.
-- **Abschlusskriterium:** Visuell abgenommene Fokuspositionen für alle zehn Motive ohne störend abgeschnittene Köpfe.
+- **Status:** Entfällt
+- **Entscheidung:** Die automatisch laufende Startseitengalerie ist im aktuellen Zustand abgenommen. Eine bildweise Feinsteuerung der Schützenkönig-Motive wird nicht weiterverfolgt; eine spätere manuelle Galerienavigation bleibt davon als eigenständige optionale Idee unberührt.
+- **Abschlusskriterium:** Keine weitere Bearbeitung erforderlich.
 
 ### P-18 – Reihenfolge der globalen Footerbereiche
 
@@ -175,9 +173,9 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 ### P-19 – Inhaltliche Feinüberarbeitung Schießbahnen und Vereinshaus
 
-- **Status:** Offen
+- **Status:** In Klärung
 - **Frage:** Welche inhaltlichen Angaben auf `schiessbahnen.html` müssen sachlich korrigiert oder präzisiert werden?
-- **Zu prüfen:** Sachlich korrekte Beschreibung und Zuordnung der einzelnen Anlagenbilder einschließlich ihrer Bildunterschriften und Alternativtexte sowie gegebenenfalls weitere kleinere sachliche Formulierungen innerhalb der Seite. Bis zur späteren Vorgabe beziehungsweise gemeinsamen Prüfung durch den Auftraggeber werden daraus keine konkreten Korrekturen abgeleitet oder Angaben vermutet.
+- **Zu prüfen:** Der Auftraggeber hat bestätigt, dass die erste Aufnahme die 25-Meter-Bahn mit beiden Duellscheiben und die zweite Aufnahme die Luftgewehrbahn zeigt; diese Zuordnung ist korrigiert. Die bisherige Vereinsseite enthält genau diese vier unbeschrifteten Anlagenaufnahmen, weitere belastbare Innenaufnahmen wurden bei der öffentlichen Recherche nicht gefunden. Weitere Bilder und kleinere sachliche Formulierungen werden geprüft, sobald zusätzliches eigenes Material vorliegt.
 - **Abschlusskriterium:** Die betroffenen Inhalte sind einzeln mit dem Auftraggeber geprüft und die freigegebenen sachlichen Korrekturen in einem separaten Arbeitspaket umgesetzt. Technische Umsetzung, Layout, Seitenaufbau, Medienintegration und Funktionalität bleiben dabei unverändert.
 
 ### P-24 – Videos zum Tag der offenen Tür 2025

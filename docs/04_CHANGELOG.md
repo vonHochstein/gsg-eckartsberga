@@ -70,6 +70,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Anlagenbilder sachlich neu zugeordnet: Die 25-Meter-Aufnahme zeigt beide Duellscheiben, die bisher so bezeichnete zweite Aufnahme zeigt tatsächlich die Luftgewehrbahn.
 - Erfolgs- und Vorstandsseite vom kartenartigen Veranstaltungsdetailrahmen auf den flächigen Seitenkopf und die freie Inhaltsgliederung der übrigen statischen Unterseiten umgestellt.
 - Emoji-Symbole der drei Vereinsbereich-Karten durch frei stehende, einheitliche Linien-Icons ersetzt und das Schriftrollen-Emoji am Geschichtsteaser entfernt.
 - Den redundanten, unverlinkten Schießsport-Hinweis aus dem Vereinsbereich entfernt und das verbleibende Kartenraster auf drei konkrete Einstiege reduziert.
