@@ -28,6 +28,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - eigenständige Gästebuchseite mit zentralem Veröffentlichungsmodell, verständlichem Leerzustand und datengetriebenem Startseiten-Teaser;
 - eigenständige Serviceseite mit sechs ausgewählten offiziellen Anlaufstellen für Region, Verwaltung und Sport;
 - eigenständige Kontaktseite mit Formspree, freiwilliger Telefonnummer und manueller WhatsApp-Antwort auf ausdrücklichen Wunsch;
+- moderiertes Gästebuchformular mit separatem Formspree-Eingang und ausdrücklicher Freigabe für Gästebuch und ausgewählte Startseitenstimmen;
 - eigenständige Datenschutzseite für den tatsächlichen und verbindlich geplanten Produktionszustand;
 - eigenständiges Impressum mit bestätigten Anbieter-, Vertretungs- und Registerangaben;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
@@ -91,9 +92,9 @@ Der abgestimmte Gesamtentwurf aus Partnerseite, Gästebuchgestaltung, Navigation
 Bildfokus und Galeriesteuerung ist abgeschlossen. Die Partnerseite enthält vier
 neutrale Bildflächen; konkrete Unternehmen werden später einzeln ergänzt.
 
-Die Kontaktseite ist technisch mit dem bestätigten Formspree-Endpoint umgesetzt.
-Als nächstes wird in einem separaten Schritt die moderierte
-Gästebuchübermittlung ergänzt. Die abschließenden Anbieter- und
+Kontaktseite und moderierte Gästebuchübermittlung sind technisch mit getrennten
+Formspree-Endpoints umgesetzt. Einträge werden ausschließlich manuell nach
+Prüfung veröffentlicht. Die abschließenden Anbieter- und
 Veröffentlichungsprüfungen bleiben über P-08 dem späteren Produktivgang
 vorbehalten.
 
@@ -163,8 +164,6 @@ Die folgenden Punkte sind mögliche Ausbaustufen. Sie sind nicht priorisiert und
 
 - Website-Suche;
 - Dunkelmodus;
-- moderiertes Gästebuchformular nach Datenschutz- und Anbieterprüfung;
-- Kontaktformular;
 - datenschutzgerechte Besucherstatistik;
 - geschützter Mitgliederbereich;
 - öffentlicher Dokument- und Satzungsbereich;

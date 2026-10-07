@@ -8,7 +8,7 @@ const vm = require("node:vm");
 const root = path.resolve(__dirname, "..");
 const source = fs.readFileSync(path.join(root, "js/contact.js"), "utf8");
 
-function fixture(fetch) {
+function fixture(fetch, guestbook = false, timers = {}) {
   function field(value = "") {
     return {
       value, checked: false, required: false, validityMessage: "",
@@ -28,6 +28,13 @@ function fixture(fetch) {
     _gotcha: field(),
     _language: field("de")
   };
+  if (guestbook) {
+    fields.displayName = field(" Gast ");
+    fields.publication_consent = field("Gästebuch und Startseitenstimmen");
+    fields.publication_consent.required = true;
+    fields.publication_consent.checked = true;
+    fields.email.value = "";
+  }
   const button = field();
   button.textContent = "Nachricht senden";
   const phoneError = field();
@@ -40,7 +47,7 @@ function fixture(fetch) {
     addEventListener(name, handler) { this.listeners[name] = handler; },
     setAttribute(name, value) { this.attrs[name] = value; },
     reportValidity() {
-      return Object.values(fields).every(f => !f.validityMessage && (!f.required || f.value));
+      return Object.values(fields).every(f => !f.validityMessage && (!f.required || (f === fields.publication_consent ? f.checked : f.value)));
     },
     reset() {
       this.resets++;
@@ -52,9 +59,12 @@ function fixture(fetch) {
       super(Object.entries(fields).map(([name, field]) => [name, field.value]));
     }
   }
-  const context = vm.createContext({ fetch, FormData: TestFormData, AbortController, setTimeout, clearTimeout });
+  const context = vm.createContext({ fetch, FormData: TestFormData, AbortController, setTimeout, clearTimeout, ...timers });
+  vm.runInContext(fs.readFileSync(path.join(root, "js/formspree.js"), "utf8"), context);
   vm.runInContext(source, context);
-  context.initContactForm(form, status);
+  vm.runInContext(fs.readFileSync(path.join(root, "js/guestbook-form.js"), "utf8"), context);
+  if (guestbook) context.initGuestbookForm(form, status);
+  else context.initContactForm(form, status);
   return { fields, form, button, status, phoneError, submit: () => form.listeners.submit({ preventDefault() {} }) };
 }
 
@@ -162,4 +172,62 @@ test("verlinkt Kontakt nur über Startseitenbutton und die zehn Footerziele", ()
     assert.ok(footer.indexOf("kontakt.html") < footer.indexOf("impressum.html"));
   });
   assert.match(fs.readFileSync(path.join(root, "index.html"), "utf8"), /href="kontakt\.html">\s+Kontakt aufnehmen/);
+});
+
+test("Gästebuch: Pflichtfelder, Freigabe und Leerzeichen verhindern Versand", async () => {
+  for (const invalid of ["name", "message", "consent"]) {
+    let calls = 0;
+    const f = fixture(async () => { calls++; }, true);
+    if (invalid === "name") f.fields.displayName.value = "  ";
+    if (invalid === "message") f.fields.message.value = "\n  ";
+    if (invalid === "consent") f.fields.publication_consent.checked = false;
+    await f.submit();
+    assert.equal(calls, 0);
+  }
+});
+
+test("Gästebuch: private optionale E-Mail, Absätze und Freigabe im einmaligen Versand", async () => {
+  for (const email of ["", "gast@example.com"]) {
+    const calls = [];
+    let finish;
+    const f = fixture((url, options) => {
+      calls.push(options);
+      return new Promise(resolve => { finish = resolve; });
+    }, true);
+    f.fields.email.value = email;
+    f.fields.message.value = " Erster Absatz.\n\nZweiter Absatz. ";
+    const pending = f.submit();
+    await f.submit();
+    assert.equal(calls.length, 1);
+    const data = calls[0].body;
+    assert.equal(data.get("displayName"), "Gast");
+    assert.equal(data.get("message"), "Erster Absatz.\n\nZweiter Absatz.");
+    assert.equal(data.has("email"), Boolean(email));
+    assert.equal(data.get("publication_consent"), "Gästebuch und Startseitenstimmen");
+    assert.equal(f.form.resets, 0);
+    finish({ ok: true, json: async () => ({ ok: true, next: "/thanks" }) });
+    await pending;
+    assert.equal(f.form.resets, 1);
+    assert.equal(f.status.textContent, "Vielen Dank! Ihr Eintrag wurde übermittelt und wird vor der Veröffentlichung geprüft.");
+    assert.equal(f.status.focused, true);
+  }
+});
+
+test("Gästebuch: Fehler und Zeitlimit erhalten Eingaben und entsperren Versand", async () => {
+  const f = fixture(async () => ({ ok: false }), true);
+  await f.submit();
+  assert.equal(f.form.resets, 0);
+  assert.equal(f.fields.displayName.value, " Gast ");
+  assert.equal(f.status.dataset.state, "error");
+  let timeout, wait;
+  const timed = fixture((url, options) => new Promise((resolve, reject) => {
+    options.signal.addEventListener("abort", () => reject(new Error("timeout")));
+  }), true, { setTimeout(fn, ms) { timeout = fn; wait = ms; }, clearTimeout() {} });
+  const pending = timed.submit();
+  assert.equal(wait, 30000);
+  timeout();
+  await pending;
+  assert.equal(timed.form.resets, 0);
+  assert.equal(timed.button.disabled, false);
+  assert.equal(timed.status.dataset.state, "error");
 });

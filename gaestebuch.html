@@ -25,9 +25,12 @@
   <link rel="stylesheet" href="event.css" />
   <link rel="stylesheet" href="geschichte.css" />
   <link rel="stylesheet" href="gaestebuch.css" />
+  <link rel="stylesheet" href="forms.css" />
   <script src="js/data/guestbook-entries.js" defer></script>
   <script src="js/navigation.js" defer></script>
   <script src="js/guestbook.js" defer></script>
+  <script src="js/formspree.js" defer></script>
+  <script src="js/guestbook-form.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 
@@ -85,6 +88,50 @@
         </p>
       </div>
     </header>
+
+    <section class="contact-overview" aria-labelledby="guestbook-form-title">
+      <div class="history-content contact-content">
+        <p class="section-kicker">Ihre Stimme</p>
+        <h2 id="guestbook-form-title">Eintrag hinterlassen</h2>
+        <p class="contact-intro">Wir freuen uns auf Ihre Eindrücke und Grüße. Wir prüfen Ihren Eintrag vor der Veröffentlichung.</p>
+        <form id="guestbook-form" class="contact-form" action="https://formspree.io/f/mzeddarb"
+          method="post" aria-describedby="guestbook-privacy">
+          <div class="contact-field">
+            <label for="guestbook-name">Anzeigename <span>(Pflichtfeld)</span></label>
+            <input id="guestbook-name" name="displayName" type="text" maxlength="120" required aria-describedby="guestbook-name-hint" />
+            <p class="contact-field-hint" id="guestbook-name-hint">Dieser Name ist öffentlich sichtbar. Sie können auch ein Pseudonym verwenden.</p>
+          </div>
+          <div class="contact-field">
+            <label for="guestbook-email">E-Mail <span>(freiwillig)</span></label>
+            <input id="guestbook-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="guestbook-email-hint" />
+            <p class="contact-field-hint" id="guestbook-email-hint">Nur für private Rückfragen. Ihre E-Mail-Adresse wird nicht veröffentlicht.</p>
+          </div>
+          <div class="contact-field contact-field-full">
+            <label for="guestbook-message">Ihr Eintrag <span>(Pflichtfeld)</span></label>
+            <textarea id="guestbook-message" name="message" rows="7" maxlength="10000" required></textarea>
+          </div>
+          <div class="contact-field contact-field-full">
+            <label class="contact-checkbox" for="guestbook-consent">
+              <input id="guestbook-consent" name="publication_consent" type="checkbox" required
+                value="Ich stimme zu, dass mein Anzeigename und mein Eintrag nach Prüfung im Gästebuch veröffentlicht werden. Ausgewählte Einträge zeigen wir auch als Stimmen auf der Startseite."
+                aria-describedby="guestbook-consent-hint" />
+              <span>Ich stimme zu, dass mein Anzeigename und mein Eintrag nach Prüfung im Gästebuch veröffentlicht werden.</span>
+            </label>
+            <p class="contact-field-hint" id="guestbook-consent-hint">Ausgewählte Einträge zeigen wir auch als Stimmen auf der Startseite.</p>
+          </div>
+          <div class="contact-honeypot" aria-hidden="true">
+            <label for="guestbook-website">Bitte leer lassen</label>
+            <input id="guestbook-website" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+          <input type="hidden" name="_language" value="de" />
+          <div class="contact-field-full">
+            <p class="contact-privacy" id="guestbook-privacy">Beim Absenden werden Ihre Angaben an Formspree übermittelt. Informationen zur Verarbeitung und Veröffentlichung finden Sie in unserer <a href="datenschutz.html#privacy-formspree-title">Datenschutzerklärung</a>.</p>
+            <button class="btn btn-primary contact-submit" type="submit">Eintrag senden</button>
+            <p class="contact-status" id="guestbook-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+          </div>
+        </form>
+      </div>
+    </section>
 
     <section class="guestbook-overview" aria-labelledby="guestbook-title">
       <div class="guestbook-content">

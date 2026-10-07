@@ -203,7 +203,7 @@ test("formatiert Daten und bestimmt den zufälligen Startindex deterministisch",
   assert.equal(selectInitialGuestbookIndex(0, 0.5), -1);
 });
 
-test("stellt die Gästebuchseite ohne Formular bereit", () => {
+test("stellt die Gästebuchseite mit separater moderierter Einsendung bereit", () => {
   const html = readProjectFile(pagePath);
 
   assert.equal([...html.matchAll(/<h1\b/gi)].length, 1);
@@ -213,7 +213,19 @@ test("stellt die Gästebuchseite ohne Formular bereit", () => {
   assert.match(html, /Noch sind keine Gästebucheinträge veröffentlicht\./);
   assert.match(html, /js\/data\/guestbook-entries\.js/);
   assert.match(html, /js\/guestbook\.js/);
-  assert.doesNotMatch(html, /<form\b|formspree|action=/i);
+  assert.equal((html.match(/https:\/\/formspree.io\/f\/mzeddarb/g) || []).length, 1);
+  assert.ok(html.indexOf('id="guestbook-form"') < html.indexOf('id="guestbook-list"'));
+  assert.match(html, /name="displayName"[^>]*required/);
+  assert.match(html, /name="message"[^>]*required/);
+  assert.match(html, /name="publication_consent"[^>]*required/);
+  assert.doesNotMatch(html.match(/<input[^>]*name="publication_consent"[\s\S]*?\/>/)[0], /checked/);
+  assert.doesNotMatch(html.match(/<input[^>]*name="email"[^>]*>/)[0], /required/);
+  assert.match(html, /Ausgewählte Einträge zeigen wir auch als Stimmen auf der Startseite\./);
+  assert.match(html, /name="_gotcha"/);
+  assert.match(html, /name="_language" value="de"/);
+  assert.match(html, /class="btn btn-primary contact-submit"/);
+  assert.ok(html.indexOf('src="js/formspree.js"') < html.indexOf('src="js/guestbook-form.js"'));
+  assert.doesNotMatch(html, /name="phone"|name="whatsapp_reply"/);
 });
 
 test("verwendet vorhandenen Seitenrahmen und kennzeichnet das Gästebuch in der Hauptnavigation", () => {

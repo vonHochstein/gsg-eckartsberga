@@ -8,6 +8,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Hinzugefügt
 
+- Moderiertes Gästebuchformular mit separatem Formspree-Eingang, optionaler privater E-Mail und ausdrücklicher Veröffentlichungsfreigabe ergänzt; vorhandene Einträge bleiben unverändert.
 - Kontaktseite mit Formspree-Versand, freiwilliger Telefonnummer und ausdrücklichem Wunsch nach manueller WhatsApp-Antwort ergänzt.
 - Partnerseite mit vier neutralen Bildflächen sowie dezentem Einstieg im Mitgliedschaftsbereich und Footer ergänzt.
 - Kontakt-Schaltfläche im Mitgliedschaftsbereich vorbereitet; bis zur separaten Formularintegration bleibt sie deaktiviert.
@@ -75,6 +76,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Lokale Formularstile und Versandmechanik für Kontakt und Gästebuch gemeinsam verwendet; Datenschutztext um Gästebuchfelder und Freigabe ergänzt.
 - Startseitenbutton „Kontakt aufnehmen“ aktiviert; Kontakt als zehntes Footerziel zwischen Partner und Impressum auf allen Seiten ergänzt. Hauptnavigation bleibt unverändert.
 - Datenschutztext um Kontaktfelder und die optionale manuelle WhatsApp-Kommunikation ergänzt.
 - Gästebuchtexte und Zitatdarstellung auf Unterseite und Startseite überarbeitet; der Stimmenbereich nutzt die volle Content-Breite.

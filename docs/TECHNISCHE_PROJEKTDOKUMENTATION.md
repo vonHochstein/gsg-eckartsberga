@@ -25,6 +25,7 @@ Umgesetzt und geprüft sind:
 - statische Vorstands- und Ansprechpartnerseite auf Basis der vorhandenen Detailseitenkomponenten;
 - statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
 - datengetriebene Gästebuch-Unterseite mit fünf freigegebenen Bestandseinträgen;
+- Kontakt- und moderiertes Gästebuchformular mit getrennten Formspree-Eingängen und gemeinsamer lokaler Versandmechanik;
 - statische, responsive Serviceseite mit sechs offiziellen externen Anlaufstellen und ohne automatisch geladene Drittressourcen;
 - statische, responsive Datenschutzerklärung für den vorgesehenen Veröffentlichungszustand;
 - statisches, responsives Impressum mit bestätigten Anbieter- und Registerangaben;
@@ -54,7 +55,7 @@ Noch nicht umgesetzt sind insbesondere:
 - weitere Vereins-, besondere Erfolgs- und Kontaktinhalte;
 - fachliche Freigabe des Impressums und der Datenschutzerklärung sowie deren abschließende Produktionsprüfung;
 - vollständige produktive Galerie;
-- Backend, CMS, Formulare, Suche und Mitgliederbereich;
+- Backend, CMS, Suche und Mitgliederbereich;
 - Build-, Deployment- und Hosting-Konfiguration.
 
 ### 1.3 Technische Grundlage
@@ -67,7 +68,7 @@ Die Anwendung verwendet:
 - Browser-APIs wie DOM, `Date`, `Intl.DateTimeFormat`, `URL`, `URLSearchParams`, `matchMedia` und Timer;
 - lokal ausgeliefertes Leaflet 1.9.4 als einzige Fremdbibliothek;
 - keinen Paketmanager, Compiler oder Bundler;
-- keine API, Datenbank oder serverseitige Logik;
+- keine eigene API, Datenbank oder serverseitige Logik; Formularversand über Formspree;
 - externe OSM-Tile-Anfragen ausschließlich nach bewusstem Öffnen einer Karte.
 
 ---
@@ -285,8 +286,22 @@ lesbar; lediglich die Vergrößerung entfällt.
 Die eigenständige Gästebuchseite verwendet den Seiteneinstieg der Geschichts-
 und Anlagen-Unterseite. Sie rendert alle validierten veröffentlichten Einträge
 aus `js/data/guestbook-entries.js` in absteigender Datumsreihenfolge und zeigt
-bei leerem Bestand einen verständlichen Leerzustand. Die erste Fassung enthält
-weder Formular noch Formspree-Anbindung oder ungeprüfte personenbezogene Daten.
+bei leerem Bestand einen verständlichen Leerzustand. Zwischen Seitenkopf und
+Eintragsliste steht das separate Formular „Eintrag hinterlassen“:
+Anzeigename (Pseudonym erlaubt), Eintrag und nicht vorausgewählte
+Veröffentlichungsfreigabe sind verpflichtend; E-Mail ist freiwillig und privat.
+Die Freigabe einschließlich der ausgewählten Startseitenverwendung wird als
+`publication_consent` übermittelt. `js/guestbook-form.js` validiert nichtleere
+Textfelder, trimmt nur äußere Leerzeichen und lässt Absatzumbrüche erhalten.
+Beim JavaScript-Versand wird eine leere E-Mail aus dem Payload entfernt.
+
+Der Auftraggeber prüft Einsendungen zunächst im separaten Formspree-Formular.
+Nach manueller Freigabe werden ausschließlich Anzeigename, Text, stabile ID und
+Eingangstag als Kalenderdatum in Europe/Berlin in `publishedGuestbookEntries`
+aufgenommen; `featuredOnHome` bleibt eine redaktionelle Auswahl. E-Mail,
+Freigabenachweis und interne Notizen verbleiben privat. Weder automatisches
+Veröffentlichen noch Webhook sind implementiert. Die fünf veröffentlichten
+Bestandseinträge und die Startseitenrotation sind unverändert.
 
 #### `datenschutz.html`
 
@@ -298,7 +313,7 @@ Gästebucheinträge und die erst nach bewusster Aktivierung geladenen OSM-Karten
 
 Die öffentliche Textfassung beschreibt Formspree und counter.dev entsprechend
 dem vorgesehenen Veröffentlichungszustand. Formspree ist für Kontaktanfragen
-technisch angebunden; Gästebuchübermittlung und counter.dev sind noch nicht
+und Gästebuchübermittlung technisch angebunden; counter.dev ist noch nicht
 aktiv. Dieser interne Stand sowie die
 noch offenen Produktions-, Anbieter- und Rechtsprüfungen werden ausschließlich
 in der Projektdokumentation geführt. Die Seite bindet keine dieser externen
@@ -348,8 +363,8 @@ vorausgewählte Checkbox übermittelt den Wunsch nach manueller WhatsApp-Antwort
 bei Auswahl prüft das lokale JavaScript eine nichtleere Telefonnummer.
 Die Feldhilfe erklärt dies auch ohne JavaScript.
 
-Die einzige produktive Formularadresse steht im HTML-`action`. `js/contact.js`
-liest diese Adresse, sendet `FormData` per POST mit JSON-Antwortanforderung und
+Jede produktive Formularadresse steht einmalig im jeweiligen HTML-`action`.
+`js/formspree.js` liest diese Adresse und sendet `FormData` per POST mit JSON-Antwortanforderung und
 ohne Zugangsdaten oder Cookies. Die Felder heißen `name`, `email`, `phone`,
 `message`, `whatsapp_reply`; `_gotcha` dient als Honeypot und `_language=de`
 der deutschen Formspree-Rückmeldung. Es gibt keine externen Skripte oder
@@ -360,7 +375,12 @@ Sekunden und erhält Eingaben bei Fehlern. Nur eine erfolgreiche JSON-Bestätigu
 mit `ok: true` leert das Formular. Statusmeldungen sind per Live-Region
 zugänglich; nach Erfolg oder Fehler erhält die Meldung den Fokus. Es erfolgt
 kein automatischer Wiederholungsversand und keine Browser-Speicherung.
-`kontakt.css` ergänzt ausschließlich das responsive Formularlayout.
+`forms.css` enthält die gemeinsam verwendeten responsiven Formularstile;
+`js/contact.js` erhält die kontaktspezifische WhatsApp-Prüfung.
+Mit JavaScript bleibt die Bestätigung direkt auf der jeweiligen Seite;
+der vom Dienst gelieferte `next`-Wert wird nicht zur Navigation verwendet.
+Ohne JavaScript führt der native POST zur Formspree-Dankeseite; es gibt keine
+zweite eigene Bestätigungsseite.
 
 ### 2.2 CSS
 
@@ -725,7 +745,7 @@ Nach erfolgreichem Rendering werden gesetzt:
 | `event.html` | `style.css`, `event.css`, lokale Leaflet-Dateien, Daten, `EventUtils`, Navigation, Detailrenderer, Kartencontroller, gemeinsame Lightbox |
 | `geschichte.html` | `style.css`, `event.css`, `geschichte.css`, Navigation, gemeinsame Lightbox, historische Medien |
 | `vorstand.html` | `style.css`, `event.css`, Navigation, Footer-Jahr |
-| `gaestebuch.html` | `style.css`, `event.css`, `geschichte.css`, `gaestebuch.css`, veröffentlichte Gästebuchdaten, Gästebuchrenderer, Navigation, Footer-Jahr |
+| `gaestebuch.html` | `style.css`, `event.css`, `geschichte.css`, `gaestebuch.css`, `forms.css`, veröffentlichte Gästebuchdaten, Gästebuchrenderer, `formspree.js`, `guestbook-form.js`, Navigation, Footer-Jahr |
 | `service.html` | `style.css`, `event.css`, `geschichte.css`, `service.css`, Navigation, Footer-Jahr |
 | `datenschutz.html` | `style.css`, `event.css`, `geschichte.css`, `datenschutz.css`, Navigation, Footer-Jahr |
 | `impressum.html` | `style.css`, `event.css`, `geschichte.css`, `datenschutz.css`, Navigation, Footer-Jahr |
@@ -1174,6 +1194,22 @@ node --test tests/*.test.js
 - Ausschluss eigener Cookie- oder Browserspeichermechanismen.
 
 ### 5.2 Browserprüfungen
+
+GAESTEBUCH-FORM-001: 195 Node-Tests, JavaScript-Syntaxprüfung und
+`git diff --check` erfolgreich. Gästebuchformular bei 1440, 820, 480 und
+320 Pixeln ohne Überlauf geprüft; Pflichtfelder einschließlich Leerzeichen,
+optionale E-Mail, Freigabe, Absätze, Mehrfachversandsperre, Fehlererhaltung,
+Statusfokus und Tastaturbedienung geprüft. Keine externen Anfragen beim
+Seitenaufruf, keine fehlenden Assets oder JavaScript-Konsolenfehler.
+JavaScript-Erfolg bleibt ohne Weiterleitung auf der Seite; nativer POST ohne
+JavaScript einschließlich Dankeseiten-Weiterleitung mit abgefangenen Antworten
+geprüft. Kontaktregression einschließlich WhatsApp und responsiver Darstellung
+erfolgreich. Der Auftraggeber hat deaktiviertes reCAPTCHA für das separate
+Gästebuchformular bestätigt. Ein gekennzeichneter Test ohne E-Mail wurde von
+Formspree mit HTTP 200 und `ok: true` angenommen. Die eigene Erfolgsmeldung
+erschien ohne Weiterleitung; der öffentliche Bestand blieb unverändert.
+Der Auftraggeber hat den Testeintrag samt vollständiger Freigabe im
+Formspree-Posteingang bestätigt. Der Test wird nicht veröffentlicht.
 
 KONTAKT-001 wurde am 7. Oktober 2026 mit 192 bestandenen Node-Tests,
 fehlerfreier Syntaxprüfung und `git diff --check` geprüft. Die Kontaktseite
