@@ -75,7 +75,7 @@
       <a href="#verein">Verein</a>
       <a href="#veranstaltungen">Veranstaltungen</a>
       <a href="#galerie">Galerie</a>
-      <a href="service.html">Service</a>
+      <a href="#stimmen">Gästebuch</a>
       <a href="#mitglied">Mitglied werden</a>
     </nav>
   </header>
@@ -583,6 +583,47 @@
             </a>
           </figure>
 
+          <div
+            class="gallery-preview-controls"
+            data-gallery-controls
+            hidden
+          >
+            <button
+              class="gallery-preview-button"
+              type="button"
+              data-gallery-previous
+              aria-label="Vorheriges Bild"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <p
+              class="gallery-preview-position"
+              data-gallery-position
+              aria-live="polite"
+            ></p>
+            <button
+              class="gallery-preview-toggle"
+              type="button"
+              data-gallery-toggle
+              aria-pressed="false"
+              aria-label="Automatischen Wechsel pausieren"
+              title="Automatischen Wechsel pausieren"
+            >
+              <span
+                class="gallery-preview-toggle-icon"
+                aria-hidden="true"
+              ></span>
+            </button>
+            <button
+              class="gallery-preview-button"
+              type="button"
+              data-gallery-next
+              aria-label="Nächstes Bild"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
           <div class="gallery-preview-copy">
             <p class="gallery-kicker">Vereinsleben im Bild</p>
             <h3>Geschichte und Gegenwart im Wechsel.</h3>
@@ -658,9 +699,28 @@
           und unser Vereinsleben interessiert, ist eingeladen, die GSG
           Eckartsberga bei einer kommenden Veranstaltung kennenzulernen.
         </p>
-        <a class="btn btn-primary section-action" href="#veranstaltungen">
-          Kommende Termine ansehen
-        </a>
+        <div class="section-actions">
+          <a class="btn btn-primary" href="#veranstaltungen">
+            Kommende Termine ansehen
+          </a>
+          <button class="btn btn-secondary" type="button" disabled>
+            Kontakt aufnehmen
+          </button>
+        </div>
+
+        <aside class="partner-home-teaser" aria-labelledby="partner-home-title">
+          <div>
+            <p class="partner-home-kicker">Partner &amp; Unterstützer</p>
+            <h3 id="partner-home-title">Gemeinsam für Verein und Region.</h3>
+            <p>
+              Unternehmen und Unterstützer können das Vereinsleben auf
+              vielfältige Weise begleiten.
+            </p>
+          </div>
+          <a class="partner-home-link" href="partner.html">
+            Partner ansehen <span aria-hidden="true">→</span>
+          </a>
+        </aside>
       </div>
     </section>
 
@@ -725,9 +785,9 @@
           <a href="#verein">Verein</a>
           <a href="#veranstaltungen">Veranstaltungen</a>
           <a href="#galerie">Galerie</a>
-          <a href="#mitglied">Mitglied werden</a>
-          <a href="service.html">Service &amp; Links</a>
           <a href="gaestebuch.html">Gästebuch</a>
+          <a href="service.html">Service &amp; Links</a>
+          <a href="partner.html">Partner</a>
           <a href="impressum.html">Impressum</a>
           <a href="datenschutz.html">Datenschutz</a>
         </nav>

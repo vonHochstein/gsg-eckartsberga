@@ -28,6 +28,7 @@ const productionEvents = [
     shortTitle: "Schützenfest Naumburg",
     category: "Schützenfest",
     start: "2024-08-24T09:00:00",
+    venueId: "schiesssportzentrum-naumburg-henne",
     location: "Schießplatz Henne, Naumburg",
     organizer: "Privilegiertes Bürgerschützencorps Naumburg e.V.",
     description:
@@ -341,6 +342,7 @@ const productionEvents = [
     category: "Pokalwettkampf",
     start: "2025-09-06T09:00:00",
     end: "2025-09-06T13:00:00",
+    venueId: "schiesssportzentrum-naumburg-henne",
     location: "Wurfscheibenstand Naumburg „Henne“",
     organizer: "Privilegiertes Bürgerschützencorps Naumburg e.V.",
     description:
@@ -839,6 +841,35 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     featured: false
   },
   {
+    id: 34,
+    slug: "kirmespokal-wurfscheibenschiessen-lossa-2026",
+    title: "Kirmespokal Wurfscheibenschießen 2026",
+    shortTitle: "Kirmespokal Wurfscheibenschießen",
+    category: "Pokalwettkampf",
+    start: "2026-10-10T13:00:00",
+    end: "2026-10-11T13:00:00",
+    venueId: "schiessstand-lossa",
+    location: "Schießplatz Lossa",
+    organizer: "Großkaliberschützenverein Lossa 1995 e.V.",
+    description:
+      "Der Kirmespokal ist ein zweitägiger Pokalwettkampf im Wurfscheibenschießen. Geschossen werden Serien zu je 25 Tauben; die beiden besten Serien zählen für die Einzelwertung.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung Kirmespokal Wurfscheibenschießen 2026",
+        url: "assets/documents/events/2026/2026_10_04 Ausschreibung Kirmespokal Wurfscheibenschießen 2026.jpeg",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
     id: 32,
     slug: "truthahn-und-bueffelschiessen-2026",
     title: "Truthahn- und Büffelschießen 2026",
@@ -894,6 +925,35 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     results: [],
     externalLinks: [],
     registrationRequired: false,
+    archive: true,
+    featured: false
+  },
+  {
+    id: 35,
+    slug: "martinsgans-schiessen-naumburg-2026",
+    title: "17. Martinsgans-Schießen 2026",
+    shortTitle: "17. Martinsgans-Schießen",
+    category: "Schießwettkampf",
+    start: "2026-11-14T09:30:00",
+    end: "2026-11-14T14:00:00",
+    venueId: "schiesssportzentrum-naumburg-henne",
+    location: "Schießsportzentrum Naumburg-Henne",
+    host: "Privilegiertes Bürgerschützencorps Naumburg e.V.",
+    description:
+      "Das 17. Martinsgans-Schießen ist ein Vorderladerwettbewerb mit Perkussions-, Steinschloss- und Dienstgewehr über 50 Meter, stehend freihändig, ergänzt um eine Motivscheibe.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung 17. Martinsgans-Schießen 2026",
+        url: "assets/documents/events/2026/2026_10_04 Ausschreibung 17. Martinsgans-Schießen 2026.pdf",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
     archive: true,
     featured: false
   }

@@ -5,33 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Veröffentlichte Gästebucheinträge der Großkaliber Schützengilde 1503 Eckartsberga e. V."
+    content="Partner und Unterstützer der Großkaliber Schützengilde Eckartsberga."
   />
   <meta name="theme-color" content="#111111" />
 
   <meta property="og:locale" content="de_DE" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="GSG Eckartsberga" />
-  <meta property="og:title" content="Gästebuch · GSG Eckartsberga" />
+  <meta property="og:title" content="Partner &amp; Unterstützer · GSG Eckartsberga" />
   <meta
     property="og:description"
-    content="Veröffentlichte Stimmen von Gästen der GSG Eckartsberga."
+    content="Partner und Unterstützer der Großkaliber Schützengilde Eckartsberga."
   />
 
-  <title>Gästebuch · GSG Eckartsberga</title>
+  <title>Partner &amp; Unterstützer · GSG Eckartsberga</title>
 
   <link rel="icon" type="image/png" href="assets/img/logo-gsg-eckartsberga.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="event.css" />
   <link rel="stylesheet" href="geschichte.css" />
-  <link rel="stylesheet" href="gaestebuch.css" />
-  <script src="js/data/guestbook-entries.js" defer></script>
+  <link rel="stylesheet" href="partner.css" />
+
   <script src="js/navigation.js" defer></script>
-  <script src="js/guestbook.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 
-<body class="history-page guestbook-page">
+<body class="history-page partner-page">
   <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
 
   <header class="site-header history-site-header">
@@ -65,7 +64,7 @@
       <a href="index.html#verein">Verein</a>
       <a href="index.html#veranstaltungen">Veranstaltungen</a>
       <a href="index.html#galerie">Galerie</a>
-      <a href="gaestebuch.html" aria-current="page">Gästebuch</a>
+      <a href="gaestebuch.html">Gästebuch</a>
       <a href="index.html#mitglied">Mitglied werden</a>
     </nav>
   </header>
@@ -73,42 +72,74 @@
   <main id="main-content">
     <header class="history-hero">
       <div class="history-hero-inner">
-        <a class="event-back-link" href="index.html#start">
+        <a class="event-back-link" href="index.html#mitglied">
           <span aria-hidden="true">←&nbsp;</span>
           Zurück zur Startseite
         </a>
-        <p class="history-eyebrow">Gästebuch</p>
-        <h1>Stimmen unserer Gäste</h1>
+        <p class="history-eyebrow">Gemeinsam stark</p>
+        <h1>Partner &amp; Unterstützer</h1>
         <p class="history-intro">
-          Hier teilen Gäste ihre Eindrücke, Grüße und Erinnerungen an
-          Begegnungen mit der GSG Eckartsberga.
+          Engagement aus der Region kann Vereinsleben, Gemeinschaft und
+          sportliche Aktivitäten auf vielfältige Weise unterstützen.
         </p>
       </div>
     </header>
 
-    <section class="guestbook-overview" aria-labelledby="guestbook-title">
-      <div class="guestbook-content">
-        <p class="section-kicker">Gästebuch</p>
-        <h2 id="guestbook-title">Was unsere Gäste sagen</h2>
-
-        <div class="guestbook-list" id="guestbook-list"></div>
-        <p class="guestbook-empty" id="guestbook-empty" hidden>
-          Noch sind keine Gästebucheinträge veröffentlicht.
+    <section class="partner-overview" aria-labelledby="partner-overview-title">
+      <div class="history-content partner-content">
+        <p class="section-kicker">Verbunden mit der Region</p>
+        <h2 id="partner-overview-title">Gemeinsam etwas möglich machen.</h2>
+        <p class="partner-intro">
+          Unsere Partner und Unterstützer begleiten die GSG Eckartsberga und
+          tragen dazu bei, Vereinsleben, Gemeinschaft und sportliche
+          Aktivitäten zu stärken.
         </p>
 
-        <noscript>
-          <p class="guestbook-empty">
-            Für die Anzeige der veröffentlichten Gästebucheinträge muss
-            JavaScript aktiviert sein.
-          </p>
-        </noscript>
+        <div class="partner-grid" aria-label="Partner und Unterstützer">
+          <article class="partner-card partner-card-placeholder">
+            <div class="partner-mark" aria-hidden="true">01</div>
+            <p class="partner-card-kicker">Regional verbunden</p>
+            <h3>Engagement vor Ort</h3>
+            <p>Unterstützung aus der Region stärkt das Vereinsleben in Eckartsberga.</p>
+          </article>
+
+          <article class="partner-card partner-card-placeholder">
+            <div class="partner-mark" aria-hidden="true">02</div>
+            <p class="partner-card-kicker">Vereinsleben</p>
+            <h3>Gemeinschaft fördern</h3>
+            <p>
+              Partnerschaftliches Engagement schafft Möglichkeiten für
+              Begegnung und gemeinsame Aktivitäten.
+            </p>
+          </article>
+
+          <article class="partner-card partner-card-placeholder">
+            <div class="partner-mark" aria-hidden="true">03</div>
+            <p class="partner-card-kicker">Schießsport</p>
+            <h3>Sport ermöglichen</h3>
+            <p>
+              Unterstützung trägt dazu bei, sportliche Angebote und
+              Veranstaltungen umzusetzen.
+            </p>
+          </article>
+
+          <article class="partner-card partner-card-placeholder">
+            <div class="partner-mark" aria-hidden="true">04</div>
+            <p class="partner-card-kicker">Tradition</p>
+            <h3>Zukunft mitgestalten</h3>
+            <p>
+              Gemeinsam bleiben Vereinstradition und ein aktives Vereinsleben
+              lebendig.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="site-footer-inner">
-      <div class="footer-signature">
+    <div class="container footer-layout">
+      <div class="footer-signature" aria-label="Verein und Verbände">
         <a
           class="footer-association-link footer-association-link-dsb"
           href="https://www.dsb.de/"
@@ -124,21 +155,17 @@
             decoding="async"
           />
         </a>
-
-        <figure class="footer-brand-illustration">
-          <picture>
-            <source srcset="assets/img/logo-eckig_v1.webp" type="image/webp" />
-            <img
-              src="assets/img/logo-eckig_v1.png"
-              alt="Historische Illustration der Großkaliber Schützengilde 1503 Eckartsberga mit Eckartsburg, Kanone und Stadtwappen"
-              width="1335"
-              height="1178"
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
-        </figure>
-
+        <picture class="footer-brand-illustration">
+          <source srcset="assets/img/logo-eckig_v1.webp" type="image/webp" />
+          <img
+            src="assets/img/logo-eckig_v1.png"
+            alt="GSG Eckartsberga"
+            width="469"
+            height="472"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         <a
           class="footer-association-link footer-association-link-state"
           href="https://www.sv-st.de/"
@@ -162,9 +189,9 @@
           <a href="index.html#verein">Verein</a>
           <a href="index.html#veranstaltungen">Veranstaltungen</a>
           <a href="index.html#galerie">Galerie</a>
-          <a href="gaestebuch.html" aria-current="page">Gästebuch</a>
+          <a href="gaestebuch.html">Gästebuch</a>
           <a href="service.html">Service &amp; Links</a>
-          <a href="partner.html">Partner</a>
+          <a href="partner.html" aria-current="page">Partner</a>
           <a href="impressum.html">Impressum</a>
           <a href="datenschutz.html">Datenschutz</a>
         </nav>

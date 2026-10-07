@@ -38,10 +38,10 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 
 - feststehender Header;
 - mobile Navigation;
-- Service als gemeinsames Hauptnavigationsziel sowie „Service & Links“ in der Footer-Sekundärnavigation aller Seiten;
+- Gästebuch als gemeinsames Hauptnavigationsziel, auf der Startseite mit aktivem Scrollzustand des Stimmenbereichs; Service und Partner in der Footer-Sekundärnavigation;
 - Schließen des Menüs per Linkauswahl, Außenklick und Escape;
 - kompakter Header beim Scrollen;
-- automatisch wechselnde Galerievorschau;
+- zufällig wechselnde Galerievorschau mit Zurück-Verlauf, Weiter und Pause/Fortsetzen innerhalb der Bildbox;
 - native Galerie-Lightbox mit Tastatursteuerung, Fokusführung und responsiver Darstellung;
 - technische Grundlage für zentrale Veranstaltungsorte und eine erst nach bewusstem Klick geladene, responsive OpenStreetMap-Karte;
 - sichtbare Fokuszustände und Sprunglink zum Hauptinhalt;
@@ -86,7 +86,14 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 
 ## In Arbeit
 
-Derzeit befindet sich kein Implementierungsabschnitt in Arbeit. Der nächste Abschnitt beginnt erst nach eigener Analyse, Planung und Beauftragung.
+Der abgestimmte Gesamtentwurf aus Partnerseite, Gästebuchgestaltung, Navigation,
+Bildfokus und Galeriesteuerung ist abgeschlossen. Die Partnerseite enthält vier
+neutrale Bildflächen; konkrete Unternehmen werden später einzeln ergänzt.
+
+Als nächstes folgt die Kontaktseite mit Formspree. Anschließend wird in einem
+separaten Schritt die moderierte Gästebuchübermittlung ergänzt. Anbieter- und
+Konfigurationsfragen werden vor Aktivierung über P-08 geklärt; die abschließenden
+Veröffentlichungsprüfungen bleiben dem späteren Produktivgang vorbehalten.
 
 Offene Entscheidungen vor oder während der nächsten Abschnitte werden in [07_OFFENE_PRUEFPUNKTE.md](07_OFFENE_PRUEFPUNKTE.md) geführt.
 
@@ -124,7 +131,7 @@ Die zuvor geplanten Abschnitte „Verbindliches Veranstaltungsmodell“ und „V
 - Galerie aus gepflegten Daten erzeugen;
 - weitere Bildformate und Dateigrößen optimieren;
 - responsive Bildvarianten und sinnvolle Alternativtexte etablieren;
-- Medienflächen der Schützenkönig-Karten sowie die individuellen Fokuspositionen ihrer zehn Motive in der Startseitengalerie gestalterisch überarbeiten.
+- Weitere bildweise Feinsteuerung der Schützenkönig-Motive in der Startseitengalerie wird derzeit nicht weiterverfolgt (P-17); die bestätigten Ausschnitte der Erfolgsseite sind umgesetzt.
 
 ### Abschnitt 6: Zugänglichkeit und Oberflächenqualität
 

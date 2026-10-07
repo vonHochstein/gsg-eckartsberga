@@ -14,6 +14,7 @@ const pageFiles = [
   "schiessbahnen.html",
   "gaestebuch.html",
   "service.html",
+  "partner.html",
   "impressum.html",
   "datenschutz.html"
 ];
@@ -157,6 +158,10 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
   );
   assert.match(
     css,
+    /@media \(max-width: 1120px\)[\s\S]*?\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(5, minmax\(0, 1fr\)\);/s
+  );
+  assert.match(
+    css,
     /@media \(max-width: 820px\)[\s\S]*?\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);/s
   );
   assert.match(
@@ -170,6 +175,38 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
 
   pageFiles.forEach((pageFile) => {
     const footer = getFooter(readProjectFile(pageFile));
+    const footerNavigation = footer.match(
+      /<nav class="footer-nav"[\s\S]*?<\/nav>/
+    )?.[0] ?? "";
+    const expectedLabels = [
+      "Start",
+      "Verein",
+      "Veranstaltungen",
+      "Galerie",
+      "Gästebuch",
+      "Service &amp; Links",
+      "Partner",
+      "Impressum",
+      "Datenschutz"
+    ];
+    let previousPosition = -1;
+
+    assert.equal(
+      (footerNavigation.match(/<a\b/g) ?? []).length,
+      9,
+      pageFile + ": Footer muss genau neun Links enthalten"
+    );
+    assert.doesNotMatch(footerNavigation, /#mitglied|Mitglied werden/);
+
+    expectedLabels.forEach((label) => {
+      const position = footerNavigation.indexOf(">" + label + "</a>");
+      assert.ok(
+        position > previousPosition,
+        pageFile + ": Reihenfolge bei " + label
+      );
+      previousPosition = position;
+    });
+
     assert.doesNotMatch(footer, /<\/a>\s*\|\s*<a/);
     assert.match(footer, /href="datenschutz\.html"/);
   });

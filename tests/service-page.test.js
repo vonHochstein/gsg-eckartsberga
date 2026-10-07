@@ -15,6 +15,7 @@ const pageFiles = [
   "schiessbahnen.html",
   "gaestebuch.html",
   "service.html",
+  "partner.html",
   "impressum.html",
   "datenschutz.html"
 ];
@@ -50,7 +51,8 @@ test("stellt die Serviceseite im gemeinsamen statischen Seitenrahmen bereit", ()
   assert.match(html, /<h2 id="service-region-title">Region und Verwaltung<\/h2>/);
   assert.match(html, /<h2 id="service-sport-title">Verbände und Sport<\/h2>/);
   assert.match(html, /href="service\.css"/);
-  assert.doesNotMatch(html, /Partner &amp; Unterstützer|partner\.html/);
+  assert.doesNotMatch(navigation(html, "main-nav"), /partner\.html|>Partner</);
+  assert.doesNotMatch(navigation(html, "main-nav"), /service\.html|>Service</);
 });
 
 test("verlinkt genau die sechs festgelegten offiziellen Anlaufstellen", () => {
@@ -87,51 +89,38 @@ test("lädt beim Seitenaufruf ausschließlich lokale Ressourcen", () => {
   });
 });
 
-test("führt Service in Hauptnavigation und Footer aller Seiten konsistent", () => {
+test("führt Service ausschließlich im Footer aller Seiten konsistent", () => {
   pageFiles.forEach((pageFile) => {
     const html = readPage(pageFile);
     const main = navigation(html, "main-nav");
     const footer = navigation(html, "footer-nav");
 
-    assert.match(main, /href="service\.html"(?: aria-current="page")?>Service<\/a>/);
-    assert.ok(
-      main.indexOf('href="service.html"') > main.indexOf("#galerie"),
-      pageFile + ": Service muss nach Galerie stehen"
-    );
-    assert.ok(
-      main.indexOf('href="service.html"') < main.indexOf("#mitglied"),
-      pageFile + ": Service muss vor Mitglied werden stehen"
-    );
+    assert.doesNotMatch(main, /href="service\.html"|>Service<\/a>/);
 
     assert.match(
       footer,
       /href="service\.html"(?: aria-current="page")?>Service &amp; Links<\/a>/
     );
     assert.ok(
-      footer.indexOf('href="service.html"') > footer.indexOf("#mitglied"),
-      pageFile + ": Service muss im Footer nach Mitglied werden stehen"
+      footer.indexOf('href="service.html"') > footer.indexOf("gaestebuch.html"),
+      pageFile + ": Service muss im Footer nach dem Gästebuch stehen"
     );
     assert.ok(
-      footer.indexOf('href="service.html"') < footer.indexOf("gaestebuch.html"),
-      pageFile + ": Service muss im Footer vor dem Gästebuch stehen"
+      footer.indexOf('href="service.html"') < footer.indexOf("partner.html"),
+      pageFile + ": Service muss im Footer vor Partner stehen"
     );
   });
 
   const serviceHtml = readPage("service.html");
-  assert.match(
-    navigation(serviceHtml, "main-nav"),
-    /href="service\.html" aria-current="page">Service<\/a>/
-  );
   assert.match(
     navigation(serviceHtml, "footer-nav"),
     /href="service\.html" aria-current="page">Service &amp; Links<\/a>/
   );
 });
 
-test("ergänzt auf der Startseite weder Servicekarte noch Partnersichtbarkeit", () => {
+test("ergänzt auf der Startseite keine Servicekarte", () => {
   const html = readPage("index.html");
 
   assert.doesNotMatch(html, /<section[^>]+id="service"/);
   assert.doesNotMatch(html, /class="[^"]*(?:highlight|club)-card[^"]*"[^>]*href="service\.html"/);
-  assert.doesNotMatch(html, /Partner &amp; Unterstützer|partner\.html/);
 });

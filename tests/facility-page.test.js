@@ -135,8 +135,18 @@ test("stellt die Medien vollständig und responsiv dar", () => {
     css,
     /\.facility-media-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);/s
   );
-  assert.match(css, /\.facility-media-grid img\s*\{[^}]*width:\s*100%;[^}]*height:\s*auto;/s);
-  assert.doesNotMatch(css, /object-fit:\s*cover|aspect-ratio:/);
+  assert.match(
+    css,
+    /\.facility-media-grid \.event-gallery-open\s*\{[^}]*aspect-ratio:\s*4 \/ 3;/s
+  );
+  assert.match(
+    css,
+    /\.facility-media-grid img\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;[^}]*object-fit:\s*cover;/s
+  );
+  assert.match(
+    css,
+    /\.facility-media-focus-upper img\s*\{[^}]*object-position:\s*center 25%;/s
+  );
   assert.match(
     css,
     /@media \(max-width: 680px\)[\s\S]*?\.facility-facts,\s*\.facility-media-grid\s*\{[^}]*grid-template-columns:\s*1fr;/

@@ -272,7 +272,10 @@ Luftgewehrbahn und den Sitzungsraum. Die vorhandene Startseitenkarte
 „Schießbahnen & Vereinshaus“ ist der einzige neue Einstieg; Header und Footer
 erhalten keinen weiteren Navigationspunkt.
 
-Alle vier Bilder bleiben vollständig und unbeschnitten. Sie verwenden genau ein
+Die Übersicht verwendet einheitliche 4:3-Bildflächen mit `object-fit: cover`;
+die Hochformataufnahme der Luftgewehrbahn erhält einen Fokus bei 25 Prozent.
+Die Originaldateien und die vollständige Darstellung in der Lightbox bleiben
+unverändert. Die Bilder verwenden genau ein
 natives Dialogelement und den unveränderten gemeinsamen Controller
 `js/gallery-lightbox.js`. Ohne JavaScript bleiben sämtliche Inhalte und Bilder
 lesbar; lediglich die Vergrößerung entfällt.
@@ -321,10 +324,21 @@ Stylesheets oder Skripte; Verbindungen zu den Zielseiten entstehen erst nach
 einem bewussten Linkklick. `service.css` ergänzt ausschließlich das responsive
 Listenlayout der Linkelemente.
 
-„Service“ ist zwischen Galerie und Mitgliedschaft Bestandteil der gemeinsamen
-Hauptnavigation. Im Footer steht „Service & Links“ nach „Mitglied werden“ und
-vor „Gästebuch“. Die Serviceseite kennzeichnet beide eigenen Links mit
-`aria-current="page"`.
+Die Hauptnavigation führt zwischen Galerie und Mitgliedschaft das Gästebuch.
+Auf der Startseite verweist es auf `#stimmen` und erhält den bestehenden aktiven
+Scrollzustand; auf Unterseiten führt es zu `gaestebuch.html`.
+Der Footer enthält neun Ziele in der Reihenfolge Start, Verein, Veranstaltungen,
+Galerie, Gästebuch, Service & Links, Partner, Impressum und Datenschutz.
+Die Serviceseite kennzeichnet ihren Footerlink mit `aria-current="page"`.
+
+#### `partner.html`
+
+Die Partnerseite verwendet den integrierten statischen Seitenrahmen und vier
+neutrale Bildflächen mit abgestimmten öffentlichen Texten. `partner.css` stellt
+sie als zweispaltiges, mobil einspaltiges Raster dar. Ein dezenter Link im
+Mitgliedschaftsbereich und die Footer-Sekundärnavigation führen zur Seite.
+Der daneben vorbereitete Kontaktbutton bleibt bis zur Formularintegration
+deaktiviert.
 
 ### 2.2 CSS
 
@@ -495,6 +509,14 @@ Erzeugt Timeline und Archiv. Für Titel, Ort, Bild, kanonische Dokumente, extern
 #### `js/gallery.js`
 
 Normalisiert eventbezogene Galeriebilder über `EventUtils`. Jedes Bild behält seine Veranstaltung als Kontext und wird nur bei vorhandener Detail-URL verlinkt. Gibt es keine eventbezogenen Bilder, bleiben die statischen Rückfallbilder unverändert.
+
+Start und neue Bildauswahl erfolgen zufällig, jeweils ohne direkte Wiederholung.
+Zurück und Weiter verwenden den tatsächlich angezeigten Verlauf (maximal 100
+Einträge). Der automatische Wechsel läuft alle 6,5 Sekunden; manuelle Bedienung,
+Fokus und Zeigerinteraktion pausieren ihn. Der Schalter setzt ihn fort; reduzierte
+Bewegung deaktiviert Autoplay. Eine unsichtbare Browserseite pausiert den Timer.
+Die gemeinsame kompakte Bedienleiste liegt als Grid-Ebene innerhalb des unteren
+Bildbereichs; die Caption erhält getrennten Raum oberhalb der Leiste.
 
 Die statische Rückfallgalerie enthält drei freigegebene historische Fotografien
 von 1902, 1912 und 1922, das vorhandene Eckartsburgmotiv und zehn freigegebene
@@ -1076,7 +1098,7 @@ node --test tests/*.test.js
 - Startseitenposition zwischen Galerie und Mitgliedschaft sowie verborgenen Zustand ohne Auswahl;
 - Wechselintervall, zufälligen Startindex, Pause-, Sichtbarkeits- und Reduced-Motion-Vertrag;
 - gemeinsame Rasterfläche der Stimmen und mindestens 44 Pixel große Bedienelemente;
-- Gästebuchlink in allen Footern ohne Erweiterung der Hauptnavigation.
+- Gästebuchlink in Hauptnavigation und Footer aller Seiten mit aktivem Zustand auf der Gästebuchseite.
 
 `tests/footer.test.js` prüft:
 
@@ -1092,10 +1114,9 @@ node --test tests/*.test.js
 - statischen Seitenrahmen, genau eine H1 und die beiden Inhaltsbereiche;
 - die sechs festgelegten offiziellen Zieladressen ohne automatisch geladene
   Drittressourcen;
-- die konsistente Position und den aktuellen Zustand des Service-Links in
-  Hauptnavigation und Footer aller Seiten;
-- den Ausschluss einer zusätzlichen Startseitenkarte und vorgezogener
-  Partnerinhalte.
+- die konsistente Position und den aktuellen Zustand des Service-Links im
+  Footer aller Seiten sowie seinen Ausschluss aus der Hauptnavigation;
+- den Ausschluss einer zusätzlichen Servicekarte auf der Startseite.
 
 `tests/privacy-page.test.js` prüft:
 
@@ -1131,6 +1152,17 @@ node --test tests/*.test.js
 - Ausschluss eigener Cookie- oder Browserspeichermechanismen.
 
 ### 5.2 Browserprüfungen
+
+Abschlussprüfung des Gesamtentwurfs am 7. Oktober 2026:
+
+- 186 Node-Tests bestanden; JavaScript-Syntax und `git diff --check` fehlerfrei.
+- Elf produktive Seiten bei 1440, 820, 480 und 320 Pixeln kontrolliert;
+  Galeriesteuerung zusätzlich bei 1280, 900 und 821 Pixeln geprüft.
+- Vorbestehende Überschriftenüberläufe bleiben außerhalb dieses Pakets offen:
+  Startseiten-Hero bei 480/320 Pixeln und „Veranstaltungsinformationen“ auf der
+  Eventdetailseite bei 320 Pixeln. Der Vergleich mit den bisherigen Styles
+  zeigt unveränderte Überlaufbreiten. Die geänderten Galerie-, Gästebuch-,
+  Partner- und Footerbereiche erzeugen keinen neuen Viewport-Überlauf.
 
 IA-002 wurde geprüft mit:
 

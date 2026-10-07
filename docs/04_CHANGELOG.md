@@ -8,6 +8,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Hinzugefügt
 
+- Partnerseite mit vier neutralen Bildflächen sowie dezentem Einstieg im Mitgliedschaftsbereich und Footer ergänzt.
+- Kontakt-Schaltfläche im Mitgliedschaftsbereich vorbereitet; bis zur separaten Formularintegration bleibt sie deaktiviert.
 - Eigenständige Serviceseite mit sechs offiziellen regionalen, behördlichen und sportverbandlichen Anlaufstellen sowie konsistenter Verlinkung in Hauptnavigation und Footer aller Seiten.
 - Gerfried Barth auf Grundlage der archivierten eigenen Vereinsseite als Schützenkönig 2018 ohne nicht überliefertes Bild ergänzt.
 - Vier internationale Podiumsplätze von GSG-Schützen beim 15. MLAIC Grand Prix Austria 2023 auf der Erfolgsseite ergänzt.
@@ -71,6 +73,12 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Eigenständiges Impressum mit bestätigten Vereins-, Vertretungs- und Registerangaben sowie Footerlink auf allen Seiten ergänzt.
 
 ### Geändert
+
+- Gästebuchtexte und Zitatdarstellung auf Unterseite und Startseite überarbeitet; der Stimmenbereich nutzt die volle Content-Breite.
+- Gästebuch ersetzt Service in der Hauptnavigation; der Startseitenlink folgt beim Scrollen dem Stimmenbereich. Footerlinks einheitlich auf Start, Verein, Veranstaltungen, Galerie, Gästebuch, Service & Links, Partner, Impressum und Datenschutz geordnet.
+- Startseitengalerie mit Zufallsauswahl, tatsächlichem Zurück-Verlauf und Pause/Fortsetzen ergänzt; die kompakte Steuerung liegt innerhalb der Bildbox unterhalb einer getrennt platzierten Bildunterschrift.
+- Galerie-Bildfläche auf ihre bestehende Gridspalte begrenzt, damit eine höhere Textspalte bei mittleren Desktopbreiten keine Überlagerung auslöst.
+- Bestätigte Fokuspositionen und Zooms der Erfolgsbilder sowie einheitliche 4:3-Vorschauboxen der Anlagenbilder umgesetzt; Originalmedien und Lightboxdarstellung bleiben erhalten.
 
 - Anlagenbilder sachlich neu zugeordnet: Die 25-Meter-Aufnahme zeigt beide Duellscheiben, die bisher so bezeichnete zweite Aufnahme zeigt tatsächlich die Luftgewehrbahn.
 - Erfolgs- und Vorstandsseite vom kartenartigen Veranstaltungsdetailrahmen auf den flächigen Seitenkopf und die freie Inhaltsgliederung der übrigen statischen Unterseiten umgestellt.

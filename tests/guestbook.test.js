@@ -216,7 +216,7 @@ test("stellt die Gästebuchseite ohne Formular bereit", () => {
   assert.doesNotMatch(html, /<form\b|formspree|action=/i);
 });
 
-test("verwendet vorhandenen Seitenrahmen und erweitert die Hauptnavigation nicht", () => {
+test("verwendet vorhandenen Seitenrahmen und kennzeichnet das Gästebuch in der Hauptnavigation", () => {
   const html = readProjectFile(pagePath);
   const mainNavigation = html.match(
     /<nav class="main-nav"[\s\S]*?<\/nav>/
@@ -229,7 +229,10 @@ test("verwendet vorhandenen Seitenrahmen und erweitert die Hauptnavigation nicht
   assert.match(html, /event\.css/);
   assert.match(html, /geschichte\.css/);
   assert.match(html, /gaestebuch\.css/);
-  assert.doesNotMatch(mainNavigation, /Gästebuch|gaestebuch\.html/);
+  assert.match(
+    mainNavigation,
+    /href="gaestebuch\.html" aria-current="page">Gästebuch<\/a>/
+  );
 });
 
 test("ordnet den verborgenen Stimmenbereich zwischen Galerie und Mitgliedschaft ein", () => {
@@ -284,7 +287,7 @@ test("hält alle Stimmen in derselben Rasterfläche und Bedienelemente groß gen
   assert.match(css, /\.guestbook-voice\s*{[^}]*grid-area:\s*1 \/ 1;/s);
   assert.match(
     css,
-    /\.guestbook-voices-button,[\s\S]*?\.guestbook-voices-toggle\s*{[^}]*min-width:\s*44px;[^}]*min-height:\s*44px;/
+    /\.guestbook-voices-button,[\s\S]*?\.guestbook-voices-toggle,[\s\S]*?{[^}]*min-width:\s*44px;[^}]*min-height:\s*44px;/
   );
   assert.match(
     css,
@@ -296,7 +299,7 @@ test("hält alle Stimmen in derselben Rasterfläche und Bedienelemente groß gen
   );
 });
 
-test("verlinkt das Gästebuch in jedem Footer, aber in keiner Hauptnavigation", () => {
+test("verlinkt das Gästebuch in Hauptnavigation und Footer aller Seiten", () => {
   const pageNames = [
     "index.html",
     "event.html",
@@ -306,6 +309,7 @@ test("verlinkt das Gästebuch in jedem Footer, aber in keiner Hauptnavigation", 
     "schiessbahnen.html",
     "gaestebuch.html",
     "service.html",
+    "partner.html",
     "impressum.html",
     "datenschutz.html"
   ];
@@ -320,7 +324,22 @@ test("verlinkt das Gästebuch in jedem Footer, aber in keiner Hauptnavigation", 
     )?.[0] ?? "";
 
     assert.match(footerNavigation, /href="gaestebuch\.html"/);
-    assert.doesNotMatch(mainNavigation, /Gästebuch|gaestebuch\.html/);
+    if (pageName === "index.html") {
+      assert.match(mainNavigation, /href="#stimmen">Gästebuch<\/a>/);
+    } else {
+      assert.match(
+        mainNavigation,
+        /href="gaestebuch\.html"(?: aria-current="page")?>Gästebuch<\/a>/
+      );
+    }
+    assert.ok(
+      mainNavigation.indexOf("Gästebuch") > mainNavigation.indexOf("#galerie"),
+      pageName + ": Gästebuch muss nach Galerie stehen"
+    );
+    assert.ok(
+      mainNavigation.indexOf("Gästebuch") < mainNavigation.indexOf("#mitglied"),
+      pageName + ": Gästebuch muss vor Mitglied werden stehen"
+    );
   });
 });
 

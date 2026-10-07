@@ -101,10 +101,10 @@ function loadVenueData() {
   return context.eventVenueSnapshot;
 }
 
-test("liefert die fünf zentralen Orte als gültige Kartenorte", () => {
+test("liefert die zentralen Orte als gültige Kartenorte", () => {
   const venues = Array.from(loadVenueData());
 
-  assert.equal(venues.length, 5);
+  assert.equal(venues.length, 6);
   assert.deepEqual(normalizeVenues(venues), [
     {
       id: "jaegerschiessstand-markroehlitz",
@@ -131,6 +131,12 @@ test("liefert die fünf zentralen Orte als gültige Kartenorte", () => {
       description: "Kammerforststraße",
       latitude: 51.22738,
       longitude: 11.37409
+    },
+    {
+      id: "schiesssportzentrum-naumburg-henne",
+      name: "Schießsportzentrum Naumburg-Henne",
+      latitude: 51.18536073826683,
+      longitude: 11.824305746178748
     },
     {
       id: "grosskaliberschiessstand-bottendorf",

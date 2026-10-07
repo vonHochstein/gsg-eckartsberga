@@ -34,6 +34,12 @@ const eventVenues = [
     longitude: 11.37409
   },
   {
+    id: "schiesssportzentrum-naumburg-henne",
+    name: "Schießsportzentrum Naumburg-Henne",
+    latitude: 51.18536073826683,
+    longitude: 11.824305746178748
+  },
+  {
     id: "grosskaliberschiessstand-bottendorf",
     name: "Großkaliberschießstandanlage Bottendorf",
     description: "Am Pfaffenrainweg in der Gemarkung Bottendorf",

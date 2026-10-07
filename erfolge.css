@@ -136,6 +136,29 @@
   object-position: center 30%;
 }
 
+#thueringer-landesmeisterschaft-2023
+  .sport-achievement-gallery figure:first-child img {
+  object-position: center 8%;
+}
+
+#schuetzenkoenig-2026 .achievement-card-open img {
+  object-position: center 5%;
+}
+
+#schuetzenkoenig-2025 .achievement-card-open img {
+  object-position: center 15%;
+}
+
+#schuetzenkoenig-2022 .achievement-card-open img,
+#schuetzenkoenig-2021 .achievement-card-open img,
+#schuetzenkoenig-2020 .achievement-card-open img {
+  transform: scale(1.1);
+}
+
+#schuetzenkoenig-2021 .achievement-card-open img {
+  object-position: center 80%;
+}
+
 .achievement-card-placeholder {
   display: grid;
   aspect-ratio: 1;

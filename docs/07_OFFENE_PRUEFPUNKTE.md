@@ -163,7 +163,7 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 ### P-17 – Fokuspositionen der Schützenkönig-Bilder in der Startseitengalerie
 
 - **Status:** Entfällt
-- **Entscheidung:** Die automatisch laufende Startseitengalerie ist im aktuellen Zustand abgenommen. Eine bildweise Feinsteuerung der Schützenkönig-Motive wird nicht weiterverfolgt; eine spätere manuelle Galerienavigation bleibt davon als eigenständige optionale Idee unberührt.
+- **Entscheidung:** Eine bildweise Feinsteuerung der Schützenkönig-Motive in der Startseitengalerie wird nicht weiterverfolgt. Die separat beauftragte manuelle Navigation mit tatsächlichem Zurück-Verlauf und Pause/Fortsetzen ist inzwischen umgesetzt.
 - **Abschlusskriterium:** Keine weitere Bearbeitung erforderlich.
 
 ### P-18 – Reihenfolge der globalen Footerbereiche
