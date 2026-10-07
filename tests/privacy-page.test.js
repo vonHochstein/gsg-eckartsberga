@@ -85,7 +85,8 @@ test("trennt GitHub-Pages-Hosting und STRATO-Domainverwaltung", () => {
   assert.match(html, /Die Website wird über GitHub Pages ausgeliefert\./);
   assert.match(html, /IP-Adresse von Besuchern zu Sicherheitszwecken/);
   assert.match(html, /Art\. 6 Abs\. 1\s+Buchst\. f DSGVO/);
-  assert.match(html, /STRATO verwaltet die Domain und die zugehörigen DNS-Einstellungen/);
+  assert.match(html, /STRATO verwaltet die Vereinsdomain und die zugehörigen DNS-Einstellungen/);
+  assert.match(html, /GitHub-Pages-Adresse ist die STRATO-Domainverwaltung\s+nicht beteiligt/);
   assert.match(html, /nicht von einem\s+STRATO-Webspace ausgeliefert/);
   assert.doesNotMatch(html, /keine personenbezogenen Daten gespeichert/i);
 });
@@ -133,17 +134,18 @@ test("enthält keine öffentlichen Entwicklungs- und Prüfvermerke", () => {
   assert.doesNotMatch(html, /class="privacy-status-note"/);
 });
 
-test("sichert E-Mail und Stand als eindeutige Pre-Publish-Platzhalter ab", () => {
+test("enthält den bestätigten Stand und lässt nur die ausstehende E-Mail offen", () => {
   const html = readProjectFile(privacyPath);
 
   assert.equal(
     countMatches(html, /\[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN\]/g),
     1
   );
-  assert.equal(
-    countMatches(html, /\[STAND VOR VERÖFFENTLICHUNG ERGÄNZEN\]/g),
-    1
-  );
+  assert.doesNotMatch(html, /\[STAND VOR VERÖFFENTLICHUNG ERGÄNZEN\]/);
+  assert.match(html, /<time datetime="2026-10-07">7\. Oktober 2026<\/time>/);
+  assert.match(html, /Formspree, Inc\./);
+  assert.match(html, /auch in den USA/);
+  assert.match(html, /Ihrer besonderen\s+Situation/);
   assert.doesNotMatch(html, /9\. September 2026/);
 });
 

@@ -43,17 +43,14 @@ test("stellt den Partnerentwurf im etablierten Unterseitenrahmen bereit", () => 
   assert.equal((html.match(/class="partner-card partner-card-placeholder"/g) ?? []).length, 4);
 });
 
-test("verwendet vier neutrale Bildflächen mit veröffentlichungsfähigem Text", () => {
+test("verwendet nur vier neutrale Logoflächen ohne erfundene Firmen oder Werbetexte", () => {
   const html = readPage("partner.html");
   const main = html.match(/<main id="main-content">([\s\S]*?)<\/main>/)?.[1] ?? "";
   const grid = main.match(/<div class="partner-grid"[\s\S]*?<\/div>\s*<\/div>/)?.[0] ?? "";
 
-  assert.equal((grid.match(/<article\b/g) ?? []).length, 4);
-  assert.match(main, /Unsere Partner und Unterstützer begleiten die GSG Eckartsberga/);
-  assert.match(grid, /<h3>Engagement vor Ort<\/h3>/);
-  assert.match(grid, /<h3>Gemeinschaft fördern<\/h3>/);
-  assert.match(grid, /<h3>Sport ermöglichen<\/h3>/);
-  assert.match(grid, /<h3>Zukunft mitgestalten<\/h3>/);
+  assert.equal((grid.match(/<figure\b/g) ?? []).length, 4);
+  assert.match(main, /Firmen und Unterstützer aus dem Umfeld unserer Schützengilde/);
+  assert.doesNotMatch(grid, /<h3\b|<p\b|partner-card-kicker/);
   assert.doesNotMatch(main, /vorbereitet|nach Freigabe|wird ergänzt/);
   assert.doesNotMatch(grid, />Platzhalter</);
   assert.doesNotMatch(grid, /<a\b|https?:\/\//);

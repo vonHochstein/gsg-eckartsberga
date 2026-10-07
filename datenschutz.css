@@ -20,6 +20,8 @@
 
 .privacy-section {
   scroll-margin-top: calc(var(--header-height) + 24px);
+  hyphens: auto;
+  overflow-wrap: anywhere;
 }
 
 .privacy-section + .privacy-section {

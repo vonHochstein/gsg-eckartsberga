@@ -197,6 +197,8 @@
 
 .event-section h2 {
   margin-bottom: 24px;
+  hyphens: auto;
+  overflow-wrap: anywhere;
   color: var(--color-dark);
   font-size: clamp(1.65rem, 3.4vw, 2.5rem);
   line-height: 1.08;

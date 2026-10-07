@@ -335,8 +335,10 @@ Dieser interne Stand sowie die
 noch offenen Produktions-, Anbieter- und Rechtsprüfungen werden ausschließlich
 in der Projektdokumentation geführt. Formspree wird erst beim Absenden
 kontaktiert; counter.dev erzeugt bereits beim Seitenaufruf externe Anfragen. Die
-Platzhalter für die endgültige Vereins-E-Mail-Adresse und den späteren Stand der
-Erklärung sind in den offenen Prüfpunkten verankert.
+Erklärung trägt den Stand 7. Oktober 2026. Nur die endgültige
+Vereins-E-Mail-Adresse bleibt als Platzhalter offen. Der Vollständigkeitsabgleich
+und verbleibende rechtliche/vertragliche Entscheidungen sind in P-06 verankert;
+eine fachliche Gesamtfreigabe wird damit nicht behauptet.
 
 #### Besucherstatistik mit counter.dev
 
@@ -395,10 +397,37 @@ Die Serviceseite kennzeichnet ihren Footerlink mit `aria-current="page"`.
 #### `partner.html`
 
 Die Partnerseite verwendet den integrierten statischen Seitenrahmen und vier
-neutrale Bildflächen mit abgestimmten öffentlichen Texten. `partner.css` stellt
-sie als zweispaltiges, mobil einspaltiges Raster dar. Ein dezenter Link im
+leere, dekorative Logoflächen ohne Werbetexte oder erfundene Firmennamen.
+Freigegebene Firmen werden ausschließlich mit lokalem Logo und kurzer
+Firmenbenennung im `figcaption` aufgenommen; dabei entfällt `aria-hidden` der
+betreffenden Fläche. `partner.css` stellt sie als zweispaltiges, mobil
+einspaltiges Raster dar. Ein dezenter Link im
 Mitgliedschaftsbereich und die Footer-Sekundärnavigation führen zur Seite.
 Der daneben stehende Kontaktbutton führt zu `kontakt.html`.
+
+#### Favicons und schmale Textflächen
+
+Alle zwölf Seiten referenzieren lokale, aus dem unveränderten Vereinslogo
+abgeleitete Icons unter `assets/img/icons/`: ICO mit 16/32/48 px, PNG mit
+32 px und Apple-Touch-Icon mit 180 px. Relative Pfade funktionieren auch unter
+dem GitHub-Pages-Projektpfad; das Original bleibt unverändert. Apple-Einbindung
+gemäß [Safari Web Content Guide](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html).
+Safari kann gespeicherte Favicons zwischenspeichern; ein konkreter Fehler im
+Icon-Cache eines Besuchergeräts wurde nicht nachgewiesen.
+
+Die Startseiten-H1, Event-Abschnittsüberschriften und Rechtstextabschnitte verwenden deutsche
+Silbentrennung mit `overflow-wrap: anywhere` als Rückfall. Damit bleiben lange
+Wörter innerhalb schmaler Textflächen, ohne Inhalte zu verstecken.
+Die Galerievorschau nutzt `minmax(0, ...)` für ihre bestehenden Gridspalten;
+dies verhindert eine intrinsisch zu breite Bildspalte bei 320 px, ohne das
+Spaltenverhältnis oder das Medienformat zu ändern.
+
+Am 7. Oktober 2026 mit 197 bestandenen Node-Tests, lokalem Asset-/Deploymentcheck
+und `git diff --check` geprüft. Die betroffenen Ansichten wurden bei 320, 480,
+820 und 1440 px im Browser kontrolliert; keine Konsolenfehler. Das Original-Logo
+ist per SHA-256 unverändert. Eine Prüfung in der nativen Safari-App war mangels
+Computer-Use-Berechtigung nicht möglich; die tatsächliche Safari-Anzeige bleibt
+nach der ergänzten ICO-/Apple-Einbindung auf dem Besuchergerät zu kontrollieren.
 
 #### `kontakt.html`
 

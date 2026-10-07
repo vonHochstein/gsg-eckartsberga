@@ -8,6 +8,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Hinzugefügt
 
+- Vereinslogo als lokale ICO-/PNG-Favicons und Apple-Touch-Icon auf allen Seiten eingebunden; Original unverändert.
+
 - Automatische Veröffentlichung über GitHub Pages aus `main` eingerichtet; Website-Ausgabe auf HTML, CSS, JavaScript und produktive Assets begrenzt, ohne Änderung der Vereinsdomain oder zusätzliche Statuskennzeichnung.
 - counter.dev mit dem bestätigten Statistikcode auf allen zwölf Seiten asynchron eingebunden; auf ausdrücklichen Auftrag ohne Einwilligungsbanner. Datenschutztext um tatsächliche Verbindungsziele und Sitzungsmarker ergänzt.
 - Moderiertes Gästebuchformular mit separatem Formspree-Eingang, optionaler privater E-Mail und ausdrücklicher Veröffentlichungsfreigabe ergänzt; vorhandene Einträge bleiben unverändert.
@@ -77,6 +79,11 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 - Eigenständiges Impressum mit bestätigten Vereins-, Vertretungs- und Registerangaben sowie Footerlink auf allen Seiten ergänzt.
 
 ### Geändert
+
+- Datenschutzstand auf 7. Oktober 2026 gesetzt und belegte Informationslücken ergänzt; verbleibende rechtliche Entscheidungen in P-06 konkretisiert, keine Gesamtfreigabe behauptet.
+- Partnerseite auf vier neutrale Logoflächen reduziert; zukünftige Einträge nur mit Logo und Firmenbenennung.
+- Lange Startseiten-, Event- und Rechtstextüberschriften umbrechen auf schmalen Ansichten ohne horizontalen Überlauf.
+- Galerievorschau begrenzt die Mindestbreite ihrer Gridspalten auf den verfügbaren Raum; Spaltenverhältnis und Medienformat bleiben erhalten.
 
 - Lokale Formularstile und Versandmechanik für Kontakt und Gästebuch gemeinsam verwendet; Datenschutztext um Gästebuchfelder und Freigabe ergänzt.
 - Startseitenbutton „Kontakt aufnehmen“ aktiviert; Kontakt als zehntes Footerziel zwischen Partner und Impressum auf allen Seiten ergänzt. Hauptnavigation bleibt unverändert.

@@ -363,6 +363,8 @@ abbr[title] {
 
 .hero h1 {
   max-width: 780px;
+  hyphens: auto;
+  overflow-wrap: anywhere;
   font-size: clamp(3rem, 7.5vw, 6.5rem);
   line-height: 0.95;
   letter-spacing: -0.05em;
@@ -966,7 +968,7 @@ abbr[title] {
 .gallery-preview {
   margin-top: 46px;
   display: grid;
-  grid-template-columns: 1.4fr 0.9fr;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
   grid-template-areas: "image copy";
   gap: 28px;
   align-items: stretch;
@@ -1785,7 +1787,7 @@ abbr[title] {
 
 @media (max-width: 820px) {
   .gallery-preview {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       "image"
       "copy";
