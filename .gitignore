@@ -6,3 +6,6 @@ notes.rtf
 
 # lokale, nicht öffentlich ausgelieferte Migrationsarchive
 .local-archive/
+
+# GitHub-Pages-Ausgabe
+_site/

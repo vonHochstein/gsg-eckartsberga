@@ -1,0 +1,48 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v6
+      - name: GitHub Pages konfigurieren
+        uses: actions/configure-pages@v5
+      - name: Website-Dateien zusammenstellen
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '^const USE_DEMO_DATA = false;$' js/data/events.js
+          mkdir _site
+          cp -- *.html *.css _site/
+          cp -R js _site/js
+          mkdir _site/assets
+          for directory in documents img vendor video; do
+            cp -R "assets/$directory" _site/assets/
+          done
+      - name: Website hochladen
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Website veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4

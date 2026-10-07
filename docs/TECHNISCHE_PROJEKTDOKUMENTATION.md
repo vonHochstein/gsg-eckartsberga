@@ -56,7 +56,7 @@ Noch nicht umgesetzt sind insbesondere:
 - fachliche Freigabe des Impressums und der Datenschutzerklärung sowie deren abschließende Produktionsprüfung;
 - vollständige produktive Galerie;
 - Backend, CMS, Suche und Mitgliederbereich;
-- Build-, Deployment- und Hosting-Konfiguration.
+- eigener Anwendungsbuild; die statische Auslieferung benötigt keinen Compiler oder Bundler.
 
 ### 1.3 Technische Grundlage
 
@@ -70,6 +70,22 @@ Die Anwendung verwendet:
 - keinen Paketmanager, Compiler oder Bundler;
 - keine eigene API, Datenbank oder serverseitige Logik; Formularversand über Formspree;
 - externe OSM-Tile-Anfragen ausschließlich nach bewusstem Öffnen einer Karte.
+
+### 1.4 Veröffentlichung über GitHub Pages
+
+Repository: `https://github.com/vonHochstein/gsg-eckartsberga`.
+Die Website wird unter `https://vonhochstein.github.io/gsg-eckartsberga/`
+über GitHub Pages ausgeliefert. Es gibt keine zusätzliche Test-, Vorschau- oder
+Vorläufigkeitskennzeichnung auf der Website. Die Vereinsdomain und deren
+DNS-Einstellungen bleiben unverändert; eine eigene Domain ist nicht konfiguriert.
+
+`.github/workflows/pages.yml` veröffentlicht Änderungen auf `main` automatisch
+und kann zusätzlich manuell gestartet werden. Vor der Ausgabe wird der
+deaktivierte Demo-Schalter geprüft. Ausgeliefert werden die HTML- und CSS-Dateien
+im Wurzelverzeichnis, `js/` sowie `assets/documents`, `assets/img`,
+`assets/vendor` und `assets/video`. Projektunterlagen, Tests, lokale Archive,
+persönliche Notizen und `assets/dev` sind nicht Teil des Pages-Artefakts.
+Der generierte Ausgabeordner `_site/` ist von Git ausgeschlossen.
 
 ---
 
@@ -1383,8 +1399,8 @@ EVT-LOC-001 ergänzt die Browserprüfung um:
 - Die globale Variable `events` und klassische Skripte erzeugen weiterhin implizite Ladeabhängigkeiten.
 - `style.css` ist umfangreich und global.
 - Tests konzentrieren sich derzeit auf Hilfsfunktionen und Datenmodell; es existiert kein dauerhaftes DOM-Testsystem.
-- Der Demo-Schalter ist weiterhin eine manuelle Veröffentlichungsvoraussetzung.
-- Es gibt noch keine Deployment- oder Content-Security-Konfiguration.
+- Der deaktivierte Demo-Schalter wird bei der GitHub-Pages-Bereitstellung geprüft.
+- Eine Content-Security-Konfiguration ist nicht vorhanden.
 - OSM-Tiles sind ein externer Best-effort-Dienst ohne eigene Verfügbarkeitsgarantie; Richtlinien, konkrete Rechtsgrundlage und Produktionsrequests müssen vor Veröffentlichung abschließend geprüft werden.
 
 ### 6.3 Sinnvolle spätere Refactorings
