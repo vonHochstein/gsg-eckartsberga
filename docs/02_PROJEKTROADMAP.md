@@ -27,6 +27,7 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 - eigenständige Seite für Schießbahnen und Vereinshaus mit bestätigten Nutzungsangaben und vier freigegebenen Anlagenaufnahmen;
 - eigenständige Gästebuchseite mit zentralem Veröffentlichungsmodell, verständlichem Leerzustand und datengetriebenem Startseiten-Teaser;
 - eigenständige Serviceseite mit sechs ausgewählten offiziellen Anlaufstellen für Region, Verwaltung und Sport;
+- eigenständige Kontaktseite mit Formspree, freiwilliger Telefonnummer und manueller WhatsApp-Antwort auf ausdrücklichen Wunsch;
 - eigenständige Datenschutzseite für den tatsächlichen und verbindlich geplanten Produktionszustand;
 - eigenständiges Impressum mit bestätigten Anbieter-, Vertretungs- und Registerangaben;
 - redaktionell gefasste Vereinschronik mit öffentlich verständlichem Quellenbereich;
@@ -90,10 +91,11 @@ Der abgestimmte Gesamtentwurf aus Partnerseite, Gästebuchgestaltung, Navigation
 Bildfokus und Galeriesteuerung ist abgeschlossen. Die Partnerseite enthält vier
 neutrale Bildflächen; konkrete Unternehmen werden später einzeln ergänzt.
 
-Als nächstes folgt die Kontaktseite mit Formspree. Anschließend wird in einem
-separaten Schritt die moderierte Gästebuchübermittlung ergänzt. Anbieter- und
-Konfigurationsfragen werden vor Aktivierung über P-08 geklärt; die abschließenden
-Veröffentlichungsprüfungen bleiben dem späteren Produktivgang vorbehalten.
+Die Kontaktseite ist technisch mit dem bestätigten Formspree-Endpoint umgesetzt.
+Als nächstes wird in einem separaten Schritt die moderierte
+Gästebuchübermittlung ergänzt. Die abschließenden Anbieter- und
+Veröffentlichungsprüfungen bleiben über P-08 dem späteren Produktivgang
+vorbehalten.
 
 Offene Entscheidungen vor oder während der nächsten Abschnitte werden in [07_OFFENE_PRUEFPUNKTE.md](07_OFFENE_PRUEFPUNKTE.md) geführt.
 

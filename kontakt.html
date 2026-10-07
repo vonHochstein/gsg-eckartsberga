@@ -5,32 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Partner und Unterstützer der Großkaliber Schützengilde Eckartsberga."
+    content="Kontakt zur Großkaliber Schützengilde Eckartsberga."
   />
   <meta name="theme-color" content="#111111" />
 
   <meta property="og:locale" content="de_DE" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="GSG Eckartsberga" />
-  <meta property="og:title" content="Partner &amp; Unterstützer · GSG Eckartsberga" />
+  <meta property="og:title" content="Kontakt · GSG Eckartsberga" />
   <meta
     property="og:description"
-    content="Partner und Unterstützer der Großkaliber Schützengilde Eckartsberga."
+    content="Kontakt zur Großkaliber Schützengilde Eckartsberga."
   />
 
-  <title>Partner &amp; Unterstützer · GSG Eckartsberga</title>
+  <title>Kontakt · GSG Eckartsberga</title>
 
   <link rel="icon" type="image/png" href="assets/img/logo-gsg-eckartsberga.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="event.css" />
   <link rel="stylesheet" href="geschichte.css" />
-  <link rel="stylesheet" href="partner.css" />
+  <link rel="stylesheet" href="kontakt.css" />
 
   <script src="js/navigation.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/contact.js" defer></script>
 </head>
 
-<body class="history-page partner-page">
+<body class="history-page contact-page">
   <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
 
   <header class="site-header history-site-header">
@@ -76,63 +77,91 @@
           <span aria-hidden="true">←&nbsp;</span>
           Zurück zur Startseite
         </a>
-        <p class="history-eyebrow">Gemeinsam stark</p>
-        <h1>Partner &amp; Unterstützer</h1>
+        <p class="history-eyebrow">Im Gespräch</p>
+        <h1>Kontakt</h1>
         <p class="history-intro">
-          Engagement aus der Region kann Vereinsleben, Gemeinschaft und
-          sportliche Aktivitäten auf vielfältige Weise unterstützen.
+          Sie haben eine Frage zum Verein oder möchten uns kennenlernen?
+          Schreiben Sie uns – wir freuen uns auf Ihre Nachricht.
         </p>
       </div>
     </header>
 
-    <section class="partner-overview" aria-labelledby="partner-overview-title">
-      <div class="history-content partner-content">
-        <p class="section-kicker">Verbunden mit der Region</p>
-        <h2 id="partner-overview-title">Gemeinsam etwas möglich machen.</h2>
-        <p class="partner-intro">
-          Unsere Partner und Unterstützer begleiten die GSG Eckartsberga und
-          tragen dazu bei, Vereinsleben, Gemeinschaft und sportliche
-          Aktivitäten zu stärken.
+    <section class="contact-overview" aria-labelledby="contact-title">
+      <div class="history-content contact-content">
+        <p class="section-kicker">Ihre Nachricht an uns</p>
+        <h2 id="contact-title">Kontakt aufnehmen</h2>
+        <p class="contact-intro">
+          Felder mit „Pflichtfeld“ benötigen wir, um Ihre Anfrage bearbeiten
+          und beantworten zu können. Alle weiteren Angaben sind freiwillig.
         </p>
 
-        <div class="partner-grid" aria-label="Partner und Unterstützer">
-          <article class="partner-card partner-card-placeholder">
-            <div class="partner-mark" aria-hidden="true">01</div>
-            <p class="partner-card-kicker">Regional verbunden</p>
-            <h3>Engagement vor Ort</h3>
-            <p>Unterstützung aus der Region stärkt das Vereinsleben in Eckartsberga.</p>
-          </article>
+        <form
+          id="contact-form"
+          class="contact-form"
+          action="https://formspree.io/f/xrpeelwr"
+          method="post"
+          aria-describedby="contact-privacy"
+        >
+          <div class="contact-field">
+            <label for="contact-name">Name <span>(freiwillig)</span></label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="120" />
+          </div>
 
-          <article class="partner-card partner-card-placeholder">
-            <div class="partner-mark" aria-hidden="true">02</div>
-            <p class="partner-card-kicker">Vereinsleben</p>
-            <h3>Gemeinschaft fördern</h3>
-            <p>
-              Partnerschaftliches Engagement schafft Möglichkeiten für
-              Begegnung und gemeinsame Aktivitäten.
-            </p>
-          </article>
+          <div class="contact-field">
+            <label for="contact-email">E-Mail <span>(Pflichtfeld)</span></label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+          </div>
 
-          <article class="partner-card partner-card-placeholder">
-            <div class="partner-mark" aria-hidden="true">03</div>
-            <p class="partner-card-kicker">Schießsport</p>
-            <h3>Sport ermöglichen</h3>
-            <p>
-              Unterstützung trägt dazu bei, sportliche Angebote und
-              Veranstaltungen umzusetzen.
+          <div class="contact-field contact-field-full">
+            <label for="contact-phone">Telefonnummer <span>(freiwillig)</span></label>
+            <input
+              id="contact-phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              maxlength="60"
+              aria-describedby="contact-phone-hint contact-phone-error"
+            />
+            <p class="contact-field-hint" id="contact-phone-hint">
+              Auf Wunsch können wir Ihnen auch per WhatsApp antworten.
+              Bitte geben Sie dafür eine Telefonnummer an.
             </p>
-          </article>
+            <p class="contact-field-error" id="contact-phone-error" hidden></p>
+            <label class="contact-checkbox" for="contact-whatsapp">
+              <input id="contact-whatsapp" name="whatsapp_reply" type="checkbox" value="Ja" />
+              <span>Ich wünsche eine Antwort per WhatsApp.</span>
+            </label>
+          </div>
 
-          <article class="partner-card partner-card-placeholder">
-            <div class="partner-mark" aria-hidden="true">04</div>
-            <p class="partner-card-kicker">Tradition</p>
-            <h3>Zukunft mitgestalten</h3>
-            <p>
-              Gemeinsam bleiben Vereinstradition und ein aktives Vereinsleben
-              lebendig.
+          <div class="contact-field contact-field-full">
+            <label for="contact-message">Nachricht <span>(Pflichtfeld)</span></label>
+            <textarea id="contact-message" name="message" rows="7" maxlength="10000" required></textarea>
+          </div>
+
+          <div class="contact-honeypot" aria-hidden="true">
+            <label for="contact-website">Bitte leer lassen</label>
+            <input id="contact-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+          <input type="hidden" name="_language" value="de" />
+
+          <div class="contact-field-full">
+            <p class="contact-privacy" id="contact-privacy">
+              Ihre Angaben werden über Formspree übermittelt und zur Bearbeitung
+              Ihrer Anfrage verwendet. Eine Antwort per WhatsApp erfolgt nur
+              auf Ihren Wunsch. Weitere Informationen finden Sie in unserer
+              <a href="datenschutz.html#privacy-formspree-title">Datenschutzerklärung</a>.
             </p>
-          </article>
-        </div>
+            <button class="btn btn-primary contact-submit" type="submit">Nachricht senden</button>
+            <p
+              class="contact-status"
+              id="contact-status"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              tabindex="-1"
+            ></p>
+          </div>
+        </form>
       </div>
     </section>
   </main>
@@ -191,8 +220,8 @@
           <a href="index.html#galerie">Galerie</a>
           <a href="gaestebuch.html">Gästebuch</a>
           <a href="service.html">Service &amp; Links</a>
-          <a href="partner.html" aria-current="page">Partner</a>
-          <a href="kontakt.html">Kontakt</a>
+          <a href="partner.html">Partner</a>
+          <a href="kontakt.html" aria-current="page">Kontakt</a>
           <a href="impressum.html">Impressum</a>
           <a href="datenschutz.html">Datenschutz</a>
         </nav>

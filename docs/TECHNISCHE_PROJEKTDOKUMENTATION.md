@@ -297,8 +297,9 @@ STRATO-Domain-/DNS-Verwaltung, E-Mail-Kontakt, die vorhandenen öffentlichen
 Gästebucheinträge und die erst nach bewusster Aktivierung geladenen OSM-Karten.
 
 Die öffentliche Textfassung beschreibt Formspree und counter.dev entsprechend
-dem vorgesehenen Veröffentlichungszustand. Beide Dienste sind im aktuellen
-Entwicklungsstand technisch noch nicht aktiv; dieser interne Stand sowie die
+dem vorgesehenen Veröffentlichungszustand. Formspree ist für Kontaktanfragen
+technisch angebunden; Gästebuchübermittlung und counter.dev sind noch nicht
+aktiv. Dieser interne Stand sowie die
 noch offenen Produktions-, Anbieter- und Rechtsprüfungen werden ausschließlich
 in der Projektdokumentation geführt. Die Seite bindet keine dieser externen
 Laufzeiten ein und erzeugt selbst keine automatischen Drittanfragen. Die
@@ -327,8 +328,8 @@ Listenlayout der Linkelemente.
 Die Hauptnavigation führt zwischen Galerie und Mitgliedschaft das Gästebuch.
 Auf der Startseite verweist es auf `#stimmen` und erhält den bestehenden aktiven
 Scrollzustand; auf Unterseiten führt es zu `gaestebuch.html`.
-Der Footer enthält neun Ziele in der Reihenfolge Start, Verein, Veranstaltungen,
-Galerie, Gästebuch, Service & Links, Partner, Impressum und Datenschutz.
+Der Footer enthält zehn Ziele in der Reihenfolge Start, Verein, Veranstaltungen,
+Galerie, Gästebuch, Service & Links, Partner, Kontakt, Impressum und Datenschutz.
 Die Serviceseite kennzeichnet ihren Footerlink mit `aria-current="page"`.
 
 #### `partner.html`
@@ -337,8 +338,29 @@ Die Partnerseite verwendet den integrierten statischen Seitenrahmen und vier
 neutrale Bildflächen mit abgestimmten öffentlichen Texten. `partner.css` stellt
 sie als zweispaltiges, mobil einspaltiges Raster dar. Ein dezenter Link im
 Mitgliedschaftsbereich und die Footer-Sekundärnavigation führen zur Seite.
-Der daneben vorbereitete Kontaktbutton bleibt bis zur Formularintegration
-deaktiviert.
+Der daneben stehende Kontaktbutton führt zu `kontakt.html`.
+
+#### `kontakt.html`
+
+Die Kontaktseite verwendet denselben statischen Seitenrahmen. E-Mail und
+Nachricht sind Pflichtfelder, Name und Telefonnummer freiwillig. Eine nicht
+vorausgewählte Checkbox übermittelt den Wunsch nach manueller WhatsApp-Antwort;
+bei Auswahl prüft das lokale JavaScript eine nichtleere Telefonnummer.
+Die Feldhilfe erklärt dies auch ohne JavaScript.
+
+Die einzige produktive Formularadresse steht im HTML-`action`. `js/contact.js`
+liest diese Adresse, sendet `FormData` per POST mit JSON-Antwortanforderung und
+ohne Zugangsdaten oder Cookies. Die Felder heißen `name`, `email`, `phone`,
+`message`, `whatsapp_reply`; `_gotcha` dient als Honeypot und `_language=de`
+der deutschen Formspree-Rückmeldung. Es gibt keine externen Skripte oder
+Vorabverbindungen. Ohne JavaScript bleibt der native HTML-POST möglich.
+
+Der lokale Controller sperrt Mehrfachversand, begrenzt die Wartezeit auf 30
+Sekunden und erhält Eingaben bei Fehlern. Nur eine erfolgreiche JSON-Bestätigung
+mit `ok: true` leert das Formular. Statusmeldungen sind per Live-Region
+zugänglich; nach Erfolg oder Fehler erhält die Meldung den Fokus. Es erfolgt
+kein automatischer Wiederholungsversand und keine Browser-Speicherung.
+`kontakt.css` ergänzt ausschließlich das responsive Formularlayout.
 
 ### 2.2 CSS
 
@@ -1152,6 +1174,19 @@ node --test tests/*.test.js
 - Ausschluss eigener Cookie- oder Browserspeichermechanismen.
 
 ### 5.2 Browserprüfungen
+
+KONTAKT-001 wurde am 7. Oktober 2026 mit 192 bestandenen Node-Tests,
+fehlerfreier Syntaxprüfung und `git diff --check` geprüft. Die Kontaktseite
+und Footer aller zwölf produktiven Seiten wurden bei 1440, 820, 480 und
+320 Pixeln kontrolliert. Pflichtfelder, WhatsApp ohne/mit Telefonnummer,
+Erfolg, Dienst-/Netzwerkfehler, unbestätigte Antworten, Mehrfachversandsperre,
+Statusfokus und nativer Versand ohne JavaScript wurden gezielt geprüft.
+Der Kontaktinhalt blieb auch bei vergrößertem Text nutzbar. Beim normalen
+Seitenaufruf wurden keine externen Requests oder lokalen Assetfehler festgestellt.
+Ein einzelner, als Funktionstest gekennzeichneter Versand mit ausschließlich
+Beispieldaten wurde von Formspree mit HTTP 200 und `ok: true` angenommen.
+Der Auftraggeber hat den Eintrag im Formspree-Posteingang einschließlich
+Beispieltelefonnummer und `whatsapp_reply: Ja` bestätigt.
 
 Abschlussprüfung des Gesamtentwurfs am 7. Oktober 2026:
 

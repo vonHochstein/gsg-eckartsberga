@@ -15,6 +15,7 @@ const pageFiles = [
   "gaestebuch.html",
   "service.html",
   "partner.html",
+  "kontakt.html",
   "impressum.html",
   "datenschutz.html"
 ];
@@ -150,7 +151,7 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
 
   assert.match(
     css,
-    /\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(9, max-content\);/s
+    /\.footer-nav\s*{[^}]*grid-template-columns:\s*repeat\(10, max-content\);/s
   );
   assert.match(
     css,
@@ -186,6 +187,7 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
       "Gästebuch",
       "Service &amp; Links",
       "Partner",
+      "Kontakt",
       "Impressum",
       "Datenschutz"
     ];
@@ -193,8 +195,8 @@ test("trennt die Footerlinks ohne eingetippte oder isolierte Separatoren", () =>
 
     assert.equal(
       (footerNavigation.match(/<a\b/g) ?? []).length,
-      9,
-      pageFile + ": Footer muss genau neun Links enthalten"
+      10,
+      pageFile + ": Footer muss genau zehn Links enthalten"
     );
     assert.doesNotMatch(footerNavigation, /#mitglied|Mitglied werden/);
 

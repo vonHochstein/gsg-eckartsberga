@@ -18,6 +18,7 @@ const pageFiles = [
   "gaestebuch.html",
   "service.html",
   "partner.html",
+  "kontakt.html",
   "impressum.html",
   "datenschutz.html"
 ];
@@ -73,7 +74,9 @@ test("nennt die verbindlichen Verantwortlichen- und Registerangaben", () => {
     countMatches(html, /\[VEREINS-E-MAIL VOR VERÖFFENTLICHUNG ERGÄNZEN\]/g),
     1
   );
-  assert.doesNotMatch(html, /WhatsApp/i);
+  assert.match(html, /Antwort auf Wunsch per WhatsApp/);
+  assert.match(html, /Auf der Website ist WhatsApp nicht technisch eingebunden/);
+  assert.doesNotMatch(html, /https:\/\/(?:wa\.me|api\.whatsapp\.com)/);
 });
 
 test("trennt GitHub-Pages-Hosting und STRATO-Domainverwaltung", () => {

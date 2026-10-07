@@ -310,6 +310,7 @@ test("verlinkt das Gästebuch in Hauptnavigation und Footer aller Seiten", () =>
     "gaestebuch.html",
     "service.html",
     "partner.html",
+    "kontakt.html",
     "impressum.html",
     "datenschutz.html"
   ];

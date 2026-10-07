@@ -1951,7 +1951,7 @@ html[data-development-data="active"] .site-footer {
 
 .footer-nav {
   display: grid;
-  grid-template-columns: repeat(9, max-content);
+  grid-template-columns: repeat(10, max-content);
   align-items: stretch;
   justify-content: center;
   margin: 0 auto;

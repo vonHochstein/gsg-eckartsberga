@@ -8,6 +8,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Hinzugefügt
 
+- Kontaktseite mit Formspree-Versand, freiwilliger Telefonnummer und ausdrücklichem Wunsch nach manueller WhatsApp-Antwort ergänzt.
 - Partnerseite mit vier neutralen Bildflächen sowie dezentem Einstieg im Mitgliedschaftsbereich und Footer ergänzt.
 - Kontakt-Schaltfläche im Mitgliedschaftsbereich vorbereitet; bis zur separaten Formularintegration bleibt sie deaktiviert.
 - Eigenständige Serviceseite mit sechs offiziellen regionalen, behördlichen und sportverbandlichen Anlaufstellen sowie konsistenter Verlinkung in Hauptnavigation und Footer aller Seiten.
@@ -74,6 +75,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Startseitenbutton „Kontakt aufnehmen“ aktiviert; Kontakt als zehntes Footerziel zwischen Partner und Impressum auf allen Seiten ergänzt. Hauptnavigation bleibt unverändert.
+- Datenschutztext um Kontaktfelder und die optionale manuelle WhatsApp-Kommunikation ergänzt.
 - Gästebuchtexte und Zitatdarstellung auf Unterseite und Startseite überarbeitet; der Stimmenbereich nutzt die volle Content-Breite.
 - Gästebuch ersetzt Service in der Hauptnavigation; der Startseitenlink folgt beim Scrollen dem Stimmenbereich. Footerlinks einheitlich auf Start, Verein, Veranstaltungen, Galerie, Gästebuch, Service & Links, Partner, Impressum und Datenschutz geordnet.
 - Startseitengalerie mit Zufallsauswahl, tatsächlichem Zurück-Verlauf und Pause/Fortsetzen ergänzt; die kompakte Steuerung liegt innerhalb der Bildbox unterhalb einer getrennt platzierten Bildunterschrift.

@@ -17,6 +17,7 @@ const pageFiles = [
   "gaestebuch.html",
   "service.html",
   "partner.html",
+  "kontakt.html",
   "datenschutz.html",
   "impressum.html"
 ];

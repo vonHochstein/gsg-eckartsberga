@@ -16,6 +16,7 @@ const pageFiles = [
   "gaestebuch.html",
   "service.html",
   "partner.html",
+  "kontakt.html",
   "impressum.html",
   "datenschutz.html"
 ];
@@ -92,7 +93,7 @@ test("verlinkt die Partnerseite dezent aus dem Mitgliedschaftsbereich", () => {
   assert.match(membership, /href="partner\.html">[\s\S]*?Partner ansehen/);
   assert.match(
     membership,
-    /<button class="btn btn-secondary" type="button" disabled>[\s\S]*?Kontakt aufnehmen[\s\S]*?<\/button>/
+    /<a class="btn btn-secondary" href="kontakt\.html">[\s\S]*?Kontakt aufnehmen[\s\S]*?<\/a>/
   );
   assert.equal((html.match(/href="partner\.html"/g) ?? []).length, 2);
 });
