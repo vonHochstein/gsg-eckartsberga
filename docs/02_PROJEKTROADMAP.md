@@ -15,6 +15,10 @@ Die Aufnahme in diese Roadmap ersetzt weder einen Implementierungsplan noch ein 
 
 ## Bereits umgesetzt
 
+### Besucherstatistik
+
+- counter.dev auf allen zwölf Seiten mit der vom Auftraggeber vorgegebenen Kennung integriert, ohne Einwilligungsbanner; technische Umsetzung abgeschlossen, fachliche Rechtsprüfung bleibt in P-05/P-09 verankert.
+
 ### Visuelle und strukturelle Grundlage
 
 - responsive Single-Page-Grundstruktur;

@@ -98,7 +98,7 @@ test("verlinkt die Partnerseite dezent aus dem Mitgliedschaftsbereich", () => {
   assert.equal((html.match(/href="partner\.html"/g) ?? []).length, 2);
 });
 
-test("lädt auf der Partnerseite ausschließlich vorhandene lokale Ressourcen", () => {
+test("lädt auf der Partnerseite vorhandene lokale Ressourcen und counter.dev", () => {
   const html = readPage("partner.html");
   const automaticTargets = [
     ...html.matchAll(/<(?:script|img)[^>]+\bsrc="([^"]+)"/gi),
@@ -107,6 +107,7 @@ test("lädt auf der Partnerseite ausschließlich vorhandene lokale Ressourcen", 
   ].map((match) => match[1]);
 
   automaticTargets.forEach((target) => {
+    if (target === "https://cdn.counter.dev/script.js") return;
     assert.doesNotMatch(target, /^(?:https?:)?\/\//i);
     assert.equal(
       fs.existsSync(path.join(projectRoot, target)),

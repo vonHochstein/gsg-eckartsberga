@@ -26,7 +26,7 @@ Umgesetzt und geprüft sind:
 - statische, responsive Anlagen-Unterseite mit vier freigegebenen Medien und gemeinsamer Lightbox;
 - datengetriebene Gästebuch-Unterseite mit fünf freigegebenen Bestandseinträgen;
 - Kontakt- und moderiertes Gästebuchformular mit getrennten Formspree-Eingängen und gemeinsamer lokaler Versandmechanik;
-- statische, responsive Serviceseite mit sechs offiziellen externen Anlaufstellen und ohne automatisch geladene Drittressourcen;
+- statische, responsive Serviceseite mit sechs offiziellen externen Anlaufstellen;
 - statische, responsive Datenschutzerklärung für den vorgesehenen Veröffentlichungszustand;
 - statisches, responsives Impressum mit bestätigten Anbieter- und Registerangaben;
 - feste Navigation mit mobilem, per Tastatur bedienbarem Menü;
@@ -313,13 +313,41 @@ Gästebucheinträge und die erst nach bewusster Aktivierung geladenen OSM-Karten
 
 Die öffentliche Textfassung beschreibt Formspree und counter.dev entsprechend
 dem vorgesehenen Veröffentlichungszustand. Formspree ist für Kontaktanfragen
-und Gästebuchübermittlung technisch angebunden; counter.dev ist noch nicht
-aktiv. Dieser interne Stand sowie die
+und Gästebuchübermittlung technisch angebunden; counter.dev wird auf allen
+zwölf Seiten einschließlich der Datenschutzseite asynchron geladen.
+Dieser interne Stand sowie die
 noch offenen Produktions-, Anbieter- und Rechtsprüfungen werden ausschließlich
-in der Projektdokumentation geführt. Die Seite bindet keine dieser externen
-Laufzeiten ein und erzeugt selbst keine automatischen Drittanfragen. Die
+in der Projektdokumentation geführt. Formspree wird erst beim Absenden
+kontaktiert; counter.dev erzeugt bereits beim Seitenaufruf externe Anfragen. Die
 Platzhalter für die endgültige Vereins-E-Mail-Adresse und den späteren Stand der
 Erklärung sind in den offenen Prüfpunkten verankert.
+
+#### Besucherstatistik mit counter.dev
+
+Alle zwölf HTML-Seiten enthalten einmal das asynchrone Standardskript
+`https://cdn.counter.dev/script.js` mit der Kennung
+`33748b93-9a1c-423e-9dba-7e4c8ef61057` und dem vorgegebenen
+`data-utcoffset="2"`. Es wird keine eigene Statistiklogik ergänzt.
+Auf ausdrücklichen Auftrag gibt es kein Einwilligungsbanner; die fachliche
+Rechtsprüfung ist davon getrennt und bleibt in P-05/P-09 offen.
+
+Das geprüfte Anbieterskript sendet den Seitenpfad unmittelbar per Beacon an
+`https://t.counter.dev/trackpage`. Bei einem Einstieg ohne interne
+Referrer-Seite und ohne Sitzungsmarker folgt nach 4,5 Sekunden eine Anfrage an
+`/track` mit Referrer, Bildschirmgröße, Kennung und UTC-Offset; dabei wird
+`_swa=1` in `sessionStorage` gesetzt. Vorhandene `doNotTrack`-Werte im
+Local-/Session-Storage unterdrücken die Statistik im Anbieterskript. Es handelt
+sich nicht um eine eigene Prüfung des Browser-DNT-Headers. Der Standardcode
+erfasst nur `location.pathname`, nicht Event-Queryparameter. Bei einem
+Dienstausfall bleiben die lokalen Website-Funktionen unabhängig nutzbar.
+
+Am 7. Oktober 2026 mit 196 bestandenen Node-Tests, Syntaxprüfung und
+`git diff --check` geprüft. Im lokalen Chrome wurden das echte CDN-Skript
+(HTTP 200), Seiten-Beacons, verzögerte Besucherzählung und der Sitzungsmarker
+kontrolliert. Tracking-Anfragen wurden zur Vermeidung künstlicher Live-Zahlen
+abgefangen; der Empfang im Statistik-Dashboard wurde damit nicht geprüft.
+Kontakt blieb unverändert, keine Konsolenfehler; das Gästebuch blieb auch bei
+blockiertem Statistik-CDN nutzbar.
 
 #### `impressum.html`
 
@@ -335,8 +363,9 @@ Anbieterkennzeichnungsfragen werden intern unter P-06 geprüft.
 
 Die statische Serviceseite verwendet den gemeinsamen integrierten Seitenkopf
 und gliedert sechs ausgewählte offizielle Anlaufstellen in „Region und
-Verwaltung“ sowie „Verbände und Sport“. Sie lädt keine externen Medien,
-Stylesheets oder Skripte; Verbindungen zu den Zielseiten entstehen erst nach
+Verwaltung“ sowie „Verbände und Sport“. Sie lädt keine externen Medien oder
+Stylesheets; das allgemeine counter.dev-Skript ist auch hier eingebunden.
+Verbindungen zu den sechs verlinkten Zielseiten entstehen erst nach
 einem bewussten Linkklick. `service.css` ergänzt ausschließlich das responsive
 Listenlayout der Linkelemente.
 
@@ -367,8 +396,10 @@ Jede produktive Formularadresse steht einmalig im jeweiligen HTML-`action`.
 `js/formspree.js` liest diese Adresse und sendet `FormData` per POST mit JSON-Antwortanforderung und
 ohne Zugangsdaten oder Cookies. Die Felder heißen `name`, `email`, `phone`,
 `message`, `whatsapp_reply`; `_gotcha` dient als Honeypot und `_language=de`
-der deutschen Formspree-Rückmeldung. Es gibt keine externen Skripte oder
-Vorabverbindungen. Ohne JavaScript bleibt der native HTML-POST möglich.
+der deutschen Formspree-Rückmeldung. Für den Formularversand gibt es keine
+externen Skripte oder Vorabverbindungen zu Formspree. Die allgemeine
+counter.dev-Statistik wird davon unabhängig geladen. Ohne JavaScript bleibt
+der native HTML-POST möglich.
 
 Der lokale Controller sperrt Mehrfachversand, begrenzt die Wartezeit auf 30
 Sekunden und erhält Eingaben bei Fehlern. Nur eine erfolgreiche JSON-Bestätigung
@@ -1154,16 +1185,16 @@ node --test tests/*.test.js
 `tests/service-page.test.js` prüft:
 
 - statischen Seitenrahmen, genau eine H1 und die beiden Inhaltsbereiche;
-- die sechs festgelegten offiziellen Zieladressen ohne automatisch geladene
-  Drittressourcen;
+- die sechs festgelegten offiziellen Linkziele; automatisch extern geladen
+  wird ausschließlich das separat geprüfte counter.dev-Skript;
 - die konsistente Position und den aktuellen Zustand des Service-Links im
   Footer aller Seiten sowie seinen Ausschluss aus der Hauptnavigation;
 - den Ausschluss einer zusätzlichen Servicekarte auf der Startseite.
 
 `tests/privacy-page.test.js` prüft:
 
-- statischen Detailseitenrahmen, genau eine H1 und ausschließlich lokale
-  automatisch geladene Ressourcen;
+- statischen Detailseitenrahmen, genau eine H1 und lokale Ressourcen mit
+  counter.dev als einziger automatisch geladener externer Ressource;
 - verbindliche Vereins-, Register-, Hosting- und Domainangaben;
 - Formspree und counter.dev in der öffentlichen Textfassung als Bestandteile
   des vorgesehenen Veröffentlichungszustands ohne interne Arbeitsvermerke;
@@ -1179,8 +1210,11 @@ node --test tests/*.test.js
   Arbeitsvermerke;
 - Impressum und Datenschutz als funktionierende rechtliche Footerziele auf
   allen produktiven Seiten;
-- vorhandene lokale Ressourcen und interne Linkziele ohne automatische
-  Drittanfragen.
+- vorhandene lokale Ressourcen und interne Linkziele; counter.dev ist die
+  einzige automatisch geladene externe Ressource.
+
+`tests/counter.test.js` sichert die einmalige asynchrone Einbindung mit der
+bestätigten Kennung und dem vorgegebenen UTC-Offset auf allen zwölf Seiten ab.
 
 `tests/venue-map.test.js` prüft:
 
@@ -1218,7 +1252,8 @@ und Footer aller zwölf produktiven Seiten wurden bei 1440, 820, 480 und
 Erfolg, Dienst-/Netzwerkfehler, unbestätigte Antworten, Mehrfachversandsperre,
 Statusfokus und nativer Versand ohne JavaScript wurden gezielt geprüft.
 Der Kontaktinhalt blieb auch bei vergrößertem Text nutzbar. Beim normalen
-Seitenaufruf wurden keine externen Requests oder lokalen Assetfehler festgestellt.
+Seitenaufruf wurden zum damaligen Stand vor der counter.dev-Einbindung keine
+externen Requests oder lokalen Assetfehler festgestellt.
 Ein einzelner, als Funktionstest gekennzeichneter Versand mit ausschließlich
 Beispieldaten wurde von Formspree mit HTTP 200 und `ok: true` angenommen.
 Der Auftraggeber hat den Eintrag im Formspree-Posteingang einschließlich

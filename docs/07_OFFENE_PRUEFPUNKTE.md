@@ -49,7 +49,8 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 
 - **Status:** In Klärung
 - **Frage:** Kann die Website ohne Cookie- beziehungsweise Einwilligungsbanner betrieben werden?
-- **Zu prüfen:** Die technische Voranalyse hat für den aktuellen Stand keine eigenen Cookies oder Browser-Speicherungen festgestellt. Vor Veröffentlichung bleiben insbesondere die tatsächliche Formspree- und counter.dev-Konfiguration, der mögliche `sessionStorage`-Einsatz der Statistik, die klickbasierte OSM-Karte und die rechtliche Einordnung des finalen Gesamtzustands zu prüfen.
+- **Technische Entscheidung (7. Oktober 2026):** Auf ausdrücklichen Auftrag wird counter.dev ohne Einwilligungsbanner eingebunden. Der Standardcode verwendet `sessionStorage` für den Statistikmarker `_swa`; die frühere Voranalyse ohne aktive Statistik beschreibt nicht mehr den aktuellen Gesamtzustand. Diese Implementierungsentscheidung ersetzt keine fachliche Rechtsfreigabe.
+- **Zu prüfen:** Vor Veröffentlichung bleiben die tatsächliche Formspree-Konfiguration, die klickbasierte OSM-Karte sowie die rechtliche Einordnung des Bannerverzichts bei aktiver counter.dev-Statistik zu prüfen.
 - **Abschlusskriterium:** Vollständige Diensteliste und fachlich bestätigte Entscheidung zur erforderlichen Einwilligung.
 
 ### P-06 – Impressum und Datenschutzerklärung
@@ -79,8 +80,9 @@ Es ist kein Rechtsgutachten. Rechtliche Bewertungen sind bei Bedarf durch fachku
 ### P-09 – counter.dev für Besucherstatistik
 
 - **Status:** In Klärung
-- **Frage:** Wie wird die verbindlich geplante Reichweitenmessung mit counter.dev datenschutzgerecht aktiviert?
-- **Zu prüfen:** Vor Aktivierung tatsächliches Einbindungsskript und konkrete Statistikfelder, `sessionStorage`, Browser-Cache, Referrer, IP-basierte Länderableitung, Einwilligungsbedarf, Datenschutzerklärung, Ausfallsicherheit und Alternativen ohne Statistik prüfen. Danach die Datenschutzerklärung gegen die reale Konfiguration abgleichen.
+- **Frage:** Ist die technisch aktivierte Reichweitenmessung mit counter.dev für den öffentlichen Betrieb fachlich freigegeben?
+- **Technischer Stand (7. Oktober 2026):** Standardskript `https://cdn.counter.dev/script.js` auf allen zwölf Seiten asynchron eingebunden, Kennung `33748b93-9a1c-423e-9dba-7e4c8ef61057`, vorgegebener `data-utcoffset="2"`. Automatische Anfragen an `https://t.counter.dev/trackpage` (Seitenpfad) und bei externem Einstieg verzögert an `/track` (Referrer, Bildschirmgröße, Kennung und UTC-Offset); Sitzungsmarker `_swa` in `sessionStorage`. Auf ausdrücklichen Auftrag ohne Banner; Datenschutztext an die tatsächlichen Verbindungsziele angepasst. Technische Umsetzung ist keine rechtliche Freigabe.
+- **Zu prüfen:** Rechtsgrundlage und Einwilligungsbedarf bei Browser-Speicherung, Anbieter-/Vertragsbedingungen und internationale Verarbeitung sowie IP-basierte Länderableitung fachlich bewerten. Der fest vorgegebene UTC-Offset `2` entspricht der Sommerzeit; vor einem Betrieb in Winterzeit die gewünschte Zeitzuordnung prüfen. Den finalen Datenschutztext gegen den Produktionsbetrieb abgleichen.
 - **Abschlusskriterium:** Dokumentierte, fachlich freigegebene counter.dev-Konfiguration einschließlich Rechtsgrundlage, Einwilligungsentscheidung und aktualisiertem Datenschutztext.
 
 ### P-23 – Datenschutzabgleich des Produktionsbetriebs

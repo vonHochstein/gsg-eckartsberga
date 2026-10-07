@@ -8,6 +8,7 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Hinzugefügt
 
+- counter.dev mit dem bestätigten Statistikcode auf allen zwölf Seiten asynchron eingebunden; auf ausdrücklichen Auftrag ohne Einwilligungsbanner. Datenschutztext um tatsächliche Verbindungsziele und Sitzungsmarker ergänzt.
 - Moderiertes Gästebuchformular mit separatem Formspree-Eingang, optionaler privater E-Mail und ausdrücklicher Veröffentlichungsfreigabe ergänzt; vorhandene Einträge bleiben unverändert.
 - Kontaktseite mit Formspree-Versand, freiwilliger Telefonnummer und ausdrücklichem Wunsch nach manueller WhatsApp-Antwort ergänzt.
 - Partnerseite mit vier neutralen Bildflächen sowie dezentem Einstieg im Mitgliedschaftsbereich und Footer ergänzt.

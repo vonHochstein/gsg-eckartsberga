@@ -82,6 +82,7 @@ test("bietet den lokalen Kontaktaufbau mit einem einzigen Formspree-Endpoint an"
   assert.match(html, /name="_gotcha" tabindex="-1"/);
   assert.match(html, /role="status"[\s\S]*?aria-live="polite"/);
   for (const match of html.matchAll(/<(?:script|img)[^>]+src="([^"]+)"/g)) {
+    if (match[1] === "https://cdn.counter.dev/script.js") continue;
     assert.ok(fs.existsSync(path.join(root, match[1])), match[1]);
     assert.doesNotMatch(match[1], /^https?:/);
   }

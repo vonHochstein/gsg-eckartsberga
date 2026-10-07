@@ -100,6 +100,8 @@ test("beschreibt Formspree und counter.dev für den Veröffentlichungszustand", 
   assert.match(html, /keine\s+Cookies und kein\s+IP-Adress-Fingerprinting/);
   assert.match(html, /<code>sessionStorage<\/code>/);
   assert.match(html, /Browser-Cache und\s+den Referrer/);
+  assert.match(html, /https:\/\/t\.counter\.dev\//);
+  assert.match(html, /<code>_swa<\/code>/);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /formspree\.io\/f\//i);
 });
@@ -177,7 +179,7 @@ test("nennt Betroffenenrechte mit ihren gesetzlichen Voraussetzungen", () => {
   );
 });
 
-test("erzeugt auf der Datenschutzseite keine automatischen Drittanfragen", () => {
+test("lädt auf der Datenschutzseite nur counter.dev als externe Ressource", () => {
   const html = readProjectFile(privacyPath);
   const automaticTargets = [
     ...html.matchAll(/<(?:script|img)[^>]+\bsrc="([^"]+)"/gi),
@@ -187,6 +189,7 @@ test("erzeugt auf der Datenschutzseite keine automatischen Drittanfragen", () =>
 
   assert.ok(automaticTargets.length > 0);
   automaticTargets.forEach((target) => {
+    if (target === "https://cdn.counter.dev/script.js") return;
     assert.doesNotMatch(target, /^(?:https?:)?\/\//i);
   });
 

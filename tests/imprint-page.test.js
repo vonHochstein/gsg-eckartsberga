@@ -134,7 +134,7 @@ test("verlinkt Impressum und Datenschutz in allen Footern", () => {
   );
 });
 
-test("lädt automatisch nur vorhandene lokale Ressourcen und verlinkt interne Ziele", () => {
+test("lädt lokale Ressourcen und counter.dev und verlinkt interne Ziele", () => {
   assert.equal(fs.existsSync(imprintPath), true);
   const html = readPage("impressum.html");
   const automaticTargets = [
@@ -145,6 +145,7 @@ test("lädt automatisch nur vorhandene lokale Ressourcen und verlinkt interne Zi
 
   assert.ok(automaticTargets.length > 0);
   automaticTargets.forEach((target) => {
+    if (target === "https://cdn.counter.dev/script.js") return;
     assert.doesNotMatch(target, /^(?:https?:)?\/\//i);
     assert.equal(
       fs.existsSync(path.join(projectRoot, target)),

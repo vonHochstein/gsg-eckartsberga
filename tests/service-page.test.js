@@ -72,7 +72,7 @@ test("verlinkt genau die sechs festgelegten offiziellen Anlaufstellen", () => {
   assert.match(main, /offiziellen Kreisverbandsverzeichnis des Landesverbandes/);
 });
 
-test("lädt beim Seitenaufruf ausschließlich lokale Ressourcen", () => {
+test("lädt beim Seitenaufruf lokale Ressourcen und counter.dev", () => {
   const html = readPage("service.html");
   const automaticTargets = [
     ...html.matchAll(/<(?:script|img)[^>]+\bsrc="([^"]+)"/gi),
@@ -81,6 +81,7 @@ test("lädt beim Seitenaufruf ausschließlich lokale Ressourcen", () => {
   ].map((match) => match[1]);
 
   automaticTargets.forEach((target) => {
+    if (target === "https://cdn.counter.dev/script.js") return;
     assert.doesNotMatch(target, /^(?:https?:)?\/\//i);
     assert.equal(
       fs.existsSync(path.join(projectRoot, target)),
