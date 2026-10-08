@@ -407,6 +407,30 @@ Der daneben stehende Kontaktbutton führt zu `kontakt.html`.
 
 #### Favicons und schmale Textflächen
 
+**Mobile Skalierung (8. Oktober 2026):** `style.css` definiert
+`--mobile-page-scale: 0.9`. Nur bis 820 px wird dieser Faktor als CSS-`zoom`
+auf `html` angewendet; ab 821 px bleibt `zoom` unverändert bei 1. Durch Änderung
+des Faktors auf `1` lässt sich die Skalierung abschalten. Die gesamte Änderung
+ist als eigenes Git-Arbeitspaket rücknehmbar; kein Umbau von HTML, JavaScript
+oder einzelnen Inhaltskomponenten.
+
+Der zugehörige gemeinsame CSS-Block sichert kleine Buttons mit Klasse,
+CTA-/Footer-/Rücklinks und Checkbox-Beschriftungen gegen Verkleinerung unter
+44 px Höhe ab; Buttons erhalten auch mindestens 44 px tatsächliche Breite.
+Formular-Eingabeschrift wird auf effektiv 16 px gehalten. Viewport-Metadaten
+werden nicht verändert, Benutzerzoom wird nicht gesperrt. Browser ohne
+CSS-`zoom`-Unterstützung behalten die unskalierte Darstellung.
+
+Geprüft wurden mobile Breiten 320/390/480/820 px, der Übergang 821 px und
+Desktop 1440 px. Bei mobilen Ansichten kein horizontaler Überlauf; Header
+deckt die Bildschirmbreite ab. Menü öffnen/ESC, Bild- und beide Video-Lightboxen
+bei 320×480 px, Controls, `contain` sowie ESC/Fokusrückgabe geprüft; kein
+Dialog-Scrollüberlauf und kein Autoplay. Formularübermittlung blieb technisch
+unverändert und wurde nicht erneut live abgesendet. Der vorbestehende breite
+Desktop-Navigationsinhalt bei 821 px wurde nicht nebenbei verändert. Die
+tatsächliche Wirkung in iOS Safari und die gestalterische Abnahme durch den
+Auftraggeber bleiben am realen Gerät zu bestätigen.
+
 `html` und `body` verwenden als gemeinsamen Außenhintergrund `--color-dark`.
 Die bisherigen Inhaltsfarben liegen auf `body > main` (Startseite),
 `.history-page > main` (statische Unterseiten) beziehungsweise `.event-main`
