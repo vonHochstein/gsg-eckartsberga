@@ -40,11 +40,19 @@ Ein Eintrag bedeutet weder Zusage noch geplante Umsetzung. Vor der Übernahme in
 - vollständige Veranstaltungsdetailseiten;
 - Downloadbereich für Ausschreibungen und weitere Dokumente;
 - Ergebnisdarstellung als Dokument oder strukturierte Rangliste;
-- Kalenderexport beziehungsweise Abonnement;
+- abonnierbarer Veranstaltungskalender, damit Vereinsveranstaltungen im eigenen
+  Kalender angezeigt und Terminänderungen übernommen werden können;
+- einzelne Eventtermine über einen Button „In den Kalender eintragen“ in den
+  eigenen Kalender übernehmen;
 - Anmeldung zu ausgewählten Veranstaltungen;
 - Filter nach Jahr, Kategorie, Disziplin oder Austragungsort;
 - automatische Hervorhebung wichtiger Veranstaltungen.
 - spätere automatisierte Verknüpfung geeigneter Veranstaltungsergebnisse mit dem Erfolgsbereich;
+
+**Vormerkung vom 8. Oktober 2026:** Kalenderabonnement und Einzeltermin-Übernahme
+sind ausschließlich als zukünftige Funktionen festgehalten. Technische Lösung,
+Umfang und Umsetzung werden später festgelegt; zunächst folgen die optischen
+Korrekturen der Website.
 
 ## Galerie und Medien
 
