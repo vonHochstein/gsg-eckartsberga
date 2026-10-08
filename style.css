@@ -14,7 +14,7 @@
   --header-height: 78px;
   --radius-card: 22px;
   --shadow-card: 0 20px 48px rgba(0, 0, 0, 0.14);
-  --mobile-page-scale: 0.9; /* Set to 1 to disable the mobile scaling trial. */
+  --mobile-page-scale: 0.8; /* Set to 1 to disable the mobile scaling trial. */
 }
 
 /* ==========================================

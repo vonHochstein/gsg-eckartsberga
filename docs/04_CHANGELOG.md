@@ -80,6 +80,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Geändert
 
+- Mobilen Skalierungsfaktor nach Sichtprüfung von 90 % auf 80 % angepasst; bestehende Mindestgrößen für Bedienflächen und Formularschrift bleiben erhalten.
+
 - Mobile Darstellung bis 820 px zentral auf 90 % skaliert; zentraler Faktor erlaubt Rückkehr zu 100 %, Desktop bleibt unskaliert. Kleine Bedienflächen und Formularschrift werden gegen zu starke Verkleinerung abgesichert.
 
 - Datenschutzstand auf 7. Oktober 2026 gesetzt und belegte Informationslücken ergänzt; verbleibende rechtliche Entscheidungen in P-06 konkretisiert, keine Gesamtfreigabe behauptet.

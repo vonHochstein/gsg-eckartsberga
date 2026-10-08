@@ -408,7 +408,7 @@ Der daneben stehende Kontaktbutton führt zu `kontakt.html`.
 #### Favicons und schmale Textflächen
 
 **Mobile Skalierung (8. Oktober 2026):** `style.css` definiert
-`--mobile-page-scale: 0.9`. Nur bis 820 px wird dieser Faktor als CSS-`zoom`
+`--mobile-page-scale: 0.8` (nach Sichtprüfung von 90 % auf 80 % angepasst). Nur bis 820 px wird dieser Faktor als CSS-`zoom`
 auf `html` angewendet; ab 821 px bleibt `zoom` unverändert bei 1. Durch Änderung
 des Faktors auf `1` lässt sich die Skalierung abschalten. Die gesamte Änderung
 ist als eigenes Git-Arbeitspaket rücknehmbar; kein Umbau von HTML, JavaScript
