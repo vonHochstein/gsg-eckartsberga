@@ -29,14 +29,20 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 18px);
+  background: var(--color-dark);
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: var(--color-text);
-  background: var(--color-light);
+  background: var(--color-dark);
   line-height: 1.6;
   text-rendering: optimizeLegibility;
+}
+
+/* Keep content colors separate from the background sampled by browser chrome. */
+body > main {
+  background: var(--color-light);
 }
 
 /* ==========================================

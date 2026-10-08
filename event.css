@@ -4,8 +4,6 @@
 
 .event-detail-page {
   min-width: 0;
-  background:
-    linear-gradient(180deg, #151515 0, #1d1d1d 360px, var(--color-light) 760px);
 }
 
 .event-detail-page .site-header {
@@ -15,6 +13,8 @@
 }
 
 .event-main {
+  background:
+    linear-gradient(180deg, #151515 0, #1d1d1d 360px, var(--color-light) 760px);
   min-height: calc(100vh - 220px);
   min-height: calc(100svh - 220px);
   padding: calc(var(--header-height) + 48px) 32px 96px;

@@ -135,6 +135,8 @@ Die Struktur orientiert sich an „Keep a Changelog“. Geplante Änderungen und
 
 ### Behoben
 
+- Äußeren Hintergrund aller Seiten für Safari-Randbereiche dunkel gesetzt; bestehende helle Inhaltsflächen und der Eventverlauf bleiben im Hauptinhalt erhalten. Keine Änderung an Viewport, Safe-Area-Abständen oder Browserbedienelementen.
+
 - Doppelte Ankerabstände, mögliche mobile Überläufe und instabile Navigation beim Wechsel der Bildschirmgröße behoben.
 - Unnötige Konsolenausgabe entfernt und Footer-Jahr automatisch aktualisiert.
 

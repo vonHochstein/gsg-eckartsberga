@@ -407,6 +407,21 @@ Der daneben stehende Kontaktbutton führt zu `kontakt.html`.
 
 #### Favicons und schmale Textflächen
 
+`html` und `body` verwenden als gemeinsamen Außenhintergrund `--color-dark`.
+Die bisherigen Inhaltsfarben liegen auf `body > main` (Startseite),
+`.history-page > main` (statische Unterseiten) beziehungsweise `.event-main`
+(unveränderter Eventverlauf). Dadurch steht Safari eine dunkle Grundfarbe für
+Rand-/Browserflächen zur Verfügung, ohne die hellen Seiteninhalte umzufärben.
+Die bestehende `theme-color` bleibt erhalten. `viewport-fit` und Safe-Area-
+Abstände werden durch diesen begrenzten Fix nicht verändert. Die tatsächliche
+Darstellung der iOS-Browserleisten ist weiterhin am realen Gerät zu bestätigen.
+Am 8. Oktober 2026 wurden Startseite, Geschichtsseite und Eventdetail bei
+390 und 1440 px vor/nach der Änderung verglichen: Inhaltsfarben beziehungsweise
+Verlauf und gemessene Layoutmaße identisch, Außenfarbe durchgehend `#111111`.
+197 Node-Tests und `git diff --check` bestanden, keine Konsolenfehler. Der
+bereitgestellte iPhone-Ausgangsscreenshot liegt ausschließlich im ignorierten
+lokalen Prüfarchiv und wird nicht veröffentlicht.
+
 Alle zwölf Seiten referenzieren lokale, aus dem unveränderten Vereinslogo
 abgeleitete Icons unter `assets/img/icons/`: ICO mit 16/32/48 px, PNG mit
 32 px und Apple-Touch-Icon mit 180 px. Relative Pfade funktionieren auch unter
