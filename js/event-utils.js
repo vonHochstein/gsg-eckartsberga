@@ -1,0 +1,647 @@
+// ==========================================
+// Gemeinsame Veranstaltungs-Hilfsfunktionen
+// ==========================================
+
+(function exposeEventUtils(globalScope) {
+  "use strict";
+
+  const DETAIL_PAGE = "event.html";
+  const EVENT_PHASES = Object.freeze({
+    UPCOMING: "upcoming",
+    ONGOING: "ongoing",
+    PAST: "past"
+  });
+  const EVENT_EDITORIAL_STATUSES = new Set(["cancelled", "postponed"]);
+  const RESULT_KINDS = new Set(["file", "external"]);
+  const DOCUMENT_TYPES = new Set([
+    "announcement",
+    "invitation",
+    "start-list",
+    "result-list",
+    "form",
+    "certificate",
+    "other"
+  ]);
+  const VENUE_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+  const DATE_ONLY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+  const SCHUETZENKREIS_SUED_LOGO = Object.freeze({
+    src: "assets/img/logo-schuetzenkreis-sued.png",
+    alt: "Logo des Schützenkreises SUED Sachsen-Anhalt e. V.",
+    width: 191,
+    height: 191
+  });
+  const EVENT_ORGANIZER_LOGOS = Object.freeze({
+    "Großkaliber Schützengilde 1503 Eckartsberga e.V.": Object.freeze({
+      src: "assets/img/logo-gsg-eckartsberga.png",
+      alt: "Logo der GSG Eckartsberga",
+      width: 360,
+      height: 347
+    }),
+    'Schützenkreis "SUED"': SCHUETZENKREIS_SUED_LOGO,
+    "Kreisschützenverband Burgenlandkreis-Weißenfels „Schützenkreis SUED“ Sachsen-Anhalt e.V.":
+      SCHUETZENKREIS_SUED_LOGO,
+    "Privilegiertes Bürgerschützencorps Naumburg e.V.": Object.freeze({
+      src: "assets/img/2026_10_14 Wappen Privilegiertes Bürgerschützencorps Naumburg.png",
+      alt: "Wappen des Privilegierten Bürgerschützencorps Naumburg e.V.",
+      width: 100,
+      height: 100
+    }),
+    "Jagdverein Weißenfels e.V.": Object.freeze({
+      src: "assets/img/2026_10_14 Logo Jagdverein Weißenfels.webp",
+      alt: "Logo des Jagdvereins Weißenfels e.V.",
+      width: 1920,
+      height: 963
+    }),
+    "Schützenverein 1990 Hohenmölsen e.V. gegr. 1748": Object.freeze({
+      src: "assets/img/2026_10_14 Wappen Schützenverein 1990 Hohenmölsen.png",
+      alt: "Wappen des Schützenvereins 1990 Hohenmölsen e.V. gegr. 1748",
+      width: 117,
+      height: 117
+    }),
+    "Privilegierte Schützengilde 1608 Lützen e.V.": Object.freeze({
+      src: "assets/img/2026_10_14 Wappen Privilegierte Schützengilde 1608 Lützen.png",
+      alt: "Wappen der Privilegierten Schützengilde 1608 Lützen e.V.",
+      width: 2500,
+      height: 3112
+    }),
+    "Großkaliberschützenverein Lossa 1995 e.V.": Object.freeze({
+      src: "assets/img/2026_10_14 Wappen Großkaliberschützenverein Lossa 1995.png",
+      alt: "Wappen des Großkaliberschützenvereins Lossa 1995 e.V.",
+      width: 458,
+      height: 572
+    }),
+    "Büchsenschützengesellschaft 1775 Apolda e.V.": Object.freeze({
+      src: "assets/img/2026_10_14 Wappen Büchsenschützengesellschaft 1775 Apolda.png",
+      alt: "Wappen der Büchsenschützengesellschaft 1775 Apolda e.V.",
+      width: 219,
+      height: 255
+    }),
+    "Schützengesellschaft Buttstädt 1849 e.V.": Object.freeze({
+      src: "assets/img/2026_10_14 Wappen Schützengesellschaft Buttstädt 1849.png",
+      alt: "Wappen der Schützengesellschaft Buttstädt 1849 e.V.",
+      width: 455,
+      height: 454
+    }),
+    "Schützenverein 1874 Langendorf e.V.": Object.freeze({
+      src: "assets/img/2026_10_14 Wappen Schützenverein 1874 Langendorf.png",
+      alt: "Wappen des Schützenvereins 1874 Langendorf e.V.",
+      width: 335,
+      height: 379
+    }),
+    "Großkaliberschützenverein Bottendorf 1991 e.V.": Object.freeze({
+      src: "assets/img/2026_10_14 Wappen Großkaliberschützenverein Bottendorf.png",
+      alt: "Wappen des Großkaliberschützenvereins Bottendorf 1991 e.V.",
+      width: 262,
+      height: 260
+    })
+  });
+
+  function isRecord(value) {
+    return value !== null && typeof value === "object" && !Array.isArray(value);
+  }
+
+  function normalizedString(value) {
+    if (typeof value !== "string") return null;
+
+    const normalizedValue = value.trim();
+    return normalizedValue ? normalizedValue : null;
+  }
+
+  function normalizedOptionalString(value) {
+    return normalizedString(value);
+  }
+
+  function normalizedDimension(value) {
+    return typeof value === "number" &&
+      Number.isFinite(value) &&
+      value > 0
+      ? value
+      : null;
+  }
+
+  function isDateOnlyValue(value) {
+    const normalizedValue = normalizedString(value);
+    if (!normalizedValue) return false;
+
+    const match = normalizedValue.match(DATE_ONLY_PATTERN);
+    if (!match) return false;
+
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    const parsedDate = new Date(year, month - 1, day);
+
+    return (
+      parsedDate.getFullYear() === year &&
+      parsedDate.getMonth() === month - 1 &&
+      parsedDate.getDate() === day
+    );
+  }
+
+  function parseEventDate(value, options = {}) {
+    const normalizedValue = normalizedString(value);
+    if (!normalizedValue) return null;
+
+    if (isDateOnlyValue(normalizedValue)) {
+      const [, year, month, day] = normalizedValue.match(DATE_ONLY_PATTERN);
+      const date = new Date(Number(year), Number(month) - 1, Number(day));
+
+      if (options.endOfDay === true) {
+        date.setHours(23, 59, 59, 999);
+      }
+
+      return date;
+    }
+
+    const date = new Date(normalizedValue);
+    return Number.isFinite(date.getTime()) ? date : null;
+  }
+
+  function isSafeUrl(value) {
+    const normalizedUrl = normalizedString(value);
+
+    if (!normalizedUrl || /[\u0000-\u001F\u007F]/.test(normalizedUrl)) {
+      return false;
+    }
+
+    if (normalizedUrl.startsWith("//") || normalizedUrl.startsWith("\\\\")) {
+      return false;
+    }
+
+    const protocolMatch = normalizedUrl.match(/^([a-z][a-z\d+.-]*):/i);
+
+    if (!protocolMatch) {
+      return true;
+    }
+
+    const protocol = protocolMatch[1].toLowerCase();
+
+    if (protocol !== "http" && protocol !== "https") {
+      return false;
+    }
+
+    try {
+      const parsedUrl = new URL(normalizedUrl);
+      return parsedUrl.protocol === `${protocol}:` && Boolean(parsedUrl.hostname);
+    } catch {
+      return false;
+    }
+  }
+
+  function isHttpUrl(value) {
+    const normalizedUrl = normalizedString(value);
+
+    if (!normalizedUrl || !isSafeUrl(normalizedUrl)) {
+      return false;
+    }
+
+    try {
+      const parsedUrl = new URL(normalizedUrl);
+      return (
+        (parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:") &&
+        Boolean(parsedUrl.hostname)
+      );
+    } catch {
+      return false;
+    }
+  }
+
+  function isSafeDocumentUrl(value) {
+    const normalizedUrl = normalizedString(value);
+
+    if (!normalizedUrl || !isSafeUrl(normalizedUrl)) {
+      return false;
+    }
+
+    const protocolMatch = normalizedUrl.match(/^([a-z][a-z\d+.-]*):/i);
+
+    if (!protocolMatch) {
+      return true;
+    }
+
+    return (
+      protocolMatch[1].toLowerCase() === "https" &&
+      /^https:\/\//i.test(normalizedUrl)
+    );
+  }
+
+  function normalizeMediaEntry(value, includeCaption) {
+    if (!isRecord(value)) return null;
+
+    const src = normalizedString(value.src);
+    const alt = normalizedString(value.alt);
+
+    if (!src || !alt || !isSafeUrl(src)) {
+      return null;
+    }
+
+    const normalizedEntry = { src, alt };
+    const width = normalizedDimension(value.width);
+    const height = normalizedDimension(value.height);
+
+    if (includeCaption) {
+      const caption = normalizedOptionalString(value.caption);
+      if (caption) normalizedEntry.caption = caption;
+    }
+
+    if (width !== null) normalizedEntry.width = width;
+    if (height !== null) normalizedEntry.height = height;
+
+    return normalizedEntry;
+  }
+
+  function normalizeImage(image) {
+    return normalizeMediaEntry(image, false);
+  }
+
+  function normalizeGallery(gallery) {
+    if (!Array.isArray(gallery)) return [];
+
+    return gallery
+      .map((item) => normalizeMediaEntry(item, true))
+      .filter(Boolean);
+  }
+
+  function isLocalMediaUrl(value) {
+    const normalizedUrl = normalizedString(value);
+
+    if (!normalizedUrl || !isSafeUrl(normalizedUrl)) return false;
+
+    return !/^([a-z][a-z\d+.-]*:|\/\/|\\\\)/i.test(normalizedUrl);
+  }
+
+  function normalizeVideos(videos) {
+    if (!Array.isArray(videos)) return [];
+
+    return videos.reduce((normalizedVideos, video) => {
+      if (!isRecord(video)) return normalizedVideos;
+
+      const src = normalizedString(video.src);
+      const title = normalizedString(video.title);
+
+      if (!src || !title || !isLocalMediaUrl(src)) {
+        return normalizedVideos;
+      }
+
+      const normalizedVideo = { src, title };
+      const poster = normalizedOptionalString(video.poster);
+      const width = normalizedDimension(video.width);
+      const height = normalizedDimension(video.height);
+
+      if (poster && isLocalMediaUrl(poster)) normalizedVideo.poster = poster;
+      if (width !== null) normalizedVideo.width = width;
+      if (height !== null) normalizedVideo.height = height;
+
+      normalizedVideos.push(normalizedVideo);
+      return normalizedVideos;
+    }, []);
+  }
+
+  function appendOptionalFileMetadata(target, source) {
+    ["description", "fileType", "fileSize"].forEach((property) => {
+      const value = normalizedOptionalString(source[property]);
+      if (value) target[property] = value;
+    });
+  }
+
+  function normalizeDownloads(downloads) {
+    if (!Array.isArray(downloads)) return [];
+
+    return downloads.reduce((normalizedDownloads, download) => {
+      if (!isRecord(download)) return normalizedDownloads;
+
+      const label = normalizedString(download.label);
+      const url = normalizedString(download.url);
+
+      if (!label || !url || !isSafeUrl(url)) {
+        return normalizedDownloads;
+      }
+
+      const normalizedDownload = { label, url };
+      appendOptionalFileMetadata(normalizedDownload, download);
+      normalizedDownloads.push(normalizedDownload);
+
+      return normalizedDownloads;
+    }, []);
+  }
+
+  function normalizeDocuments(documents) {
+    if (!Array.isArray(documents)) return [];
+
+    return documents.reduce((normalizedDocuments, document) => {
+      if (!isRecord(document)) return normalizedDocuments;
+
+      const label = normalizedString(document.label);
+      const url = normalizedString(document.url);
+      const type = normalizedString(document.type);
+
+      if (!label || !url || !isSafeDocumentUrl(url)) {
+        return normalizedDocuments;
+      }
+
+      const normalizedDocument = {
+        label,
+        url,
+        type: type && DOCUMENT_TYPES.has(type) ? type : "other"
+      };
+      appendOptionalFileMetadata(normalizedDocument, document);
+      normalizedDocuments.push(normalizedDocument);
+
+      return normalizedDocuments;
+    }, []);
+  }
+
+  function normalizeResults(results) {
+    if (!Array.isArray(results)) return [];
+
+    return results.reduce((normalizedResults, result) => {
+      if (!isRecord(result)) return normalizedResults;
+
+      const label = normalizedString(result.label);
+      const url = normalizedString(result.url);
+      const kind = normalizedString(result.kind);
+      const hasSuitableUrl =
+        kind === "external" ? isHttpUrl(url) : isSafeUrl(url);
+
+      if (
+        !label ||
+        !url ||
+        !kind ||
+        !RESULT_KINDS.has(kind) ||
+        !hasSuitableUrl
+      ) {
+        return normalizedResults;
+      }
+
+      const normalizedResult = { label, url, kind };
+      appendOptionalFileMetadata(normalizedResult, result);
+      normalizedResults.push(normalizedResult);
+
+      return normalizedResults;
+    }, []);
+  }
+
+  function normalizeEventDocuments(event) {
+    if (!isRecord(event)) return [];
+
+    const documents = normalizeDocuments(event.documents);
+    const legacyResultDocuments = normalizeDocuments(
+      normalizeResults(event.results)
+        .filter((result) => result.kind === "file")
+        .map((result) => ({
+          ...result,
+          type: "result-list"
+        }))
+    );
+    const legacyDownloadDocuments = normalizeDocuments(
+      normalizeDownloads(event.downloads).map((download) => ({
+        ...download,
+        type: "other"
+      }))
+    );
+    const seenUrls = new Set();
+
+    return [
+      ...documents,
+      ...legacyResultDocuments,
+      ...legacyDownloadDocuments
+    ].filter((document) => {
+      if (seenUrls.has(document.url)) return false;
+
+      seenUrls.add(document.url);
+      return true;
+    });
+  }
+
+  function normalizeExternalLinks(externalLinks) {
+    if (!Array.isArray(externalLinks)) return [];
+
+    return externalLinks.reduce((normalizedLinks, link) => {
+      if (!isRecord(link)) return normalizedLinks;
+
+      const label = normalizedString(link.label);
+      const url = normalizedString(link.url);
+
+      if (!label || !url || !isHttpUrl(url)) {
+        return normalizedLinks;
+      }
+
+      const normalizedLink = { label, url };
+      const description = normalizedOptionalString(link.description);
+
+      if (description) normalizedLink.description = description;
+
+      normalizedLinks.push(normalizedLink);
+      return normalizedLinks;
+    }, []);
+  }
+
+  function isValidLatitude(value) {
+    return (
+      typeof value === "number" &&
+      Number.isFinite(value) &&
+      value >= -90 &&
+      value <= 90
+    );
+  }
+
+  function isValidLongitude(value) {
+    return (
+      typeof value === "number" &&
+      Number.isFinite(value) &&
+      value >= -180 &&
+      value <= 180
+    );
+  }
+
+  function normalizeVenue(venue) {
+    if (!isRecord(venue)) return null;
+
+    const id = normalizedString(venue.id);
+    const name = normalizedString(venue.name);
+
+    if (!id || !VENUE_ID_PATTERN.test(id) || !name) {
+      return null;
+    }
+
+    const normalizedVenue = { id, name };
+    const description = normalizedOptionalString(venue.description);
+    const hasValidCoordinates =
+      isValidLatitude(venue.latitude) &&
+      isValidLongitude(venue.longitude);
+
+    if (description) normalizedVenue.description = description;
+
+    if (hasValidCoordinates) {
+      normalizedVenue.latitude = venue.latitude;
+      normalizedVenue.longitude = venue.longitude;
+    }
+
+    return normalizedVenue;
+  }
+
+  function normalizeVenues(venues) {
+    if (!Array.isArray(venues)) return [];
+
+    return venues.map(normalizeVenue).filter(Boolean);
+  }
+
+  function resolveEventLocation(event, venues) {
+    if (!isRecord(event)) return null;
+
+    const venueId = normalizedString(event.venueId);
+
+    if (venueId) {
+      const matches = normalizeVenues(venues).filter(
+        (venue) => venue.id === venueId
+      );
+
+      if (matches.length === 1) {
+        return { ...matches[0] };
+      }
+    }
+
+    const legacyLocation = normalizedString(event.location);
+    return legacyLocation ? { name: legacyLocation } : null;
+  }
+
+  function getEventTitle(event) {
+    if (!isRecord(event)) return null;
+
+    return normalizedString(event.title) || normalizedString(event.shortTitle);
+  }
+
+  function getEventOrganizerLogo(event) {
+    if (!isRecord(event)) return null;
+
+    const organizer = normalizedString(event.organizer);
+
+    if (
+      !organizer ||
+      !Object.prototype.hasOwnProperty.call(EVENT_ORGANIZER_LOGOS, organizer)
+    ) {
+      return null;
+    }
+
+    return { ...EVENT_ORGANIZER_LOGOS[organizer] };
+  }
+
+  function getEventPhase(event, referenceTime = new Date()) {
+    if (!isRecord(event)) return null;
+
+    const startValue = normalizedString(event.start);
+    const startDate = parseEventDate(startValue);
+    const startTime = startDate?.getTime() ?? Number.NaN;
+    const referenceTimestamp = new Date(referenceTime).getTime();
+
+    if (
+      !Number.isFinite(startTime) ||
+      !Number.isFinite(referenceTimestamp)
+    ) {
+      return null;
+    }
+
+    const endValue = normalizedString(event.end);
+    const parsedEndTime = endValue
+      ? parseEventDate(endValue, {
+          endOfDay: isDateOnlyValue(endValue)
+        })?.getTime()
+      : Number.NaN;
+    const effectiveEndTime =
+      Number.isFinite(parsedEndTime) && parsedEndTime >= startTime
+        ? parsedEndTime
+        : isDateOnlyValue(startValue)
+          ? parseEventDate(startValue, { endOfDay: true }).getTime()
+          : startTime;
+
+    if (referenceTimestamp < startTime) {
+      return EVENT_PHASES.UPCOMING;
+    }
+
+    if (referenceTimestamp <= effectiveEndTime) {
+      return EVENT_PHASES.ONGOING;
+    }
+
+    return EVENT_PHASES.PAST;
+  }
+
+  function getEventEditorialStatus(event) {
+    if (!isRecord(event)) return null;
+
+    const editorialStatus = normalizedString(event.editorialStatus);
+
+    if (
+      !editorialStatus ||
+      !EVENT_EDITORIAL_STATUSES.has(editorialStatus)
+    ) {
+      return null;
+    }
+
+    return editorialStatus;
+  }
+
+  function isDetailCapable(event) {
+    if (!isRecord(event)) return false;
+
+    const slug = normalizedString(event.slug);
+    const title = getEventTitle(event);
+    const start = normalizedString(event.start);
+    const startTime = parseEventDate(start)?.getTime() ?? Number.NaN;
+
+    return Boolean(slug && title && Number.isFinite(startTime));
+  }
+
+  function createDetailUrl(event) {
+    if (!isDetailCapable(event)) return null;
+
+    return `${DETAIL_PAGE}?event=${encodeURIComponent(event.slug.trim())}`;
+  }
+
+  function resolveEventBySlug(eventList, slug) {
+    const normalizedSlug = normalizedString(slug);
+
+    if (!Array.isArray(eventList) || !normalizedSlug) {
+      return { status: "not-found", event: null, matches: [] };
+    }
+
+    const matches = eventList.filter(
+      (event) =>
+        isRecord(event) &&
+        normalizedString(event.slug) === normalizedSlug
+    );
+
+    if (matches.length === 0) {
+      return { status: "not-found", event: null, matches: [] };
+    }
+
+    if (matches.length > 1) {
+      return { status: "duplicate", event: null, matches: [...matches] };
+    }
+
+    return { status: "found", event: matches[0], matches: [...matches] };
+  }
+
+  globalScope.EventUtils = Object.freeze({
+    isDateOnlyValue,
+    parseEventDate,
+    isSafeUrl,
+    normalizeImage,
+    normalizeGallery,
+    normalizeVideos,
+    normalizeDownloads,
+    normalizeDocuments,
+    normalizeResults,
+    normalizeEventDocuments,
+    normalizeExternalLinks,
+    normalizeVenue,
+    normalizeVenues,
+    resolveEventLocation,
+    getEventTitle,
+    getEventOrganizerLogo,
+    getEventPhase,
+    getEventEditorialStatus,
+    isDetailCapable,
+    createDetailUrl,
+    resolveEventBySlug
+  });
+})(typeof window !== "undefined" ? window : globalThis);

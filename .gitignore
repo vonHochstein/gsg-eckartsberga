@@ -1,0 +1,29 @@
+# Nur Website- und Veröffentlichungsdateien für Git berücksichtigen.
+# Jede Datei muss zusätzlich in .github/public-files.json freigegeben sein.
+*
+!*/
+!/.gitignore
+!/*.html
+!/*.css
+!/.github/workflows/pages.yml
+!/.github/public-files.json
+!/scripts/generate-calendar.js
+!/scripts/check-public-files.js
+!/js/*.js
+!/js/data/events.js
+!/js/data/venues.js
+!/js/data/guestbook-entries.js
+!/assets/documents/**
+!/assets/img/**
+!/assets/video/**
+!/assets/vendor/leaflet/**
+
+# Nicht verwendete Originalvarianten und Bibliotheksdokumentation bleiben lokal.
+/assets/img/hero-eckartsburg.png
+/assets/img/logo-eckig_v2.png
+/assets/vendor/leaflet/README.md
+**/.DS_Store
+/.local-archive/
+/_site/
+/calendar/
+/.gsg-calendar-tmp-*/

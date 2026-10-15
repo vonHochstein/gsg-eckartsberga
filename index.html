@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Die Großkaliber Schützengilde 1503 Eckartsberga e. V. verbindet die lange Schützentradition der Stadt mit modernem Schießsport und gelebter Gemeinschaft."
+  />
+  <meta name="theme-color" content="#111111" />
+
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GSG Eckartsberga" />
+  <meta property="og:title" content="GSG Eckartsberga – Zu Hause an der Eckartsburg." />
+  <meta
+    property="og:description"
+    content="Lange Schützentradition, moderner Schießsport und eine starke Gemeinschaft in Eckartsberga."
+  />
+
+  <title>GSG Eckartsberga – Zu Hause an der Eckartsburg.</title>
+
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="assets/img/icons/favicon-gsg.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-gsg-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon-gsg.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="calendar-actions.css" />
+  <script src="js/data/venues.js" defer></script>
+  <script src="js/data/events.js" defer></script>
+  <script src="js/data/guestbook-entries.js" defer></script>
+  <script src="js/event-utils.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/countdown.js" defer></script>
+  <script src="js/calendar.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+  <script src="js/guestbook.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/calendar-core.js" defer></script>
+  <script src="js/calendar-actions.js" defer></script>
+  <script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2" async></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+
+  <aside
+    class="development-data-banner"
+    id="development-data-banner"
+    role="status"
+    hidden
+  >
+    <strong>Entwicklungsansicht:</strong>
+    Nicht produktive Testdaten für Archiv und Galerie sind aktiv.
+  </aside>
+
+  <header class="site-header">
+    <a href="#start" class="brand" aria-label="GSG Eckartsberga – zum Seitenanfang">
+      <img
+        src="assets/img/logo-gsg-eckartsberga.png"
+        alt=""
+        width="360"
+        height="347"
+      />
+      <span>GSG Eckartsberga</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+
+    <nav class="main-nav" id="main-navigation" aria-label="Hauptnavigation">
+      <a href="#verein">Verein</a>
+      <a href="#veranstaltungen">Veranstaltungen</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#stimmen">Gästebuch</a>
+      <a href="#mitglied">Mitglied werden</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <section id="start" class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">GROSSKALIBER SCHÜTZENGILDE 1503 ECKARTSBERGA <span class="legal-form">e.V.</span></p>
+
+        <h1 id="hero-title">Schützentradition in Eckartsberga.</h1>
+
+        <p class="hero-subline">
+          Zu Hause an der Eckartsburg.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#veranstaltungen" class="btn btn-primary">Veranstaltungen</a>
+          <a href="#mitglied" class="btn btn-secondary">Mitglied werden</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-info" aria-label="Schnelleinstieg">
+      <a class="info-card event-card featured-card">
+        <p class="card-kicker">Nächste Veranstaltung</p>
+
+        <h2>Nächster Termin</h2>
+
+        <p class="event-category" hidden></p>
+
+        <p class="event-date">Termine ansehen</p>
+
+        <div class="countdown" aria-label="Zeit bis zur nächsten Veranstaltung" hidden>
+          <div>
+            <strong id="countdown-days">00</strong>
+            <span>Tage</span>
+          </div>
+          <div>
+            <strong id="countdown-hours">00</strong>
+            <span><abbr title="Stunden">Std.</abbr></span>
+          </div>
+          <div>
+            <strong id="countdown-minutes">00</strong>
+            <span>Min.</span>
+          </div>
+        </div>
+
+        <span class="card-hover-link" hidden>Veranstaltung ansehen</span>
+      </a>
+
+      <a href="#verein" class="info-card sport-card">
+        <div class="card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8"></circle>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="12" cy="12" r="1"></circle>
+          </svg>
+        </div>
+
+        <h2>Schießsport erleben</h2>
+
+        <p class="card-subline">Training auf den eigenen Bahnen</p>
+
+        <p>
+          Unsere Mitglieder leben ihr Hobby und vertiefen ihr Können in
+          Eckartsberga. Mit ihrer Erfahrung vertreten sie die Schützengilde bei
+          Wettkämpfen in der Region und weit darüber hinaus.
+        </p>
+
+        <span class="card-hover-link">Mehr erfahren</span>
+      </a>
+
+      <a href="#mitglied" class="info-card member-card">
+        <div class="card-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="10" cy="7" r="3"></circle>
+            <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 4.13a3 3 0 0 1 0 5.74"></path>
+          </svg>
+        </div>
+
+        <h2>Mitglied werden</h2>
+
+        <p class="card-subline">Erst kennenlernen, dann entscheiden</p>
+
+        <p>
+          Sie interessieren sich für den Schießsport und möchten einmal
+          vorbeischauen? Nehmen Sie Kontakt mit uns auf oder lernen Sie uns bei
+          einer Veranstaltung persönlich kennen.
+        </p>
+
+        <span class="card-hover-link">Jetzt informieren</span>
+      </a>
+    </section>
+
+    <section id="verein" class="section section-light">
+      <div class="section-inner">
+        <p class="section-kicker">Unser Verein</p>
+
+        <h2>Die Großkaliber Schützengilde Eckartsberga</h2>
+
+        <p class="section-lead">
+          Das Schützenwesen hat in Eckartsberga eine lange Tradition, deren Spuren
+          bis ins frühe 16. Jahrhundert zurückreichen. Die heutige Großkaliber
+          Schützengilde 1503 Eckartsberga e. V. verbindet diese Geschichte mit
+          modernem Schießsport, Gemeinschaft und einem aktiven Vereinsleben.
+        </p>
+
+        <div class="club-highlights" aria-label="Bereiche des Vereins">
+          <a class="highlight-card" href="schiessbahnen.html">
+            <div class="highlight-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false"
+              >
+                <path d="M6 22 24 7l18 15"></path>
+                <path d="M10 20v21h28V20"></path>
+                <path d="M19 41V28h10v13"></path>
+              </svg>
+            </div>
+            <h3>Schießbahnen & Vereinshaus</h3>
+            <p>Ein Blick in unsere Schießanlage und das Vereinshaus – mit Informationen zur Nutzung.</p>
+          </a>
+
+          <a class="highlight-card" href="vorstand.html">
+            <div class="highlight-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false"
+              >
+                <circle cx="16" cy="16" r="6"></circle>
+                <circle cx="33" cy="18" r="5"></circle>
+                <path d="M5 40c0-7 4.9-12 11-12s11 5 11 12"></path>
+                <path d="M27 30c1.7-1.7 3.7-2.5 6-2.5 5.5 0 10 4.7 10 10.5"></path>
+              </svg>
+            </div>
+            <h3>Ansprechpartner</h3>
+            <p>Unser Vorstand und die Ansprechpartner für Fragen rund um den Verein und den Schießbetrieb.</p>
+          </a>
+
+          <a class="highlight-card" href="erfolge.html">
+            <div class="highlight-icon" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false"
+              >
+                <path d="M15 8h18v8c0 7-4 12-9 12s-9-5-9-12V8Z"></path>
+                <path d="M15 12H8v4c0 5 3.2 8 8 8"></path>
+                <path d="M33 12h7v4c0 5-3.2 8-8 8"></path>
+                <path d="M24 28v8"></path>
+                <path d="M18 36h12"></path>
+                <path d="M15 41h18"></path>
+              </svg>
+            </div>
+            <h3>Erfolge</h3>
+            <p>Wettkampferfolge unserer Mitglieder und die Schützenkönige unseres Vereins.</p>
+          </a>
+
+        </div>
+
+        <a class="history-teaser-card" href="geschichte.html">
+          <p class="history-kicker">Vereinsgeschichte</p>
+
+          <h3>Historische Spuren und ein Neubeginn.</h3>
+
+          <p>
+            Von ersten Überlieferungen aus dem Jahr 1503 über die 1827 neu
+            gegründete Schützengilde bis zur Gründung des heutigen Vereins 1992:
+            Historische Bilder und Quellen erzählen von Tradition, Brüchen und
+            Neubeginn.
+          </p>
+
+          <span class="history-teaser-link">Geschichte entdecken</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="veranstaltungen" class="section section-dark">
+      <div class="section-inner">
+        <p class="section-kicker">Veranstaltungschronik</p>
+        <h2>Termine, Ergebnisse & Bilder an einem Ort.</h2>
+        <p>
+          Die Chronik bündelt kommende Veranstaltungen, vergangene Wettkämpfe,
+          Ergebnisse, Bilder und Downloads in einer übersichtlichen Timeline.
+        </p>
+
+        <div class="calendar-action">
+          <button type="button" class="btn btn-secondary" data-calendar-action="subscribe" disabled aria-describedby="calendar-subscribe-hint">Kalender abonnieren</button>
+          <p class="calendar-action-hint" id="calendar-subscribe-hint" role="status" hidden></p>
+        </div>
+        <div class="timeline" id="event-timeline"></div>
+        <noscript>
+          <p class="timeline-empty">
+            Für die automatisch sortierte Veranstaltungschronik muss JavaScript aktiviert sein.
+          </p>
+        </noscript>
+      </div>
+    </section>
+
+    <section id="galerie" class="section section-light">
+      <div class="section-inner">
+        <p class="section-kicker">Einblicke</p>
+
+        <h2>Bilder aus Verein, Wettkampf und Tradition.</h2>
+
+        <p class="section-lead">
+          Ausgewählte Aufnahmen verbinden die lange Geschichte des Vereins mit
+          der Gegenwart in Eckartsberga.
+        </p>
+
+        <div class="gallery-preview" aria-label="Galerievorschau">
+
+          <figure class="gallery-feature gallery-feature-history is-active">
+            <a
+              class="gallery-feature-link"
+              href="geschichte.html#chronik-1902"
+              aria-label="Zur Chronikstation 1902"
+            >
+              <img
+                src="assets/img/history/1902 Eckartsbergaer Schützengesellschaft zum 75-jährigen Jubiläum.jpg"
+                alt="Historische Gruppenaufnahme der Eckartsbergaer Schützengesellschaft vor dem Schützenhaus mit der Jahreszahl 1827–1902"
+                width="1279"
+                height="905"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                Eckartsbergaer Schützengesellschaft zum 75-jährigen Jubiläum, 1902.
+              </figcaption>
+            </a>
+          </figure>
+
+          <figure class="gallery-feature gallery-feature-history">
+            <a
+              class="gallery-feature-link"
+              href="geschichte.html#chronik-1912-1922"
+              aria-label="Zur Chronikstation 1912 und 1922"
+            >
+              <img
+                src="assets/img/history/1912 Schützenfest Eckartsberga.jpg"
+                alt="Historische Gruppenaufnahme beim Schützenfest in Eckartsberga 1912"
+                width="1206"
+                height="891"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenfest in Eckartsberga, 1912.</figcaption>
+            </a>
+          </figure>
+
+          <figure class="gallery-feature gallery-feature-history">
+            <a
+              class="gallery-feature-link"
+              href="geschichte.html#chronik-1912-1922"
+              aria-label="Zur Chronikstation 1912 und 1922"
+            >
+              <img
+                src="assets/img/history/1922 Schützenfest und 5. Thüringer Verbandsschießen Eckartsberga.jpg"
+                alt="Historische Gruppenaufnahme beim 5. Thüringer Verbandsschießen in Eckartsberga 1922"
+                width="1279"
+                height="905"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                5. Thüringer Verbandsschießen in Eckartsberga, Schützenfest 1922.
+              </figcaption>
+            </a>
+          </figure>
+
+          <figure class="gallery-feature">
+            <img
+              src="assets/img/hero-eckartsburg.jpg"
+              alt="Eckartsburg bei stimmungsvoller Beleuchtung"
+              width="1673"
+              height="940"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Eckartsburg · Eckartsberga</figcaption>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 30%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2026"
+              aria-label="Zum Schützenkönig 2026"
+            >
+              <img
+                src="assets/img/achievements/2026 Schützenkönig Steffen Ackermann.jpg"
+                alt="Steffen Ackermann als Schützenkönig 2026 mit Königsscheibe"
+                width="2084"
+                height="3217"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2026 · Steffen Ackermann</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 24%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2025"
+              aria-label="Zum Schützenkönig 2025"
+            >
+              <img
+                src="assets/img/achievements/2025 Schützenkönig Steffen Ackermann.jpg"
+                alt="Steffen Ackermann als Schützenkönig 2025 mit Königsscheibe"
+                width="428"
+                height="1142"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2025 · Steffen Ackermann</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 30%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2024"
+              aria-label="Zum Schützenkönig 2024"
+            >
+              <img
+                src="assets/img/achievements/2024 Schützenkönig David Neuhäuser.jpg"
+                alt="David Neuhäuser als Schützenkönig 2024 mit Königskette und Ehrenscheibe"
+                width="3000"
+                height="4000"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2024 · David Neuhäuser</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 30%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2023"
+              aria-label="Zur Schützenkönigin 2023"
+            >
+              <img
+                src="assets/img/achievements/2023 Schützenkönigin Lisa Matthes.jpg"
+                alt="Aufnahme zur Schützenkönigin 2023 mit Lisa Matthes und einer weiteren Person"
+                width="1609"
+                height="2389"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönigin 2023 · Lisa Matthes</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 46%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2022"
+              aria-label="Zum Schützenkönig 2022"
+            >
+              <img
+                src="assets/img/achievements/2022 Schützenkönig Hubert Schorch.jpg"
+                alt="Hubert Schorch als Schützenkönig 2022 an einer historischen Kanone mit Königsscheibe"
+                width="1200"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2022 · Hubert Schorch</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 30%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2021"
+              aria-label="Zum Schützenkönig 2021"
+            >
+              <img
+                src="assets/img/achievements/2021 Schützenkönig Steffen Ackermann.jpg"
+                alt="Steffen Ackermann als Schützenkönig 2021 mit Königsscheibe"
+                width="1200"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2021 · Steffen Ackermann</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 50%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2020"
+              aria-label="Zum Schützenkönig 2020"
+            >
+              <img
+                src="assets/img/achievements/2020 Schützenkönig Dietmar Müller.jpg"
+                alt="Aufnahme zum Schützenkönig 2020 mit zwei Personen, Kanone und Ehrenscheibe"
+                width="1000"
+                height="750"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2020 · Dietmar Müller</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 34%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2019"
+              aria-label="Zum Schützenkönig 2019"
+            >
+              <img
+                src="assets/img/achievements/2019 Schützenkönig Dominice Wiegand.png"
+                alt="Aufnahme zum Schützenkönig 2019 bei der Übergabe der Königsscheibe"
+                width="616"
+                height="821"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2019 · Dominice Wiegand</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 34%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2017"
+              aria-label="Zum Schützenkönig 2017"
+            >
+              <img
+                src="assets/img/achievements/2017 Schützenkönig Reiner König.jpg"
+                alt="Aufnahme zum Schützenkönig 2017 mit zwei Personen und Königsscheibe"
+                width="720"
+                height="1280"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2017 · Reiner König</figcaption>
+            </a>
+          </figure>
+
+          <figure
+            class="gallery-feature gallery-feature-achievement"
+            style="--gallery-object-position: 50% 50%;"
+          >
+            <a
+              class="gallery-feature-link"
+              href="erfolge.html#schuetzenkoenig-2016"
+              aria-label="Zum Schützenkönig 2016"
+            >
+              <img
+                src="assets/img/achievements/2016 Schützenkönig Steffen Löhnert.jpg"
+                alt="Steffen Löhnert als Schützenkönig 2016 mit Ehrenscheibe"
+                width="1600"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Schützenkönig 2016 · Steffen Löhnert</figcaption>
+            </a>
+          </figure>
+
+          <div
+            class="gallery-preview-controls"
+            data-gallery-controls
+            hidden
+          >
+            <button
+              class="gallery-preview-button"
+              type="button"
+              data-gallery-previous
+              aria-label="Vorheriges Bild"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <p
+              class="gallery-preview-position"
+              data-gallery-position
+              aria-live="polite"
+            ></p>
+            <button
+              class="gallery-preview-toggle"
+              type="button"
+              data-gallery-toggle
+              aria-pressed="false"
+              aria-label="Automatischen Wechsel pausieren"
+              title="Automatischen Wechsel pausieren"
+            >
+              <span
+                class="gallery-preview-toggle-icon"
+                aria-hidden="true"
+              ></span>
+            </button>
+            <button
+              class="gallery-preview-button"
+              type="button"
+              data-gallery-next
+              aria-label="Nächstes Bild"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <div class="gallery-preview-copy">
+            <p class="gallery-kicker">Vereinsleben im Bild</p>
+            <h3>Geschichte und Gegenwart im Wechsel.</h3>
+            <p>
+              Historische Motive und aktuelle Eindrücke erzählen gemeinsam von
+              Tradition, Heimatverbundenheit und einem lebendigen Verein.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="stimmen"
+      class="section section-light guestbook-voices"
+      aria-labelledby="guestbook-voices-title"
+      hidden
+    >
+      <div class="section-inner">
+        <p class="section-kicker">Gästebuch</p>
+        <h2 id="guestbook-voices-title">Stimmen unserer Gäste.</h2>
+
+        <div class="guestbook-voices-panel" data-guestbook-voices>
+          <div
+            class="guestbook-voices-slides"
+            data-guestbook-slides
+            aria-live="off"
+            aria-atomic="true"
+          ></div>
+
+          <div class="guestbook-voices-footer">
+            <div class="guestbook-voices-controls" data-guestbook-controls>
+              <button
+                class="guestbook-voices-button"
+                type="button"
+                data-guestbook-previous
+                aria-label="Vorherige Stimme"
+              >
+                <span aria-hidden="true">←</span>
+              </button>
+              <p class="guestbook-voices-position" data-guestbook-position></p>
+              <button
+                class="guestbook-voices-toggle"
+                type="button"
+                data-guestbook-toggle
+                aria-pressed="false"
+                aria-label="Automatischen Wechsel pausieren"
+                title="Automatischen Wechsel pausieren"
+              >
+                <span aria-hidden="true">Ⅱ</span>
+              </button>
+              <button
+                class="guestbook-voices-button"
+                type="button"
+                data-guestbook-next
+                aria-label="Nächste Stimme"
+              >
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <a class="btn btn-primary" href="gaestebuch.html">Zum Gästebuch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mitglied" class="section section-dark">
+      <div class="section-inner">
+        <p class="section-kicker">Mitmachen</p>
+        <h2>Gemeinschaft beginnt mit Kennenlernen.</h2>
+        <p class="section-lead section-lead-on-dark">
+          Ob mit Erfahrung oder ganz am Anfang: Wer sich für den Schießsport
+          und unser Vereinsleben interessiert, ist eingeladen, die GSG
+          Eckartsberga bei einer kommenden Veranstaltung kennenzulernen.
+        </p>
+        <div class="section-actions">
+          <a class="btn btn-primary" href="#veranstaltungen">
+            Kommende Termine ansehen
+          </a>
+          <a class="btn btn-secondary" href="kontakt.html">
+            Kontakt aufnehmen
+          </a>
+        </div>
+
+        <aside class="partner-home-teaser" aria-labelledby="partner-home-title">
+          <div>
+            <p class="partner-home-kicker">Partner &amp; Unterstützer</p>
+            <h3 id="partner-home-title">Gemeinsam für Verein und Region.</h3>
+            <p>
+              Auch abseits des Schießstands sind unsere Mitglieder aktiv. Hier
+              stellen wir ihre Unternehmen und weitere Unterstützer des Vereins
+              vor.
+            </p>
+          </div>
+          <a class="partner-home-link" href="partner.html">
+            Partner ansehen <span aria-hidden="true">→</span>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-signature">
+        <a
+          class="footer-association-link footer-association-link-dsb"
+          href="https://www.dsb.de/"
+          rel="external"
+          aria-label="Offizielle Website des Deutschen Schützenbundes"
+        >
+          <img
+            src="assets/img/logo-deutscher-schuetzenbund.png"
+            alt="Logo des Deutschen Schützenbundes"
+            width="1013"
+            height="720"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+
+        <figure class="footer-brand-illustration">
+          <picture>
+            <source
+              srcset="assets/img/logo-eckig_v1.webp"
+              type="image/webp"
+            />
+            <img
+              src="assets/img/logo-eckig_v1.png"
+              alt="Historische Illustration der Großkaliber Schützengilde 1503 Eckartsberga mit Eckartsburg, Kanone und Stadtwappen"
+              width="1335"
+              height="1178"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </figure>
+
+        <a
+          class="footer-association-link footer-association-link-state"
+          href="https://www.sv-st.de/"
+          rel="external"
+          aria-label="Offizielle Website des Landesschützenverbandes Sachsen-Anhalt"
+        >
+          <img
+            src="assets/img/logo-landesschuetzenverband-sachsen-anhalt.png"
+            alt="Wappen des Landesschützenverbandes Sachsen-Anhalt"
+            width="550"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+      </div>
+
+      <div class="footer-main">
+        <nav class="footer-nav" aria-label="Navigation im Seitenfuß">
+          <a href="#start">Start</a>
+          <a href="#verein">Verein</a>
+          <a href="#veranstaltungen">Veranstaltungen</a>
+          <a href="#galerie">Galerie</a>
+          <a href="gaestebuch.html">Gästebuch</a>
+          <a href="service.html">Service &amp; Links</a>
+          <a href="partner.html">Partner</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </nav>
+      </div>
+
+      <p class="footer-legal">
+        © <span id="current-year">2026</span> Großkaliber Schützengilde Eckartsberga e. V.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

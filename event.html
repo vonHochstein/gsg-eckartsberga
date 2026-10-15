@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Veranstaltungsdetails der Großkaliber Schützengilde 1503 Eckartsberga e. V."
+  />
+  <meta name="theme-color" content="#111111" />
+
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="GSG Eckartsberga" />
+  <meta property="og:title" content="Veranstaltung · GSG Eckartsberga" />
+  <meta
+    property="og:description"
+    content="Veranstaltungsdetails der Großkaliber Schützengilde 1503 Eckartsberga e. V."
+  />
+
+  <title>Veranstaltung · GSG Eckartsberga</title>
+
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="assets/img/icons/favicon-gsg.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-gsg-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon-gsg.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="event.css" />
+  <link rel="stylesheet" href="calendar-actions.css" />
+
+  <script src="js/data/venues.js" defer></script>
+  <script src="js/data/events.js" defer></script>
+  <script src="js/event-utils.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="assets/vendor/leaflet/leaflet.js" defer></script>
+  <script src="js/venue-map.js" defer></script>
+  <script src="js/event-detail.js" defer></script>
+  <script src="js/calendar-core.js" defer></script>
+  <script src="js/calendar-actions.js" defer></script>
+  <script src="js/gallery-lightbox.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2" async></script>
+</head>
+
+<body class="event-detail-page">
+  <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+
+  <aside
+    class="development-data-banner"
+    id="development-data-banner"
+    role="status"
+    hidden
+  >
+    <strong>Entwicklungsansicht:</strong>
+    Nicht produktive Testdaten für Archiv und Galerie sind aktiv.
+  </aside>
+
+  <header class="site-header">
+    <a
+      href="index.html#start"
+      class="brand"
+      aria-label="GSG Eckartsberga – zur Startseite"
+    >
+      <img
+        src="assets/img/logo-gsg-eckartsberga.png"
+        alt=""
+        width="360"
+        height="347"
+      />
+      <span>GSG Eckartsberga</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+
+    <nav class="main-nav" id="main-navigation" aria-label="Hauptnavigation">
+      <a href="index.html#verein">Verein</a>
+      <a href="index.html#veranstaltungen">Veranstaltungen</a>
+      <a href="index.html#galerie">Galerie</a>
+      <a href="gaestebuch.html">Gästebuch</a>
+      <a href="index.html#mitglied">Mitglied werden</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="event-main">
+    <div
+      class="event-detail"
+      id="event-detail"
+      aria-live="polite"
+      aria-busy="true"
+    ></div>
+
+    <dialog
+      class="event-lightbox"
+      id="event-lightbox"
+      aria-labelledby="event-lightbox-title"
+    >
+      <div class="event-lightbox-panel">
+        <header class="event-lightbox-header">
+          <h2 id="event-lightbox-title">Galerieansicht</h2>
+          <button
+            class="event-lightbox-control event-lightbox-close"
+            id="event-lightbox-close"
+            type="button"
+            autofocus
+          >
+            <span aria-hidden="true">×</span>
+            Schließen
+          </button>
+        </header>
+
+        <figure class="event-lightbox-media">
+          <div class="event-lightbox-viewport">
+            <img
+              id="event-lightbox-image"
+              alt=""
+              decoding="async"
+            />
+            <video
+              class="event-lightbox-video"
+              id="event-lightbox-video"
+              controls
+              preload="metadata"
+              playsinline
+              hidden
+            >
+              Ihr Browser unterstützt die Videowiedergabe nicht.
+            </video>
+          </div>
+          <figcaption id="event-lightbox-caption" hidden></figcaption>
+        </figure>
+
+        <nav
+          class="event-lightbox-navigation"
+          aria-label="Navigation durch die Galerie"
+        >
+          <button
+            class="event-lightbox-control event-lightbox-previous"
+            id="event-lightbox-previous"
+            type="button"
+            aria-label="Vorheriges Bild"
+            aria-disabled="true"
+          >
+            <span aria-hidden="true">←</span>
+            Vorheriges
+          </button>
+          <p
+            class="event-lightbox-position"
+            id="event-lightbox-position"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            Bild 1 von 1
+          </p>
+          <button
+            class="event-lightbox-control event-lightbox-next"
+            id="event-lightbox-next"
+            type="button"
+            aria-label="Nächstes Bild"
+            aria-disabled="true"
+          >
+            Nächstes
+            <span aria-hidden="true">→</span>
+          </button>
+        </nav>
+      </div>
+    </dialog>
+
+    <dialog
+      class="event-lightbox venue-map-dialog"
+      id="venue-map-dialog"
+      aria-labelledby="venue-map-title"
+      aria-describedby="venue-map-provider-notice"
+    >
+      <div class="event-lightbox-panel venue-map-panel">
+        <header class="event-lightbox-header">
+          <h2 id="venue-map-title">Standortkarte</h2>
+          <button
+            class="event-lightbox-control event-lightbox-close"
+            id="venue-map-close"
+            type="button"
+            autofocus
+          >
+            <span aria-hidden="true">×</span>
+            Schließen
+          </button>
+        </header>
+
+        <div class="venue-map-summary">
+          <p class="venue-map-name" id="venue-map-name"></p>
+          <p id="venue-map-description" hidden></p>
+          <p class="venue-map-provider-notice" id="venue-map-provider-notice">
+            Die Karte wird nach Ihrer Auswahl direkt von OpenStreetMap geladen.
+            Dabei wird eine Verbindung zu Servern der OpenStreetMap Foundation
+            aufgebaut.
+          </p>
+        </div>
+
+        <div
+          class="venue-map-canvas"
+          id="venue-map-canvas"
+          role="region"
+          aria-label="OpenStreetMap-Karte"
+        ></div>
+
+        <p class="venue-map-status" id="venue-map-status" role="status" hidden></p>
+
+        <a
+          class="event-lightbox-control venue-map-external"
+          id="venue-map-external"
+          href="https://www.openstreetmap.org/"
+          rel="external"
+        >
+          Standort direkt bei OpenStreetMap öffnen
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </dialog>
+
+    <noscript>
+      <section class="event-state" aria-labelledby="noscript-title">
+        <p class="event-state-kicker">Veranstaltungsdetails</p>
+        <h1 id="noscript-title">JavaScript wird benötigt</h1>
+        <p>
+          Die Veranstaltungsdetailansicht wird aus den zentral gepflegten
+          Veranstaltungsdaten erzeugt und benötigt dafür JavaScript.
+        </p>
+        <a class="btn btn-primary" href="index.html#veranstaltungen">
+          Zur Veranstaltungsübersicht
+        </a>
+      </section>
+    </noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-signature">
+        <a
+          class="footer-association-link footer-association-link-dsb"
+          href="https://www.dsb.de/"
+          rel="external"
+          aria-label="Offizielle Website des Deutschen Schützenbundes"
+        >
+          <img
+            src="assets/img/logo-deutscher-schuetzenbund.png"
+            alt="Logo des Deutschen Schützenbundes"
+            width="1013"
+            height="720"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+
+        <figure class="footer-brand-illustration">
+          <picture>
+            <source
+              srcset="assets/img/logo-eckig_v1.webp"
+              type="image/webp"
+            />
+            <img
+              src="assets/img/logo-eckig_v1.png"
+              alt="Historische Illustration der Großkaliber Schützengilde 1503 Eckartsberga mit Eckartsburg, Kanone und Stadtwappen"
+              width="1335"
+              height="1178"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </figure>
+
+        <a
+          class="footer-association-link footer-association-link-state"
+          href="https://www.sv-st.de/"
+          rel="external"
+          aria-label="Offizielle Website des Landesschützenverbandes Sachsen-Anhalt"
+        >
+          <img
+            src="assets/img/logo-landesschuetzenverband-sachsen-anhalt.png"
+            alt="Wappen des Landesschützenverbandes Sachsen-Anhalt"
+            width="550"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+      </div>
+
+      <div class="footer-main">
+        <nav class="footer-nav" aria-label="Navigation im Seitenfuß">
+          <a href="index.html#start">Start</a>
+          <a href="index.html#verein">Verein</a>
+          <a href="index.html#veranstaltungen">Veranstaltungen</a>
+          <a href="index.html#galerie">Galerie</a>
+          <a href="gaestebuch.html">Gästebuch</a>
+          <a href="service.html">Service &amp; Links</a>
+          <a href="partner.html">Partner</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </nav>
+      </div>
+
+      <p class="footer-legal">
+        © <span id="current-year">2026</span> Großkaliber Schützengilde Eckartsberga e. V.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
