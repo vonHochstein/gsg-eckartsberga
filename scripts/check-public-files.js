@@ -6,7 +6,7 @@ const ROOT = path.resolve(__dirname, "..");
 const MANIFEST = ".github/public-files.json";
 const CONTROL_FILES = new Set([
   ".gitignore", MANIFEST, ".github/workflows/pages.yml",
-  "scripts/generate-calendar.js", "scripts/check-public-files.js"
+  "scripts/generate-calendar.js", "scripts/generate-sitemap.js", "scripts/check-public-files.js"
 ]);
 
 function isPublicPath(file) {

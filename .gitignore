@@ -8,6 +8,7 @@
 !/.github/workflows/pages.yml
 !/.github/public-files.json
 !/scripts/generate-calendar.js
+!/scripts/generate-sitemap.js
 !/scripts/check-public-files.js
 !/js/*.js
 !/js/data/events.js

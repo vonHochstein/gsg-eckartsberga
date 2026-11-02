@@ -157,6 +157,7 @@
   "schiessbahnen.html",
   "scripts/check-public-files.js",
   "scripts/generate-calendar.js",
+  "scripts/generate-sitemap.js",
   "service.css",
   "service.html",
   "style.css",

@@ -51,6 +51,7 @@ jobs:
             cp -R "assets/$directory" _site/assets/
           done
           node scripts/generate-calendar.js --output _site/calendar
+          node scripts/generate-sitemap.js --output _site
       - name: Website hochladen
         uses: actions/upload-pages-artifact@v4
         with:

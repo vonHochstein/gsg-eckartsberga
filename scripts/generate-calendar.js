@@ -35,7 +35,7 @@ function generateCalendar(options = {}) {
       fs.readFileSync(path.join(output, ".generated-calendar"), "utf8") !== MARKER)) {
     throw new Error("Vorhandener Ordner ist keine eigene generierte Kalenderausgabe.");
   }
-  const base = new URL(options.baseUrl || "https://vonhochstein.github.io/gsg-eckartsberga/");
+  const base = new URL(options.baseUrl || "https://gsg-eckartsberga.de/");
   if (!/^https?:$/.test(base.protocol) || base.search || base.hash || !base.pathname.endsWith("/")) {
     throw new Error("Kalender-Basisadresse muss eine HTTP(S)-Adresse mit abschließendem / sein.");
   }
