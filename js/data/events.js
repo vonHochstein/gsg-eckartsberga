@@ -999,6 +999,11 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
         label: "Ausschreibung KM Luftgewehr/Luftpistole 2027",
         url: "assets/documents/events/2026/2026_10_12 Ausschreibung KM Luftgewehr-Luftpistole 2027.pdf",
         type: "announcement"
+      },
+      {
+        label: "Ergebnisprotokoll Kreismeisterschaft Luftgewehr/Luftpistole 2027",
+        url: "assets/documents/events/2026/2026_11_07 Ergebnisprotokoll Kreismeisterschaft Luftgewehr-Luftpistole 2027.pdf",
+        type: "result-list"
       }
     ],
     downloads: [],
