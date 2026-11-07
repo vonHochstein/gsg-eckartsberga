@@ -925,7 +925,15 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     description:
       "Die GSG Eckartsberga lädt am 24. Oktober 2026 zum Herbstpokal im Wurfscheibenschießen nach Lossa ein. Pro Serie werden 20 Scheiben geschossen; gewertet werden die beiden besten Serien. Die Anmeldung ist vor Ort bis 12 Uhr möglich.",
     image: null,
-    gallery: [],
+    gallery: [
+      {
+        src: "assets/img/events/2026/2026_10_24 Herbstpokal Wurfscheibe 2026 Gruppenaufnahme.jpg",
+        alt: "Fünf Teilnehmer mit Urkunden und Sachpreisen beim Herbstpokal Wurfscheibe 2026 in Lossa.",
+        caption: "Herbstpokal Wurfscheibe am 24. Oktober 2026 in Lossa.",
+        width: 2000,
+        height: 1500
+      }
+    ],
     documents: [
       {
         label: "Ausschreibung Herbstpokal Wurfscheibe 2026",
