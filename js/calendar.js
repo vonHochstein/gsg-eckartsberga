@@ -310,8 +310,8 @@ function createEventMarkup(event) {
         ${imageMarkup}
 
         <div class="timeline-chips" aria-label="Verfügbare Inhalte">
-          <span class="timeline-chip ${hasDocuments ? "available" : "disabled"}"><span aria-hidden="true">📄</span>&nbsp;${hasDocuments ? "Dokumente verfügbar" : "Dokumente folgen"}</span>
-          <span class="timeline-chip ${hasResults ? "available" : "disabled"}"><span aria-hidden="true">🏆</span>&nbsp;${hasResults ? "Ergebnisse verfügbar" : "Ergebnisse folgen"}</span>
+          <span class="timeline-chip ${hasDocuments ? "available" : "disabled"}"><span aria-hidden="true">📄</span>&nbsp;${hasDocuments ? "Dokumente verfügbar" : "Keine Dokumente hinterlegt"}</span>
+          <span class="timeline-chip ${hasResults ? "available" : "disabled"}"><span aria-hidden="true">🏆</span>&nbsp;${hasResults ? "Ergebnisse verfügbar" : "Keine Ergebnisse hinterlegt"}</span>
           ${mediaLabel ? `<span class="timeline-chip available"><span aria-hidden="true">📷</span>&nbsp;${mediaLabel}</span>` : ""}
         </div>
 
