@@ -274,6 +274,18 @@ function createEventMarkup(event) {
   const location = locationData?.name || "Ort folgt";
   const image = eventUtils?.normalizeImage(event.image) || null;
   const detailUrl = eventUtils?.createDetailUrl(event) || null;
+  const organizerLogo = eventUtils?.getEventOrganizerLogo(event) || null;
+  const organizerLogoMarkup = organizerLogo
+    ? `<img
+        class="timeline-organizer-logo"
+        src="${escapeHTML(organizerLogo.src)}"
+        alt="${escapeHTML(organizerLogo.alt)}"
+        width="${organizerLogo.width}"
+        height="${organizerLogo.height}"
+        loading="lazy"
+        decoding="async"
+      />`
+    : "";
   const imageMarkup = image
     ? `<figure class="timeline-media">
         <img
@@ -288,6 +300,7 @@ function createEventMarkup(event) {
     : "";
 
   const cardContent = `
+      <div class="timeline-identity">
       <time
         class="timeline-date"
         datetime="${escapeHTML(event.start)}"
@@ -296,6 +309,8 @@ function createEventMarkup(event) {
         <span class="timeline-day">${formatDay(event.start)}</span>
         <span class="timeline-month-short">${formatShortMonth(event.start)}</span>
       </time>
+      ${organizerLogoMarkup}
+      </div>
 
       <div class="timeline-content">
 
@@ -320,11 +335,11 @@ function createEventMarkup(event) {
 
   const cardInner = detailUrl
     ? `<a
-        class="timeline-card-inner timeline-card-link"
+        class="timeline-card-inner timeline-card-link${organizerLogo ? " has-organizer-logo" : ""}"
         href="${escapeHTML(detailUrl)}"
         aria-label="Details zu ${escapeHTML(title)}"
       >${cardContent}</a>`
-    : `<div class="timeline-card-inner">${cardContent}</div>`;
+    : `<div class="timeline-card-inner${organizerLogo ? " has-organizer-logo" : ""}">${cardContent}</div>`;
 
   return `
     <article class="timeline-card" data-slug="${escapeHTML(event.slug || "")}">

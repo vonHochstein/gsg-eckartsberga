@@ -1506,6 +1506,20 @@ abbr[title] {
   box-shadow: 0 26px 60px rgba(0, 0, 0, 0.26);
 }
 
+.timeline-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.timeline-organizer-logo {
+  display: block;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+
 .timeline-date {
   width: 76px;
   height: 76px;
@@ -1886,6 +1900,22 @@ abbr[title] {
     column-gap: 14px;
     row-gap: 0;
     padding: 22px;
+  }
+
+  .timeline-card-inner.has-organizer-logo {
+    grid-template-columns: 72px minmax(0, 1fr) 72px;
+  }
+
+  .timeline-identity {
+    display: contents;
+  }
+
+  .timeline-organizer-logo {
+    width: 72px;
+    height: 72px;
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    align-self: start;
   }
 
   .timeline-date {
