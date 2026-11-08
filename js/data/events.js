@@ -1042,6 +1042,33 @@ Wir freuen uns auf ein Wiedersehen in Eckartsberga.`,
     registrationRequired: true,
     archive: true,
     featured: false
+  },
+  {
+    id: 38,
+    slug: "buttstaedter-pokal-2026",
+    title: "3. Buttstädter Pokal 2026",
+    shortTitle: "3. Buttstädter Pokal",
+    category: "Pokalwettkampf",
+    start: "2026-12-05T10:00:00",
+    venueId: "schuetzenhaus-buttstaedt",
+    organizer: "Schützengesellschaft Buttstädt 1849 e.V.",
+    description:
+      "Beim 3. Buttstädter Pokal wird eine Kombination aus Langwaffe auf 100 Meter und Kurzwaffe auf 25 Meter geschossen. Je Disziplin sind 15 Wertungsschüsse ohne Probeschüsse in 15 Minuten vorgesehen. Meldeschluss ist um 14 Uhr.",
+    image: null,
+    gallery: [],
+    documents: [
+      {
+        label: "Ausschreibung 3. Buttstädter Pokal 2026",
+        url: "assets/documents/events/2026/2026_11_08 Ausschreibung 3. Buttstädter Pokal 2026.jpg",
+        type: "announcement"
+      }
+    ],
+    downloads: [],
+    results: [],
+    externalLinks: [],
+    registrationRequired: true,
+    archive: true,
+    featured: false
   }
 ];
 
